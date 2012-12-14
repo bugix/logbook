@@ -1,0 +1,10 @@
+<aspectj>
+<aspects>
+<aspect name="logbook.server.domain.MainClassification_Roo_Jpa_ActiveRecord"/>
+<aspect name="logbook.server.domain.MainClassification_Roo_ToString"/>
+<aspect name="logbook.server.domain.MainClassification_Roo_Jpa_Entity"/>
+<aspect name="logbook.server.domain.MainClassification_Roo_JavaBean"/>
+<aspect name="logbook.server.domain.MainClassification_Roo_Configurable"/>
+</aspects>
+</aspectj>
+
