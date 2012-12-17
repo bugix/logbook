@@ -1,6 +1,8 @@
 package logbook.client.managed.ui;
 
 import com.google.web.bindery.requestfactory.gwt.ui.client.ProxyRenderer;
+import java.util.Set;
+import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
 
 public class MainClassificationProxyRenderer extends ProxyRenderer<MainClassificationProxy> {

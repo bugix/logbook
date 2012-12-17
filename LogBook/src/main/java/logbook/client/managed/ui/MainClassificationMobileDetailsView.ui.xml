@@ -21,6 +21,14 @@
             <div class="{style.label}">Description</div>
             <div class="{style.value}" ui:field="description"/>
         </div>
+    <div id="shortcut">
+            <div class="{style.label}">Shortcut</div>
+            <div class="{style.value}" ui:field="shortcut"/>
+        </div>
+    <div id="classificationTopics">
+            <div class="{style.label}">Classification Topics</div>
+            <div class="{style.value}" ui:field="classificationTopics"/>
+        </div>
     <div id="version">
             <div class="{style.label}">Version</div>
             <div class="{style.value}" ui:field="version"/>

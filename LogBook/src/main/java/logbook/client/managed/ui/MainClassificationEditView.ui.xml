@@ -51,6 +51,22 @@
                     <g:TextBox ui:field="description"/>
                 </td>
             </tr>
+      <tr id="shortcut">
+                <td>
+                    <div class="{style.label}">Shortcut:</div>
+                </td>
+                <td>
+                    <g:TextBox ui:field="shortcut"/>
+                </td>
+            </tr>
+      <tr id="classificationTopics">
+                <td>
+                    <div class="{style.label}">Classification Topics:</div>
+                </td>
+                <td>
+                    <a:ClassificationTopicSetEditor ui:field="classificationTopics"/>
+                </td>
+            </tr>
     </table>
 
     <div class="{style.bar}">

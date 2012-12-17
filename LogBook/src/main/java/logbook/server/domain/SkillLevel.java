@@ -1,0 +1,23 @@
+package logbook.server.domain;
+
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+import org.springframework.roo.addon.javabean.RooJavaBean;
+import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
+import org.springframework.roo.addon.tostring.RooToString;
+
+@RooJavaBean
+@RooToString
+@RooJpaActiveRecord
+public class SkillLevel {
+
+    private Integer levelNumber;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "skillLevel")
+    private Set<Skill> skills = new HashSet<Skill>();
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "skillLevel")
+    private Set<SkillAcquired> skillAcquired = new HashSet<SkillAcquired>();
+}

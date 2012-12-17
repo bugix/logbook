@@ -8,7 +8,6 @@ import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.ServiceName;
 import org.springframework.roo.addon.gwt.RooGwtRequest;
 
-@SuppressWarnings("requestfactory")
 @RooGwtRequest("logbook.server.domain.MainClassification")
 @ServiceName("logbook.server.domain.MainClassification")
 public interface MainClassificationRequest extends RequestContext {

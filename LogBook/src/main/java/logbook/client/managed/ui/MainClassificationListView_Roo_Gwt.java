@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import java.util.HashSet;
 import java.util.Set;
+import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
 import logbook.client.scaffold.place.AbstractProxyListView;
 
@@ -58,6 +59,31 @@ public abstract class MainClassificationListView_Roo_Gwt extends AbstractProxyLi
                 return renderer.render(object.getDescription());
             }
         }, "Description");
+        paths.add("shortcut");
+        table.addColumn(new TextColumn<MainClassificationProxy>() {
+
+            Renderer<java.lang.String> renderer = new AbstractRenderer<java.lang.String>() {
+
+                public String render(java.lang.String obj) {
+                    return obj == null ? "" : String.valueOf(obj);
+                }
+            };
+
+            @Override
+            public String getValue(MainClassificationProxy object) {
+                return renderer.render(object.getShortcut());
+            }
+        }, "Shortcut");
+        paths.add("classificationTopics");
+        table.addColumn(new TextColumn<MainClassificationProxy>() {
+
+            Renderer<java.util.Set> renderer = logbook.client.scaffold.place.CollectionRenderer.of(logbook.client.managed.ui.ClassificationTopicProxyRenderer.instance());
+
+            @Override
+            public String getValue(MainClassificationProxy object) {
+                return renderer.render(object.getClassificationTopics());
+            }
+        }, "Classification Topics");
         paths.add("version");
         table.addColumn(new TextColumn<MainClassificationProxy>() {
 

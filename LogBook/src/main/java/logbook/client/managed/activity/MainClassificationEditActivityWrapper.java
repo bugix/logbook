@@ -11,8 +11,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
 import logbook.client.managed.request.ApplicationRequestFactory;
+import logbook.client.managed.ui.ClassificationTopicSetEditor;
 import logbook.client.scaffold.activity.IsScaffoldMobileActivity;
 import logbook.client.scaffold.place.ProxyEditView;
 import logbook.client.scaffold.place.ProxyListPlace;
@@ -65,5 +68,7 @@ public class MainClassificationEditActivityWrapper extends MainClassificationEdi
     }
 
     public interface View<V extends logbook.client.scaffold.place.ProxyEditView<logbook.client.managed.proxy.MainClassificationProxy, V>> extends ProxyEditView<MainClassificationProxy, V> {
+
+        void setClassificationTopicsPickerValues(Collection<logbook.client.managed.proxy.ClassificationTopicProxy> values);
     }
 }

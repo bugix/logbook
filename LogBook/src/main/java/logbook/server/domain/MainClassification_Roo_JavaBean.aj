@@ -3,6 +3,8 @@
 
 package logbook.server.domain;
 
+import java.util.Set;
+import logbook.server.domain.ClassificationTopic;
 import logbook.server.domain.MainClassification;
 
 privileged aspect MainClassification_Roo_JavaBean {
@@ -13,6 +15,22 @@ privileged aspect MainClassification_Roo_JavaBean {
     
     public void MainClassification.setDescription(String description) {
         this.description = description;
+    }
+    
+    public String MainClassification.getShortcut() {
+        return this.shortcut;
+    }
+    
+    public void MainClassification.setShortcut(String shortcut) {
+        this.shortcut = shortcut;
+    }
+    
+    public Set<ClassificationTopic> MainClassification.getClassificationTopics() {
+        return this.classificationTopics;
+    }
+    
+    public void MainClassification.setClassificationTopics(Set<ClassificationTopic> classificationTopics) {
+        this.classificationTopics = classificationTopics;
     }
     
 }

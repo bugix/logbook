@@ -11,6 +11,7 @@ import com.google.gwt.text.shared.AbstractSafeHtmlRenderer;
 import com.google.gwt.text.shared.Renderer;
 import java.util.HashSet;
 import java.util.Set;
+import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
 import logbook.client.scaffold.ScaffoldMobileApp;
 import logbook.client.scaffold.ui.MobileProxyListView;
@@ -48,9 +49,9 @@ public class MainClassificationMobileListView extends MainClassificationMobileLi
             }
         };
 
-        private final Renderer<Long> secondaryRenderer = new AbstractRenderer<Long>() {
+        private final Renderer<String> secondaryRenderer = new AbstractRenderer<String>() {
 
-            public String render(java.lang.Long obj) {
+            public String render(java.lang.String obj) {
                 return obj == null ? "" : String.valueOf(obj);
             }
         };
@@ -66,8 +67,8 @@ public class MainClassificationMobileListView extends MainClassificationMobileLi
             }
             sb.appendHtmlConstant("<div style=\"position:relative;\">");
             sb.appendHtmlConstant("<div class=\"" + secondaryStyle + "\">");
-            if (value.getId() != null) {
-                sb.appendEscaped(secondaryRenderer.render(value.getId()));
+            if (value.getShortcut() != null) {
+                sb.appendEscaped(secondaryRenderer.render(value.getShortcut()));
             }
             sb.appendHtmlConstant("</div>");
             sb.appendHtmlConstant("<div class=\"" + dateStyle + "\">");

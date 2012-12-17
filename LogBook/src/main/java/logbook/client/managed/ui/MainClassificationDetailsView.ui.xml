@@ -51,6 +51,22 @@
                     <span ui:field="description"/>
                 </td>
             </tr>
+      <tr id="shortcut">
+                <td>
+                    <span class="{style.label}">Shortcut:</span>
+                </td>
+                <td>
+                    <span ui:field="shortcut"/>
+                </td>
+            </tr>
+      <tr id="classificationTopics">
+                <td>
+                    <span class="{style.label}">Classification Topics:</span>
+                </td>
+                <td>
+                    <span ui:field="classificationTopics"/>
+                </td>
+            </tr>
       <tr id="version">
                 <td>
                     <span class="{style.label}">Version:</span>

@@ -15,6 +15,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
+import java.util.Set;
+import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
 import logbook.client.scaffold.place.ProxyDetailsView;
 import logbook.client.scaffold.place.ProxyListView;
@@ -28,6 +30,12 @@ public abstract class MainClassificationDetailsView_Roo_Gwt extends Composite im
     SpanElement description;
 
     @UiField
+    SpanElement shortcut;
+
+    @UiField
+    SpanElement classificationTopics;
+
+    @UiField
     SpanElement version;
 
     MainClassificationProxy proxy;
@@ -39,6 +47,8 @@ public abstract class MainClassificationDetailsView_Roo_Gwt extends Composite im
         this.proxy = proxy;
         id.setInnerText(proxy.getId() == null ? "" : String.valueOf(proxy.getId()));
         description.setInnerText(proxy.getDescription() == null ? "" : String.valueOf(proxy.getDescription()));
+        shortcut.setInnerText(proxy.getShortcut() == null ? "" : String.valueOf(proxy.getShortcut()));
+        classificationTopics.setInnerText(proxy.getClassificationTopics() == null ? "" : logbook.client.scaffold.place.CollectionRenderer.of(logbook.client.managed.ui.ClassificationTopicProxyRenderer.instance()).render(proxy.getClassificationTopics()));
         version.setInnerText(proxy.getVersion() == null ? "" : String.valueOf(proxy.getVersion()));
         displayRenderer.setInnerText(MainClassificationProxyRenderer.instance().render(proxy));
     }

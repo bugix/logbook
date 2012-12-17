@@ -25,6 +25,18 @@
                 <g:TextBox ui:field="description"/>
             </div>
         </div>
+    <div id="shortcut">
+            <div class="{style.label}">Shortcut</div>
+            <div class="{style.value}">
+                <g:TextBox ui:field="shortcut"/>
+            </div>
+        </div>
+    <div id="classificationTopics">
+            <div class="{style.label}">Classification Topics</div>
+            <div class="{style.value}">
+                <a:ClassificationTopicSetEditor ui:field="classificationTopics"/>
+            </div>
+        </div>
 
     <g:Button ui:field="save">Save</g:Button>
   </g:HTMLPanel>

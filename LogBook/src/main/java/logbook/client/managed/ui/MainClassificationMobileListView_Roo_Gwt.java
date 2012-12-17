@@ -14,6 +14,7 @@ import com.google.gwt.text.shared.Renderer;
 import com.google.gwt.text.shared.SafeHtmlRenderer;
 import java.util.HashSet;
 import java.util.Set;
+import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
 import logbook.client.scaffold.ScaffoldMobileApp;
 import logbook.client.scaffold.ui.MobileProxyListView;
@@ -28,6 +29,6 @@ public abstract class MainClassificationMobileListView_Roo_Gwt extends MobilePro
 
     public void init() {
         paths.add("description");
-        paths.add("id");
+        paths.add("shortcut");
     }
 }

@@ -12,8 +12,10 @@ import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.Request;
 import java.util.Set;
+import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
 import logbook.client.managed.request.ApplicationRequestFactory;
+import logbook.client.managed.ui.ClassificationTopicSetEditor;
 import logbook.client.scaffold.activity.IsScaffoldMobileActivity;
 import logbook.client.scaffold.place.ProxyDetailsView;
 import logbook.client.scaffold.place.ProxyDetailsView.Delegate;
@@ -49,6 +51,6 @@ public abstract class MainClassificationDetailsActivity_Roo_Gwt extends Abstract
     }
 
     protected void find(Receiver<com.google.web.bindery.requestfactory.shared.EntityProxy> callback) {
-        requests.find(proxyId).with().fire(callback);
+        requests.find(proxyId).with("classificationTopics").fire(callback);
     }
 }
