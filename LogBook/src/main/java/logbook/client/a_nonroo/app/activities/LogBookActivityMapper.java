@@ -2,6 +2,12 @@ package logbook.client.a_nonroo.app.activities;
 
 
 
+import logbook.client.a_nonroo.app.client.activity.LoginActivity;
+import logbook.client.a_nonroo.app.client.activity.ProgressActivity;
+import logbook.client.a_nonroo.app.client.activity.SkillActivity;
+import logbook.client.a_nonroo.app.client.place.LoginPlace;
+import logbook.client.a_nonroo.app.client.place.ProgressPlace;
+import logbook.client.a_nonroo.app.client.place.SkillPlace;
 import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 
 import com.allen_sauer.gwt.log.client.Log;
@@ -13,7 +19,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.inject.Inject;
 /**
  * ActivityMapper for all main places. 
- * @author masterthesis
+ * @author Manish
  *
  */
 public class LogBookActivityMapper implements ActivityMapper {
@@ -33,14 +39,27 @@ public class LogBookActivityMapper implements ActivityMapper {
 	
 	@Override
 	public Activity getActivity(Place place) {
-		Log.debug("im McAppActivityMapper.getActivity");
+		Log.debug("im LogBookActivityMapper.getActivity");
 
-		 
-		 
-		 
-
-		 Log.debug("im McAppActivityMapper.getActivity, return null");
+		if (place instanceof LoginPlace) {
+			Log.debug("is LoginPlace");
+			return new LoginActivity(requests, placeController);
+		}
+		if (place instanceof SkillPlace) {
+			Log.debug("is SkillPlace");
+			return new SkillActivity(requests, placeController);
+		}
+		if (place instanceof ProgressPlace) {
+			Log.debug("is ProgressPlace");
+			return new ProgressActivity(requests, placeController);
+		}
+		
 		return null;
+		 
+		 
+
+		/* Log.debug("im McAppActivityMapper.getActivity, return null");
+		return null;*/
 	}
 
 

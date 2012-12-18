@@ -2,376 +2,196 @@ package logbook.client.a_nonroo.app.client;
 
 
 import logbook.client.a_nonroo.app.LogBookShell;
-
+import logbook.client.a_nonroo.app.activities.LogBookActivityMapper;
+import logbook.client.a_nonroo.app.client.place.LoginPlace;
+import logbook.client.a_nonroo.app.client.place.ProgressPlace;
+import logbook.client.a_nonroo.app.client.place.SkillPlace;
 import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import logbook.shared.i18n.LogBookConstants;
 
-
-import com.allen_sauer.gwt.log.client.Log;
+import com.google.gwt.activity.shared.ActivityManager;
+import com.google.gwt.activity.shared.ActivityMapper;
+import com.google.gwt.activity.shared.CachingActivityMapper;
+import com.google.gwt.activity.shared.FilteredActivityMapper;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.DivElement;
-import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
-import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
-
+import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.uibinder.client.UiTemplate;
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DisclosurePanel;
+import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
-import com.google.web.bindery.requestfactory.shared.Receiver;
 /**
  * The applications main navigation element, shown on the left hand side of the user interface.
- * @author masterthesis
+ * @author milan
  *
  */
 public class LogBookNav extends Composite {
 
-	private static McAppNavAdminUiBinder uiBinderAdmin = GWT
-			.create(McAppNavAdminUiBinder.class);
+	LogBookConstants constants = GWT.create(LogBookConstants.class);
+	
+	private static LogBookNavUiBinder uiBinder = GWT
+			.create(LogBookNavUiBinder.class);
 
-	@UiTemplate("McAppNavAdmin.ui.xml")
-	interface McAppNavAdminUiBinder extends UiBinder<Widget, LogBookNav> {
+	interface LogBookNavUiBinder extends UiBinder<Widget, LogBookNav> {
 	}
 	
-	private static McAppNavUserUiBinder uiBinderUser = GWT
-	.create(McAppNavUserUiBinder.class);
-	
-	@UiTemplate("McAppNavUser.ui.xml")
-	interface McAppNavUserUiBinder extends UiBinder<Widget, LogBookNav> {
-	}
-	
-	@UiField
-	DisclosurePanel systemOweviewPanel;
-	@UiField
-	DisclosurePanel managementPanel;
-	@UiField
-	DisclosurePanel assementPanel;
-	@UiField
-	DisclosurePanel questionPanel;
-	@UiField
-	Anchor systemOverview;
-	@UiField
-	Anchor acceptPerson;
-	@UiField
-	Anchor acceptQuestion;
-	@UiField
-	Anchor acceptAnswer;
-	@UiField
-	Anchor acceptAssQuestion;
-	@UiField
-	Anchor openDemand;
-	@UiField
-	Anchor user;
-	@UiField
-	Anchor question;
-	@UiField
-	Anchor questionType;
-	@UiField
-	Anchor institution;
-	@UiField
-	Anchor assesment;
-	@UiField
-	Anchor asignAssQuestion;
-	@UiField
-	Anchor bookAssesment;
-	@UiField
-	Anchor staticContent;
-	
-	
-	
-	@UiHandler("systemOverview")
-		void systemOverviewClicked(ClickEvent event) {
-			//placeController.goTo(new PlaceSystemOverview("PlaceSystemOverview"));
-		}
-	@UiHandler("acceptPerson")
-	void acceptPersonClicked(ClickEvent event) {
-		//placeController.goTo(new PlaceAcceptPerson("PlaceAcceptPerson"));
-	}
-	
-	@UiHandler("acceptQuestion")
-	void acceptQuestionClicked(ClickEvent event) {
-		//placeController.goTo(new PlaceAcceptQuestion("PlaceAcceptQuestion"));
-	}
-	@UiHandler("acceptAnswer")
-	void PlaceAcceptAnswerClicked(ClickEvent event) {
-		//placeController.goTo(new PlaceAcceptAnswer("PlaceAcceptAnswer"));
-	}
-	@UiHandler("acceptAssQuestion")
-	void acceptAssQuestionClicked(ClickEvent event) {
-		//placeController.goTo(new PlaceAcceptAssQuestion("PlaceAcceptAssQuestion"));
-	}
-	@UiHandler("openDemand")
-	void openDemandClicked(ClickEvent event) {
-		//placeController.goTo(new PlaceOpenDemand("PlaceOpenDemand"));
-	}
-	@UiHandler("user")
-	void userClicked(ClickEvent event) {
-		//placeController.goTo(new PlaceUser("PlaceUser"));
-	}
-	@UiHandler("question")
-	void questionClicked(ClickEvent event) {
-		//placeController.goTo(new PlaceQuestion("PlaceQuestion"));
-	}
-	@UiHandler("questionType")
-	void questionTypeClicked(ClickEvent event) {
-		//placeController.goTo(new PlaceQuestiontypes("PlaceQuestiontypes"));
-	}
-	@UiHandler("institution")
-	void institutionClicked(ClickEvent event) {
-	//	placeController.goTo(new PlaceInstitution("PlaceInstitution"));
-	}
-	@UiHandler("assesment")
-	void assesmentClicked(ClickEvent event) {
-		//placeController.goTo(new PlaceAssesment("PlaceAssesment"));
-	}
-	@UiHandler("asignAssQuestion")
-	void asignAssQuestionClicked(ClickEvent event) {
-		//placeController.goTo(new PlaceAsignAssQuestion("PlaceAssAsignQuestion"));
-	}
-	@UiHandler("bookAssesment")
-	void bookAssesmentClicked(ClickEvent event) {
-		//placeController.goTo(new PlaceBookAssesment("PlaceBookAssesment"));
-	}
-	@UiHandler("staticContent")
-	void staticContentClicked(ClickEvent event) {
-	//	placeController.goTo(new PlaceStaticContent("PlaceStaticContent"));
-	}
-	
-
-
 	public LogBookNav() {
-		initWidget(uiBinderUser.createAndBindUi(this));
+		initWidget(uiBinder.createAndBindUi(this));
 		
 	}
+	
+	public ActivityManager masterActivityManager=null;
 	
 	private LogBookRequestFactory requests;
 	private PlaceController placeController;
 	private LogBookShell shell;
+	
+	public static LogBookNav logBookNav;
+	
+	@UiField
+	TabLayoutPanel mainLoogBookTabpanel;
+	
+	public TabLayoutPanel getMainLoogBookTabpanel() {
+		return mainLoogBookTabpanel;
+	}
 
+	@UiField
+	Anchor login;
+	
+	@UiField
+	Anchor skill;
+	
+	@UiField
+	Anchor progress;
+	
+	@UiField
+	Anchor logout;
+
+	
 	@Inject
-	public LogBookNav(LogBookRequestFactory requests, PlaceController placeController, LogBookShell shell) {
-        this.requests = requests;
+	public LogBookNav(LogBookRequestFactory requests, PlaceController placeController,final PlaceHistoryHandler placeHistoryHandler,LogBookActivityMapper mcAppActivitiesMapper,EventBus eventBus) {
+        
+		initWidget(uiBinder.createAndBindUi(this));
+		this.requests = requests;
         this.placeController = placeController;
-        this.shell = shell;
-
-        
-
-      /*  requests.personRequestNonRoo().myGetLoggedPerson().fire(new Receiver<PersonProxy>(){
-
+      
+        login.setText(constants.login());
+		skill.setText(constants.skill());
+		progress.setText(constants.progress());
+		logout.setText(constants.logout());
+		
+		logBookNav=this;
+		
+		SkillPlace.nav=logBookNav;
+		
+		CachingActivityMapper cached = new CachingActivityMapper(mcAppActivitiesMapper);
+		FilterForMainPlaces filterForMainPlaces = new FilterForMainPlaces();
+		ActivityMapper masterActivityMap = new FilteredActivityMapper(filterForMainPlaces, cached);
+		 masterActivityManager = new ActivityManager(masterActivityMap, eventBus);
+		 masterActivityManager.setDisplay((SimplePanel)mainLoogBookTabpanel.getWidget(mainLoogBookTabpanel.getSelectedIndex()));
+		
 			
-
-			@Override
-			public void onSuccess(PersonProxy response) {
-				if (response == null){
-					Window.alert("the User will be redirected to Shibboleth Loginpage. You should select a user in the User-Box to login and reload the Page. Userinfo is strored in a session.");
-					return;
-				}
-				loggedUser = response;
-				 displayMenue();
-			}});
-        
-        requests.institutionRequestNonRoo().myGetInstitutionToWorkWith().fire(new Receiver<InstitutionProxy>(){
-
+		 /* if(mainLoogBookTabpanel.getSelectedIndex() == 0)
+		 {
+			 logBookNav.placeController.goTo(new LoginPlace("LoginPlace"));
+		 }*/
+	//	 masterActivityManager.setDisplay((SimplePanel)mainLoogBookTabpanel.getWidget(mainLoogBookTabpanel.getSelectedIndex()));
+		 
+		 
+		/* mainLoogBookTabpanel.addSelectionHandler(new SelectionHandler<Integer>() {
 			
-
 			@Override
-			public void onSuccess(InstitutionProxy response) {
-				if (response == null){
-					Window.alert("a Institution selectbox will be shown. You should select the institution from the Institution-Pulldown and reload the Page. The institution is storen in Session");
-					return;
-				}
-				//loggedUser = response;
-				 displayMenue();
-			}});
-        */
-        
+			public void onSelection(SelectionEvent<Integer> event) {
+				 masterActivityManager.setDisplay((SimplePanel)mainLoogBookTabpanel.getWidget(event.getSelectedItem()));
+				 if(event.getSelectedItem() == 0)
+				 {
+					 logBookNav.placeController.goTo(new LoginPlace("LoginPlace"));
+				 }
+				 else if(event.getSelectedItem() ==1)
+				 {
+					 logBookNav.placeController.goTo(new SkillPlace());
+				 }
+				 else if(event.getSelectedItem() ==2)
+				 {
+					 logBookNav.placeController.goTo(new ProgressPlace());
+				 }
+				
+			}
+		});*/
+		 
+		
+		 //placeHistoryHandler.handleCurrentHistory();
+		 
     }
 	
-	//private PersonProxy loggedUser;
 	
 	private int both = 0;
 	
-	@UiField
-	DivElement deletethis;
-	
 	private void displayMenue(){
-		if (both < 1){
-			both++;
-			return;
-		}
-		both = 0;
-		
-	/*	if (this.loggedUser.getIsAdmin()){
-	        initWidget(uiBinderAdmin.createAndBindUi(this));
-	        DOM.setElementAttribute(user.getParent().getParent().getElement(), "style", "margin-right: -2px; display: none;");
-		}
-		else {
-			initWidget(uiBinderUser.createAndBindUi(this));
-			deletethis.setInnerHTML("");
-			//Log.error(Document.get().getElementById("deletethis").getInnerHTML());
-		}*/
-		DOM.setElementAttribute(systemOverview.getParent().getParent().getElement(), "style", "margin-right: -2px; display: none;");
-		DOM.setElementAttribute(asignAssQuestion.getParent().getParent().getElement(), "style", "margin-right: -2px; display: none;");
-		DOM.setElementAttribute(question.getParent().getParent().getElement(), "style", "margin-right: -2px; display: none;");
-		
-		shell.setNavigation(this);
-        systemOweviewPanel.setOpen(false);
-        managementPanel.setOpen(false);
-        assementPanel.setOpen(false);
-        questionPanel.setOpen(false);
-        
-        requests.getEventBus().addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
-			public void onPlaceChange(PlaceChangeEvent event) {
 
-				Place place = event.getNewPlace();
-				changeMenue(place);
-			}
-		});
-        
-        Place place = placeController.getWhere();
-        changeMenue(place);
 	}
 	
 	protected void changeMenue(Place place){
 		
-		systemOverview.removeStyleName("gwt-AnchorSelected");
-
-		
-		acceptPerson.removeStyleName("gwt-AnchorSelected");
-		
-		acceptQuestion.removeStyleName("gwt-AnchorSelected");
-		
-		acceptAnswer.removeStyleName("gwt-AnchorSelected");
-		
-		acceptAssQuestion.removeStyleName("gwt-AnchorSelected");
-		
-		openDemand.removeStyleName("gwt-AnchorSelected");
-		
-		user.removeStyleName("gwt-AnchorSelected");
-		
-		question.removeStyleName("gwt-AnchorSelected");
-		
-		questionType.removeStyleName("gwt-AnchorSelected");
-		
-		institution.removeStyleName("gwt-AnchorSelected");
-		
-		assesment.removeStyleName("gwt-AnchorSelected");
-		
-		asignAssQuestion.removeStyleName("gwt-AnchorSelected");
-		
-		bookAssesment.removeStyleName("gwt-AnchorSelected");
-		
-		staticContent.removeStyleName("gwt-AnchorSelected");
-		
-  /*      if (place instanceof PlaceSystemOverview){
-            systemOweviewPanel.setOpen(true);
-            managementPanel.setOpen(false);
-            assementPanel.setOpen(false);
-            questionPanel.setOpen(false);
-            systemOverview.addStyleName("gwt-AnchorSelected");
-        }
-        if (place instanceof PlaceAcceptPerson){
-            systemOweviewPanel.setOpen(true);
-            managementPanel.setOpen(false);
-            assementPanel.setOpen(false);
-            questionPanel.setOpen(false);
-			acceptPerson.addStyleName("gwt-AnchorSelected");
-        }
-        if (place instanceof PlaceAcceptQuestion){
-            systemOweviewPanel.setOpen(true);
-            managementPanel.setOpen(false);
-            assementPanel.setOpen(false);
-            questionPanel.setOpen(false);			
-			acceptQuestion.addStyleName("gwt-AnchorSelected");
-        }
-        if (place instanceof PlaceAcceptAnswer){
-            systemOweviewPanel.setOpen(true);
-            managementPanel.setOpen(false);
-            assementPanel.setOpen(false);
-            questionPanel.setOpen(false);		
-			acceptAnswer.addStyleName("gwt-AnchorSelected");
-        }
-        if (place instanceof PlaceAcceptAssQuestion){
-            systemOweviewPanel.setOpen(true);
-            managementPanel.setOpen(false);
-            assementPanel.setOpen(false);
-            questionPanel.setOpen(false);		
-			acceptAssQuestion.addStyleName("gwt-AnchorSelected");
-        }
-        if (place instanceof PlaceOpenDemand){
-            systemOweviewPanel.setOpen(true);
-            managementPanel.setOpen(false);
-            assementPanel.setOpen(false);
-            questionPanel.setOpen(false);		
-			openDemand.addStyleName("gwt-AnchorSelected");
-        }
-        if (place instanceof PlaceUser || place instanceof PlaceUserDetails){
-            systemOweviewPanel.setOpen(false);
-            managementPanel.setOpen(true);
-            assementPanel.setOpen(false);
-            questionPanel.setOpen(false);		
-			user.addStyleName("gwt-AnchorSelected");
-        }
-        if (place instanceof PlaceQuestion || place instanceof PlaceQuestionDetails){
-            systemOweviewPanel.setOpen(false);
-            managementPanel.setOpen(false);
-            assementPanel.setOpen(false);
-            questionPanel.setOpen(true);		
-			question.addStyleName("gwt-AnchorSelected");
-        }
-        if (place instanceof PlaceQuestiontypes || place instanceof PlaceQuestiontypesDetails){
-            systemOweviewPanel.setOpen(false);
-            managementPanel.setOpen(false);
-            assementPanel.setOpen(false);
-            questionPanel.setOpen(true);		
-			questionType.addStyleName("gwt-AnchorSelected");
-        }
-        if (place instanceof PlaceInstitution || place instanceof PlaceInstitutionEvent){
-            systemOweviewPanel.setOpen(false);
-            managementPanel.setOpen(false);
-            assementPanel.setOpen(false);
-            questionPanel.setOpen(true);		
-			institution.addStyleName("gwt-AnchorSelected");
-        }
-        if (place instanceof PlaceAssesment || place instanceof PlaceAssesmentDetails){
-            systemOweviewPanel.setOpen(false);
-            managementPanel.setOpen(false);
-            assementPanel.setOpen(true);
-            questionPanel.setOpen(false);		
-			assesment.addStyleName("gwt-AnchorSelected");
-        }
-        if (place instanceof PlaceAsignAssQuestion){
-            systemOweviewPanel.setOpen(false);
-            managementPanel.setOpen(false);
-            assementPanel.setOpen(true);
-            questionPanel.setOpen(false);		
-			asignAssQuestion.addStyleName("gwt-AnchorSelected");
-        }
-        if (place instanceof PlaceBookAssesment || place instanceof PlaceBookAssesmentDetails){
-            systemOweviewPanel.setOpen(false);
-            managementPanel.setOpen(false);
-            assementPanel.setOpen(true);
-            questionPanel.setOpen(false);	
-			bookAssesment.addStyleName("gwt-AnchorSelected");
-        }
-        if (place instanceof PlaceStaticContent){
-            systemOweviewPanel.setOpen(false);
-            managementPanel.setOpen(false);
-            assementPanel.setOpen(true);
-            questionPanel.setOpen(false);	
-            staticContent.addStyleName("gwt-AnchorSelected");
-        }
-        */
 	}
 		
+	@UiHandler("login")
+	public void loginClicked(ClickEvent event){
+		/*masterActivityManager.setDisplay((SimplePanel)mainLoogBookTabpanel.getWidget(mainLoogBookTabpanel.getSelectedIndex()));
+		placeController.goTo(new LoginPlace("LoginPlace"));*/
+	}
+	@UiHandler("skill")
+	public void skillClicked(ClickEvent event){
+		/*masterActivityManager.setDisplay((SimplePanel)mainLoogBookTabpanel.getWidget(mainLoogBookTabpanel.getSelectedIndex()));
+		placeController.goTo(new SkillPlace());*/
+		
+	}
+	@UiHandler("progress")
+	public void progressClicked(ClickEvent event){
+	/*	masterActivityManager.setDisplay((SimplePanel)mainLoogBookTabpanel.getWidget(mainLoogBookTabpanel.getSelectedIndex()));
+	placeController.goTo(new ProgressPlace());	*/
+	}
+	
+	@UiHandler("mainLoogBookTabpanel")
+	public void tabSelectionChanged(SelectionEvent<Integer> event)
+	{
+		 masterActivityManager.setDisplay((SimplePanel)mainLoogBookTabpanel.getWidget(event.getSelectedItem()));
+		 if(event.getSelectedItem() == 0)
+		 {
+			 logBookNav.placeController.goTo(new LoginPlace("LoginPlace"));
+		 }
+		 else if(event.getSelectedItem() ==1)
+		 {
+			/* if(SkillPlace.tabIndex==0)
+			 {
+				 mainLoogBookTabpanel.selectTab(1);
+			 }
+			 
+			 SkillPlace.tabIndex=1;*/
+			 logBookNav.placeController.goTo(new SkillPlace());
+		 }
+		 else if(event.getSelectedItem() ==2)
+		 {
+			 logBookNav.placeController.goTo(new ProgressPlace());
+		 }
+		
+	}
+	
 
+	//	@UiHandler("logout")
+//	public void logoutClicked(ClickEvent event){
+//		Window.alert("Jay");
+//	}
+	
 
 }

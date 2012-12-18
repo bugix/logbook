@@ -1,20 +1,28 @@
 package logbook.client.a_nonroo.app;
 
 import logbook.client.a_nonroo.app.client.LogBookNav;
-
+import logbook.client.a_nonroo.app.client.place.LoginPlace;
+import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import logbook.shared.i18n.LogBookConstants;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.StyleInjector;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.DOM;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.NotificationMole;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 /**
  * The applications basic layout.
- * @author masterthesis
+ * @author milan
  *
  */
 public class LogBookShell extends Composite {
@@ -22,10 +30,27 @@ public class LogBookShell extends Composite {
 	private static LogBookShellUiBinder uiBinder = GWT
 			.create(LogBookShellUiBinder.class);
 	
-	@UiField
-	SimplePanel mcAppNav;
+	/*@UiField
+	SimplePanel mcAppNav;*/
 	@UiField
 	SimplePanel topPanel;
+	
+	
+	
+	/*@UiField
+	StudentInformationViewImpl studentInfromationViewImpl;*/
+	
+	/*@UiHandler("mainLoogBookTabpanel")
+	void onTabSelection(SelectionEvent<Integer> event) {
+	  //if (event.getSelectedItem() == 1) {
+	    Window.alert("Tab Selected :" + event.getSelectedItem()); 
+	  //}
+	}	*/	
+	
+	LogBookConstants constants = GWT.create(LogBookConstants.class);
+	
+
+	
 	//@UiField
 	//SimplePanel masterPanel;
 
@@ -33,11 +58,12 @@ public class LogBookShell extends Composite {
 	//@UiField
 	//NotificationMole mole;
 
+	@UiField
+	SimplePanel logBookNavSimplePanel;
 
-
-
-
-
+	public SimplePanel getLogBookNavSimplePanel() {
+		return logBookNavSimplePanel;
+	}
 
 	interface LogBookShellUiBinder extends UiBinder<Widget, LogBookShell> {
 	}
@@ -45,10 +71,28 @@ public class LogBookShell extends Composite {
 	public LogBookShell() {
 
 		initWidget(uiBinder.createAndBindUi(this));
+		
 		init();
 
 	}
 
+	/*
+	public LogBookShell(LogBookRequestFactory requests, PlaceController placeController,final PlaceHistoryHandler placeHistoryHandler) {
+		
+		initWidget(uiBinder.createAndBindUi(this));
+		this.requests = requests;
+		this.placeController = placeController;
+		
+		
+		
+	}*/
+
+	private LogBookRequestFactory requests;
+
+	private PlaceController placeController;
+	
+	final private HandlerManager handlerManager = new HandlerManager(this);
+	
 	private void init() {
 		//splitPanel.setSplitPosition("250px");
 		//DOM.setElementAttribute(masterPanel.getElement(), "style", "position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;");
@@ -266,7 +310,7 @@ public class LogBookShell extends Composite {
 	//}
 
 	public void setNavigation(LogBookNav nav) {
-		this.mcAppNav.add(nav);
+		getLogBookNavSimplePanel().add(nav);
 		
 	}
 	

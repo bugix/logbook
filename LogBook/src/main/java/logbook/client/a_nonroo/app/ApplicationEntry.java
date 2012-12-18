@@ -9,7 +9,7 @@ import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 /**
  * Startingpoint of the application, starts application.
- * @author masterthesis
+ * @author milan
  *
  */
 

@@ -18,7 +18,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 /**
  * Used to display errors throughout the application.
- * @author masterthesis
+ * @author Manish
  *
  */
 

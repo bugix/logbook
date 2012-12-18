@@ -1,4 +1,4 @@
-package medizin.client.a_nonroo.app.client.dnd3.ui;
+package logbook.client.a_nonroo.app.client.dnd3.ui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 /**
  * A popUp-Panel, which shows an animated gif. The panel hides when the animated gif or something
  * outside the panel is clicked. 
- * @author masterthesis
+ * @author Manish
  *
  */
 public class LoadingPopUp extends PopupPanel {

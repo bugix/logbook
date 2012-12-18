@@ -24,7 +24,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 /**
  * This wrapper is used to provide access control in all activities.
- * @author masterthesis
+ * @author Manish
  *
  */
 

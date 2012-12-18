@@ -1,6 +1,4 @@
-package logBook.client.a_nonroo.app.client.dnd3;
-
-import logBook.client.a_nonroo.app.client.dnd3.VerticalPanelDropController;
+package logbook.client.a_nonroo.app.client.dnd3;
 
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;

@@ -1,26 +1,19 @@
 package logbook.client.a_nonroo.app;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import logbook.client.a_nonroo.app.activities.FilterForMainPlaces;
+import logbook.client.LogBookHeaderLogic;
 import logbook.client.a_nonroo.app.activities.LogBookActivityMapper;
-import logbook.client.a_nonroo.app.client.ErrorPanel;
-import logbook.client.a_nonroo.app.client.McAppConstant;
+import logbook.client.a_nonroo.app.client.FilterForMainPlaces;
 import logbook.client.a_nonroo.app.client.LogBookNav;
-
-import logbook.client.a_nonroo.app.place.LogBookPlaceHistoryMapper;
-import logbook.client.a_nonroo.app.place.LogBookPlaceHistoryFactory;
-
+import logbook.client.a_nonroo.app.client.place.LogBookPlaceHistoryFactory;
+import logbook.client.a_nonroo.app.client.place.LogBookPlaceHistoryMapper;
+import logbook.client.a_nonroo.app.client.place.LoginPlace;
+import logbook.client.a_nonroo.app.client.place.SkillPlace;
 import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
-
 import logbook.client.scaffold.request.RequestEvent;
-
-
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.ActivityManager;
@@ -28,24 +21,18 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.activity.shared.CachingActivityMapper;
 import com.google.gwt.activity.shared.FilteredActivityMapper;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.logging.client.LogConfiguration;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
-
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.HasConstrainedValue;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryLogHandler;
 import com.google.web.bindery.requestfactory.shared.LoggingRequest;
-import com.google.web.bindery.requestfactory.shared.Receiver;
 /**
  * The applications core. Is instantiated by GIN.
- * @author masterthesis
+ * @author milan
  *
  */
 public class LogBookApplication {
@@ -64,7 +51,7 @@ public class LogBookApplication {
 	public LogBookApplication(LogBookShell shell, LogBookRequestFactory requestFactory, EventBus eventBus,
 	                          PlaceController placeController, LogBookPlaceHistoryFactory oscePlaceHistoryFactory,
 	                          LogBookActivityMapper applicationMainActivitiesMapper) {
-		Log.debug("OsceApp.OsceApp");
+		Log.debug("LogBookApp.LogBookApp");
 		this.shell = shell;
 		this.requestFactory = requestFactory;
 		this.eventBus = eventBus;
@@ -135,12 +122,12 @@ public class LogBookApplication {
 		
 
 		
-		CachingActivityMapper cached = new CachingActivityMapper(mcAppActivitiesMapper);
+		/*CachingActivityMapper cached = new CachingActivityMapper(mcAppActivitiesMapper);
 		FilterForMainPlaces filterForMainPlaces = new FilterForMainPlaces();
 		ActivityMapper masterActivityMap = new FilteredActivityMapper(filterForMainPlaces, cached);
-		final ActivityManager masterActivityManager = new ActivityManager(masterActivityMap, eventBus);
-
-	//	masterActivityManager.setDisplay(shell.getPanel());
+		final ActivityManager masterActivityManager = new ActivityManager(masterActivityMap, eventBus);*/
+		
+		
 
 //		ProxyListPlacePicker proxyListPlacePicker = new ProxyListPlacePicker(placeController, proxyPlaceToListPlace);
 //		HasConstrainedValue<ProxyListPlace> listPlacePickerView = shell.getPlacesBox();
@@ -155,11 +142,24 @@ public class LogBookApplication {
 		LogBookPlaceHistoryMapper mapper = GWT.create(LogBookPlaceHistoryMapper.class);
 		mapper.setFactory(logBookPlaceHistoryFactory);
 		PlaceHistoryHandler placeHistoryHandler = new PlaceHistoryHandler(mapper);
-//		ProxyListPlace defaultPlace = getTopPlaces().iterator().next();
-		//placeHistoryHandler.register(placeController, eventBus, new PlaceSystemOverview("PlaceSystemOverview"));
-		//placeHistoryHandler.handleCurrentHistory();
+		//ProxyListPlace defaultPlace = getTopPlaces().iterator().next();
 		
-		LogBookNav nav = new LogBookNav(requestFactory, placeController, shell);
+		
+		//placeHistoryHandler.handleCurrentHistory();
+		//new LogBookHeaderLogic(requestFactory, placeController, eventBus);
+		LogBookNav nav = new LogBookNav(requestFactory, placeController, placeHistoryHandler,mcAppActivitiesMapper,eventBus);
+		//masterActivityManager.setDisplay(shell.getLogBookNavSimplePanel());
+		shell.setNavigation(nav);
+		//if(placeController.getWhere() instanceof SkillPlace)
+		//{
+		//	nav.masterActivityManager.setDisplay((SimplePanel)nav.getMainLoogBookTabpanel().getWidget(1));
+			
+		//}
+		placeHistoryHandler.register(placeController, eventBus, new LoginPlace());
+		
+		placeHistoryHandler.handleCurrentHistory();
+		//LogBookShell shell = new LogBookShell(requestFactory, placeController, placeHistoryHandler);
+		
 		
 	//	shell.setNavigation(nav);
 		
