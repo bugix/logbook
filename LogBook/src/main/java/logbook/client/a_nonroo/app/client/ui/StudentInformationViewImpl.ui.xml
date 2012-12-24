@@ -1,15 +1,268 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:b="urn:import:com.google.gwt.user.cellview.client"
-	>
-
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" 
+	xmlns:c="urn:import:com.google.gwt.user.cellview.client" 
+	xmlns:cell="urn:import:com.google.gwt.cell.client" 
+	xmlns:custom="urn:import:logbook.client.a_nonroo.app.client.ui.custom.widget">
+	<ui:style  src="../styles.css">
+		.mainVerticlePanelStyle {
+			width: 100%;
+			height: 100%;
+		}
+		
+		.informationHPStyle {
+			height: 30%;
+			width: 100%;
+			padding-bottom: 10px;
+			padding-left: 2px;
+			vertical-align: inherit;
+		}
+		
+		.personnelInforamationSPStyle {
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 5px;
+			border-color: lightblue;
+			padding: 15px;
+			width: 90%;
+			height: 90%;
+		}
+		
+		.currentProgressSPStyle {
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 5px;
+			border-color: lightblue;
+			padding-bottom: 15px;
+			padding-left: 15px;
+			padding-top: 15px;
+			width: 90%;
+		}
+		
+		.latestSkillHPStyle {
+			width: 100%;
+			height: 70%;
+			border-width: 1px;
+			border-style: solid;
+			spacing: 0;
+		}
+		
+		.infoLabelStyle {
+			font-style: normal;
+			color: grey;
+			padding-top: 5px;
+			padding-left: 5px;
+		}
+		
+		.valueLabelStyle {
+			font-style: normal;
+			color: black;
+			padding-top: 5px;
+		}
+		
+		.headingLabelStyle {
+			font-style: normal;
+			color: grey;
+			padding-bottom: 5px;
+			padding-left: 5px;
+		}
+		
+		.finalizeButtonStyle {
+			border-radius: 5px;
+			margin-left: 25px;
+			padding: 3px 0;
+		}
+		
+		.tableBodyStyle {
+			padding-right: 5px;
+		}
+		
+		.progressBarLeftPadding {
+			
+		}
+		
+		.latestAcquiredSkillSPStyle {
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 5px;
+			border-color: lightblue;
+			padding-top: 12px;
+			width: 100%;
+		}
+		
+		.skillTableSize {
+			width: 100%;
+			padding: 15px;
+		}
+		
+		.trStyle {
+			height: 20px;
+		}
+		
+		.tablePadding {
+			padding-bottom: 29px;
+		}
+		
+		.mainTrStyle {
+			height: 30%;
+		}
+		
+		.subMainTrStyle {
+			height: 70%;
+			padding-top: 10px;
+		}
+		
+		.tabPanelStyle {
+			border-radius: 5px;
+		}
+		
+		.changeBtnTrStyle {
+			float: right;
+		}
+		.latestAcquiredSkillScrollPanelStyle
+		{
+			height:320px;
+			overflow:scroll; 
+			width: 100%;
+		}
+		.skillTablePagerStyle
+		{
+			float: right;
+		}
+	</ui:style>
 	<g:HTMLPanel>
-		<!-- <g:FocusPanel width="30px" ui:field="studentPanel"> -->
-			<g:Label ui:field="studentLbl">njhgbjh</g:Label>
-		<!-- </g:FocusPanel> -->	
+		<g:VerticalPanel addStyleNames="{style.mainVerticlePanelStyle}"
+			verticalAlignment="top">
+			<g:HTMLPanel>
+				<table>
+					<tbody>
+						<tr addStyleNames="{style.mainTrStyle}">
+							<g:HorizontalPanel addStyleNames="{style.informationHPStyle}">
+								<g:HTMLPanel addStyleNames="{style.personnelInforamationSPStyle}">
+									<table>
+										<tbody>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblPersonnelInformation"
+														addStyleNames="{style.headingLabelStyle}"></g:Label>
+												</td>
+											</tr>
+
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblName" addStyleNames="{style.infoLabelStyle}"></g:Label>
+												</td>
+												<td>
+													<g:Label ui:field="lblNameVal"></g:Label>
+												</td>
+											</tr>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblStudentId" addStyleNames="{style.infoLabelStyle}"></g:Label>
+												</td>
+												<td>
+													<g:Label ui:field="lblStudentIdVal"></g:Label>
+												</td>
+											</tr>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblStudyYear" addStyleNames="{style.infoLabelStyle}">
+													</g:Label>
+												</td>
+												<td>
+													<g:Label ui:field="lblStudeyYearvalue"></g:Label>
+												</td>
+											</tr>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblEmail" addStyleNames="{style.infoLabelStyle}">
+													</g:Label>
+												</td>
+												<td>
+													<g:Label ui:field="lblEmailVal"></g:Label>
+												</td>
+											</tr>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+												</td>
+												<td>
+													<g:Anchor ui:field="btnChange" addStyleNames="{style.changeBtnTrStyle}"></g:Anchor>
+												</td>
+											</tr>
+
+										</tbody>
+									</table>
+								</g:HTMLPanel>
+
+								<g:HTMLPanel
+									addStyleNames="{style.currentProgressPanelStyle} {style.personnelInforamationSPStyle} {style.tablePadding}">
+									<table>
+										<tbody>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblCurrentProgress"
+														addStyleNames="{style.headingLabelStyle}"></g:Label>
+												</td>
+											</tr>
+
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblLevel1Progress" addStyleNames="{style.infoLabelStyle}"></g:Label>
+												</td>
+												<td>
+													<custom:CustomProgressbar ui:field="prgBarLevel1" addStyleNames="{style.progressBarLeftPadding}"></custom:CustomProgressbar> 
+												</td>
+											</tr>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblLevel2Progress" addStyleNames="{style.infoLabelStyle}"></g:Label>
+												</td>
+												<td>
+													<custom:CustomProgressbar ui:field="prgBarLevel2" addStyleNames="{style.progressBarLeftPadding}"></custom:CustomProgressbar>
+												</td>
+											</tr>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblTotalProgress" addStyleNames="{style.infoLabelStyle}"></g:Label>
+												</td>
+												<td>
+													<custom:CustomProgressbar ui:field="prgBarTotal" addStyleNames="{style.progressBarLeftPadding}"></custom:CustomProgressbar>
+												</td>
+											</tr>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+												</td>
+												<td>
+												</td>
+											</tr>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label addStyleNames="{style.infoLabelStyle}">&nbsp;</g:Label>
+												</td>
+												<td>
+													<g:Button ui:field="btnFinalizeLogBook"
+														addStyleNames="{style.finalizeButtonStyle}">Finalize LogBook</g:Button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</g:HTMLPanel>
+							</g:HorizontalPanel>
+						</tr>
+						<tr addStyleNames="{style.subMainTrStyle}">
+						<g:VerticalPanel height="100%" width="100%" addStyleNames="{style.latestAcquiredSkillSPStyle}">
+							<g:Label ui:field="lblLatestAcquiredSkill" addStyleNames="{style.headingLabelStyle}">RECENTLY ACQUIRED SKILLS</g:Label>
+							<g:ScrollPanel addStyleNames="{style.latestAcquiredSkillScrollPanelStyle}">
+							<g:VerticalPanel>
+								<c:CellTable ui:field="table" addStyleNames="{style.skillTableSize}" />
+								<c:SimplePager  ui:field="pager" display="{table}" addStyleNames="{style.skillTablePagerStyle}"/>
+							</g:VerticalPanel>								
+							</g:ScrollPanel>
+							</g:VerticalPanel>
+						</tr>
+					</tbody>
+				</table>
+			</g:HTMLPanel>
+		</g:VerticalPanel>
 	</g:HTMLPanel>
-	
-	
-	
 </ui:UiBinder> 

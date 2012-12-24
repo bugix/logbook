@@ -14,4 +14,10 @@ public interface ScaffoldRequestFactory extends RequestFactory {
 	 * Return a GWT logging request.
 	 */
 	LoggingRequest loggingRequest();
+	
+	StudentRequestNonRoo studentRequestNonRoo();
+	
+	SkillRequestNonRoo skillRequestNonRoo();
+	
+	SkillAcquiredRequestNonRoo skillAcquiredRequestNonRoo();
 }

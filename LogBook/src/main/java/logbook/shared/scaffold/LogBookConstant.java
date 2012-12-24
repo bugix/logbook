@@ -20,11 +20,10 @@ public class LogBookConstant {
 	
 	public static final SafeHtml DOWNLOAD_ICON = new SafeHtmlBuilder().appendHtmlConstant("<span class=\"ui-icon ui-icon-arrowthickstop-1-s\"></span>").toSafeHtml();*/
 	
-	public static int TABLE_PAGE_SIZE = 15;
-	public static final int TABLE_JUMP_SIZE = 30;
+	public static int TABLE_PAGE_SIZE = 5;
+	public static final int TABLE_JUMP_SIZE = 5;
 	public static final int SPLIT_PANEL_MINWIDTH = 520;
 	public static final int ENTRY_TIMEOUT_MS = 700;
-	
 	
 	// Constants moved from I18N-properties files.
 	public static final int WIDTH_SIZE = 1225;
@@ -60,5 +59,9 @@ public class LogBookConstant {
 	//By Spec]End
 	
 	public static final SafeHtml COLOR_PICKER_ICON = new SafeHtmlBuilder().appendHtmlConstant("<span class=\"ui-icon ui-icon-triangle-1-s\"></span>").toSafeHtml();
+	public static final String UNIQUE_ID = "uniqueID";
+	
+	// Total Skill Acquired Display in Home Tab Skill Acquired Table
+	public static final int TOTAL_SKILL_ACQUIRED_DISPLAY=20;
 	
 }

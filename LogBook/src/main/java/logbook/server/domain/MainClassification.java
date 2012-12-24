@@ -1,6 +1,8 @@
 package logbook.server.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
@@ -19,6 +21,10 @@ public class MainClassification {
     @Size(max = 2)
     private String shortcut;
 
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "mainClassification")
+    private Set<ClassificationTopic> classificationTopics = new HashSet<ClassificationTopic>();*/
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "mainClassification")
-    private Set<ClassificationTopic> classificationTopics = new HashSet<ClassificationTopic>();
+    private List<ClassificationTopic> classificationTopics = new ArrayList<ClassificationTopic>();
+
 }

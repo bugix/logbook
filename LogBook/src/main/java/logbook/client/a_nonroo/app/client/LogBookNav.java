@@ -24,7 +24,7 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
@@ -66,16 +66,16 @@ public class LogBookNav extends Composite {
 	}
 
 	@UiField
-	Anchor login;
+	Label login;
 	
 	@UiField
-	Anchor skill;
+	Label skill;
 	
 	@UiField
-	Anchor progress;
+	Label progress;
 	
 	@UiField
-	Anchor logout;
+	Label logout;
 
 	
 	@Inject
@@ -100,6 +100,7 @@ public class LogBookNav extends Composite {
 		 masterActivityManager = new ActivityManager(masterActivityMap, eventBus);
 		 masterActivityManager.setDisplay((SimplePanel)mainLoogBookTabpanel.getWidget(mainLoogBookTabpanel.getSelectedIndex()));
 		
+		 
 			
 		 /* if(mainLoogBookTabpanel.getSelectedIndex() == 0)
 		 {

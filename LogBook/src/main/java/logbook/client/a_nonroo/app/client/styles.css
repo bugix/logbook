@@ -164,3 +164,8 @@
 	border: 1px solid #E6EDED;
 	width: 100%;
 }
+.currentProgressPanelStyle{
+	margin-right:2px;
+	float:right;
+	width:94%;
+}

@@ -1,24 +1,21 @@
 package logbook.client.a_nonroo.app;
 
+
+
 import logbook.client.a_nonroo.app.client.LogBookNav;
-import logbook.client.a_nonroo.app.client.place.LoginPlace;
 import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 import logbook.shared.i18n.LogBookConstants;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.StyleInjector;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.place.shared.PlaceController;
-import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 /**
  * The applications basic layout.
@@ -35,7 +32,8 @@ public class LogBookShell extends Composite {
 	@UiField
 	SimplePanel topPanel;
 	
-	
+	@UiField
+	DockLayoutPanel masterDockPanel;
 	
 	/*@UiField
 	StudentInformationViewImpl studentInfromationViewImpl;*/
@@ -310,7 +308,13 @@ public class LogBookShell extends Composite {
 	//}
 
 	public void setNavigation(LogBookNav nav) {
+		
+		
+		//logBookNavSimplePanel.getParent().getParent().getParent().getElement().getStyle().setTop(76, Unit.PX);
 		getLogBookNavSimplePanel().add(nav);
+		Log.info("node value :" +masterDockPanel.getWidget(4).getElement().getParentElement());
+		masterDockPanel.getWidget(4).getElement().getParentElement().addClassName("top76");
+		
 		
 	}
 	

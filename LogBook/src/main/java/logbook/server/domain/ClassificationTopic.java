@@ -12,7 +12,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findClassificationTopicsByMainClassification" })
 public class ClassificationTopic {
 
     @Size(max = 255)
@@ -24,6 +24,6 @@ public class ClassificationTopic {
     @ManyToOne
     private MainClassification mainClassification;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "classificationTopic")    												  
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "classificationTopic")
     private Set<Topic> topics = new HashSet<Topic>();
 }

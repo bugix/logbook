@@ -5,10 +5,9 @@
 	>
 
 	<g:HTMLPanel>
-		 <g:TabLayoutPanel ui:field="mainLoogBookTabpanel" barUnit='EM' barHeight='2.5' height="500px" >
-
+		 <g:TabLayoutPanel ui:field="mainLoogBookTabpanel" barUnit='PX' barHeight='51' height="619px">
 						<g:tab>
-							<g:customHeader><g:Anchor ui:field="login"></g:Anchor></g:customHeader>
+							<g:customHeader><g:Label ui:field="login"></g:Label></g:customHeader>
 							<g:SimplePanel>
 								<!-- <g:HorizontalPanel spacing="20" height="100%" width="100%">
 								<g:Label>loginData</g:Label>
@@ -16,27 +15,26 @@
 							</g:SimplePanel>
 						</g:tab>
 						<g:tab>
-							<g:customHeader><g:Anchor ui:field="skill"></g:Anchor></g:customHeader>
+							<g:customHeader><g:Label ui:field="skill"></g:Label></g:customHeader>
 							<g:SimplePanel>
 							<!-- <g:Label>Skills Acquired</g:Label> -->
 							</g:SimplePanel>
 						</g:tab>
 						<g:tab>
-							<g:customHeader><g:Anchor ui:field="progress"></g:Anchor></g:customHeader>
+							<g:customHeader><g:Label ui:field="progress"></g:Label></g:customHeader>
 							<g:SimplePanel>
 							<!-- <g:Label>Progress of Skill Acquired</g:Label> -->
 							</g:SimplePanel>
 						</g:tab>
 						<g:tab>
 						
-							<g:customHeader><g:Anchor ui:field="logout"></g:Anchor></g:customHeader>
+							<g:customHeader><g:Label ui:field="logout"></g:Label></g:customHeader>
 							<g:SimplePanel>
 							<!-- <g:Label>logout</g:Label> -->
 							</g:SimplePanel>
 						</g:tab>
 
 					</g:TabLayoutPanel> 
-				
 	</g:HTMLPanel>
 	
 	
