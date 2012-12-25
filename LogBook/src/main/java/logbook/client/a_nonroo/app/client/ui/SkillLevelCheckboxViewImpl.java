@@ -1,9 +1,10 @@
 package logbook.client.a_nonroo.app.client.ui;
 
-import org.mortbay.log.Log;
+
 
 import logbook.client.managed.proxy.SkillProxy;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
