@@ -73,5 +73,8 @@ public String shortcut();
 	public String somePracticleExperiance();
 	
 	public String routine();
+	public String l1();
+	
+	public String l2();
 
 }

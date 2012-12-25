@@ -48,6 +48,29 @@
 }
 
 /* suggestion box start*/
+eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
+    
+}
+
+.eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left .eu-nextstreet-SuggestFieldPanel-leftInner
+    {
+    
+}
+
+.eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-content
+    {
+    
+}
+
+.eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-right
+    {
+    
+}
+
+.eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-right .eu-nextstreet-SuggestFieldPanel-rightInner
+    {
+    
+}
 
 .eu-nextstreet-SuggestItem {
     /* /////  width: 100%; */     
@@ -120,6 +143,9 @@ color: #f1b532;
 /*    background: transparent url('img/arrow.png') no-repeat right 5px;
     border: none;*/
     padding-right: 20px;
+    border: 1px solid;
+    border-color: lightblue;
+    border-radius: 5px;
     font-family:Verdana,Arial,sans-serif;
     height: 21px;
         /* ///// padding-right: 10px; */ 
@@ -268,6 +294,22 @@ color: #f1b532;
 /************************************/
 /********* ICONS ********************/
 
+.eu-nextstreet-AdvancedTextBoxDefaultText-loading {
+    background-color: gray;
+}
+
+.customControls {
+/* By SPEC[start */
+/
+    border-radius: 4px;    
+    /* border: 1px solid #AAAAAA; */
+    border: none;    
+    height: 21px;
+    font-size: 90%;
+    
+    
+     /* background: transparent url("images/down.png") no-repeat right 10px ; */ 
+}
 .gwt-Button .ui-icon {
 	float: left;
 	margin-left: -15px;
@@ -1129,4 +1171,87 @@ color: #f1b532;
 	color:#43A2CA;
 	text-decoration: underline;
 }
+.fullTextBoxsearchStyle{
+	 border: 1px solid lightblue;
+    border-radius: 5px 5px 5px 5px;
+    cursor: default;
+    font-family: Verdana,Arial,sans-serif;
+    height: 21px;
+    padding-right: 20px;
+}
+.flexTable-header{
+	background-color: rgb(76,166,204);
+	height: 30px;
+	padding-left: 10px;
+	color:white;
+}
+.mainClassificationRow{
+	background-color: rgb(204,204,204);
+	height: 20px;
+	width: 100%;
+	color: rgb(43,43,43);
+	font: bold;
+}
+.topicRow{
+	background-color: rgb(238,238,238);
+	height: 20px;
+	width: 100%;
+	color: rgb(43,43,43);
+	font: bold;
+}
+.classificationTopicRow{
+	background-color: rgb(223,223,223);
+	height: 20px;
+	width: 100%;
+	color: rgb(43,43,43);
+	font: bold;
+}
+.mainClassificationDescription{
+	padding-left: 7px;
+	padding-top:4px;
+}
+.classificationDescription{
+	padding-left: 10px;
+	padding-top:4px;
+}
+.topicDescription{
+	padding-left: 13px;
+	padding-top:4px;
+}
 
+.skillDescription{
+	padding-left: 20px;
+	background-color: rgb(254,216,203);
+	color: rgb(43,43,43);
+	/*margin-top: 1px;*/
+	/*margin-bottom: 1px;*/
+	min-height: 20px;
+}
+.skillChkBox{
+		background-color: rgb(254,216,203);
+		width: 30px;
+		height: 20px;
+		
+	}
+.mainClassificationSkillProgress{
+	margin: 2px;
+	width: 97%;
+	max-height: 13px;
+}
+
+.mainClassificationBG
+{
+	background-color: rgb(204,204,204);
+}
+.classificationTopicBG
+{
+	background-color: rgb(223,223,223);
+}
+.topicBG
+{
+	background-color: rgb(238,238,238);
+}
+.skillCountPadding{
+	width:25px;
+    margin-top: 3px;
+}

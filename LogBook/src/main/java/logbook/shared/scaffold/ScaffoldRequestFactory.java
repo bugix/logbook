@@ -16,6 +16,8 @@ public interface ScaffoldRequestFactory extends RequestFactory {
 	LoggingRequest loggingRequest();
 	
 	StudentRequestNonRoo studentRequestNonRoo();
+ClassificationTopicRequestNonRoo classificationTopicRequestNonRoo(); 
+TopicRequestNonRoo  topicRequestNonRoo();
 	
 	SkillRequestNonRoo skillRequestNonRoo();
 	

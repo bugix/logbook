@@ -1,15 +1,178 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:b="urn:import:com.google.gwt.user.cellview.client"
-	>
-
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:c="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:cell="urn:import:com.google.gwt.cell.client"
+	xmlns:i="urn:import:logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl">
+	<ui:style>
+		.mainVerticlePanelStyle {
+			width: 100%;
+			height: 100%;
+		}
+		
+		.skillSearchPanelStyle {
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 5px;
+			border-color: lightblue;			
+			width: 100%;
+			padding-left: 20px;	
+			padding-top: 10px;
+			padding-bottom: 10px;
+					
+		}
+		.skillTablePanelStyle {
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 5px;
+			border-color: lightblue;			
+			width: 100%;
+		}
+		.anchor {
+            text-decoration: underline;
+            font-weight: bold;
+            cursor: pointer;
+            display: block;
+            float: right;
+        }
+        .imagestyle{
+		float: right;	
+		}
+		 .skilltable-style {
+     	 border: 1px solid black;
+   	 }
+		.topPadding10px {
+			padding-top: 10px;
+		}
+		
+		.mainErrorLabelStyle {
+			width: 94%;
+			height: 40%;
+			background: url("/public/images/ui-bg_glass_55_f8da4e_1x400.png")
+				repeat-x scroll 50% 50% #F8DA4E;
+			background-repeat: repeat-x;
+			color: #A25617;
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 5px;
+			border-color: lightblue;
+			font-family: Verdana, Arial, sans-serif;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			padding-left: 47px;
+		}
+		.skillTableSize {
+			width: 100%;
+			padding: 15px;
+		}
+	</ui:style>
 	<g:HTMLPanel>
-		<!-- <g:FocusPanel width="30px" ui:field="studentPanel"> -->
-			<g:Label ui:field="skillLabel">Skills</g:Label>
-		<!-- </g:FocusPanel> -->	
+		<g:VerticalPanel addStyleNames="{style.mainVerticlePanelStyle}"
+			verticalAlignment="top">
+			<g:HTMLPanel>
+				<table>
+					<tbody>
+						<tr>
+							<g:HorizontalPanel width="100%">
+								<g:Label ui:field="lblError" addStyleNames="{style.mainErrorLabelStyle}"
+									height="20%" visible="false"></g:Label>
+							</g:HorizontalPanel>
+
+						</tr>
+						<tr>
+							<g:VerticalPanel addStyleNames="{style.skillSearchPanelStyle}">
+								<g:HTMLPanel>
+									<table cellpadding="2">
+										<tbody>
+											<tr>
+												<td>
+													<g:Label ui:field="mainClassificationLabel"></g:Label>
+												</td>
+												<td>
+												<i:DefaultSuggestBox ui:field="mainClassificationSuggestBox" width="700px"></i:DefaultSuggestBox>
+													<!-- <g:SuggestBox width="500px"></g:SuggestBox> -->
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<g:Label ui:field="classificationTopic"></g:Label>
+												</td>
+												<td>
+												<i:DefaultSuggestBox ui:field="classificationTopicSuggestBox" width="200px"></i:DefaultSuggestBox>
+													<!-- <g:SuggestBox width="200px"></g:SuggestBox> -->
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<g:Label ui:field="topic"></g:Label>
+												</td>
+												<td>
+												<i:DefaultSuggestBox ui:field="topicSuggestBox" width="200px"></i:DefaultSuggestBox>
+													<!-- <g:SuggestBox width="200px"></g:SuggestBox> -->
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<g:Label ui:field="levelLabel"></g:Label>
+												</td>
+												<td>
+												<i:DefaultSuggestBox ui:field="levelSuggestBox" width="200px"></i:DefaultSuggestBox>
+													<!-- <g:SuggestBox width="200px"></g:SuggestBox> -->
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<g:Label ui:field="fullTextSearch"></g:Label>
+												</td>
+												<td>
+												<!-- <i:DefaultSuggestBox ui:field="fullTextSearchSuggestBox" width="200px"></i:DefaultSuggestBox> -->
+													<g:TextBox ui:field="fullTextSearchBox"></g:TextBox>
+													<!-- <g:SuggestBox width="200px"></g:SuggestBox> -->
+												</td>
+											</tr>
+											<tr>
+												<td>&nbsp;</td>
+												<td>
+													<g:Button ui:field="btnShow"></g:Button>&nbsp;&nbsp;&nbsp;&nbsp;
+													<g:Button ui:field="btnReset"></g:Button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</g:HTMLPanel>
+							</g:VerticalPanel>
+						</tr>
+						<tr>
+							<g:HorizontalPanel width="100%">
+								<g:Image ui:field="imgPrint"></g:Image>
+								<!-- <g:Hyperlink ui:field="hyperLnkPrint"></g:Hyperlink> -->
+								<g:Anchor ui:field="hyperLnkPrint" addStyleNames="{style.anchor}" width="80px"></g:Anchor>
+								<g:Image ui:field="imgpdf" stylePrimaryName="{style.imagestyle}"></g:Image>
+								<!-- <g:Hyperlink ui:field="hyperlnkSavePDF"></g:Hyperlink> -->
+								<g:Anchor ui:field="hyperlnkSavePDF" addStyleNames="{style.anchor}"></g:Anchor>
+							</g:HorizontalPanel>
+						</tr>
+						<tr>
+						<g:HTMLPanel addStyleNames="{style.skillTablePanelStyle}">
+						<table >
+										<tbody>
+											<tr>
+							<!-- <c:CellTable addStyleNames="{style.skillTableSize}" /> -->
+							<!-- <c:CellTable ui:field="skillTable" addStyleNames="{style.skillTableSize}" /> -->
+							<g:ScrollPanel width="100%" height="320px">
+								<g:FlexTable ui:field="skillFlexTable" addStyleNames="style.skilltable-style"></g:FlexTable>
+							</g:ScrollPanel>
+							</tr>
+							</tbody>
+							</table>							
+						</g:HTMLPanel>
+						</tr>
+					</tbody>
+				</table>
+
+			</g:HTMLPanel>
+		</g:VerticalPanel>
 	</g:HTMLPanel>
-	
-	
-	
+
+
+
 </ui:UiBinder> 

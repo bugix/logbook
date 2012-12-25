@@ -115,5 +115,14 @@
 		<url-pattern>/gwtRequest</url-pattern>
 	</filter-mapping>
 	
+ <servlet>
+		<servlet-name>resourceDownloaderServlet</servlet-name>
+        <servlet-class>logbook.server.resourcedownloader.ResourceDownloaderServlet</servlet-class>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>resourceDownloaderServlet</servlet-name>
+		<url-pattern>/downloadFile</url-pattern>
+	</servlet-mapping>
     
 </web-app>

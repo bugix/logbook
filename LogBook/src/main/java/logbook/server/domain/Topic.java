@@ -1,11 +1,14 @@
 package logbook.server.domain;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.TypedQuery;
 import javax.validation.constraints.Size;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -25,4 +28,18 @@ public class Topic {
 
     @ManyToOne
     private ClassificationTopic classificationTopic;
+    
+    public static List<Topic> findTopicByClassficationId(Long value)
+	{
+		EntityManager em = entityManager();
+		String sql = "";
+		
+		if (value != null)
+			sql = "SELECT t FROM Topic t WHERE t.classificationTopic.id = " + value;
+		else
+			sql = "SELECT t FROM Topic t";
+		
+		TypedQuery<Topic> q = em.createQuery(sql, Topic.class);
+		return q.getResultList();
+	}
 }
