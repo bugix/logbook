@@ -95,6 +95,25 @@
     </session-config>
     
     
-    
+      <!-- For Authorization -->
+    <!-- Uncomment for production mode -->
+    <filter>
+		<filter-name>AuthenticationFilter</filter-name>		
+		<filter-class>logbook.server.AuthenticationFilter</filter-class>
+	</filter>
+	
+	    
+    <!-- Uncomment for production mode -->
+    <filter-mapping>
+		<filter-name>AuthenticationFilter</filter-name>
+		<url-pattern>/*.html</url-pattern>
+	</filter-mapping>
+	
+	
+	<filter-mapping>
+		<filter-name>AuthenticationFilter</filter-name>
+		<url-pattern>/gwtRequest</url-pattern>
+	</filter-mapping>
+	
     
 </web-app>
