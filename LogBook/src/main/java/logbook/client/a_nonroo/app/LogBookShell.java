@@ -312,8 +312,8 @@ public class LogBookShell extends Composite {
 		
 		//logBookNavSimplePanel.getParent().getParent().getParent().getElement().getStyle().setTop(76, Unit.PX);
 		getLogBookNavSimplePanel().add(nav);
-		Log.info("node value :" +masterDockPanel.getWidget(4).getElement().getParentElement());
-		masterDockPanel.getWidget(4).getElement().getParentElement().addClassName("top76");
+		Log.info("node value :" +masterDockPanel.getWidget(2).getElement().getParentElement());
+		masterDockPanel.getWidget(2).getElement().getParentElement().addClassName("top76");
 		
 		
 	}

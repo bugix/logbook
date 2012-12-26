@@ -121,7 +121,7 @@
 		}
 		.latestAcquiredSkillScrollPanelStyle
 		{
-			height:320px;
+			height:100%;
 			overflow:scroll; 
 			width: 100%;
 		}

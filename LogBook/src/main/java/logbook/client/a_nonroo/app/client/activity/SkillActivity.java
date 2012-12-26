@@ -144,6 +144,10 @@ public class SkillActivity extends AbstractActivity implements
 			}*/
 			
 			view.createHeader(view.getSkillFlexTable());
+			for(SkillProxy s:response)
+			{
+				Log.info("s :" + s.getId());
+			}
 			view.setSource(response);
 	/*		if(response != null && response.size() > 0 ){
 			System.out.println("Response :" + response.size());

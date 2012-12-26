@@ -966,7 +966,8 @@ color: #f1b532;
 	border-top-width: 0px !important; 
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
-	height: 567px;
+	height: 99%;
+	background-color: white;
 }
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelContent
 {
@@ -1129,8 +1130,11 @@ color: #f1b532;
 
 .top76
 {
-	top:65px !important;
-	height:82%;
+	top:59px !important;
+	height:100%;
+	margin: auto;
+	width: 863px;
+	
 }
 .logo
 {

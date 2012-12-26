@@ -158,7 +158,7 @@
 											<tr>
 							<!-- <c:CellTable addStyleNames="{style.skillTableSize}" /> -->
 							<!-- <c:CellTable ui:field="skillTable" addStyleNames="{style.skillTableSize}" /> -->
-							<g:ScrollPanel width="100%" height="320px">
+							<g:ScrollPanel width="100%" height="100%">
 								<g:FlexTable ui:field="skillFlexTable" addStyleNames="style.skilltable-style"></g:FlexTable>
 							</g:ScrollPanel>
 							</tr>

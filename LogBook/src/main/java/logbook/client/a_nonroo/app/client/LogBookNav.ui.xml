@@ -4,8 +4,8 @@
 	xmlns:b="urn:import:com.google.gwt.user.cellview.client"
 	>
 
-	<g:HTMLPanel>
-		 <g:TabLayoutPanel ui:field="mainLoogBookTabpanel" barUnit='PX' barHeight='51' height="619px">
+	
+		 <g:TabLayoutPanel ui:field="mainLoogBookTabpanel" barUnit='PX' barHeight='51' height="100%">
 						<g:tab>
 							<g:customHeader><g:Label ui:field="login"></g:Label></g:customHeader>
 							<g:SimplePanel>
@@ -35,7 +35,7 @@
 						</g:tab>
 
 					</g:TabLayoutPanel> 
-	</g:HTMLPanel>
+	
 	
 	
 	
