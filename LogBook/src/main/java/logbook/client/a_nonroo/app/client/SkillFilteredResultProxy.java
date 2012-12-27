@@ -12,7 +12,7 @@ import com.google.web.bindery.requestfactory.shared.ValueProxy;
 @ProxyFor(value = SkillFilteredResult.class )
 public interface SkillFilteredResultProxy extends ValueProxy {
 
-	public String getKey();
+	public String getKey();   
 	
 	public List<SkillProxy> getSkillList();
 	
@@ -23,6 +23,8 @@ public interface SkillFilteredResultProxy extends ValueProxy {
 	public List<String> getMainClassificationkey();
 	
 	public Integer getTotalSkill() ;
+	
+	
 	
 /*	public List<TopicProxy> getTopicList();
 	
