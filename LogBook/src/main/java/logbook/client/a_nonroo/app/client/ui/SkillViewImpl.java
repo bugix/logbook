@@ -3,7 +3,10 @@ package logbook.client.a_nonroo.app.client.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
+
+
+import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager.RangeChangeListener;
+import logbook.client.a_nonroo.app.client.ui.custom.widget.*;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
 import logbook.client.managed.proxy.SkillProxy;
@@ -14,6 +17,7 @@ import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.sug
 import logbook.shared.SkillLevels;
 import logbook.shared.i18n.LogBookConstants;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -80,6 +84,9 @@ public class SkillViewImpl extends Composite implements SkillView {
 	 
 	 @UiField
 	 public  TextBox fullTextSearchBox;
+	 
+	 @UiField
+	 CustomPager pager;
 	 
 	public Label getmainClassificationLabel() {
 		return mainClassificationLabel;
@@ -260,6 +267,18 @@ public class SkillViewImpl extends Composite implements SkillView {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		init(); // Initialize Skill Data
+		
+		pager.setLength(20);
+		
+		pager.addRangeChangeListener(new RangeChangeListener() {
+			
+			@Override
+			public void onRangeChange() {
+				Log.info("pager start :"+pager.getStart());
+				Log.info("pager Length :" + pager.getLength());
+				delegate.refreshFlextable(skillFlexTable, pager.getStart(), pager.getLength());
+			}
+		});
 
 	}
 	
@@ -604,4 +623,6 @@ public class SkillViewImpl extends Composite implements SkillView {
 			skillFlexTable.getFlexCellFormatter().addStyleName(row, 3, "skillChkBox");
 		}
 	}
+	
+	
 }

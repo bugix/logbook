@@ -390,4 +390,9 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 	
 	}
 	
+	public void refreshFlextable(FlexTable table,int start,int length)
+	{
+		
+	}
+	
 }

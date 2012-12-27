@@ -1270,3 +1270,69 @@ color: #f1b532;
 	width:25px;
     margin-top: 3px;
 }
+
+/* pager*/
+.pagerPreviousButton{
+	background-image: url("images/back.png") ;
+	height: 22px;
+	width: 22px ;
+	 padding: 10px;
+}
+
+.pagerNextButton{
+	background-image: url("images/forward.png") ;
+	height: 22px;
+	width: 22px ;
+	 padding: 10px;
+}
+
+.pagerLastButton{
+	background-image: url("images/jumpEnd.png")  ;
+	height: 22px;
+	width: 22px ;
+	 padding: 10px;
+}
+
+.pagerFirstButton{
+	background-image: url("images/jumpStart.png")  ;
+	height: 22px;
+	width: 22px ;
+	 padding: 10px;
+	
+}
+
+.pagerPreviousButton:HOVER{
+	background-image: url("images/back.png") ;
+	height: 22px;
+	width: 22px ;
+	 padding: 10px;
+}
+
+.pagerNextButton:HOVER{
+	background-image: url("images/forward.png") ;
+	height: 22px;
+	width: 22px ;
+	 padding: 10px;
+}
+
+.pagerLastButton:HOVER {
+	background-image: url("images/jumpEnd.png")  ;
+	height: 22px;
+	width: 22px ;
+	 padding: 10px;
+}
+
+.pagerFirstButton:HOVER{
+	background-image: url("images/jumpStart.png")  ;
+	height: 22px;
+	width: 22px ;
+	 padding: 10px;
+	
+}
+
+.labelForPager
+{
+	vertical-align: middle;
+	padding: 5px;
+}
+/*pager end*/

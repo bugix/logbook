@@ -35,7 +35,7 @@ public interface SkillView extends IsWidget{
 
 		void printPdfClicked();
 		
-		
+		void refreshFlextable(FlexTable table,int start,int length);
 		
 	}
 	
