@@ -1,5 +1,6 @@
 package logbook.server.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,7 +29,7 @@ public class ClassificationTopic {
     private MainClassification mainClassification;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "classificationTopic")
-    private Set<Topic> topics = new HashSet<Topic>();
+    private List<Topic> topics = new ArrayList<Topic>();
     
     public static List<ClassificationTopic> findClassiTopicByMainClassfication(Long value)
 	{

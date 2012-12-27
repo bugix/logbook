@@ -5,11 +5,14 @@ import java.util.List;
 
 
 
+import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
+import logbook.client.a_nonroo.app.client.activity.SkillActivity;
 import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager.RangeChangeListener;
 import logbook.client.a_nonroo.app.client.ui.custom.widget.*;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
 import logbook.client.managed.proxy.SkillProxy;
+import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
 import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.DefaultSuggestBox;
@@ -51,6 +54,17 @@ public class SkillViewImpl extends Composite implements SkillView {
 
 	private presenter presenter;
 
+	private SkillViewImpl skillview;
+	
+	SkillActivity skillActivity;
+	
+	public SkillActivity getSkillActivity() {
+		return skillActivity;
+	}
+
+	public void setSkillActivity(SkillActivity skillActivity) {
+		this.skillActivity = skillActivity;
+	}
 	LogBookConstants constants = GWT.create(LogBookConstants.class);
 
 	@UiField(provided = true)
@@ -70,6 +84,17 @@ public class SkillViewImpl extends Composite implements SkillView {
 	
 	private List<String> levelList = new ArrayList<String>();
 	
+	private StudentProxy student;
+	
+	@Override
+	public StudentProxy getStudent() {
+		return student;
+	}
+
+	@Override
+	public void setStudent(StudentProxy student) {
+		this.student = student;
+	}
 	@UiField
 	DefaultSuggestBox<MainClassificationProxy, EventHandlingValueHolderItem<MainClassificationProxy>> mainClassificationSuggestBox;
 	
@@ -79,8 +104,8 @@ public class SkillViewImpl extends Composite implements SkillView {
 	 @UiField
 	 public DefaultSuggestBox<TopicProxy, EventHandlingValueHolderItem<TopicProxy>> topicSuggestBox;
 	 
-	 @UiField
-	 public DefaultSuggestBox<String, EventHandlingValueHolderItem<String>> levelSuggestBox;
+	/* @UiField
+	 public DefaultSuggestBox<String, EventHandlingValueHolderItem<String>> levelSuggestBox;*/
 	 
 	 @UiField
 	 public  TextBox fullTextSearchBox;
@@ -88,6 +113,10 @@ public class SkillViewImpl extends Composite implements SkillView {
 	 @UiField
 	 CustomPager pager;
 	 
+	public CustomPager getPager() {
+		return pager;
+	}
+
 	public Label getmainClassificationLabel() {
 		return mainClassificationLabel;
 	}
@@ -204,8 +233,8 @@ public class SkillViewImpl extends Composite implements SkillView {
 	@UiField
 	Image imgPrint;
 
-	@UiField
-	Label levelLabel;
+	/*@UiField
+	Label levelLabel;*/
 	
 	@UiField
 	Anchor hyperLnkPrint;
@@ -237,34 +266,11 @@ public class SkillViewImpl extends Composite implements SkillView {
 		skillFlexTable = new FlexTable();
 		skillFlexTable.setCellPadding(1);
 		skillFlexTable.setCellSpacing(1);
+		skillFlexTable.setWidth("100%");
 		createHeader(skillFlexTable);
+skillview=this;
 		
-	//	setSkillFlexTableHeaders();
-		
-	//	setSkillFlexTableStyles();
-		
-		
-		
-//	skillFlexTable.setText(1, 0,"This is sub title of table");
-	
-		
-//	skillFlexTable.getFlexCellFormatter().setColSpan(1, 0, 6);
-
-//		skillFlexTable.setHTML(1, 0, "");
-//		skillFlexTable.setHTML(1, 1, "Hello");
-//		skillFlexTable.setHTML(1, 2, "S1");
-//		skillFlexTable.setWidget(1, 3, new CheckBox());
-//		skillFlexTable.setWidget(1, 4, new CheckBox());
-
-/*		skillFlexTable.setHTML(2, 0," ");
-		skillFlexTable.setHTML(2, 1, "Hello1");
-		skillFlexTable.setHTML(2, 2, "S2");
-		skillFlexTable.setWidget(2, 3, new CheckBox());
-		skillFlexTable.setWidget(2, 4, new CheckBox());
-*/
-//		skillFlexTable.getFlexCellFormatter().setColSpan(2,0,1);
-
-		initWidget(uiBinder.createAndBindUi(this));
+			initWidget(uiBinder.createAndBindUi(this));
 		
 		init(); // Initialize Skill Data
 		
@@ -346,7 +352,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 		lblError.setVisible(false);
 		lblError.setText("Error...");
 		
-		levelLabel.setText(constants.level());
+		//levelLabel.setText(constants.level());
 		
 		initSkillSuggesstions();
 
@@ -358,13 +364,13 @@ public class SkillViewImpl extends Composite implements SkillView {
 		topicSuggestBox.setWidth(350);
 		fullTextSearchBox.setWidth("350px");
 		fullTextSearchBox.addStyleName("fullTextBoxsearchStyle");
-		levelSuggestBox.setWidth(350);
+		//levelSuggestBox.setWidth(350);
 		levelList.add(constants.level1());
 		levelList.add(constants.level2());
 		
-		DefaultSuggestOracle<String> suggestOracle = (DefaultSuggestOracle<String>) levelSuggestBox.getSuggestOracle();
-		suggestOracle.setPossiblilities(levelList);
-		levelSuggestBox.setSuggestOracle(suggestOracle);
+		//DefaultSuggestOracle<String> suggestOracle = (DefaultSuggestOracle<String>) levelSuggestBox.getSuggestOracle();
+		//suggestOracle.setPossiblilities(levelList);
+		/*levelSuggestBox.setSuggestOracle(suggestOracle);
 		
 		levelSuggestBox.setRenderer(new AbstractRenderer<String>() {
 
@@ -375,7 +381,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 				else
 					return "";
 			}
-		});
+		});*/
 
 		
 		 mainClassificationSuggestBox.addHandler(new ChangeHandler() {
@@ -469,7 +475,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 		mainSkillLbl.setText(mProxy.getDescription());
 		mainSkillLbl.setWidth("90%");
 		mainSkillLbl.addStyleName("mainClassificationDescription");
-		Label skillProgress=new Label("5/20");
+		Label skillProgress=new Label("0/0");
 		//skillProgress.setWidth("10%");
 		skillProgress.getElement().getStyle().setFloat(com.google.gwt.dom.client.Style.Float.RIGHT);
 		skillProgress.addStyleName("skillCountPadding");
@@ -540,71 +546,96 @@ public class SkillViewImpl extends Composite implements SkillView {
 		mainClassificationProgressBar.addStyleName("mainClassificationSkillProgress");
 		return mainClassificationProgressBar;
 	}
-	public void setSource(List<SkillProxy> data)
+	public void setSource(SkillFilteredResultProxy result)
 	{
+		List<SkillProxy> data = result.getSkillList();
+		List<SkillLevels> skillAcquiredList = result.getSkilltLevelsAcquiredList();
+		
 		int row=0;
+		int mainClassificationRow=0;
+		int topicRow=0;
+		int classificationTopicRow=0;
+		
 		for(int i=0;i<data.size();i++)
 		{
 			SkillProxy sproxy=data.get(i);
 			TopicProxy tproxy=sproxy.getTopic();
 			ClassificationTopicProxy ctProxy=tproxy.getClassificationTopic();
 			MainClassificationProxy mProxy=ctProxy.getMainClassification();
+			SkillLevels skillLevel = skillAcquiredList.get(i);
 			
 			if(i==0)
 			{
 				skillFlexTable.setWidget(++row, 0, createMainClassificationWidget(mProxy));
-				
-				skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
+				delegate.findProgressOfMainClassification(mProxy,row,1,student);
+				/*int mIndex=result.getMainClassificationkey().indexOf("m"+mProxy);
+				String mprogress=result.getMainClassificationProgress().get(mIndex);
+				String mP[]=mprogress.split("//");
+				skillFlexTable.setWidget(row, 1, createProgressBar(new Integer(mP[0]),new Integer(mP[1])));*/
 				//skillFlexTable.setText(row, 1, mProxy.getDescription());
+				//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
 				skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
 				skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "mainClassificationBG");
-				
+				mainClassificationRow=row;
 				
 				if(!ctProxy.getDescription().equals("Blank"))
 				{
 					skillFlexTable.setWidget(++row, 0, createClassificationTopicWidget(ctProxy));
-					skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
+					delegate.findProgressOfClassificationTopic(ctProxy,row,1,student);
+					//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
 					skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
 					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "classificationTopicBG");
+					classificationTopicRow=row;
 				}
 				
 				skillFlexTable.setWidget(++row,0,createTopicWidget(tproxy));
-				skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
+				delegate.findProgressOfTopic(tproxy,row,1,student);
+				//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
 				skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
 				skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "topicBG");
+				topicRow=row;
 				
 			}
 			else
 			{
 				if( ( tproxy.getId() != data.get(i-1).getTopic().getId()))
 				{
+					
+					
 					skillFlexTable.setWidget(++row,0,createTopicWidget(tproxy));
-					skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
+					delegate.findProgressOfTopic(tproxy,row,1,student);
+					//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
 					skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
 					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "topicBG");
+					topicRow=row;
 				}
 				else if( ( ctProxy.getId() != data.get(i-1).getTopic().getClassificationTopic().getId()))
 					{
 					if(!ctProxy.getDescription().equals("Blank"))
 					{
 						skillFlexTable.setWidget(++row, 0, createClassificationTopicWidget(ctProxy));
-						skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
+						delegate.findProgressOfClassificationTopic(ctProxy,row,1,student);
+						//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
 						skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
 						skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "classificationTopicBG");
+						classificationTopicRow=row;
 					}
 					}
 				else if( ( mProxy.getId() != data.get(i-1).getTopic().getClassificationTopic().getMainClassification().getId()))
 				{
 					skillFlexTable.setWidget(++row, 0, createMainClassificationWidget(mProxy));
-					skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
+					delegate.findProgressOfMainClassification(mProxy,row,1,student);
+					//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
 					skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
 					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "mainClassificationBG");
+					mainClassificationRow=row;
 				}
 			}
 			 
 			
 			
 			skillFlexTable.setWidget(++row,0,createSkillWidget(sproxy));
+			skillFlexTable.getRowFormatter().addStyleName(row, "redBG");
 			//flexTable.getFlexCellFormatter().addStyleName(row, 0, "skillDescription");
 			skillFlexTable.setText(row,1,mProxy.getShortcut()+sproxy.getShortcut());
 			skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "skillDescription");
@@ -612,15 +643,62 @@ public class SkillViewImpl extends Composite implements SkillView {
 			
 			SkillLevelCheckboxViewImpl checkBox=new SkillLevelCheckboxViewImpl();
 			checkBox.setSkillProxy(sproxy);
-			checkBox.setLevel1(true);			
+			checkBox.setLevel1(true);
+			checkBox.setDelegate(skillActivity);
+			checkBox.setRow(row);
+			checkBox.setColumn(2);
+			checkBox.setMainClassificationRow(mainClassificationRow);
+			checkBox.setClassificationTopicRow(classificationTopicRow);
+			checkBox.setTopicRow(topicRow);
 			skillFlexTable.setWidget(row,2, checkBox);
 			skillFlexTable.getFlexCellFormatter().addStyleName(row, 2, "skillChkBox");
 			
 			SkillLevelCheckboxViewImpl checkBox2=new SkillLevelCheckboxViewImpl();
 			checkBox2.setSkillProxy(sproxy);
 			checkBox2.setLevel1(false);
+			checkBox2.setDelegate(skillActivity);
+			checkBox2.setRow(row);
+			checkBox2.setColumn(3);
+			checkBox2.setMainClassificationRow(mainClassificationRow);
+			checkBox2.setClassificationTopicRow(classificationTopicRow);
+			checkBox2.setTopicRow(topicRow);
 			skillFlexTable.setWidget(row,3, checkBox2);
 			skillFlexTable.getFlexCellFormatter().addStyleName(row, 3, "skillChkBox");
+			
+			if(skillLevel==SkillLevels.SOME_PRACTICLE_EXPERIENCE){
+				checkBox.getCheckbox().setValue(true);
+			}
+			else if(skillLevel==SkillLevels.ROUTINE){
+				checkBox2.getCheckbox().setValue(true);
+			}
+			
+			if(skillLevel==SkillLevels.SOME_PRACTICLE_EXPERIENCE && sproxy.getSkillLevel().getLevelNumber()==2)
+			{
+				skillFlexTable.getRowFormatter().removeStyleName(row, "redBG");
+				skillFlexTable.getRowFormatter().removeStyleName(row, "greenBG");
+				skillFlexTable.getRowFormatter().addStyleName(row, "yellowBG");
+			}
+			else if(skillLevel==SkillLevels.SOME_PRACTICLE_EXPERIENCE && sproxy.getSkillLevel().getLevelNumber()==1)
+			{
+				skillFlexTable.getRowFormatter().removeStyleName(row, "redBG");
+				skillFlexTable.getRowFormatter().removeStyleName(row, "yellowBG");
+				skillFlexTable.getRowFormatter().addStyleName(row, "greenBG");
+				
+			}
+			else if(skillLevel==SkillLevels.ROUTINE)
+			{
+				skillFlexTable.getRowFormatter().removeStyleName(row, "redBG");
+				skillFlexTable.getRowFormatter().removeStyleName(row, "yellowBG");
+				skillFlexTable.getRowFormatter().addStyleName(row, "greenBG");
+				
+			}
+			else
+			{
+				skillFlexTable.getRowFormatter().removeStyleName(row, "yellowBG");
+				skillFlexTable.getRowFormatter().removeStyleName(row, "greenBG");
+				skillFlexTable.getRowFormatter().addStyleName(row, "redBG");
+			}
+			
 		}
 	}
 	

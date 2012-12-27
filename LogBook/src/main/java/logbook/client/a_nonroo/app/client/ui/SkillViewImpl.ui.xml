@@ -110,15 +110,15 @@
 													<!-- <g:SuggestBox width="200px"></g:SuggestBox> -->
 												</td>
 											</tr>
-											<tr>
+											<!-- <tr>
 												<td>
 													<g:Label ui:field="levelLabel"></g:Label>
 												</td>
 												<td>
 												<i:DefaultSuggestBox ui:field="levelSuggestBox" width="200px"></i:DefaultSuggestBox>
-													<!-- <g:SuggestBox width="200px"></g:SuggestBox> -->
+													<g:SuggestBox width="200px"></g:SuggestBox>
 												</td>
-											</tr>
+											</tr> -->
 											<tr>
 												<td>
 													<g:Label ui:field="fullTextSearch"></g:Label>

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import java_cup.internal_error;
+
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
@@ -14,6 +16,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+
+import logbook.shared.SkillLevels;
 
 import org.hibernate.Query;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -97,6 +101,75 @@ public class SkillAcquired {
         Log.info("Query String: " + q);
         return q.getResultList().size();		
     }
+    public static String acquireORDeleteSkill(Long studentId,Long skillId,Boolean isFirstSelected,Boolean isDeleteOperation){
+    	Log.info("Inside  acquireORDeleteSkill with student :" + studentId + " and Skill " +skillId);
+    	
+    	try{
+	    	String result="";
+	    	
+	    	if(isDeleteOperation){
+	    		SkillAcquired sa =(findSkillAcquiredByStudent(studentId,skillId).get(0));
+	    		sa.remove();
+	    		result="DELETE";
+	    	}
+	    	else{
+	    		
+	    			List<SkillAcquired> saList =(findSkillAcquiredByStudent(studentId,skillId));
+	    					
+		    		if(saList.size()==0)
+		        	{
+		        		persistSkillAcquired(studentId,skillId,isFirstSelected);
+		        		result="INSERT";
+		        	}
+		    		else{
+		    			SkillAcquired sa= saList.get(0);
+		    			if(isFirstSelected){
+		    				sa.setSkillLevel(SkillLevel.findSkillByLevelNumber(1));
+		    			}
+		    			else{
+		    				sa.setSkillLevel(SkillLevel.findSkillByLevelNumber(2));
+		    			}
+		    			sa.persist();
+	        			result="UPDATE";
+		    		}
+	    		}
+	    	return result;
+    	}catch(Exception e){
+    		return "ERROR";
+    	}
+    	
+    }
+
+	private static List<SkillAcquired> findSkillAcquiredByStudent(Long studentId, Long skillId) {
+		
+		EntityManager em = entityManager();
+    	
+    	String query = "select sa from SkillAcquired as sa where sa.student="+studentId + " and sa.skill="+skillId ;
+    	Log.info("Query is :" + query);
+    	
+    	TypedQuery<SkillAcquired> saResult = em.createQuery(query, SkillAcquired.class);
+    	return saResult.getResultList();
+	}
+
+	private static void persistSkillAcquired(Long studentId, Long skillId,Boolean isFirstSelected) {
+		
+		try{
+			SkillAcquired sa =new SkillAcquired();
+			sa.setCreated(new Date());
+			sa.setSkill(Skill.findSkill(skillId));
+			sa.setStudent(Student.findStudent(studentId));
+			if(isFirstSelected){
+				sa.setSkillLevel(SkillLevel.findSkillByLevelNumber(1));
+			}
+			else {
+				sa.setSkillLevel(SkillLevel.findSkillByLevelNumber(2));
+			}
+				sa.persist();
+		}catch(Exception e){
+			System.out.println("Exception When new Skil Acquired created is :" + e.getStackTrace());
+			
+		}
+	}
     
  
 }

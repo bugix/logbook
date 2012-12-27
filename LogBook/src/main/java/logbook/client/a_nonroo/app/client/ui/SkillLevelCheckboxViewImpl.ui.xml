@@ -8,7 +8,7 @@
 
 <ui:style src="../styles.css" >
 	.skillChkBox{
-		background-color: rgb(254,216,203);
+		
 		width: 30px;
 		height: 20px;
 		

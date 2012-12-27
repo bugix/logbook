@@ -1,15 +1,21 @@
 package logbook.client.a_nonroo.app.client.activity;
 
-import java.util.Iterator;
 import java.util.List;
 
+import org.apache.tools.ant.taskdefs.condition.IsFileSelected;
+
+import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
 import logbook.client.a_nonroo.app.client.place.SkillPlace;
+import logbook.client.a_nonroo.app.client.ui.SkillLevelCheckboxView;
+import logbook.client.a_nonroo.app.client.ui.SkillLevelCheckboxViewImpl;
 import logbook.client.a_nonroo.app.client.ui.SkillView;
 import logbook.client.a_nonroo.app.client.ui.SkillViewImpl;
+import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
 import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
 import logbook.client.managed.proxy.SkillProxy;
+import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultSuggestOracle;
 import logbook.shared.i18n.LogBookConstants;
@@ -25,8 +31,12 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.text.shared.AbstractRenderer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.itextpdf.text.log.SysoLogger;
 
 
 /**
@@ -34,12 +44,13 @@ import com.google.web.bindery.requestfactory.shared.Receiver;
  * 
  */
 public class SkillActivity extends AbstractActivity implements
-		SkillView.presenter, SkillView.Delegate {
+		SkillView.presenter, SkillView.Delegate,SkillLevelCheckboxView.presenter,SkillLevelCheckboxView.Delegate{
 
 	private LogBookRequestFactory requests;
 	private PlaceController placeController;
 	private AcceptsOneWidget widget;
 	private SkillView view;
+	private SkillLevelCheckboxView checkBoxview;
 	 private Long mainClassificationId =null;
 	 private Long classificaitonTopicId = null;
 	 private Long topicId =null;
@@ -48,6 +59,9 @@ public class SkillActivity extends AbstractActivity implements
 	private SkillPlace place;
 	private int tabIndex = 0;
 
+	private static StudentProxy currentStudent=null;
+	
+	private Boolean result;
 	private ActivityManager activityManager;
 	private FlexTable skillFlexTable;
 	LogBookConstants constants = GWT.create(LogBookConstants.class);
@@ -90,107 +104,100 @@ public class SkillActivity extends AbstractActivity implements
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		Log.info("SystemStartActivity.start()");
-
+		
 		this.widget = panel;
+		systemStartView = new SkillViewImpl();
+		systemStartView.setSkillActivity(this);
+		this.view = systemStartView;
+		view.setDelegate(this);
+		widget.setWidget(systemStartView.asWidget());
+
+		checkBoxview=new SkillLevelCheckboxViewImpl();
+		checkBoxview.setDelegate(this);
 		init();
 		
 	}
 
 	private void init() {
-		systemStartView = new SkillViewImpl();
+		/*systemStartView = new SkillViewImpl();*/
+		/*checkBoxview=new SkillLevelCheckboxViewImpl();*/
 		systemStartView.setPresenter(this);
-		this.view = systemStartView;
+		checkBoxview.setPresenter(this);
+		/*this.view = systemStartView;
 
-		widget.setWidget(systemStartView.asWidget());
-		view.setDelegate(this);
+		widget.setWidget(systemStartView.asWidget());*/
+		/*view.setDelegate(this);
+		checkBoxview.setDelegate(this);*/
 		
-		initAllSkillSuggestions();
+	//	findCurrentStudent();
+		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() {
+
+			@Override
+			public void onSuccess(StudentProxy response) {
+				if(response !=null)
+				view.setStudent(response);
+				
+				initAllSkillSuggestions();
+				
+				initSkillFlexTable();
+				
+				initSkillTableData(response,0);
+			}
+		});
+		
+		/*initAllSkillSuggestions();
 		
 		initSkillFlexTable();
 		
-		initSkillTableData();
+		initSkillTableData();*/
 		
 		
 		
 
 	}
 
-	private void initSkillTableData() {
+	/*private void findCurrentStudent() {
+		
+		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() {
+
+			@Override
+			public void onSuccess(StudentProxy response) {
+				if(response !=null)
+				currentStudent=response;
+			}
+		});
+	}*/
+	
+	
+	//chkAsc: 0=Sort Ascending ShortCut
+	//chkAsc: 1=Sort Descending ShortCut
+	private void initSkillTableData(StudentProxy student,int chkAsc) {
+		
 		
 		skillFlexTable.removeAllRows();
+		
+		System.out.println("student is :" + student.getId());
+		
+		String fullTextSearchString=view.getFullTextSearchBox().getValue();
+		
+		System.out.println("full text : " + fullTextSearchString);
+		
 	
-		/*String textHeader[] = { "   ", constants.name(), constants.shortcut(), constants.level1(), constants.level2() };
-		
-		for (int i = 0; i < textHeader.length; i++) {
+	
+		requests.skillRequestNonRoo().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(),student.getId(),mainClassificationId, classificaitonTopicId, topicId,fullTextSearchString,chkAsc).with("skillList.topic","skillList.topic.classificationTopic","skillList.topic.classificationTopic.mainClassification","skillList.skillLevel").fire(new Receiver<SkillFilteredResultProxy>() {
 
-			skillFlexTable.setText(0, i, textHeader[i]);
-		}*/
-		/*skillFlexTable.getCellFormatter().addStyleName(0, 0, "flexTableColumnHeader ");
-		skillFlexTable.getRowFormatter().addStyleName(0, "flexTableHeader");
-		
-		
-		skillFlexTable.getCellFormatter().addStyleName(0, 0, "flexTableFirstColumnHeader");
-		skillFlexTable.getCellFormatter().addStyleName(0, 1, "flexTableColumnHeader");
-		skillFlexTable.getCellFormatter().addStyleName(0, 2, "flexTableColumnHeader");		
-		
-		skillFlexTable.getCellFormatter().addStyleName(0, 3, "flexTableColumnHeader");		
-		skillFlexTable.getCellFormatter().addStyleName(0, 4, "flexTableLastColumnHeader");*/
-		requests.skillRequestNonRoo().findSkillBySearchCriteria(0, 20, mainClassificationId, classificaitonTopicId, topicId).with("topic","topic.classificationTopic","topic.classificationTopic.mainClassification").fire(new Receiver<List<SkillProxy>>() {
-
-		@Override
-		public void onSuccess(List<SkillProxy> response) {
+			@Override
+			public void onSuccess(SkillFilteredResultProxy response) {
 			/*for(SkillProxy skill : response){
 				System.out.println("id : " + skill.getId());
 			}*/
-			
+			view.getPager().setRowCount(response.getTotalSkill());
 			view.createHeader(view.getSkillFlexTable());
-			for(SkillProxy s:response)
-			{
-				Log.info("s :" + s.getId());
-			}
 			view.setSource(response);
-	/*		if(response != null && response.size() > 0 ){
-			System.out.println("Response :" + response.size());
-			
-			SkillProxy priviosSkill= response.get(0);
-			
-			Log.info(" Skill Proxy is" + priviosSkill.getId());
-			Log.info("Classification : " + priviosSkill.getTopic());
-			Log.info("Classification : " + priviosSkill.getTopic().getClassificationTopic());
-			Log.info("Classification : " + priviosSkill.getTopic().getClassificationTopic().getMainClassification());
-			Log.info("Classification : " + priviosSkill.getTopic().getClassificationTopic().getMainClassification().getDescription());
-			
-			String description=priviosSkill.getTopic().getClassificationTopic().getMainClassification().getDescription();
-			String topic=priviosSkill.getTopic().getTopicDescription();
-			
-			String mainLabel=priviosSkill.getTopic().getClassificationTopic().getMainClassification().getDescription()!=null ? description+" - "+topic:"This is Main Header";
-			
-			int totalrow=skillFlexTable.getRowCount();
-			skillFlexTable.setText(totalrow,0,mainLabel);
-			
-			skillFlexTable.getFlexCellFormatter().setColSpan(totalrow, 0, 6);
-			
-			for (Iterator iterator = response.iterator(); iterator.hasNext();) {
-				SkillProxy skillProxy = (SkillProxy) iterator.next();
-				//Log.info("new Skill proxy is :" + skillProxy.getId());
-				if(priviosSkill.getTopic().getId().longValue()==skillProxy.getTopic().getId().longValue()){
-					
-					skillFlexTable.setText(skillFlexTable.getRowCount(),1,skillProxy.getDescription()!=null ? skillProxy.getDescription():"Skill ABC");
-					
-				}
-				else{
-					priviosSkill=skillProxy;
-					topic=priviosSkill.getTopic().getTopicDescription();
-					mainLabel=priviosSkill.getTopic().getClassificationTopic().getMainClassification().getDescription();
-					totalrow=skillFlexTable.getRowCount();
-					skillFlexTable.setText(totalrow,0,mainLabel + " - " + topic);
-					skillFlexTable.getFlexCellFormatter().setColSpan(totalrow, 0, 6);
-					skillFlexTable.setText(skillFlexTable.getRowCount(),1,skillProxy.getDescription()!=null ? skillProxy.getDescription():"Skill ABC");
-				}
-				
-			}
-		}*/
+
 		}
+
+		
 	});
 		
 	}
@@ -355,7 +362,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		
 		initSkillFlexTable();
 		
-		initSkillTableData();
+		initSkillTableData(view.getStudent(),0);
 	}
 
 	@Override
@@ -364,7 +371,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		this.classificaitonTopicId=view.getClassificationTopicSuggestBox().getSelected()!=null ? view.getClassificationTopicSuggestBox().getSelected().getId() : null;
 		this.topicId=view.getTopicSuggestBox().getSelected() !=null ? view.getTopicSuggestBox().getSelected().getId():null;
 		
-		initSkillTableData();
+		initSkillTableData(view.getStudent(),0);
 		
 	}
 
@@ -389,10 +396,238 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		});
 	
 	}
-	
+
 	public void refreshFlextable(FlexTable table,int start,int length)
 	{
+		initSkillTableData(view.getStudent(), 0);
+	}
+
+	@Override
+	public void chekBoxSelected(SkillProxy skillProxy,final boolean isLevel1,final SkillLevelCheckboxViewImpl skillLevelCheckboxViewImpl) {
+		
+		final int row =skillLevelCheckboxViewImpl.getRow();
+		Boolean isDeleteOperation=true;
+		final SkillLevelCheckboxViewImpl s =(SkillLevelCheckboxViewImpl)view.getSkillFlexTable().getWidget(row, 2);
+		final SkillLevelCheckboxViewImpl s1 =(SkillLevelCheckboxViewImpl)view.getSkillFlexTable().getWidget(row, 3);
+		
+		Boolean isFirstSelected=s.getCheckbox().getValue();
+		Boolean isSecondSelected=s1.getCheckbox().getValue();
+		if(isFirstSelected || isSecondSelected){
+			isDeleteOperation=false;
+		}
+		final Integer skillLevel=skillProxy.getSkillLevel().getLevelNumber();
+		
+		requests.skillAcquiredRequestNonRoo().acquireORDeleteSkill(view.getStudent().getId(),skillLevelCheckboxViewImpl.getSkillProxy().getId(),isLevel1,isDeleteOperation).fire(new Receiver<String>() {
+
+			@Override
+			public void onSuccess(String response) {
+				//Window.alert("Operation complete");
+				System.out.println("Operation is :" + response);
+				if(response.equalsIgnoreCase("INSERT")){
+					skillLevelCheckboxViewImpl.getCheckbox().setValue(true);
+					
+					if(isLevel1 && skillLevel==2)
+					{
+						
+						//decrement topic aquired skill
+						if(!view.getSkillFlexTable().getRowFormatter().getStyleName(row).equalsIgnoreCase("redBG"))
+						{
+							changeProgress( skillLevelCheckboxViewImpl.getTopicRow(), false);
+							
+							//decrement classification topic aquired skill
+							changeProgress( skillLevelCheckboxViewImpl.getClassificationTopicRow(), false);
+							
+							//decrement main classification  aquired skill
+							changeProgress( skillLevelCheckboxViewImpl.getMainClassificationRow(), false);
+						}
+						
+						view.getSkillFlexTable().getRowFormatter().removeStyleName(row, "redBG");
+						view.getSkillFlexTable().getRowFormatter().removeStyleName(row, "greenBG");
+						view.getSkillFlexTable().getRowFormatter().addStyleName(row, "yellowBG");
+						
+					}
+					else
+					{
+						view.getSkillFlexTable().getRowFormatter().removeStyleName(row, "redBG");
+						view.getSkillFlexTable().getRowFormatter().removeStyleName(row, "yellowBG");
+						view.getSkillFlexTable().getRowFormatter().addStyleName(row, "greenBG");
+						
+						//increment topic aquired skill
+						changeProgress( skillLevelCheckboxViewImpl.getTopicRow(), true);						
+						//increment classification topic aquired skill
+						changeProgress( skillLevelCheckboxViewImpl.getClassificationTopicRow(), true);
+						
+						//increment main classification  aquired skill
+						changeProgress( skillLevelCheckboxViewImpl.getMainClassificationRow(), true);
+					}
+				}
+				else if(response.equalsIgnoreCase("UPDATE")){
+						if(isLevel1){
+							s.getCheckbox().setValue(true);
+							s1.getCheckbox().setValue(false);
+							
+						}
+						else{
+							s.getCheckbox().setValue(false);
+							s1.getCheckbox().setValue(true);
+						}
+						
+						
+						if(isLevel1 && skillLevel==2)
+						{
+							//decrement topic aquired skill
+							if(!view.getSkillFlexTable().getRowFormatter().getStyleName(row).equalsIgnoreCase("redBG"))
+							{
+								changeProgress( skillLevelCheckboxViewImpl.getTopicRow(), false);
+								
+								//decrement classification topic aquired skill
+								changeProgress( skillLevelCheckboxViewImpl.getClassificationTopicRow(), false);
+								
+								//decrement main classification  aquired skill
+								changeProgress( skillLevelCheckboxViewImpl.getMainClassificationRow(), false);
+							}
+							
+							
+							view.getSkillFlexTable().getRowFormatter().removeStyleName(row, "redBG");
+							view.getSkillFlexTable().getRowFormatter().removeStyleName(row, "greenBG");
+							view.getSkillFlexTable().getRowFormatter().addStyleName(row, "yellowBG");
+							
+							
+						}
+						else
+						{
+							view.getSkillFlexTable().getRowFormatter().removeStyleName(row, "redBG");
+							view.getSkillFlexTable().getRowFormatter().removeStyleName(row, "yellowBG");
+							view.getSkillFlexTable().getRowFormatter().addStyleName(row, "greenBG");
+							
+							//increment topic aquired skill
+							changeProgress( skillLevelCheckboxViewImpl.getTopicRow(), true);
+							
+							//increment classification topic aquired skill
+							changeProgress( skillLevelCheckboxViewImpl.getClassificationTopicRow(), true);
+							
+							//increment main classification  aquired skill
+							changeProgress( skillLevelCheckboxViewImpl.getMainClassificationRow(), true);
+						}
+				}
+				else if(response.equalsIgnoreCase("DELETE")){
+					s.getCheckbox().setValue(false);
+					s1.getCheckbox().setValue(false);
+					
+					Log.info("Style name :"+ view.getSkillFlexTable().getRowFormatter().getStyleName(row));
+					
+					//decrement topic aquired skill
+					if(!view.getSkillFlexTable().getRowFormatter().getStyleName(row).equalsIgnoreCase("yellowBG"))
+					{
+						changeProgress( skillLevelCheckboxViewImpl.getTopicRow(), false);
+						
+						//decrement classification topic aquired skill
+						changeProgress( skillLevelCheckboxViewImpl.getClassificationTopicRow(), false);
+						
+						//decrement main classification  aquired skill
+						changeProgress( skillLevelCheckboxViewImpl.getMainClassificationRow(), false);
+					}
+					
+					view.getSkillFlexTable().getRowFormatter().removeStyleName(row, "greenBG");
+					view.getSkillFlexTable().getRowFormatter().removeStyleName(row, "yellowBG");
+					view.getSkillFlexTable().getRowFormatter().addStyleName(row, "redBG");
+					
+					
+				}
+				
+				
+				
+			}
+		});
 		
 	}
+	
+	public void changeProgress(int row,boolean incr)
+	{
+		String topicProgress=((Label)((HorizontalPanel)view.getSkillFlexTable().getWidget(row, 0)).getWidget(1)).getText();
+		String tP[]=topicProgress.split("/");
+		Long topicProgressValue=new Long(tP[0]);
+		if(!incr)
+		{
+		--topicProgressValue;
+		}
+		else
+		{
+			++topicProgressValue;
+		}
+		String totalTopicSkill=tP[1];
+		((Label)((HorizontalPanel)view.getSkillFlexTable().getWidget(row, 0)).getWidget(1)).setText(topicProgressValue.toString()+"/"+totalTopicSkill);
+		((CustomProgressbar)view.getSkillFlexTable().getWidget(row, 1)).setProgress(topicProgressValue);
+	}
+	
+	@Override
+	public void findProgressOfMainClassification(
+			MainClassificationProxy mProxy, final int row,final  int i, StudentProxy student) {
+		
+		requests.skillRequestNonRoo().findProgressOfMainClassification(mProxy, student.getId()).fire(new Receiver<String>() {
+
+			@Override
+			public void onSuccess(String response) {
+				String mP[]=response.split("/");
+				
+				view.getSkillFlexTable().setWidget(row, i, view.createProgressBar(new Integer(mP[0]),new Integer(mP[1])));
+				((Label)((HorizontalPanel)view.getSkillFlexTable().getWidget(row, 0)).getWidget(1)).setText(response);
+				
+			}
+		});
+		
+	}
+
+	@Override
+	public void findProgressOfClassificationTopic(
+			ClassificationTopicProxy ctProxy,final int row,final int i, StudentProxy student) {
+		requests.skillRequestNonRoo().findProgressOfClassificationTopic(ctProxy, student.getId()).fire(new Receiver<String>() {
+
+			@Override
+			public void onSuccess(String response) {
+				String mP[]=response.split("/");
+				
+				view.getSkillFlexTable().setWidget(row, i, view.createProgressBar(new Integer(mP[0]),new Integer(mP[1])));
+				((Label)((HorizontalPanel)view.getSkillFlexTable().getWidget(row, 0)).getWidget(1)).setText(response);
+				
+			}
+		});
+		
+		
+	}
+
+	@Override
+	public void findProgressOfTopic(TopicProxy tproxy,final int row,final int i,
+			StudentProxy student) {
+		requests.skillRequestNonRoo().findProgressOfTopic(tproxy, student.getId()).fire(new Receiver<String>() {
+
+			@Override
+			public void onSuccess(String response) {
+				String mP[]=response.split("/");
+				
+				view.getSkillFlexTable().setWidget(row, i, view.createProgressBar(new Integer(mP[0]),new Integer(mP[1])));
+				((Label)((HorizontalPanel)view.getSkillFlexTable().getWidget(row, 0)).getWidget(1)).setText(response);
+				
+			}
+		});
+		
+	}
+
+	/*@Override
+	public Boolean isSkillAcquiredbyStudentAtFirstLevel(Long studentID,
+			Long skillId, Long skillLevelID) {
+		
+		
+		requests.skillRequestNonRoo().isSkillAcquiredbyStudentAtFirstLevel(studentID, skillId, skillLevelID).fire(new Receiver<Boolean>() {
+
+			@Override
+			public void onSuccess(Boolean response) {
+				result=response;
+				return result;
+			}
+		});
+		
+	}*/
+
 	
 }

@@ -76,5 +76,7 @@ public String shortcut();
 	public String l1();
 	
 	public String l2();
+	
+	public String noSkillAcquired();
 
 }

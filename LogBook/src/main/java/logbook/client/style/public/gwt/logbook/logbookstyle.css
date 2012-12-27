@@ -1237,14 +1237,14 @@ color: #f1b532;
 
 .skillDescription{
 	padding-left: 20px;
-	background-color: rgb(254,216,203);
+	/*background-color: rgb(254,216,203);*/
 	color: rgb(43,43,43);
 	/*margin-top: 1px;*/
 	/*margin-bottom: 1px;*/
 	min-height: 20px;
 }
 .skillChkBox{
-		background-color: rgb(254,216,203);
+		
 		width: 30px;
 		height: 20px;
 		
@@ -1268,7 +1268,7 @@ color: #f1b532;
 	background-color: rgb(238,238,238);
 }
 .skillCountPadding{
-	width:25px;
+	width:50px;
     margin-top: 3px;
 }
 
@@ -1300,6 +1300,15 @@ color: #f1b532;
 	width: 22px ;
 	 padding: 10px;
 	
+}
+.redBG{
+	background-color: rgb(254,216,203) !important;
+}
+.greenBG{
+	background-color: rgb(196,253,183) !important;
+}
+.yellowBG{
+	background-color: rgb(254,254,165) !important;
 }
 
 .pagerPreviousButton:HOVER{

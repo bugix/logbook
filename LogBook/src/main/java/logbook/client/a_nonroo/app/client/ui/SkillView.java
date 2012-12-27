@@ -4,9 +4,13 @@ package logbook.client.a_nonroo.app.client.ui;
 
 import java.util.List;
 
+import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
+import logbook.client.a_nonroo.app.client.activity.SkillActivity;
+import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
 import logbook.client.managed.proxy.SkillProxy;
+import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
 import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.DefaultSuggestBox;
@@ -15,6 +19,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.Widget;
 
 public interface SkillView extends IsWidget{
 	 /* * Implemented by the owner of the view.
@@ -36,6 +41,19 @@ public interface SkillView extends IsWidget{
 		void printPdfClicked();
 		
 		void refreshFlextable(FlexTable table,int start,int length);
+
+	void findProgressOfMainClassification(MainClassificationProxy mProxy,
+				int row, int i, StudentProxy student);
+
+		void findProgressOfClassificationTopic(ClassificationTopicProxy cProxy,
+				int row, int i, StudentProxy student);
+
+		void findProgressOfTopic(TopicProxy tproxy, int row, int i,
+				StudentProxy student);
+		
+
+		//Boolean isSkillAcquiredbyStudentAtFirstLevel(Long studentID,Long skillId,Long skillLevelID);
+		
 		
 	}
 	
@@ -74,6 +92,18 @@ public interface SkillView extends IsWidget{
 	
 	public void createHeader(FlexTable flexTable);
 	
-	public void setSource(List<SkillProxy> data);
+	public void setSource(SkillFilteredResultProxy data);
+
+	StudentProxy getStudent();
+
+	void setStudent(StudentProxy student);
+	
+	public SkillActivity getSkillActivity();
+
+	public void setSkillActivity(SkillActivity skillActivity);
+	
+	public Widget createProgressBar(int maxProgress,int progress);
+	
+	public CustomPager getPager();
 
 }

@@ -1,5 +1,6 @@
 package logbook.server.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +25,7 @@ public class Topic {
     private String topicDescription;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "topic")
-    private Set<Skill> skills = new HashSet<Skill>();
+    private List<Skill> skills = new ArrayList<Skill>();
 
     @ManyToOne
     private ClassificationTopic classificationTopic;
