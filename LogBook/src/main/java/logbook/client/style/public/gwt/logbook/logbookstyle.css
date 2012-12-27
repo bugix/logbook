@@ -931,11 +931,12 @@ color: #f1b532;
     height: 0; 
     border-left:8px solid transparent; 
     border-right: 8px solid transparent; 
-    border-top: 8px solid #AAAAAA;
+    border-top: 8px solid #C3D9FF;
 }
 
 .gwt-PopupPanel {
 	border-radius: 10px;
+	clip: inherit !important;
 }
 
 .gwt-Button {

@@ -17,8 +17,8 @@
 	<g:VerticalPanel addStyleNames="{style.mainPanelStyle}">
 	
 	<g:HTML>
-		<div class="arrow-popup-border" style="left:210px;"></div>
-		<div class="arrow-popup" style="left:210px;"></div>
+		<div class="arrow-popup-border" ></div>
+		<div class="arrow-popup" ></div>
 	</g:HTML>
 	
 		<g:HTMLPanel >
