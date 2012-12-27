@@ -960,7 +960,9 @@ color: #f1b532;
 	background: url("/public/images/ui-bg_glass_75_79c9ec_1x400.png") repeat-x scroll 50% 50% #0078AE;
 }
 
-
+.gwt-TabLayoutPanel{
+	position: relative !important;
+}
 .gwt-TabLayoutPanelContentContainer {
 
 	border-top-width: 0px !important; 
@@ -968,11 +970,16 @@ color: #f1b532;
 	border-bottom-right-radius: 5px;
 	height: 99%;
 	background-color: white;
+	position: relative !important;
 }
+
+
+
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelContent
 {
 	padding:  6px;
     border-width: 0px !important;	
+    position: relative !important;
 }
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {	
 	/* background: url("/public/images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
@@ -1134,6 +1141,8 @@ color: #f1b532;
 	height:100%;
 	margin: auto;
 	width: 863px;
+	overflow: visible !important;
+	position: relative !important;
 	
 }
 .logo

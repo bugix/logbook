@@ -11,6 +11,7 @@ import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.activity.shared.ActivityManager;
+import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.place.shared.Place;
@@ -87,6 +88,10 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 		this.view = systemStartView;
 		
 		widget.setWidget(systemStartView.asWidget());
+		Log.info("HTML :" +systemStartView.asWidget().getElement().getParentElement().getParentElement());
+		
+		//Fix in default style( without it tab content will not show properly)
+		systemStartView.asWidget().getElement().getParentElement().getParentElement().getStyle().setPosition(Position.RELATIVE);
 		view.setDelegate(this);
 		
 	}

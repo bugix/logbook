@@ -11,6 +11,7 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
+import logbook.client.a_nonroo.app.client.LogBookNav;
 import logbook.client.a_nonroo.app.client.place.LoginPlace;
 import logbook.client.a_nonroo.app.client.ui.StudentEditPopupViewImpl;
 import logbook.client.a_nonroo.app.client.ui.StudentInformationView;
@@ -28,6 +29,8 @@ import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
@@ -119,12 +122,19 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 		this.view = systemStartView;
 		
 		widget.setWidget(systemStartView.asWidget());
+		
+		//Fix in default style( without it tab content will not show properly)
+		Log.info("HTML :" +systemStartView.asWidget().getElement().getParentElement().getParentElement());		
+		systemStartView.asWidget().getElement().getParentElement().getParentElement().getStyle().setPosition(Position.RELATIVE);
+		
 		view.setDelegate(this);
 		
 		initStudentInfo(); // Initialize StudentInformation
 		intiSkillTableRange();
 		//intiSkillTable();
 		
+		
+
 	}
 
 	private void intiSkillTableRange() 

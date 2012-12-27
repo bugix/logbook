@@ -8,6 +8,7 @@ import logbook.shared.i18n.LogBookConstants;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Node;
 import com.google.gwt.dom.client.StyleInjector;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.place.shared.PlaceController;
@@ -314,7 +315,6 @@ public class LogBookShell extends Composite {
 		getLogBookNavSimplePanel().add(nav);
 		Log.info("node value :" +masterDockPanel.getWidget(2).getElement().getParentElement());
 		masterDockPanel.getWidget(2).getElement().getParentElement().addClassName("top76");
-		
 		
 	}
 	

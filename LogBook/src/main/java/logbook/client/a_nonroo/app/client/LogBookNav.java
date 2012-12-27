@@ -1,6 +1,8 @@
 package logbook.client.a_nonroo.app.client;
 
 
+
+
 import logbook.client.a_nonroo.app.LogBookShell;
 import logbook.client.a_nonroo.app.activities.LogBookActivityMapper;
 import logbook.client.a_nonroo.app.client.place.LoginPlace;
@@ -9,11 +11,14 @@ import logbook.client.a_nonroo.app.client.place.SkillPlace;
 import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 import logbook.shared.i18n.LogBookConstants;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.activity.shared.CachingActivityMapper;
 import com.google.gwt.activity.shared.FilteredActivityMapper;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
@@ -94,14 +99,26 @@ public class LogBookNav extends Composite {
 		
 		SkillPlace.nav=logBookNav;
 		
+		
+
+		
 		CachingActivityMapper cached = new CachingActivityMapper(mcAppActivitiesMapper);
 		FilterForMainPlaces filterForMainPlaces = new FilterForMainPlaces();
 		ActivityMapper masterActivityMap = new FilteredActivityMapper(filterForMainPlaces, cached);
 		 masterActivityManager = new ActivityManager(masterActivityMap, eventBus);
 		 masterActivityManager.setDisplay((SimplePanel)mainLoogBookTabpanel.getWidget(mainLoogBookTabpanel.getSelectedIndex()));
 		
+		
+		 //Fix in default style( without it tab content will not show properly)
+		 mainLoogBookTabpanel.getElement().getChild(2).getChild(0).getParentElement().getStyle().setPosition(Position.RELATIVE);
+		 Element element=mainLoogBookTabpanel.getElement().getChild(2).getChild(0).getParentElement();	
+		 element.getChild(0).getChild(2).getChild(0).getParentElement().getStyle().setPosition(Position.RELATIVE);	 
+		 Log.info("HTML :"+element.getChild(0).getChild(2).getChild(0).getParentElement());
 		 
-			
+		
+		 //Log.info("HTML :"+mainLoogBookTabpanel.getElement().getChild(2).getChild(1).getParentElement());
+		// Log.info("HTML :" +mainLoogBookTabpanel.getElement().getChild(1).getChild(1).getParentElement().getChild(0).getChild(0).getChild(0).getParentElement());
+		  
 		 /* if(mainLoogBookTabpanel.getSelectedIndex() == 0)
 		 {
 			 logBookNav.placeController.goTo(new LoginPlace("LoginPlace"));
