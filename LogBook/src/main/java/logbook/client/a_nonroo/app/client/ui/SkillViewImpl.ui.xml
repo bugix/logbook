@@ -15,7 +15,7 @@
 			border-radius: 5px;
 			border-color: lightblue;			
 			width: 100%;
-			padding-left: 20px;	
+			padding-left: 8px;	
 			padding-top: 10px;
 			padding-bottom: 10px;
 					
@@ -35,7 +35,7 @@
             float: right;
         }
         .imagestyle{
-		float: right;	
+			float: right;	
 		}
 		 .skilltable-style {
      	 border: 1px solid black;
@@ -67,7 +67,7 @@
 		.skillTablePagerStyle
 		{
 			float: right;
-		}
+		}		
 	</ui:style>
 	<g:HTMLPanel>
 		<g:VerticalPanel addStyleNames="{style.mainVerticlePanelStyle}"
@@ -76,13 +76,13 @@
 				<table>
 					<tbody>
 						<tr>
-							<g:HorizontalPanel width="100%">
-								<g:Label ui:field="lblError" addStyleNames="{style.mainErrorLabelStyle}"
-									height="20%" visible="false"></g:Label>
+							<g:HorizontalPanel >
+								<g:Label ui:field="lblError" addStyleNames="{style.mainErrorLabelStyle}" height="20%" visible="false"></g:Label>
 							</g:HorizontalPanel>
 
 						</tr>
 						<tr>
+						<td>
 							<g:VerticalPanel addStyleNames="{style.skillSearchPanelStyle}">
 								<g:HTMLPanel>
 									<table cellpadding="2">
@@ -144,18 +144,21 @@
 									</table>
 								</g:HTMLPanel>
 							</g:VerticalPanel>
+							</td>
 						</tr>
-						<tr>
-							<g:HorizontalPanel width="100%">
+						<tr >
+						<td align="right">
+							<g:HorizontalPanel horizontalAlignment="right" spacing="10">
 								<g:Image ui:field="imgPrint"></g:Image>
-								<!-- <g:Hyperlink ui:field="hyperLnkPrint"></g:Hyperlink> -->
-								<g:Anchor ui:field="hyperLnkPrint" addStyleNames="{style.anchor}" width="80px"></g:Anchor>
-								<g:Image ui:field="imgpdf" stylePrimaryName="{style.imagestyle}"></g:Image>
-								<!-- <g:Hyperlink ui:field="hyperlnkSavePDF"></g:Hyperlink> -->
+								<g:Anchor ui:field="hyperLnkPrint" addStyleNames="{style.anchor}" width="25px"></g:Anchor>
+								<g:Label width="13px"> | </g:Label>
+								<g:Image ui:field="imgpdf" addStyleNames="{style.imagestyle}"></g:Image>
 								<g:Anchor ui:field="hyperlnkSavePDF" addStyleNames="{style.anchor}"></g:Anchor>
 							</g:HorizontalPanel>
+						</td>
 						</tr>
 						<tr>
+						<td>
 						<g:HTMLPanel addStyleNames="{style.skillTablePanelStyle}">
 						<table >
 										<tbody>
@@ -172,6 +175,7 @@
 							</tbody>
 							</table>							
 						</g:HTMLPanel>
+						</td>
 						</tr>
 					</tbody>
 				</table>

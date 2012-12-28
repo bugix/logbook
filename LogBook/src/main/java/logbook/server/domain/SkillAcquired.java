@@ -55,9 +55,11 @@ public class SkillAcquired {
 	{
 		
 		EntityManager em = entityManager();
-		String query="select count(sa.id) from SkillAcquired as sa where sa.skill in (select s.id from Skill as s where s.skillLevel in (select sl.levelNumber from SkillLevel as sl where sl.levelNumber= "+skillLevelId+")) and sa.student= "+ studentId ;
+		String query="select count(sa) from SkillAcquired as sa , Skill as s where sa.skill=s.id and sa.student= "+studentId + " and sa.skillLevel.levelNumber= "+skillLevelId+" and sa.skillLevel.levelNumber>=s.skillLevel.levelNumber";	
+		//String query="select count(sa.id) from SkillAcquired as sa where sa.skill in (select s.id from Skill as s where s.skillLevel.levelNumber in (select sl.levelNumber from SkillLevel as sl where sl.levelNumber= "+skillLevelId+")) and sa.student= "+ studentId ;
 		TypedQuery<Long> q =em.createQuery(query, Long.class); 
 		Long count = (long) q.getSingleResult();
+		System.out.println("Query TotalCount Level 1: " + query + "Count: " + count);
 		return count;
 		
 		/*// "select count(sa.id) from SkillAcquired as sa where sa.skill in (select s.id from Skill as s where s.skillLevel in (select sl.levelNumber from SkillLevel as sl where sl.levelNumber= "+skillLevelId+")) and sa.student= "+ studentId 

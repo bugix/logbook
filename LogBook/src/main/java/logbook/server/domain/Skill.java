@@ -68,8 +68,8 @@ public class Skill {
     public static Long findTotalSkillByLevel(long skillLevel)
     {
     	EntityManager em = entityManager();
-    	String query="select count(s.skillLevel) from Skill as s where s.skillLevel.levelNumber= "+skillLevel;
-        TypedQuery<Long> q = em.createQuery("select count(s.skillLevel) from Skill as s where s.skillLevel.levelNumber= "+skillLevel, Long.class);
+    	String query="select count(s) from Skill as s where s.skillLevel.levelNumber= "+skillLevel;
+        TypedQuery<Long> q = em.createQuery("select count(s) from Skill as s where s.skillLevel.levelNumber= "+skillLevel, Long.class);
         System.out.println("Total Skill Count Query String: " + query);
         return q.getSingleResult();		
     }
