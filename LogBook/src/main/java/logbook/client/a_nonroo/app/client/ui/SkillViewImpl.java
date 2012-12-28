@@ -26,20 +26,27 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.text.shared.AbstractRenderer;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class SkillViewImpl extends Composite implements SkillView {
@@ -86,6 +93,39 @@ public class SkillViewImpl extends Composite implements SkillView {
 	
 	private StudentProxy student;
 	
+	private Image downArrow;
+	
+	private HorizontalPanel sortcutHP;
+	
+	private Label sortcutLabel;
+	
+	public Image getDownArrow() {
+		return downArrow;
+	}
+
+	public void setDownArrow(Image downArrow) {
+		this.downArrow = downArrow;
+	}
+
+	public Image getUpArrow() {
+		return upArrow;
+	}
+
+	public void setUpArrow(Image upArrow) {
+		this.upArrow = upArrow;
+	}
+	private Image upArrow;
+	
+	private int isAsc;
+	
+	public int getIsAsc() {
+		return isAsc;
+	}
+
+	public void setIsAsc(int isAsc) {
+		this.isAsc = isAsc;
+	}
+
 	@Override
 	public StudentProxy getStudent() {
 		return student;
@@ -121,6 +161,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 		return mainClassificationLabel;
 	}
 
+	
 	@Override
 	public TextBox getFullTextSearchBox() {
 		return fullTextSearchBox;
@@ -267,10 +308,42 @@ public class SkillViewImpl extends Composite implements SkillView {
 		skillFlexTable.setCellPadding(1);
 		skillFlexTable.setCellSpacing(1);
 		skillFlexTable.setWidth("100%");
-		createHeader(skillFlexTable);
-skillview=this;
+		isAsc=0;
 		
-			initWidget(uiBinder.createAndBindUi(this));
+		//shortcut=new SimplePanel();
+		
+		downArrow =new Image("public/images/down.png");//
+		upArrow = new Image("public/images/up.png");
+		 
+		sortcutHP = new HorizontalPanel();
+		sortcutLabel= new Label(constants.shortcut());
+		
+		ClickHandler clickevent = new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				
+				//Window.alert("Clicked");
+				
+				if(isAsc==0){
+					isAsc=1;
+				}
+				else
+					isAsc=0;
+				
+				delegate.shortCutClicked();
+			}
+		};
+		
+		sortcutHP.addDomHandler(clickevent, ClickEvent.getType());
+		
+		createHeader(skillFlexTable);
+		
+		skillview=this;
+		
+		 
+		 
+		initWidget(uiBinder.createAndBindUi(this));
 		
 		init(); // Initialize Skill Data
 		
@@ -288,12 +361,37 @@ skillview=this;
 
 	}
 	
+	public HorizontalPanel getSortcutHP() {
+		return sortcutHP;
+	}
+
+	public void setSortcutHP(HorizontalPanel sortcutHP) {
+		this.sortcutHP = sortcutHP;
+	}
+
 	public void createHeader(FlexTable flexTable)
 	{
 		flexTable.setText(0, 0, constants.name());
 		flexTable.getCellFormatter().addStyleName(0, 0, "flexTable-header");
 		flexTable.getFlexCellFormatter().setWidth(0, 0, "70%");
-		flexTable.setText(0, 1, constants.shortcut());
+		//HorizontalPanel sortcutHP = new HorizontalPanel();
+		
+		//Label sortcutLabel= new Label(constants.shortcut());
+		sortcutHP.clear();
+		sortcutHP.add(sortcutLabel);
+		if(isAsc==0){
+			sortcutHP.add(downArrow);
+		}else{
+			sortcutHP.add(upArrow);
+		}
+		
+	//	 downArrow =new Image("public/images/down.png");//
+	//	 upArrow = new Image("public/images/up.png");
+		
+		//flexTable.setText(0, 1, constants.shortcut());
+
+		flexTable.setWidget(0,1,sortcutHP);
+		
 		flexTable.getCellFormatter().addStyleName(0, 1, "flexTable-header");
 		flexTable.setText(0, 2, constants.l1());
 		flexTable.getFlexCellFormatter().setWidth(0, 1, "10%");

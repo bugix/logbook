@@ -65,9 +65,47 @@ public class CustomPager extends Composite implements ClickHandler {
 
 
 	public void setRowCount(int totalRecord) {
+		
+		
 		this.totalrecord = totalRecord;
+		//recordDisplay.setText(start + "-" + end + " of " + totalrecord);
+		
+		start = 1;
+		end = start + range - 1;
 		recordDisplay.setText(start + "-" + end + " of " + totalrecord);
+		next.setEnabled(true);
+		last.setEnabled(true);
+		first.setEnabled(false);
+		previous.setEnabled(false);
+		
+		//first.setEnabled(true);
+		//previous.setEnabled(true);
+		//start = end + 1;
+		//end = end + range;
+		if (end >=totalrecord) {
+			end = totalrecord;
+			//start = end - range + 1;
+			recordDisplay.setText(start + "-" + end + " of " + totalrecord);
+			next.setEnabled(false);
+			last.setEnabled(false);
+		}
+		//recordDisplay.setText(start + "-" + end + " of " + totalrecord);
+		
+	/*	start = 1;
+		end = start + range - 1;
+	
+		if (end >=totalrecord) {
+			end = totalrecord;
+			start = end - range + 1;
+			recordDisplay.setText(start + "-" + end + " of " + totalrecord);
+			next.setEnabled(false);
+			last.setEnabled(false);
+		}
+	 */
+		
 	}
+	
+	
 
 	public int getStart() {
 		return this.start;
@@ -76,6 +114,11 @@ public class CustomPager extends Composite implements ClickHandler {
 	public int getLength() {
 		return this.range;
 	}
+	
+	public void setStart(int val) {
+		this.start = val;
+	}
+	
 	public void  setLength(int length) {
 		 this.range=length;
 		 end = start + range - 1;

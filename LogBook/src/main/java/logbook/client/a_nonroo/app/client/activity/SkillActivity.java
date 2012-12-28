@@ -2,8 +2,6 @@ package logbook.client.a_nonroo.app.client.activity;
 
 import java.util.List;
 
-import org.apache.tools.ant.taskdefs.condition.IsFileSelected;
-
 import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
 import logbook.client.a_nonroo.app.client.place.SkillPlace;
 import logbook.client.a_nonroo.app.client.ui.SkillLevelCheckboxView;
@@ -31,12 +29,10 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.text.shared.AbstractRenderer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.web.bindery.requestfactory.shared.Receiver;
-import com.itextpdf.text.log.SysoLogger;
 
 
 /**
@@ -141,6 +137,8 @@ public class SkillActivity extends AbstractActivity implements
 				
 				initSkillFlexTable();
 				
+				view.setIsAsc(0);
+				
 				initSkillTableData(response,0);
 			}
 		});
@@ -192,6 +190,38 @@ public class SkillActivity extends AbstractActivity implements
 				System.out.println("id : " + skill.getId());
 			}*/
 			view.getPager().setRowCount(response.getTotalSkill());
+			view.createHeader(view.getSkillFlexTable());
+			view.setSource(response);
+
+		}
+
+		
+	});
+		
+	}
+
+	
+	private void onRangeChanged(StudentProxy student,int chkAsc) {
+		
+		
+		skillFlexTable.removeAllRows();
+		
+		System.out.println("student is :" + student.getId());
+		
+		String fullTextSearchString=view.getFullTextSearchBox().getValue();
+		
+		System.out.println("full text : " + fullTextSearchString);
+		
+	
+	
+		requests.skillRequestNonRoo().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(),student.getId(),mainClassificationId, classificaitonTopicId, topicId,fullTextSearchString,chkAsc).with("skillList.topic","skillList.topic.classificationTopic","skillList.topic.classificationTopic.mainClassification","skillList.skillLevel").fire(new Receiver<SkillFilteredResultProxy>() {
+
+			@Override
+			public void onSuccess(SkillFilteredResultProxy response) {
+			/*for(SkillProxy skill : response){
+				System.out.println("id : " + skill.getId());
+			}*/
+			//view.getPager().setRowCount(response.getTotalSkill());
 			view.createHeader(view.getSkillFlexTable());
 			view.setSource(response);
 
@@ -354,6 +384,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		this.classificaitonTopicId=null;
 		this.topicId=null;
 		
+		view.getFullTextSearchBox().setText("");
 		view.getMainClassificationSuggestBox().setSelected(null);
 		view.getClassificationTopicSuggestBox().setSelected(null);
 		view.getTopicSuggestBox().setSelected(null);
@@ -362,6 +393,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		
 		initSkillFlexTable();
 		
+		view.setIsAsc(0);
 		initSkillTableData(view.getStudent(),0);
 	}
 
@@ -370,6 +402,11 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		this.mainClassificationId=view.getMainClassificationSuggestBox().getSelected() !=null ? view.getMainClassificationSuggestBox().getSelected().getId() : null;
 		this.classificaitonTopicId=view.getClassificationTopicSuggestBox().getSelected()!=null ? view.getClassificationTopicSuggestBox().getSelected().getId() : null;
 		this.topicId=view.getTopicSuggestBox().getSelected() !=null ? view.getTopicSuggestBox().getSelected().getId():null;
+		
+		view.setIsAsc(0);
+		
+		view.getPager().setStart(1);
+		//view.getPager().setLength(20);*/
 		
 		initSkillTableData(view.getStudent(),0);
 		
@@ -399,7 +436,9 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 
 	public void refreshFlextable(FlexTable table,int start,int length)
 	{
-		initSkillTableData(view.getStudent(), 0);
+		view.setIsAsc(0);
+		onRangeChanged(view.getStudent(), 0);
+		//initSkillTableData(view.getStudent(),0);
 	}
 
 	@Override
@@ -610,6 +649,12 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 				
 			}
 		});
+		
+	}
+
+	@Override
+	public void shortCutClicked() {
+		initSkillTableData(view.getStudent(),view.getIsAsc());
 		
 	}
 

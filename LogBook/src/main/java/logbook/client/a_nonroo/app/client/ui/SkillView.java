@@ -17,6 +17,8 @@ import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.sug
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -50,6 +52,8 @@ public interface SkillView extends IsWidget{
 
 		void findProgressOfTopic(TopicProxy tproxy, int row, int i,
 				StudentProxy student);
+
+		void shortCutClicked();
 		
 
 		//Boolean isSkillAcquiredbyStudentAtFirstLevel(Long studentID,Long skillId,Long skillLevelID);
@@ -106,4 +110,14 @@ public interface SkillView extends IsWidget{
 	
 	public CustomPager getPager();
 
+	public int getIsAsc();
+	
+	public void setIsAsc(int isAsc);
+	public HorizontalPanel getSortcutHP();
+	
+	public void setSortcutHP(HorizontalPanel sortcutHP);
+	
+	/*public FocusPanel getShortCut();
+	
+	public void setShortCut(FocusPanel shortCut);*/
 }

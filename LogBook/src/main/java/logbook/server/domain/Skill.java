@@ -3,6 +3,7 @@ package logbook.server.domain;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -108,12 +109,6 @@ public class Skill {
 		Root<Skill> from = criteriaQuery.from(Skill.class);
 		CriteriaQuery<Skill> select = criteriaQuery.select(from);
 		
-		Join<Skill, Keyword> join = null;
-		if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
-		{
-			join = from.join("keywords");
-		}
-			
 		Join<Skill, Topic> join1 = from.join("topic");
 		Join<Topic, ClassificationTopic> join2 = join1.join("classificationTopic");
 		Join<ClassificationTopic, MainClassification> join3 = join2.join("mainClassification");
@@ -125,7 +120,9 @@ public class Skill {
 		if (chkAsc == 0)
 			select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")), criteriaBuilder.asc(from.get("shortcut")));
 		else if (chkAsc == 1)
-			select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")), criteriaBuilder.desc(from.get("shortcut")));
+			select.orderBy(criteriaBuilder.desc(from.get("shortcut")), criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")));
+		
+		List<Predicate> predicateList = new ArrayList<Predicate>();
 		
 		Predicate predicate1 = null;
 		Predicate predicate2 = null;
@@ -136,60 +133,117 @@ public class Skill {
 		if(topicId != null) //Topic
 		{
 			predicate1 = criteriaBuilder.equal(from.get("topic").get("id"), topicId);
-			if (andPredicate == null)
+			predicateList.add(predicate1);
+			/*if (andPredicate == null)
 				andPredicate = criteriaBuilder.and(predicate1);
 			else
-				andPredicate = criteriaBuilder.and(andPredicate, predicate1);
+				andPredicate = criteriaBuilder.and(andPredicate, predicate1);*/
 		}		
-		else if(classificationTopicId != null) //ClassificationTopic
+		
+		if(classificationTopicId != null) //ClassificationTopic
 		{
-			predicate2 = criteriaBuilder.equal(from.get("topic").get("classificationTopic").get("id"), classificationTopicId);
-			if (andPredicate == null)
+			//predicate2 = criteriaBuilder.equal(from.get("topic").get("classificationTopic").get("id"), classificationTopicId);
+			predicate2 = criteriaBuilder.equal(join2.get("id"), classificationTopicId);
+			predicateList.add(predicate2);
+			/*if (andPredicate == null)
 				andPredicate = criteriaBuilder.and(predicate2);
 			else
-				andPredicate = criteriaBuilder.and(andPredicate, predicate2);
+				andPredicate = criteriaBuilder.and(andPredicate, predicate2);*/
 		}		
-		else if(mainClassificationId != null) // main classification
+		
+		if(mainClassificationId != null) // main classification
 		{
-			predicate3 = criteriaBuilder.equal(from.get("topic").get("classificationTopic").get("mainClassification").get("id"), mainClassificationId);
-			if (andPredicate == null)
+			//predicate3 = criteriaBuilder.equal(from.get("topic").get("classificationTopic").get("mainClassification").get("id"), mainClassificationId);
+			predicate3 = criteriaBuilder.equal(join3.get("id"), mainClassificationId);
+			predicateList.add(predicate3);
+			/*if (andPredicate == null)
 				andPredicate = criteriaBuilder.and(predicate3);
 			else
-				andPredicate = criteriaBuilder.and(andPredicate, predicate3);
+				andPredicate = criteriaBuilder.and(andPredicate, predicate3);*/
 		}
-		else if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
+		
+		if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
 		{
 			Expression<String> skillDescExp = from.get("description");
 			Expression<String> germanTestExp = from.get("german_text");
 			
-			//Join<Skill, Keyword> keywordJoin = from.join("keywords");
-			Expression<String> skillKeywordTextExp = join.get("name");
 			
-			Predicate pre1 = criteriaBuilder.like(skillDescExp, fulltextSearch);
-			Predicate pre2 = criteriaBuilder.like(germanTestExp, fulltextSearch);
-			Predicate pre3 = criteriaBuilder.like(skillKeywordTextExp, fulltextSearch);
+			/*String sql = "SELECT s FROM Keyword k join k.skill s WHERE k.name LIKE '%" + fulltextSearch + "%'";
+			TypedQuery<Skill> q = entityManager().createQuery(sql, Skill.class);
+			List<Skill> skillList = q.getResultList();
 			
-			Predicate orPre = criteriaBuilder.or(pre1, pre2, pre3);
+			System.out.println("SKILL QUERY : " + sql);
+			System.out.println("SKILL LIST SIZE : " + skillList.size());*/
 			
-			if (andPredicate == null)
+			Predicate pre1 = criteriaBuilder.like(skillDescExp, "%" + fulltextSearch + "%");
+			Predicate pre2 = criteriaBuilder.like(germanTestExp, "%" + fulltextSearch + "%");
+			
+			Predicate orPre = criteriaBuilder.or(pre1, pre2/*, criteriaBuilder.in(from).value(getSkillIdList(skillList))*/);
+			
+			predicateList.add(orPre);
+			/*if (andPredicate == null)
 				andPredicate = criteriaBuilder.and(orPre);
 			else
-				andPredicate = criteriaBuilder.and(andPredicate, orPre);
+				andPredicate = criteriaBuilder.and(andPredicate, orPre);*/
 		}
-		if (andPredicate != null)
-			criteriaQuery.where(andPredicate);
+		
+		
+		if (predicateList.size() > 0)
+			criteriaQuery.where(criteriaBuilder.and(predicateList.toArray(new Predicate[predicateList.size()])));
 		
 		TypedQuery<Skill> result = entityManager().createQuery(criteriaQuery);
 		
-		int totalSize=result.getResultList().size();
-		result.setFirstResult(start);
+		List<Skill> skillresultList  = new ArrayList<Skill>();
 		
-		result.setMaxResults(max);
+		int totalSize = 0;
+		
+		if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
+		{
+			String sql = "SELECT s FROM Keyword k join k.skill s WHERE k.name LIKE '%" + fulltextSearch + "%'";
+			TypedQuery<Skill> q = entityManager().createQuery(sql, Skill.class);
+			List<Skill> skillKeywordList = q.getResultList();
+			
+			List<Skill> skillList = result.getResultList();
+			
+			Iterator<Skill> itr = skillKeywordList.iterator();
+			while (itr.hasNext())
+			{
+				Skill skill = itr.next();
+				
+				if(!skillList.contains(skill))
+					skillList.add(skill);
+			}
+			
+			totalSize=skillList.size();
+			
+			if (totalSize > max)
+			{
+				 max = max + start;
+				 
+				 if (max > totalSize) max -= 1;
+				 
+				skillresultList = skillList.subList(start, max);
+			}
+			else
+				skillresultList = skillList;
+			
+		}
+		else
+		{
+			totalSize=result.getResultList().size();
+			
+			result.setFirstResult(start);
+			
+			result.setMaxResults(max);
+			
+			skillresultList  = result.getResultList();
+			
+			System.out.println("RESULTLISTSIZE : " + skillresultList.size());
+		}
 		
 		System.out.println("~~QUERY : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
 		
-		List<Skill> skillresultList  = result.getResultList();
-		System.out.println("RESULTLISTSIZE : " + skillresultList.size());
+		
 		
 		List<SkillLevels> skillAcquiredList =findSkillAcquiredByStudents(skillresultList,studentId);
 		System.out.println("Skill Acquired size :" + skillAcquiredList.size());
@@ -255,7 +309,7 @@ public class Skill {
 		finalresult.setMainClassificationProgress(mainClassificationProgress);*/
 		
 		return finalresult;
-	}
+	}  
     
   	public static String findProgressOfMainClassification(MainClassification mainClassification,Long studentId)
   	{
@@ -412,4 +466,25 @@ public class Skill {
 		System.out.println("~~QUERY +++ : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
         return result.getSingleResult();
     }
+private static String getSkillIdList(List<Skill> skillList){
+		
+		if (skillList == null || skillList.size() == 0) {
+			Log.info("SkillList Return as null");
+			return "";
+		}
+		Iterator<Skill> skillListIterator = skillList.iterator();
+		StringBuilder skillId = new StringBuilder();
+		skillId.append(",");
+		while (skillListIterator.hasNext()) {
+			Skill skill = skillListIterator.next();
+
+			skillId.append(skill.getId().toString());
+			if (skillListIterator.hasNext()) {
+				skillId.append(" ,");
+			}
+		}
+		return skillId.toString();
+	}
+    
+
 }
