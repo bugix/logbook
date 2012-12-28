@@ -91,7 +91,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
     /* background-color:#FFFFFF; */
     /* background-color: #cdcdcd; */
     /* background-color: #454545;*/
-      background: #f1b532; 
+      background: #77BBD8; 
       /* background:url("images/ui-bg_glass_75_f1b532_1x400.png") repeat-x scroll 50% 50% #F1B532;   */
     /* background: url("images/ui-bg_highlight-soft_0_e0e0e0_1x400.png") repeat-x scroll 50% 50% #FFFFFF; */
     /* background: #747474;  */
@@ -108,7 +108,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
     font-weight: bold;
     
      /* background-color: #cce4f5; */
-      background-color: #f1b532 ; 
+      background-color: #77BBD8 ; 
        /* background:url("images/ui-bg_glass_75_f1b532_1x400.png") repeat-x scroll 50% 50% #F1B532; */ 
     
     /* background: url("images/ui-bg_highlight-soft_0_e0e0e0_1x400.png") repeat-x scroll 50% 50% #FFFFFF; */
@@ -119,7 +119,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 
 .eu-nextstreet-SuggestMatchingString {
     /* color: #0f8a04; */
-color: #f1b532;
+color: #77BBD8;
     text-shadow: 1px 1px 1px #95ff8f;
     filter: dropshadow(color=#95ff8f, offx=1, offy=1);
 }

@@ -64,6 +64,10 @@
 			width: 100%;
 			padding: 15px;
 		}
+		.skillTablePagerStyle
+		{
+			float: right;
+		}
 	</ui:style>
 	<g:HTMLPanel>
 		<g:VerticalPanel addStyleNames="{style.mainVerticlePanelStyle}"
@@ -161,7 +165,7 @@
 							<g:ScrollPanel width="100%" height="100%">
 								<g:HTMLPanel>
 									<g:FlexTable ui:field="skillFlexTable" addStyleNames="style.skilltable-style"></g:FlexTable>
-									<a:CustomPager ui:field="pager"></a:CustomPager>
+									<a:CustomPager ui:field="pager" addStyleNames="{style.skillTablePagerStyle}"></a:CustomPager>
 								</g:HTMLPanel>
 							</g:ScrollPanel>
 							</tr>

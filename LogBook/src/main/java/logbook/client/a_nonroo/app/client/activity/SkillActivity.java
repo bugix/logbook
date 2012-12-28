@@ -570,7 +570,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 			public void onSuccess(String response) {
 				String mP[]=response.split("/");
 				
-				view.getSkillFlexTable().setWidget(row, i, view.createProgressBar(new Integer(mP[0]),new Integer(mP[1])));
+				view.getSkillFlexTable().setWidget(row, i, view.createProgressBar(new Integer(mP[1]),new Integer(mP[0])));
 				((Label)((HorizontalPanel)view.getSkillFlexTable().getWidget(row, 0)).getWidget(1)).setText(response);
 				
 			}
@@ -587,7 +587,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 			public void onSuccess(String response) {
 				String mP[]=response.split("/");
 				
-				view.getSkillFlexTable().setWidget(row, i, view.createProgressBar(new Integer(mP[0]),new Integer(mP[1])));
+				view.getSkillFlexTable().setWidget(row, i, view.createProgressBar(new Integer(mP[1]),new Integer(mP[0])));
 				((Label)((HorizontalPanel)view.getSkillFlexTable().getWidget(row, 0)).getWidget(1)).setText(response);
 				
 			}
@@ -605,7 +605,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 			public void onSuccess(String response) {
 				String mP[]=response.split("/");
 				
-				view.getSkillFlexTable().setWidget(row, i, view.createProgressBar(new Integer(mP[0]),new Integer(mP[1])));
+				view.getSkillFlexTable().setWidget(row, i, view.createProgressBar(new Integer(mP[1]),new Integer(mP[0])));
 				((Label)((HorizontalPanel)view.getSkillFlexTable().getWidget(row, 0)).getWidget(1)).setText(response);
 				
 			}

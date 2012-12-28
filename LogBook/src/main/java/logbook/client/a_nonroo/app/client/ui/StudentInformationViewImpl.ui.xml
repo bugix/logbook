@@ -253,7 +253,7 @@
 						<g:VerticalPanel height="100%" width="100%" addStyleNames="{style.latestAcquiredSkillSPStyle}">
 							<g:Label ui:field="lblLatestAcquiredSkill" addStyleNames="{style.headingLabelStyle}">RECENTLY ACQUIRED SKILLS</g:Label>
 							<g:ScrollPanel addStyleNames="{style.latestAcquiredSkillScrollPanelStyle}">
-							<g:VerticalPanel>
+							<g:VerticalPanel width="100%" height="100%">
 								<c:CellTable ui:field="table" addStyleNames="{style.skillTableSize}" />
 								<c:SimplePager  ui:field="pager" display="{table}" addStyleNames="{style.skillTablePagerStyle}"/>
 							</g:VerticalPanel>								

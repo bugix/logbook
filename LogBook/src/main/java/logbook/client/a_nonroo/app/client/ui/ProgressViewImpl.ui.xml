@@ -14,6 +14,10 @@
 		.progresstable-style {
 			border: 1px solid black;
 		}
+		.progressTablePagerStyle
+		{
+			float: right;
+		}
 	</ui:style>
 		
 		<g:HTMLPanel addStyleNames="{style.progressTablePanelStyle}">
@@ -23,7 +27,7 @@
 						<g:ScrollPanel width="100%" height="100%">
 						<g:VerticalPanel width="100%" height="100%"> 
 							<g:FlexTable ui:field="progressFlexTable" addStyleNames="style.progresstable-style" width="100%"></g:FlexTable>
-							<a:CustomPager ui:field="pager"></a:CustomPager>
+							<a:CustomPager ui:field="pager" addStyleNames="{style.progressTablePagerStyle}"></a:CustomPager>
 						</g:VerticalPanel>
 						</g:ScrollPanel>
 					</tr>
