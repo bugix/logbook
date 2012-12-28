@@ -3,6 +3,7 @@ package logbook.shared.scaffold;
 import java.util.List;
 
 import logbook.client.managed.proxy.SkillAcquiredProxy;
+import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.StudentProxy;
 import logbook.server.domain.SkillAcquired;
 
@@ -17,4 +18,5 @@ public interface SkillAcquiredRequestNonRoo extends RequestContext {
 	abstract Request<Integer> findCountLatestAcquiredSkillByStudent(Long studentId, Integer totalRecords,String sortOrder,String sortBy);
 	
 	abstract Request<String> acquireORDeleteSkill(Long studentid,Long Skillid,Boolean isFirstSelected,Boolean isDeleteOperation);
+abstract Request<Integer> countSkillAcquiredByStudentandSkill(Long id,List<SkillProxy> skillProxyList);	 
 }

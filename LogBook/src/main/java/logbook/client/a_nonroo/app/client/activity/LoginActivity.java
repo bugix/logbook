@@ -11,7 +11,6 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
-import logbook.client.a_nonroo.app.client.LogBookNav;
 import logbook.client.a_nonroo.app.client.place.LoginPlace;
 import logbook.client.a_nonroo.app.client.ui.StudentEditPopupViewImpl;
 import logbook.client.a_nonroo.app.client.ui.StudentInformationView;
@@ -29,7 +28,6 @@ import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -169,7 +167,10 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			}
 		});		
 	 
+	 table.setColumnWidth(table.getColumn(0), "70%");
 	 table.setColumnWidth(table.getColumn(1), "20%");
+	 table.setColumnWidth(table.getColumn(2), "10%");
+	 
 	 
 	 table.addColumnStyleName(1, "skillTableShortcutColumnStyle");
 	}
@@ -289,14 +290,15 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 								if (totalSkillAcquiredBySkillLevel.size()==2) 
 								{
 									// total percentage Of Skill Acquired for level 1
-									float totalPercentageLevel1= ((totalSkillAcquiredBySkillLevel.get(0)/(float)totalSkillListByLevel.get(0)));
-									String level1SkillAcquiredPercentage=constants.level1()+" : "+  totalSkillAcquiredBySkillLevel.get(0) + " " + constants.of() + " " +totalSkillListByLevel.get(0) + " " +constants.skill()+ " ( "+DECIMAL_FORMAT.format(totalPercentageLevel1)+" )";									
-									float totalPercentageLevel2= ((totalSkillAcquiredBySkillLevel.get(1)/(float)totalSkillListByLevel.get(1)));
-									String level2SkillAcquiredPercentage=constants.level2()+" : "+ totalSkillAcquiredBySkillLevel.get(1) + " " + constants.of() + " " +totalSkillListByLevel.get(1)  + " " +constants.skill()+ " ( "+DECIMAL_FORMAT.format(totalPercentageLevel2)+" )";
+									float totalPercentageLevel1= totalSkillListByLevel.get(1)==0?totalPercentageLevel1=0.0f:((totalSkillAcquiredBySkillLevel.get(0)/(float)totalSkillListByLevel.get(1)));									
+									String level1SkillAcquiredPercentage=constants.level1()+" : "+  totalSkillAcquiredBySkillLevel.get(0) + " " + constants.of() + " " +totalSkillListByLevel.get(1) + " " +constants.skill()+ " ( "+DECIMAL_FORMAT.format(totalPercentageLevel1)+" )";
+									
+									float totalPercentageLevel2= totalSkillListByLevel.get(0)==0.0f?totalPercentageLevel2=0.0f:((totalSkillAcquiredBySkillLevel.get(1)/(float)totalSkillListByLevel.get(0)));
+									String level2SkillAcquiredPercentage=constants.level2()+" : "+ totalSkillAcquiredBySkillLevel.get(1) + " " + constants.of() + " " +totalSkillListByLevel.get(0)  + " " +constants.skill()+ " ( "+DECIMAL_FORMAT.format(totalPercentageLevel2)+" )";
 									
 									long totalSkillAcquiredByStudent=totalSkillAcquiredBySkillLevel.get(0)+totalSkillAcquiredBySkillLevel.get(1);
 									long totalSkillBySkillLevel=totalSkillListByLevel.get(0)+totalSkillListByLevel.get(1);
-									float totalPercentage= ((totalSkillAcquiredByStudent/(float)totalSkillBySkillLevel));
+									float totalPercentage=totalSkillBySkillLevel==0?totalPercentage=0.0f:((totalSkillAcquiredByStudent/(float)totalSkillBySkillLevel));
 									
 									String totalSkillAcquiredPercentage=constants.total()+" : "+ totalSkillAcquiredByStudent  + " " + constants.of() + " " +totalSkillBySkillLevel + " " +constants.skill()+ " ( "+DECIMAL_FORMAT.format(totalPercentage)+" )";
 									
@@ -307,18 +309,20 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 									
 									view.getLblLevel1Progress().setText(getFormatedString(level1SkillAcquiredPercentage, 35));
 									view.getLblLevel1Progress().setTitle(level1SkillAcquiredPercentage);
-									setProgress(view.getPrgBarLevel1(),totalSkillAcquiredBySkillLevel.get(0),totalSkillListByLevel.get(0),totalPercentageLevel1);
+									//setProgress(view.getPrgBarLevel1(),totalSkillAcquiredBySkillLevel.get(1),totalSkillListByLevel.get(1),totalPercentageLevel1);
+									setProgress(view.getPrgBarLevel1(),0L,totalSkillListByLevel.get(1),totalSkillAcquiredBySkillLevel.get(0));
 									
 									
 									view.getLblLevel2Progress().setText(getFormatedString(level2SkillAcquiredPercentage, 35));
 									view.getLblLevel2Progress().setTitle(level2SkillAcquiredPercentage);
-									setProgress(view.getPrgBarLevel2(),totalSkillAcquiredBySkillLevel.get(1),totalSkillListByLevel.get(1),totalPercentageLevel2);
+									//setProgress(view.getPrgBarLevel2(),totalSkillAcquiredBySkillLevel.get(0),totalSkillListByLevel.get(0),totalPercentageLevel2);
+									setProgress(view.getPrgBarLevel2(),0L,totalSkillListByLevel.get(0),totalSkillAcquiredBySkillLevel.get(1));
 									
 									
 									view.getLblTotalProgress().setText(getFormatedString(totalSkillAcquiredPercentage, 35));
 									view.getLblTotalProgress().setTitle(totalSkillAcquiredPercentage);
-									view.getPrgBarTotal().setProgress(totalPercentage);
-									setProgress(view.getPrgBarTotal(),totalSkillAcquiredByStudent,totalSkillBySkillLevel,totalPercentage);
+									//view.getPrgBarTotal().setProgress(totalPercentage);
+									setProgress(view.getPrgBarTotal(),0L,totalSkillBySkillLevel,totalSkillAcquiredByStudent);
 									
 								}
 								else

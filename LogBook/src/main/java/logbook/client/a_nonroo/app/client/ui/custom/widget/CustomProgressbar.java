@@ -189,11 +189,12 @@ public class CustomProgressbar extends Widget implements ResizableWidget {
     }
 
     // Calculate the relative progress
-    //double percent = (curProgress - minProgress) / (maxProgress - minProgress);
-    double percent = curProgress; 
-    //return Math.max(0.0, Math.min(1.0, percent));
+    double percent = (curProgress - minProgress) / (maxProgress - minProgress);
+    //double percent = curProgress; 
+
+    return Math.max(0.0, Math.min(1.0, percent));
     
-    return percent/100;
+    //return percent/100;
   }
 
   /**
@@ -235,8 +236,8 @@ public class CustomProgressbar extends Widget implements ResizableWidget {
   public void onResize(int width, int height) {
     if (textVisible) {
       int textWidth = DOM.getElementPropertyInt(textElement, "offsetWidth");
-      int left = (width / 2) - (textWidth / 2);
-      DOM.setStyleAttribute(textElement, "left", left + "px");
+      //int left = (width / 2) - (textWidth / 2);
+      DOM.setStyleAttribute(textElement, "left", 0 + "px");
     }
   }
 

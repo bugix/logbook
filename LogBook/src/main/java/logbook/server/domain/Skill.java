@@ -68,8 +68,9 @@ public class Skill {
     public static Long findTotalSkillByLevel(long skillLevel)
     {
     	EntityManager em = entityManager();
-        TypedQuery<Long> q = em.createQuery("select count(s.skillLevel) from Skill as s where s.skillLevel= "+skillLevel, Long.class);
-        Log.info("Query String: " + q);
+    	String query="select count(s.skillLevel) from Skill as s where s.skillLevel.levelNumber= "+skillLevel;
+        TypedQuery<Long> q = em.createQuery("select count(s.skillLevel) from Skill as s where s.skillLevel.levelNumber= "+skillLevel, Long.class);
+        System.out.println("Total Skill Count Query String: " + query);
         return q.getSingleResult();		
     }
   public static SkillFilteredResult findSkillBySearchCriteria(int start, int max,Long studentId,Long mainClassificationId, Long classificationTopicId, Long topicId,String fulltextSearch,int chkAsc)
@@ -317,11 +318,14 @@ public class Skill {
   	
   	public static Long findTotalSkillAcquiredByTopicAndStudent(long topicId,long studentId)
     {
-    	EntityManager em = entityManager();
+    	/*EntityManager em = entityManager();
     	//String query="select count(sa.skill) from SkillAcquired as sa , Skill as s where sa.skill=s.id and sa.student= "+studentId + " and sa.skill in ( select s.id from Skill as s where s.topic= "+topicId+" ) and sa.skillLevel.levelNumber<=s.skillLevel.levelNumber";
     	TypedQuery<Long> q = em.createQuery("select count(sa) from SkillAcquired as sa , Skill as s where sa.skill=s.id and sa.student= "+studentId + " and sa.skill in ( select s.id from Skill as s where s.topic= "+topicId+" ) and sa.skillLevel.levelNumber>=s.skillLevel.levelNumber", Long.class);
         //System.out.println("Query String: " + query + "=>" + q.getSingleResult());
-        return q.getSingleResult();		
+        return q.getSingleResult();	*/
+  		
+  		Long count=SkillAcquired.findTotalSkillAcquiredByTopicAndStudent(topicId, studentId);
+  		return count;
     }
 
   	
@@ -391,5 +395,21 @@ public class Skill {
 		return SkillLevels.NONE;
     	
     }
-    
+     public static Long findTotalSkillByTopic(long topicId)
+    {
+    	/*EntityManager em = entityManager();
+        String query="select count(s.id) from Skill as s where s.topic= "+topicId;
+    	TypedQuery<Long> q = em.createQuery("select count(s) from Skill as s where s.topic= "+topicId, Long.class);
+        System.out.println("Query String: " + query);
+        return q.getSingleResult();*/
+    	
+    	CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+		CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
+		Root<Skill> from = criteriaQuery.from(Skill.class);
+		criteriaQuery.select(criteriaBuilder.count(from));				
+		criteriaQuery.where(criteriaBuilder.equal(from.get("topic"), topicId));
+		TypedQuery<Long> result = entityManager().createQuery(criteriaQuery);
+		System.out.println("~~QUERY +++ : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
+        return result.getSingleResult();
+    }
 }

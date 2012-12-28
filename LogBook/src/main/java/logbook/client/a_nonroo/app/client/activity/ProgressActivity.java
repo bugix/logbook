@@ -1,12 +1,17 @@
 package logbook.client.a_nonroo.app.client.activity;
 
 
+import java.util.List;
+
+import logbook.client.a_nonroo.app.client.TopicFilteredResultProxy;
 import logbook.client.a_nonroo.app.client.place.ProgressPlace;
-import logbook.client.a_nonroo.app.client.place.SkillPlace;
 import logbook.client.a_nonroo.app.client.ui.ProgressView;
 import logbook.client.a_nonroo.app.client.ui.ProgressViewImpl;
-import logbook.client.a_nonroo.app.client.ui.SkillViewImpl;
 import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import logbook.client.managed.proxy.ClassificationTopicProxy;
+import logbook.client.managed.proxy.MainClassificationProxy;
+import logbook.client.managed.proxy.StudentProxy;
+import logbook.client.managed.proxy.TopicProxy;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -17,6 +22,10 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
+import com.google.web.bindery.requestfactory.shared.Receiver;
 /**
  * @author Manish
  *
@@ -30,7 +39,11 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 	private ProgressActivity progressActivity;
 	private ProgressPlace place;
 	private int tabIndex=0; 
-	
+	private StudentProxy studentProxy;
+	private List<MainClassificationProxy> mainClassificationProxyList;
+	private List<ClassificationTopicProxy> classificationTopicProxyList;
+	private List<TopicProxy> topicProxyList;
+	//private final StudentProgressServiceAsync studentProgressServiceAsync = GWT.create(StudentProgressService.class);
 
 	private ActivityManager activityManager;
 	//private StudentProxy studentProxy;
@@ -40,6 +53,8 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 //	private HandlerRegistration rangeChangeHandler;
 	
 	public int currenttab= 0;	
+	
+	public FlexTable progressFlexTable;
 	
 	
 	public ProgressActivity(LogBookRequestFactory requests, PlaceController placeController,ProgressPlace progressPlace) 
@@ -77,8 +92,47 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 		
 		this.widget = panel;
 		init();
+		initProgressFlexTable();
+		
+		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() {
+
+			@Override
+			public void onSuccess(StudentProxy response) {
+				initProgressFlexTableData(response);				
+			}
+		});
+	}
 		
 
+	private void initProgressFlexTable() 
+	{
+		progressFlexTable=view.getProgressFlexTable();
+	}
+
+	@Override
+	public void refreshProgresstable(FlexTable table,int start,int length)
+	{
+		initProgressFlexTableData(view.getStudent());
+	}
+	
+	private void initProgressFlexTableData(final StudentProxy studentProxy) 
+	{
+		progressFlexTable.removeAllRows();
+		requests.topicRequestNonRoo().findTopicOrderByClassification(view.getPager().getStart(),view.getPager().getLength(),studentProxy).with("topicList.classificationTopic","topicList.classificationTopic.mainClassification").fire(new Receiver<TopicFilteredResultProxy>() {
+
+			@Override
+			public void onSuccess(TopicFilteredResultProxy response) 
+			{
+				
+				Log.info("Topic List Size: " + response.getTopicList().size());
+				Log.info("Total Topic Size: " + response.getTotalTopicList().size());
+				Log.info("Acquired Topic Size: " + response.getTopicAcquiredList().size());
+				
+				view.getPager().setRowCount(response.getTotalTopics());
+				view.createHeader(view.getProgressFlexTable());
+				view.setSource(response.getTopicList(),response.getTotalTopicList(),response.getTopicAcquiredList(),studentProxy);
+			}
+		});
 	}
 	
 
@@ -93,12 +147,58 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 		//Fix in default style( without it tab content will not show properly)
 		systemStartView.asWidget().getElement().getParentElement().getParentElement().getStyle().setPosition(Position.RELATIVE);
 		view.setDelegate(this);
+		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() {
 		
+			@Override
+			public void onSuccess(StudentProxy response) {
+				Log.info("Success");
+				studentProxy=response;
+				view.setStudent(response);
+			}
+		});
 	}
 
 	
 	@Override
 	public void goTo(Place place) {
+		
+	}
+
+
+	@Override
+	public void findProgressOfMainClassification(
+			MainClassificationProxy mainClassificationProxy,final int row,final int i,
+			StudentProxy studentProxy) {
+		
+		requests.skillRequestNonRoo().findProgressOfMainClassification(mainClassificationProxy, studentProxy.getId()).fire(new Receiver<String>() {
+
+			@Override
+			public void onSuccess(String response) {
+				String mP[]=response.split("/");
+				
+				view.getProgressFlexTable().setWidget(row, i, view.createProgressBar(new Integer(mP[1]),new Integer(mP[0])));
+				((Label)((HorizontalPanel)view.getProgressFlexTable().getWidget(row, 0)).getWidget(1)).setText(response);
+				
+			}
+		});
+	}
+
+
+	@Override
+	public void findProgressOfClassificationTopic(
+			ClassificationTopicProxy classificationTopicProxy,final int row,final int i,
+			StudentProxy studentProxy) {
+		requests.skillRequestNonRoo().findProgressOfClassificationTopic(classificationTopicProxy, studentProxy.getId()).fire(new Receiver<String>() {
+
+			@Override
+			public void onSuccess(String response) {
+				String mP[]=response.split("/");
+				
+				view.getProgressFlexTable().setWidget(row, i, view.createProgressBar(new Integer(mP[1]),new Integer(mP[0])));
+				((Label)((HorizontalPanel)view.getProgressFlexTable().getWidget(row, 0)).getWidget(1)).setText(response);
+				
+			}
+		});
 		
 	}
 

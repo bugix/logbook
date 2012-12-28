@@ -898,7 +898,8 @@ color: #f1b532;
 .gwt-ProgressBar-shell .gwt-ProgressBar-text {
   padding: 0px;
   margin: 0px;
-  color: white;
+  color: black;
+  font-size: 76%;
 }
 .gwt-ProgressBar-thin {
   /* border: 2px solid #848280; */
