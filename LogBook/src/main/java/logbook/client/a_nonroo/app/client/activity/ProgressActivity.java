@@ -112,9 +112,30 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 	@Override
 	public void refreshProgresstable(FlexTable table,int start,int length)
 	{
-		initProgressFlexTableData(view.getStudent());
+		//initProgressFlexTableData(view.getStudent());
+		onRangeChanged(view.getStudent());
 	}
 	
+	private void onRangeChanged(StudentProxy student) 
+	{
+		progressFlexTable.removeAllRows();
+		requests.topicRequestNonRoo().findTopicOrderByClassification(view.getPager().getStart(),view.getPager().getLength(),studentProxy).with("topicList.classificationTopic","topicList.classificationTopic.mainClassification").fire(new Receiver<TopicFilteredResultProxy>() {
+
+			@Override
+			public void onSuccess(TopicFilteredResultProxy response) 
+			{
+				
+				Log.info("Topic List Size: " + response.getTopicList().size());
+				Log.info("Total Topic Size: " + response.getTotalTopicList().size());
+				Log.info("Acquired Topic Size: " + response.getTopicAcquiredList().size());
+				
+				view.createHeader(view.getProgressFlexTable());
+				view.setSource(response.getTopicList(),response.getTotalTopicList(),response.getTopicAcquiredList(),studentProxy);
+			}
+		});
+	}
+
+
 	private void initProgressFlexTableData(final StudentProxy studentProxy) 
 	{
 		progressFlexTable.removeAllRows();
@@ -185,9 +206,7 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 
 
 	@Override
-	public void findProgressOfClassificationTopic(
-			ClassificationTopicProxy classificationTopicProxy,final int row,final int i,
-			StudentProxy studentProxy) {
+	public void findProgressOfClassificationTopic(ClassificationTopicProxy classificationTopicProxy,final int row,final int i,StudentProxy studentProxy) {
 		requests.skillRequestNonRoo().findProgressOfClassificationTopic(classificationTopicProxy, studentProxy.getId()).fire(new Receiver<String>() {
 
 			@Override
