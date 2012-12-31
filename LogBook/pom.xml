@@ -15,6 +15,12 @@
         <spring.version>3.1.1.RELEASE</spring.version>
     </properties>
     <repositories>
+     <repository>
+          <id>local-project-libraries</id>
+          <name>Local project libraries</name>
+          <url>file://${project.basedir}/lib</url>
+          <layout>default</layout>
+      	</repository>
     <repository>
         <id>thirdparty-uploads</id>
         <name>JBoss Thirdparty Uploads</name>
@@ -65,6 +71,7 @@
 	<artifactId>gwt-log</artifactId>
 	<version>3.1.8</version>
 </dependency>
+
 
 	<!-- GWT DND -->
 	 <dependency>
@@ -327,6 +334,36 @@
             <version>1.5</version>
         </dependency>
         <!-- itext dependency -->
+        <dependency>
+		    <groupId>org.xhtmlrenderer</groupId>
+		    <artifactId>core-renderer-minimal</artifactId>
+		    <version>1.0.0</version>
+		     <scope>system</scope>
+   			 <systemPath>${project.basedir}/lib/core-renderer-minimal.jar</systemPath>
+		</dependency>
+  
+ 		 <dependency>
+		    <groupId>org.xhtmlrenderer</groupId>
+		    <artifactId>core-renderer</artifactId>
+		    <version>1.0.0</version>
+		     <scope>system</scope>
+   			 <systemPath>${project.basedir}/lib/core-renderer.jar</systemPath>
+		</dependency>
+        
+        <dependency>
+		    <groupId>org.xhtmlrenderer</groupId>
+		    <artifactId>iText-2.0.8</artifactId>
+		    <version>2.0.8</version>
+		     <scope>system</scope>
+   			 <systemPath>${project.basedir}/lib/iText-2.0.8.jar</systemPath>
+		</dependency>
+		 <dependency>
+		    <groupId>org.w3c.dom</groupId>
+		    <artifactId>xml-apis-xerces-2.9.1</artifactId>
+		    <version>2.9.1</version>
+		     <scope>system</scope>
+   			 <systemPath>${project.basedir}/lib/xml-apis-xerces-2.9.1.jar</systemPath>
+		</dependency>
         <dependency>
       	<groupId>com.itextpdf</groupId>
       	<artifactId>itextpdf</artifactId>

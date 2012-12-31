@@ -27,11 +27,12 @@ import logbook.shared.SkillFilteredResult;
 import logbook.shared.SkillLevels;
 
 import org.apache.commons.io.FileUtils;
-import com.allen_sauer.gwt.log.client.Log;
+import org.hibernate.Query;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
 @RooJavaBean
@@ -122,6 +123,7 @@ public class Skill {
 	  Log.info("Asc :" + chkAsc);
 	  Log.info("Start :" + start);
 	  Log.info("Max :" + max);
+	  
 		
 		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
 		CriteriaQuery<Skill> criteriaQuery = criteriaBuilder.createQuery(Skill.class);
@@ -135,7 +137,8 @@ public class Skill {
 		
 		//ListJoin<Skill, Topic> test = from.join("");
 		
-		select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")));
+		//select.groupBy(from.get("topic").get("id"));
+		select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")),criteriaBuilder.asc(from.get("description")));
 		
 		/*if (chkAsc == 0)
 			select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")), criteriaBuilder.asc(from.get("shortcut")));
@@ -213,6 +216,8 @@ public class Skill {
 		
 		TypedQuery<Skill> result = entityManager().createQuery(criteriaQuery);
 		
+		System.out.println("Critera query is :" + result.unwrap(Query.class).getQueryString());
+		
 		List<Skill> skillresultList  = new ArrayList<Skill>();
 		
 		int totalSize = 0;
@@ -263,7 +268,7 @@ public class Skill {
 		
 		//System.out.println("~~QUERY : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
 		
-		if (chkAsc==0){
+		/*if (chkAsc==0){
 			
 			//System.out.println("In side Asc ");
 			Collections.sort(skillresultList,new Comparator<Skill>() {
@@ -275,15 +280,28 @@ public class Skill {
 				
 				
 			});
-		}
-		else{
+		}*/
+		if (chkAsc == 1){
 			
 			//System.out.println("In side Desc ");
 			Collections.sort(skillresultList,new Comparator<Skill>() {
 
 				@Override
 				public int compare(Skill o1, Skill o2) {
-					return o2.getDescription().compareTo(o1.getDescription());
+					
+					if (o2.getTopic().getClassificationTopic().getMainClassification().getDescription().compareTo(o1.getTopic().getClassificationTopic().getMainClassification().getDescription()) != 0)
+						return o2.getTopic().getClassificationTopic().getMainClassification().getDescription().compareTo(o1.getTopic().getClassificationTopic().getMainClassification().getDescription());
+					
+					if (o2.getTopic().getClassificationTopic().getDescription().compareTo(o1.getTopic().getClassificationTopic().getDescription()) != 0)
+						return o2.getTopic().getClassificationTopic().getDescription().compareTo(o1.getTopic().getClassificationTopic().getDescription());		
+					
+					if (o2.getTopic().getTopicDescription().compareTo(o1.getTopic().getTopicDescription()) != 0)
+						return o2.getTopic().getTopicDescription().compareTo(o1.getTopic().getTopicDescription());
+					
+					if (o2.getDescription().compareTo(o1.getDescription()) != 0)
+						return o2.getDescription().compareTo(o1.getDescription());
+					
+					return o2.getShortcut().compareTo(o1.getShortcut());
 				}
 				
 				
@@ -294,6 +312,11 @@ public class Skill {
 		//System.out.println("Skill Acquired size :" + skillAcquiredList.size());
 		
 		SkillFilteredResult finalresult = new SkillFilteredResult();
+		
+		/*for (Skill skill : skillresultList)
+		{
+			System.out.println("ID : " + skill.getId());
+		}*/
 
 		finalresult.setTotalSkill(totalSize);
 		finalresult.setSkillList(skillresultList);

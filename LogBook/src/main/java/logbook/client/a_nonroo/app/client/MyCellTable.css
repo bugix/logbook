@@ -29,7 +29,8 @@
    background-image: url("ui-bg_gloss-wave_75_2191c0_500x100.png repeat-x scroll 50% bottom #FCFDFD"); 
   background-color: #dadada;  
   border-bottom: 1px solid #AAAAAA;       
-   border-right: 2px solid #FFFFFF;
+   border-right: 1px solid #F3F3F3;
+    border-left: 1.5px solid #F3F3F3;
   height:30px;
   padding: 0px 10px;
   text-align: left;
@@ -37,10 +38,12 @@
   overflow: hidden;
   max-height: 28px !important;
   white-space: nowrap;
+  text-shadow: none !important;
+  text-decoration: none;
 }
 
 .cellTableCell {
-	border: 0;
+	border: 1.5px solid #F3F3F3;
 	height: 20px;
 	padding: 4px 10px;
 	overflow: hidden;
