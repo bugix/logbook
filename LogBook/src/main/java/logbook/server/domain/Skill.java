@@ -2,6 +2,8 @@ package logbook.server.domain;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -25,7 +27,7 @@ import logbook.shared.SkillFilteredResult;
 import logbook.shared.SkillLevels;
 
 import org.apache.commons.io.FileUtils;
-import org.mortbay.log.Log;
+import com.allen_sauer.gwt.log.client.Log;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -68,11 +70,25 @@ public class Skill {
     }
     public static Long findTotalSkillByLevel(long skillLevel)
     {
-    	EntityManager em = entityManager();
+    	/*EntityManager em = entityManager();
     	String query="select count(s) from Skill as s where s.skillLevel.levelNumber= "+skillLevel;
         TypedQuery<Long> q = em.createQuery("select count(s) from Skill as s where s.skillLevel.levelNumber= "+skillLevel, Long.class);
         System.out.println("Total Skill Count Query String: " + query);
+        return q.getSingleResult();		*/
+    	
+    	CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+		CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
+		Root<Skill> from = criteriaQuery.from(Skill.class);
+					
+		criteriaQuery.select(criteriaBuilder.count(from));
+		
+		Predicate skillLevelPredicate = criteriaBuilder.equal(from.get("skillLevel").get("levelNumber"),skillLevel);
+		criteriaQuery.where(skillLevelPredicate);
+		
+		TypedQuery<Long> q = entityManager().createQuery(criteriaQuery);
+		//System.out.println("Total Skill Count Query : " + q.unwrap(Query.class).getQueryString());
         return q.getSingleResult();		
+		
     }
   public static SkillFilteredResult findSkillBySearchCriteria(int start, int max,Long studentId,Long mainClassificationId, Long classificationTopicId, Long topicId,String fulltextSearch,int chkAsc)
 	{
@@ -103,6 +119,9 @@ public class Skill {
 		List<Skill> response = result.getResultList();
 		return response; */
 		
+	  Log.info("Asc :" + chkAsc);
+	  Log.info("Start :" + start);
+	  Log.info("Max :" + max);
 		
 		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
 		CriteriaQuery<Skill> criteriaQuery = criteriaBuilder.createQuery(Skill.class);
@@ -116,11 +135,12 @@ public class Skill {
 		
 		//ListJoin<Skill, Topic> test = from.join("");
 		
+		select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")));
 		
-		if (chkAsc == 0)
+		/*if (chkAsc == 0)
 			select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")), criteriaBuilder.asc(from.get("shortcut")));
 		else if (chkAsc == 1)
-			select.orderBy(criteriaBuilder.desc(from.get("shortcut")), criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")));
+			select.orderBy(criteriaBuilder.desc(from.get("shortcut")), criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")));*/
 		
 		List<Predicate> predicateList = new ArrayList<Predicate>();
 		
@@ -241,12 +261,37 @@ public class Skill {
 			System.out.println("RESULTLISTSIZE : " + skillresultList.size());
 		}
 		
-		System.out.println("~~QUERY : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
+		//System.out.println("~~QUERY : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
 		
-		
+		if (chkAsc==0){
+			
+			//System.out.println("In side Asc ");
+			Collections.sort(skillresultList,new Comparator<Skill>() {
+
+				@Override
+				public int compare(Skill o1, Skill o2) {
+					return o1.getDescription().compareTo(o2.getDescription());
+				}
+				
+				
+			});
+		}
+		else{
+			
+			//System.out.println("In side Desc ");
+			Collections.sort(skillresultList,new Comparator<Skill>() {
+
+				@Override
+				public int compare(Skill o1, Skill o2) {
+					return o2.getDescription().compareTo(o1.getDescription());
+				}
+				
+				
+			});
+		}
 		
 		List<SkillLevels> skillAcquiredList =findSkillAcquiredByStudents(skillresultList,studentId);
-		System.out.println("Skill Acquired size :" + skillAcquiredList.size());
+		//System.out.println("Skill Acquired size :" + skillAcquiredList.size());
 		
 		SkillFilteredResult finalresult = new SkillFilteredResult();
 
@@ -463,7 +508,7 @@ public class Skill {
 		criteriaQuery.select(criteriaBuilder.count(from));				
 		criteriaQuery.where(criteriaBuilder.equal(from.get("topic"), topicId));
 		TypedQuery<Long> result = entityManager().createQuery(criteriaQuery);
-		System.out.println("~~QUERY +++ : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
+		//System.out.println("~~QUERY +++ : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
         return result.getSingleResult();
     }
 private static String getSkillIdList(List<Skill> skillList){

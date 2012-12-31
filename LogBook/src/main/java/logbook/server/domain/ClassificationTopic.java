@@ -1,15 +1,17 @@
 package logbook.server.domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 import javax.persistence.CascadeType;
-import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.validation.constraints.Size;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -33,7 +35,7 @@ public class ClassificationTopic {
     
     public static List<ClassificationTopic> findClassiTopicByMainClassfication(Long value)
 	{
-		EntityManager em = entityManager();
+		/*EntityManager em = entityManager();
 		
 		String sql = "";
 		
@@ -43,6 +45,17 @@ public class ClassificationTopic {
 			sql = "SELECT c FROM ClassificationTopic c";
 			
 		TypedQuery<ClassificationTopic> q = em.createQuery(sql, ClassificationTopic.class);
+		return q.getResultList();*/
+		
+		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+		CriteriaQuery<ClassificationTopic> criteriaQuery = criteriaBuilder.createQuery(ClassificationTopic.class);
+		Root<ClassificationTopic> from = criteriaQuery.from(ClassificationTopic.class);
+		CriteriaQuery<ClassificationTopic> select = criteriaQuery.select(from);
+		
+		if (value != null)
+			criteriaQuery.where(criteriaBuilder.equal(from.get("mainClassification"), value));
+		
+		TypedQuery<ClassificationTopic> q = entityManager().createQuery(criteriaQuery);
 		return q.getResultList();
 	}
 }

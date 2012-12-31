@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.TypedQuery;
@@ -38,7 +37,7 @@ public class Topic {
     
     public static List<Topic> findTopicByClassficationId(Long value)
 	{
-		EntityManager em = entityManager();
+		/*EntityManager em = entityManager();
 		String sql = "";
 		
 		if (value != null)
@@ -47,7 +46,19 @@ public class Topic {
 			sql = "SELECT t FROM Topic t";
 		
 		TypedQuery<Topic> q = em.createQuery(sql, Topic.class);
+		return q.getResultList();*/
+		
+		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+		CriteriaQuery<Topic> criteriaQuery = criteriaBuilder.createQuery(Topic.class);
+		Root<Topic> from = criteriaQuery.from(Topic.class);
+		CriteriaQuery<Topic> select = criteriaQuery.select(from);
+		
+		if (value != null)
+			criteriaQuery.where(criteriaBuilder.equal(from.get("classificationTopic"), value));
+		
+		TypedQuery<Topic> q = entityManager().createQuery(criteriaQuery);
 		return q.getResultList();
+		
 	}
  public static TopicFilteredResult findTopicOrderByClassification(int start,int max,Student student)
     {    	

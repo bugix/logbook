@@ -139,7 +139,7 @@ public class SkillActivity extends AbstractActivity implements
 				
 				view.setIsAsc(0);
 				
-				initSkillTableData(response,0);
+				initSkillTableData(response,view.getIsAsc());
 			}
 		});
 		
@@ -394,7 +394,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		initSkillFlexTable();
 		
 		view.setIsAsc(0);
-		initSkillTableData(view.getStudent(),0);
+		initSkillTableData(view.getStudent(),view.getIsAsc());
 	}
 
 	@Override
@@ -408,7 +408,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		view.getPager().setStart(1);
 		//view.getPager().setLength(20);*/
 		
-		initSkillTableData(view.getStudent(),0);
+		initSkillTableData(view.getStudent(),view.getIsAsc());
 		
 	}
 
@@ -436,9 +436,9 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 
 	public void refreshFlextable(FlexTable table,int start,int length)
 	{
-		view.setIsAsc(0);
-		onRangeChanged(view.getStudent(), 0);
-		//initSkillTableData(view.getStudent(),0);
+		//view.setIsAsc(0);
+		onRangeChanged(view.getStudent(),view.getIsAsc());
+		//initSkillTableData(view.getStudent(),view.getIsAsc());
 	}
 
 	@Override
@@ -471,12 +471,15 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 						//decrement topic aquired skill
 						if(!view.getSkillFlexTable().getRowFormatter().getStyleName(row).equalsIgnoreCase("redBG"))
 						{
+							if(skillLevelCheckboxViewImpl.getTopicRow() != 0)
 							changeProgress( skillLevelCheckboxViewImpl.getTopicRow(), false);
 							
 							//decrement classification topic aquired skill
+							if(skillLevelCheckboxViewImpl.getClassificationTopicRow() != 0)
 							changeProgress( skillLevelCheckboxViewImpl.getClassificationTopicRow(), false);
 							
 							//decrement main classification  aquired skill
+							if(skillLevelCheckboxViewImpl.getMainClassificationRow() !=0)
 							changeProgress( skillLevelCheckboxViewImpl.getMainClassificationRow(), false);
 						}
 						
@@ -492,11 +495,16 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 						view.getSkillFlexTable().getRowFormatter().addStyleName(row, "greenBG");
 						
 						//increment topic aquired skill
+						
+						if(skillLevelCheckboxViewImpl.getTopicRow() != 0)
 						changeProgress( skillLevelCheckboxViewImpl.getTopicRow(), true);						
 						//increment classification topic aquired skill
+						
+						if(skillLevelCheckboxViewImpl.getClassificationTopicRow() != 0)
 						changeProgress( skillLevelCheckboxViewImpl.getClassificationTopicRow(), true);
 						
 						//increment main classification  aquired skill
+						if(skillLevelCheckboxViewImpl.getMainClassificationRow() !=0)
 						changeProgress( skillLevelCheckboxViewImpl.getMainClassificationRow(), true);
 					}
 				}
@@ -517,12 +525,15 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 							//decrement topic aquired skill
 							if(!view.getSkillFlexTable().getRowFormatter().getStyleName(row).equalsIgnoreCase("redBG"))
 							{
+								if(skillLevelCheckboxViewImpl.getTopicRow() != 0)
 								changeProgress( skillLevelCheckboxViewImpl.getTopicRow(), false);
 								
 								//decrement classification topic aquired skill
+								if(skillLevelCheckboxViewImpl.getClassificationTopicRow() !=0)
 								changeProgress( skillLevelCheckboxViewImpl.getClassificationTopicRow(), false);
 								
 								//decrement main classification  aquired skill
+								if(skillLevelCheckboxViewImpl.getMainClassificationRow() !=0)
 								changeProgress( skillLevelCheckboxViewImpl.getMainClassificationRow(), false);
 							}
 							
@@ -540,12 +551,15 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 							view.getSkillFlexTable().getRowFormatter().addStyleName(row, "greenBG");
 							
 							//increment topic aquired skill
+							if(skillLevelCheckboxViewImpl.getTopicRow() != 0)
 							changeProgress( skillLevelCheckboxViewImpl.getTopicRow(), true);
 							
 							//increment classification topic aquired skill
+							if(skillLevelCheckboxViewImpl.getClassificationTopicRow() != 0)
 							changeProgress( skillLevelCheckboxViewImpl.getClassificationTopicRow(), true);
 							
 							//increment main classification  aquired skill
+							if(skillLevelCheckboxViewImpl.getMainClassificationRow() !=0)
 							changeProgress( skillLevelCheckboxViewImpl.getMainClassificationRow(), true);
 						}
 				}
@@ -558,12 +572,15 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 					//decrement topic aquired skill
 					if(!view.getSkillFlexTable().getRowFormatter().getStyleName(row).equalsIgnoreCase("yellowBG"))
 					{
+						if(skillLevelCheckboxViewImpl.getTopicRow() !=0)
 						changeProgress( skillLevelCheckboxViewImpl.getTopicRow(), false);
 						
 						//decrement classification topic aquired skill
+						if(skillLevelCheckboxViewImpl.getClassificationTopicRow() !=0)
 						changeProgress( skillLevelCheckboxViewImpl.getClassificationTopicRow(), false);
 						
 						//decrement main classification  aquired skill
+						if(skillLevelCheckboxViewImpl.getMainClassificationRow() !=0)
 						changeProgress( skillLevelCheckboxViewImpl.getMainClassificationRow(), false);
 					}
 					
@@ -654,7 +671,8 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 
 	@Override
 	public void shortCutClicked() {
-		initSkillTableData(view.getStudent(),view.getIsAsc());
+		//initSkillTableData(view.getStudent(),view.getIsAsc());
+		onRangeChanged(view.getStudent(),view.getIsAsc());
 		
 	}
 

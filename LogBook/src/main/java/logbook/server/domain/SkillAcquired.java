@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -54,31 +53,42 @@ public class SkillAcquired {
    	public static Long findCountOfSkillAcquiredBySkillLevelAndStudent(long studentId, long skillLevelId) 
 	{
 		
-		EntityManager em = entityManager();
+		/*EntityManager em = entityManager();
 		String query="select count(sa) from SkillAcquired as sa , Skill as s where sa.skill=s.id and sa.student= "+studentId + " and sa.skillLevel.levelNumber= "+skillLevelId+" and sa.skillLevel.levelNumber>=s.skillLevel.levelNumber";	
 		//String query="select count(sa.id) from SkillAcquired as sa where sa.skill in (select s.id from Skill as s where s.skillLevel.levelNumber in (select sl.levelNumber from SkillLevel as sl where sl.levelNumber= "+skillLevelId+")) and sa.student= "+ studentId ;
 		TypedQuery<Long> q =em.createQuery(query, Long.class); 
 		Long count = (long) q.getSingleResult();
 		System.out.println("Query TotalCount Level 1: " + query + "Count: " + count);
-		return count;
+		return count;*/
 		
-		/*// "select count(sa.id) from SkillAcquired as sa where sa.skill in (select s.id from Skill as s where s.skillLevel in (select sl.levelNumber from SkillLevel as sl where sl.levelNumber= "+skillLevelId+")) and sa.student= "+ studentId 
+   		//String query="select count(sa) from SkillAcquired as sa , Skill as s 
+   		//where sa.skill=s.id 
+   		//and sa.student= "+studentId + " 
+   		//and sa.skillLevel.levelNumber= "+skillLevelId+" 
+   		//and sa.skillLevel.levelNumber>=s.skillLevel.levelNumber";
+   		
 		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
 		CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
 		Root<SkillAcquired> from = criteriaQuery.from(SkillAcquired.class);
+					
+		criteriaQuery.select(criteriaBuilder.count(from));
 		
-		criteriaQuery.select(criteriaBuilder.count(from));				
+		Join<SkillAcquired, Skill> join1 = from.join("skill");
+		Predicate studentPredicate = criteriaBuilder.equal(from.get("student"),studentId);
+		Predicate skillLevelPredicate = criteriaBuilder.equal(from.get("skillLevel").get("levelNumber"),skillLevelId);
+		
+		Expression<Integer> expLevelNo = from.get("skillLevel").get("levelNumber");
+		Expression<Integer> expSkillLvlNo = join1.get("skillLevel").get("levelNumber");
+		
+		Predicate predicate3 = criteriaBuilder.ge(expLevelNo, expSkillLvlNo);			
+		Predicate andPre = criteriaBuilder.and(studentPredicate, skillLevelPredicate, predicate3);
 	
-		Predicate predicate1 = criteriaBuilder.equal(from.get("skill").get("skillLevel").get("levelNumber"), skillLevelId);
-		Predicate predicate3 = criteriaBuilder.equal(from.get("student"),studentId);
-		
-		Predicate andPre = criteriaBuilder.and(predicate1, predicate3);
-		
 		criteriaQuery.where(andPre);
-    	
+		
 		TypedQuery<Long> q = entityManager().createQuery(criteriaQuery);
-		System.out.println("~~QUERY : " + q.unwrap(Query.class).getQueryString());
-		return q.getSingleResult();*/
+		//System.out.println("Total Skill Count Query : " + q.unwrap(Query.class).getQueryString());
+		return q.getSingleResult();
+				
 	}
     
     public static List<Long> findTotalSkillAcquiredByStudentLevelVise(long studentId) 
@@ -251,13 +261,31 @@ public static Integer countSkillAcquiredByStudentandSkill(Long studentId,List<Sk
 
 	private static List<SkillAcquired> findSkillAcquiredByStudent(Long studentId, Long skillId) {
 		
-		EntityManager em = entityManager();
+		/*EntityManager em = entityManager();
     	
     	String query = "select sa from SkillAcquired as sa where sa.student="+studentId + " and sa.skill="+skillId ;
     	Log.info("Query is :" + query);
     	
     	TypedQuery<SkillAcquired> saResult = em.createQuery(query, SkillAcquired.class);
-    	return saResult.getResultList();
+    	return saResult.getResultList();*/
+		
+		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+		CriteriaQuery<SkillAcquired> criteriaQuery = criteriaBuilder.createQuery(SkillAcquired.class);
+		Root<SkillAcquired> from = criteriaQuery.from(SkillAcquired.class);
+		
+		criteriaQuery.select(from);
+		
+		Predicate studentPredicate=criteriaBuilder.equal(from.get("student"),studentId);
+		Predicate skillPredicate=criteriaBuilder.equal(from.get("skill"),skillId);
+		Predicate andPredicate=criteriaBuilder.and(studentPredicate,skillPredicate);
+				
+		criteriaQuery.where(andPredicate);
+		
+		TypedQuery<SkillAcquired> q = entityManager().createQuery(criteriaQuery);
+		//System.out.println("Query String : " + q.unwrap(Query.class).getQueryString());
+		return q.getResultList();
+		
+		
 	}
 
 	private static void persistSkillAcquired(Long studentId, Long skillId,Boolean isFirstSelected) {
