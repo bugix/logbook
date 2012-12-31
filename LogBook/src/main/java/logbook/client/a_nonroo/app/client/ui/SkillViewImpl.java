@@ -570,7 +570,13 @@ public class SkillViewImpl extends Composite implements SkillView {
 	public Widget createMainClassificationWidget(MainClassificationProxy mProxy)
 	{
 		Label mainSkillLbl=new Label();
-		mainSkillLbl.setText(mProxy.getDescription());
+		String mainClassificationText="";
+		if(mProxy.getDescription()!=null)
+			mainClassificationText=mProxy.getDescription();
+		if( mProxy.getShortcut()!=null)
+			mainClassificationText+=" ( " + mProxy.getShortcut() + " ) ";
+		
+		mainSkillLbl.setText(mainClassificationText);
 		mainSkillLbl.setWidth("90%");
 		mainSkillLbl.addStyleName("mainClassificationDescription");
 		Label skillProgress=new Label("0/0");
