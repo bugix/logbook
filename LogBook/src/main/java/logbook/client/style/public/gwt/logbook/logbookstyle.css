@@ -1228,16 +1228,16 @@ color: #77BBD8;
 	padding-top:4px;
 }
 .classificationDescription{
-	padding-left: 10px;
+	padding-left: 13px;
 	padding-top:4px;
 }
 .topicDescription{
-	padding-left: 13px;
+	padding-left: 17px;
 	padding-top:4px;
 }
 
 .skillDescription{
-	padding-left: 20px;
+	padding-left: 25px;
 	/*background-color: rgb(254,216,203);*/
 	color: rgb(43,43,43);
 	/*margin-top: 1px;*/
@@ -1248,6 +1248,7 @@ color: #77BBD8;
 		
 		width: 30px;
 		height: 20px;
+		padding-left :30px;
 		
 	}
 .mainClassificationSkillProgress{

@@ -156,12 +156,18 @@ public class Skill {
 		//ListJoin<Skill, Topic> test = from.join("");
 		
 		//select.groupBy(from.get("topic").get("id"));
-		select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")),criteriaBuilder.asc(from.get("description")));
+//		select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")),criteriaBuilder.asc(from.get("description")));
 		
 		/*if (chkAsc == 0)
 			select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")), criteriaBuilder.asc(from.get("shortcut")));
 		else if (chkAsc == 1)
 			select.orderBy(criteriaBuilder.desc(from.get("shortcut")), criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")));*/
+		
+		if (chkAsc == 0)
+			select.orderBy(criteriaBuilder.asc(join3.get("shortcut")), criteriaBuilder.asc(join2.get("shortcut")), criteriaBuilder.asc(join1.get("topicDescription"))/*, criteriaBuilder.asc(from.get("description"))*/, criteriaBuilder.asc(from.get("shortcut")));
+		else if (chkAsc == 1)
+			//select.orderBy(criteriaBuilder.desc(join3.get("shortcut")), criteriaBuilder.desc(join2.get("shortcut")), criteriaBuilder.desc(join1.get("topicDescription"))/*, criteriaBuilder.desc(from.get("description"))*/, criteriaBuilder.desc(join1.get("topicDescription")), criteriaBuilder.desc(from.get("shortcut")));
+			select.orderBy(criteriaBuilder.desc(join3.get("shortcut")), criteriaBuilder.desc(join2.get("shortcut")), criteriaBuilder.desc(join1.get("topicDescription"))/*, criteriaBuilder.asc(from.get("description"))*/, criteriaBuilder.desc(from.get("shortcut")));
 		
 		List<Predicate> predicateList = new ArrayList<Predicate>();
 		
@@ -299,7 +305,7 @@ public class Skill {
 				
 			});
 		}*/
-		if (chkAsc == 1){
+/*		if (chkAsc == 1){
 			
 			//System.out.println("In side Desc ");
 			Collections.sort(skillresultList,new Comparator<Skill>() {
@@ -324,7 +330,7 @@ public class Skill {
 				
 				
 			});
-		}
+		}*/
 		
 		List<SkillLevels> skillAcquiredList =findSkillAcquiredByStudents(skillresultList,studentId);
 		//System.out.println("Skill Acquired size :" + skillAcquiredList.size());

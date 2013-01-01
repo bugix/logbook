@@ -702,24 +702,8 @@ public class SkillViewImpl extends Composite implements SkillView {
 			}
 			else
 			{
-				
-				
-	/*			 if( ( mProxy.getId() != data.get(i-1).getTopic().getClassificationTopic().getMainClassification().getId()))
+		         	/*if( ( tproxy.getId() != data.get(i-1).getTopic().getId()))
 				{
-					skillFlexTable.setWidget(++row, 0, createMainClassificationWidget(mProxy));
-					delegate.findProgressOfMainClassification(mProxy,row,1,student);
-					//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
-					skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
-					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "mainClassificationBG");
-					mainClassificationRow=row;
-					
-					skillFlexTable.setWidget(++row, 0, createClassificationTopicWidget(ctProxy));
-					delegate.findProgressOfClassificationTopic(ctProxy,row,1,student);
-					//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
-					skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
-					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "classificationTopicBG");
-					classificationTopicRow=row;
-					
 					skillFlexTable.setWidget(++row,0,createTopicWidget(tproxy));
 					delegate.findProgressOfTopic(tproxy,row,1,student);
 					//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
@@ -727,7 +711,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "topicBG");
 					topicRow=row;
 				}
-				 else if( ( ctProxy.getId() != data.get(i-1).getTopic().getClassificationTopic().getId()))
+				else if( ( ctProxy.getId() != data.get(i-1).getTopic().getClassificationTopic().getId()))
 					{
 					if(!ctProxy.getDescription().equals("Blank"))
 					{
@@ -737,26 +721,17 @@ public class SkillViewImpl extends Composite implements SkillView {
 						skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
 						skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "classificationTopicBG");
 						classificationTopicRow=row;
-						
-						skillFlexTable.setWidget(++row,0,createTopicWidget(tproxy));
-						delegate.findProgressOfTopic(tproxy,row,1,student);
-						//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
-						skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
-						skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "topicBG");
-						topicRow=row;
 					}
 					}
-				 else if( ( tproxy.getId() != data.get(i-1).getTopic().getId()))
-					{
-						
-						
-						skillFlexTable.setWidget(++row,0,createTopicWidget(tproxy));
-						delegate.findProgressOfTopic(tproxy,row,1,student);
-						//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
-						skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
-						skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "topicBG");
-						topicRow=row;
-					}*/
+				else if( ( mProxy.getId() != data.get(i-1).getTopic().getClassificationTopic().getMainClassification().getId()))
+				{
+					skillFlexTable.setWidget(++row, 0, createMainClassificationWidget(mProxy));
+					delegate.findProgressOfMainClassification(mProxy,row,1,student);
+					//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
+					skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
+					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "mainClassificationBG");
+					mainClassificationRow=row;
+				}*/
 				if( ( tproxy.getId() != data.get(i-1).getTopic().getId())){
 					
 					if( ( ctProxy.getId() != data.get(i-1).getTopic().getClassificationTopic().getId())){
@@ -787,7 +762,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "topicBG");
 					topicRow=row;
 				}
-				
+						
 			}
 			 
 			
@@ -795,7 +770,15 @@ public class SkillViewImpl extends Composite implements SkillView {
 			skillFlexTable.setWidget(++row,0,createSkillWidget(sproxy));
 			skillFlexTable.getRowFormatter().addStyleName(row, "redBG");
 			//flexTable.getFlexCellFormatter().addStyleName(row, 0, "skillDescription");
-			skillFlexTable.setText(row,1,mProxy.getShortcut()+sproxy.getShortcut());
+			String shortcut="";
+			if(mProxy.getShortcut()!=null)
+			shortcut+=mProxy.getShortcut();
+			if(ctProxy.getShortcut() !=null)
+			shortcut+=" "+ctProxy.getShortcut();
+			if(sproxy.getShortcut() !=null)
+			shortcut+=" "+sproxy.getShortcut();
+			
+			skillFlexTable.setText(row,1,shortcut);
 			skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "skillDescription");
 			skillFlexTable.getFlexCellFormatter().getElement(row, 1).setPropertyString("textAlign", "center");
 			
