@@ -24,8 +24,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.persistence.criteria.SetJoin;
 import javax.validation.constraints.Size;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -149,6 +151,7 @@ public class Skill {
 		CriteriaQuery<Skill> select = criteriaQuery.select(from);
 		
 		Join<Skill, Topic> join1 = from.join("topic");
+		SetJoin<Skill, Keyword> join4=from.joinSet("keywords",JoinType.LEFT);
 		Join<Topic, ClassificationTopic> join2 = join1.join("classificationTopic");
 		Join<ClassificationTopic, MainClassification> join3 = join2.join("mainClassification");
 		
@@ -211,9 +214,16 @@ public class Skill {
 		
 		if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
 		{
+			
+			fulltextSearch=fulltextSearch.trim();
 			Expression<String> skillDescExp = from.get("description");
 			Expression<String> germanTestExp = from.get("german_text");
 			
+			
+			Expression<String> keywordDesc =  join4.get("name");
+			
+			//Join<Skill, X> keyordJoin=from.join("keywords",JoinType.INNER);
+		//	Expression<Keyword> keywordsExp = from.get(Keyword.class);
 			
 			/*String sql = "SELECT s FROM Keyword k join k.skill s WHERE k.name LIKE '%" + fulltextSearch + "%'";
 			TypedQuery<Skill> q = entityManager().createQuery(sql, Skill.class);
@@ -224,8 +234,10 @@ public class Skill {
 			
 			Predicate pre1 = criteriaBuilder.like(skillDescExp, "%" + fulltextSearch + "%");
 			Predicate pre2 = criteriaBuilder.like(germanTestExp, "%" + fulltextSearch + "%");
+			Predicate pre3 = criteriaBuilder.like(keywordDesc, "%" + fulltextSearch + "%");
 			
-			Predicate orPre = criteriaBuilder.or(pre1, pre2/*, criteriaBuilder.in(from).value(getSkillIdList(skillList))*/);
+			
+			Predicate orPre = criteriaBuilder.or(pre1, pre2,pre3/*, criteriaBuilder.in(from).value(getSkillIdList(skillList))*/);
 			
 			predicateList.add(orPre);
 			/*if (andPredicate == null)
@@ -246,7 +258,7 @@ public class Skill {
 		
 		int totalSize = 0;
 		
-		if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
+/*		if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
 		{
 			String sql = "SELECT s FROM Keyword k join k.skill s WHERE k.name LIKE '%" + fulltextSearch + "%'";
 			TypedQuery<Skill> q = entityManager().createQuery(sql, Skill.class);
@@ -277,7 +289,7 @@ public class Skill {
 				skillresultList = skillList;
 			
 		}
-		else
+		else*/
 		{
 			totalSize=result.getResultList().size();
 			
@@ -287,7 +299,7 @@ public class Skill {
 			
 			skillresultList  = result.getResultList();
 			
-			System.out.println("RESULTLISTSIZE : " + skillresultList.size());
+			Log.info("RESULTLISTSIZE : " + skillresultList.size());
 		}
 		
 		//System.out.println("~~QUERY : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
@@ -408,56 +420,38 @@ public class Skill {
 	{
 	  
 	  
-	  	//select s from Skill s,Topic t,ClassificationTopic c,MainClassification m  where s.topic=t.id and t.classificationTopic=c.id and c.mainClassification=m.id order by m.description,c.description,t.topicDescription,s.description
-		/*EntityManager em = entityManager();
-		String sql = "SELECT s FROM Skill As s where";
-		
-		if(topicId != null) //Topic
-			sql = sql + " s.topic.id = " + topicId +" AND  " ;
-		
-		if(classificationTopicId != null) //ClassificationTopic
-			sql = sql + " s.topic.classificationTopic.id = " + classificationTopicId +" AND  " ;
-		
-		if(mainClassificationId != null) // main classification
-			sql = sql + " s.topic.classificationTopic.mainClassification.id = " + mainClassificationId +" AND  " ;
-
-		sql = sql.substring(0, sql.length()-5);
-		//sql = sql + " order by s.topic,s.topic.classificationTopic,s.topic.classificationTopic.mainClassification";
-		sql = sql + " order by s.topic";
-		//System.out.println("QUERY : " + sql);
-		
-		System.out.println("Query :" + sql);
-		
-		TypedQuery<Skill> result = em.createQuery(sql, Skill.class);
-		result.setFirstResult(start);
-		result.setMaxResults(max);
-		List<Skill> response = result.getResultList();
-		return response; */
-		
+	  Log.info("Asc :" + chkAsc);
+	
+	  
 		
 		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
 		CriteriaQuery<Skill> criteriaQuery = criteriaBuilder.createQuery(Skill.class);
 		Root<Skill> from = criteriaQuery.from(Skill.class);
 		CriteriaQuery<Skill> select = criteriaQuery.select(from);
 		
-		Join<Skill, Keyword> join = null;
-		if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
-		{
-			join = from.join("keywords");
-		}
-			
 		Join<Skill, Topic> join1 = from.join("topic");
+		SetJoin<Skill, Keyword> join4=from.joinSet("keywords",JoinType.LEFT);
 		Join<Topic, ClassificationTopic> join2 = join1.join("classificationTopic");
 		Join<ClassificationTopic, MainClassification> join3 = join2.join("mainClassification");
 		
 		
 		//ListJoin<Skill, Topic> test = from.join("");
 		
+		//select.groupBy(from.get("topic").get("id"));
+//		select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")),criteriaBuilder.asc(from.get("description")));
 		
-		if (chkAsc == 0)
+		/*if (chkAsc == 0)
 			select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")), criteriaBuilder.asc(from.get("shortcut")));
 		else if (chkAsc == 1)
-			select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")), criteriaBuilder.desc(from.get("shortcut")));
+			select.orderBy(criteriaBuilder.desc(from.get("shortcut")), criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")));*/
+		
+		if (chkAsc == 0)
+			select.orderBy(criteriaBuilder.asc(join3.get("shortcut")), criteriaBuilder.asc(join2.get("shortcut")), criteriaBuilder.asc(join1.get("topicDescription"))/*, criteriaBuilder.asc(from.get("description"))*/, criteriaBuilder.asc(from.get("shortcut")));
+		else if (chkAsc == 1)
+			//select.orderBy(criteriaBuilder.desc(join3.get("shortcut")), criteriaBuilder.desc(join2.get("shortcut")), criteriaBuilder.desc(join1.get("topicDescription"))/*, criteriaBuilder.desc(from.get("description"))*/, criteriaBuilder.desc(join1.get("topicDescription")), criteriaBuilder.desc(from.get("shortcut")));
+			select.orderBy(criteriaBuilder.desc(join3.get("shortcut")), criteriaBuilder.desc(join2.get("shortcut")), criteriaBuilder.desc(join1.get("topicDescription"))/*, criteriaBuilder.asc(from.get("description"))*/, criteriaBuilder.desc(from.get("shortcut")));
+		
+		List<Predicate> predicateList = new ArrayList<Predicate>();
 		
 		Predicate predicate1 = null;
 		Predicate predicate2 = null;
@@ -468,62 +462,173 @@ public class Skill {
 		if(topicId != null) //Topic
 		{
 			predicate1 = criteriaBuilder.equal(from.get("topic").get("id"), topicId);
-			if (andPredicate == null)
+			predicateList.add(predicate1);
+			/*if (andPredicate == null)
 				andPredicate = criteriaBuilder.and(predicate1);
 			else
-				andPredicate = criteriaBuilder.and(andPredicate, predicate1);
+				andPredicate = criteriaBuilder.and(andPredicate, predicate1);*/
 		}		
-		else if(classificationTopicId != null) //ClassificationTopic
+		
+		if(classificationTopicId != null) //ClassificationTopic
 		{
-			predicate2 = criteriaBuilder.equal(from.get("topic").get("classificationTopic").get("id"), classificationTopicId);
-			if (andPredicate == null)
+			//predicate2 = criteriaBuilder.equal(from.get("topic").get("classificationTopic").get("id"), classificationTopicId);
+			predicate2 = criteriaBuilder.equal(join2.get("id"), classificationTopicId);
+			predicateList.add(predicate2);
+			/*if (andPredicate == null)
 				andPredicate = criteriaBuilder.and(predicate2);
 			else
-				andPredicate = criteriaBuilder.and(andPredicate, predicate2);
+				andPredicate = criteriaBuilder.and(andPredicate, predicate2);*/
 		}		
-		else if(mainClassificationId != null) // main classification
+		
+		if(mainClassificationId != null) // main classification
 		{
-			predicate3 = criteriaBuilder.equal(from.get("topic").get("classificationTopic").get("mainClassification").get("id"), mainClassificationId);
-			if (andPredicate == null)
+			//predicate3 = criteriaBuilder.equal(from.get("topic").get("classificationTopic").get("mainClassification").get("id"), mainClassificationId);
+			predicate3 = criteriaBuilder.equal(join3.get("id"), mainClassificationId);
+			predicateList.add(predicate3);
+			/*if (andPredicate == null)
 				andPredicate = criteriaBuilder.and(predicate3);
 			else
-				andPredicate = criteriaBuilder.and(andPredicate, predicate3);
+				andPredicate = criteriaBuilder.and(andPredicate, predicate3);*/
 		}
-		else if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
+		
+		if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
 		{
+			
+			fulltextSearch=fulltextSearch.trim();
 			Expression<String> skillDescExp = from.get("description");
 			Expression<String> germanTestExp = from.get("german_text");
 			
-			//Join<Skill, Keyword> keywordJoin = from.join("keywords");
-			Expression<String> skillKeywordTextExp = join.get("name");
 			
-			Predicate pre1 = criteriaBuilder.like(skillDescExp, fulltextSearch);
-			Predicate pre2 = criteriaBuilder.like(germanTestExp, fulltextSearch);
-			Predicate pre3 = criteriaBuilder.like(skillKeywordTextExp, fulltextSearch);
+			Expression<String> keywordDesc =  join4.get("name");
 			
-			Predicate orPre = criteriaBuilder.or(pre1, pre2, pre3);
+			//Join<Skill, X> keyordJoin=from.join("keywords",JoinType.INNER);
+		//	Expression<Keyword> keywordsExp = from.get(Keyword.class);
 			
-			if (andPredicate == null)
+			/*String sql = "SELECT s FROM Keyword k join k.skill s WHERE k.name LIKE '%" + fulltextSearch + "%'";
+			TypedQuery<Skill> q = entityManager().createQuery(sql, Skill.class);
+			List<Skill> skillList = q.getResultList();
+			
+			System.out.println("SKILL QUERY : " + sql);
+			System.out.println("SKILL LIST SIZE : " + skillList.size());*/
+			
+			Predicate pre1 = criteriaBuilder.like(skillDescExp, "%" + fulltextSearch + "%");
+			Predicate pre2 = criteriaBuilder.like(germanTestExp, "%" + fulltextSearch + "%");
+			Predicate pre3 = criteriaBuilder.like(keywordDesc, "%" + fulltextSearch + "%");
+			
+			
+			Predicate orPre = criteriaBuilder.or(pre1, pre2,pre3/*, criteriaBuilder.in(from).value(getSkillIdList(skillList))*/);
+			
+			predicateList.add(orPre);
+			/*if (andPredicate == null)
 				andPredicate = criteriaBuilder.and(orPre);
 			else
-				andPredicate = criteriaBuilder.and(andPredicate, orPre);
+				andPredicate = criteriaBuilder.and(andPredicate, orPre);*/
 		}
-		if (andPredicate != null)
-			criteriaQuery.where(andPredicate);
+		
+		
+		if (predicateList.size() > 0)
+			criteriaQuery.where(criteriaBuilder.and(predicateList.toArray(new Predicate[predicateList.size()])));
 		
 		TypedQuery<Skill> result = entityManager().createQuery(criteriaQuery);
 		
-		int totalSize=result.getResultList().size();
+		System.out.println("Critera query is :" + result.unwrap(Query.class).getQueryString());
 		
-		System.out.println("~~QUERY : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
+		List<Skill> skillresultList  = new ArrayList<Skill>();
 		
-		List<Skill> skillresultList  = result.getResultList();
-		System.out.println("RESULTLISTSIZE : " + skillresultList.size());
+		int totalSize = 0;
+		
+/*		if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
+		{
+			String sql = "SELECT s FROM Keyword k join k.skill s WHERE k.name LIKE '%" + fulltextSearch + "%'";
+			TypedQuery<Skill> q = entityManager().createQuery(sql, Skill.class);
+			List<Skill> skillKeywordList = q.getResultList();
+			
+			List<Skill> skillList = result.getResultList();
+			
+			Iterator<Skill> itr = skillKeywordList.iterator();
+			while (itr.hasNext())
+			{
+				Skill skill = itr.next();
+				
+				if(!skillList.contains(skill))
+					skillList.add(skill);
+			}
+			
+			totalSize=skillList.size();
+			
+			if (totalSize > max)
+			{
+				 max = max + start;
+				 
+				 if (max > totalSize) max -= 1;
+				 
+				skillresultList = skillList.subList(start, max);
+			}
+			else
+				skillresultList = skillList;
+			
+		}
+		
+			totalSize=result.getResultList().size();
+			
+		
+			
+			skillresultList  = result.getResultList();
+			
+			Log.info("RESULTLISTSIZE : " + skillresultList.size());
+	
+		
+		//System.out.println("~~QUERY : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
+		
+		/*if (chkAsc==0){
+			
+			//System.out.println("In side Asc ");
+			Collections.sort(skillresultList,new Comparator<Skill>() {
+
+				@Override
+				public int compare(Skill o1, Skill o2) {
+					return o1.getDescription().compareTo(o2.getDescription());
+				}
+				
+				
+			});
+		}*/
+/*		if (chkAsc == 1){
+			
+			//System.out.println("In side Desc ");
+			Collections.sort(skillresultList,new Comparator<Skill>() {
+
+				@Override
+				public int compare(Skill o1, Skill o2) {
+					
+					if (o2.getTopic().getClassificationTopic().getMainClassification().getDescription().compareTo(o1.getTopic().getClassificationTopic().getMainClassification().getDescription()) != 0)
+						return o2.getTopic().getClassificationTopic().getMainClassification().getDescription().compareTo(o1.getTopic().getClassificationTopic().getMainClassification().getDescription());
+					
+					if (o2.getTopic().getClassificationTopic().getDescription().compareTo(o1.getTopic().getClassificationTopic().getDescription()) != 0)
+						return o2.getTopic().getClassificationTopic().getDescription().compareTo(o1.getTopic().getClassificationTopic().getDescription());		
+					
+					if (o2.getTopic().getTopicDescription().compareTo(o1.getTopic().getTopicDescription()) != 0)
+						return o2.getTopic().getTopicDescription().compareTo(o1.getTopic().getTopicDescription());
+					
+					if (o2.getDescription().compareTo(o1.getDescription()) != 0)
+						return o2.getDescription().compareTo(o1.getDescription());
+					
+					return o2.getShortcut().compareTo(o1.getShortcut());
+				}
+				
+				
+			});
+		}*/
 		
 		List<SkillLevels> skillAcquiredList =findSkillAcquiredByStudents(skillresultList,studentId);
-		System.out.println("Skill Acquired size :" + skillAcquiredList.size());
+		//System.out.println("Skill Acquired size :" + skillAcquiredList.size());
 		
 		SkillFilteredResult finalresult = new SkillFilteredResult();
+		
+		/*for (Skill skill : skillresultList)
+		{
+			System.out.println("ID : " + skill.getId());
+		}*/
 
 		finalresult.setTotalSkill(totalSize);
 		finalresult.setSkillList(skillresultList);
