@@ -55,7 +55,7 @@ public interface SkillView extends IsWidget{
 
 		void shortCutClicked();
 		
-
+		void exportPDF();
 		//Boolean isSkillAcquiredbyStudentAtFirstLevel(Long studentID,Long skillId,Long skillLevelID);
 		
 		

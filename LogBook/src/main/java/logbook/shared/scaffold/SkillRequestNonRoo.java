@@ -21,7 +21,7 @@ public interface SkillRequestNonRoo extends RequestContext {
 
 	abstract Request<SkillFilteredResultProxy> findSkillBySearchCriteria(int start, int max,Long studentId,Long mainClassificationId, Long classificationTopicId, Long topicId,String fulltextSearch,int chkAsc);
 	
-	abstract Request<String> retrieveHtmlFile();
+	abstract Request<String> retrieveHtmlFile(Long studentId,Long mainClassificationId, Long classificationTopicId, Long topicId,String fulltextSearch,int chkAsc);
 	
 	abstract Request<String> findProgressOfMainClassification(MainClassificationProxy mainClassification,Long studentId);
 	

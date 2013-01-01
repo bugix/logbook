@@ -422,7 +422,30 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 
 	@Override
 	public void printPdfClicked() {
-		requests.skillRequestNonRoo().retrieveHtmlFile().fire(new Receiver<String>() {
+		
+		MainClassificationProxy mProxy=view.getMainClassificationSuggestBox().getSelected();
+		ClassificationTopicProxy ctProxy=view.getClassificationTopicSuggestBox().getSelected();
+		TopicProxy tProxy=view.getTopicSuggestBox().getSelected();
+		String fullTextSearch=view.getFullTextSearchBox().getText();
+		
+		Long mainClassifcationId=null;
+		Long classifcationTopicId=null;
+		Long topicId=null;
+		
+		if(mProxy!=null)
+		{
+			mainClassifcationId=mProxy.getId();
+		}
+		if(ctProxy!=null)
+		{
+			classifcationTopicId=ctProxy.getId();
+		}
+		if(tProxy!=null)
+		{
+			topicId=tProxy.getId();
+		}
+		
+		requests.skillRequestNonRoo().retrieveHtmlFile(view.getStudent().getId(),mainClassifcationId,classifcationTopicId,topicId,fullTextSearch,0).fire(new Receiver<String>() {
 
 			@Override
 			public void onSuccess(String response) {
@@ -676,6 +699,41 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		
 	}
 
+	@Override
+	public void exportPDF() {
+		Log.info("exportPDF");
+		
+		MainClassificationProxy mProxy=view.getMainClassificationSuggestBox().getSelected();
+		ClassificationTopicProxy ctProxy=view.getClassificationTopicSuggestBox().getSelected();
+		TopicProxy tProxy=view.getTopicSuggestBox().getSelected();
+		String fullTextSearch=view.getFullTextSearchBox().getText();
+		
+		String mainClassifcationId="0";
+		String classifcationTopicId="0";
+		String topicId="0";
+		
+		if(mProxy!=null)
+		{
+			mainClassifcationId=mProxy.getId().toString();
+		}
+		if(ctProxy!=null)
+		{
+			classifcationTopicId=ctProxy.getId().toString();
+		}
+		if(tProxy!=null)
+		{
+			topicId=tProxy.getId().toString();
+		}
+		
+		String chkAsc="0";
+		String url=GWT.getHostPageBaseURL()+"SkillPdfExport?studentId="+view.getStudent().getId()+"&mainClassifcationId="+mainClassifcationId+"&classifcationId="+classifcationTopicId+"&topicId="+topicId+"&chkAsc="+chkAsc+"&fullTextSearch="+fullTextSearch;
+		Log.info("url :" + url);
+		Window.open(url, "skill"+view.getStudent().getName()+".pdf", "enabled");
+		
+		
+		
+		
+	}
 	/*@Override
 	public Boolean isSkillAcquiredbyStudentAtFirstLevel(Long studentID,
 			Long skillId, Long skillLevelID) {

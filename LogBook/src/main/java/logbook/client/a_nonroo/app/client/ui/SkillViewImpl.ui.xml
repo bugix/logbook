@@ -15,7 +15,7 @@
 			border-radius: 5px;
 			border-color: lightblue;			
 			width: 100%;
-			padding-left: 8px;	
+			padding-left: 20px;	
 			padding-top: 10px;
 			padding-bottom: 10px;
 					
@@ -33,6 +33,7 @@
             cursor: pointer;
             display: block;
             float: right;
+            width: 100%;
         }
         .imagestyle{
 			float: right;	
@@ -67,7 +68,12 @@
 		.skillTablePagerStyle
 		{
 			float: right;
-		}		
+		}	
+	.printPdf{
+			float:right;
+			width:201px;
+			margin:5px;
+		}	
 	</ui:style>
 	<g:HTMLPanel>
 		<g:VerticalPanel addStyleNames="{style.mainVerticlePanelStyle}"
@@ -146,16 +152,17 @@
 							</g:VerticalPanel>
 							</td>
 						</tr>
-						<tr >
-						<td align="right">
-							<g:HorizontalPanel horizontalAlignment="right" spacing="10">
+						<tr>
+							<td align="right">
+							<g:HorizontalPanel  addStyleNames="{style.printPdf}" verticalAlignment="middle">
 								<g:Image ui:field="imgPrint"></g:Image>
-								<g:Anchor ui:field="hyperLnkPrint" addStyleNames="{style.anchor}" width="25px"></g:Anchor>
-								<g:Label width="13px"> | </g:Label>
-								<g:Image ui:field="imgpdf" addStyleNames="{style.imagestyle}"></g:Image>
+								<!-- <g:Hyperlink ui:field="hyperLnkPrint"></g:Hyperlink> -->
+								<g:Anchor ui:field="hyperLnkPrint" addStyleNames="{style.anchor}" width="100%"></g:Anchor>
+								<g:Image ui:field="imgpdf" ></g:Image>
+								<!-- <g:Hyperlink ui:field="hyperlnkSavePDF"></g:Hyperlink> -->
 								<g:Anchor ui:field="hyperlnkSavePDF" addStyleNames="{style.anchor}"></g:Anchor>
 							</g:HorizontalPanel>
-						</td>
+							</td>
 						</tr>
 						<tr>
 						<td>

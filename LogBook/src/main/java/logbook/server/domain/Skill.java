@@ -1,6 +1,11 @@
 package logbook.server.domain;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -22,6 +27,17 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.validation.constraints.Size;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.ErrorListener;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import logbook.shared.SkillFilteredResult;
 import logbook.shared.SkillLevels;
@@ -31,6 +47,8 @@ import org.hibernate.Query;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.w3c.dom.Element;
+import org.w3c.dom.Text;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
@@ -379,6 +397,190 @@ public class Skill {
 		return finalresult;
 	}  
     
+  
+  public static SkillFilteredResult findMainClassificatonBySearchCriteria(Long studentId,Long mainClassificationId, Long classificationTopicId, Long topicId,String fulltextSearch,int chkAsc)
+	{
+	  
+	  
+	  	//select s from Skill s,Topic t,ClassificationTopic c,MainClassification m  where s.topic=t.id and t.classificationTopic=c.id and c.mainClassification=m.id order by m.description,c.description,t.topicDescription,s.description
+		/*EntityManager em = entityManager();
+		String sql = "SELECT s FROM Skill As s where";
+		
+		if(topicId != null) //Topic
+			sql = sql + " s.topic.id = " + topicId +" AND  " ;
+		
+		if(classificationTopicId != null) //ClassificationTopic
+			sql = sql + " s.topic.classificationTopic.id = " + classificationTopicId +" AND  " ;
+		
+		if(mainClassificationId != null) // main classification
+			sql = sql + " s.topic.classificationTopic.mainClassification.id = " + mainClassificationId +" AND  " ;
+
+		sql = sql.substring(0, sql.length()-5);
+		//sql = sql + " order by s.topic,s.topic.classificationTopic,s.topic.classificationTopic.mainClassification";
+		sql = sql + " order by s.topic";
+		//System.out.println("QUERY : " + sql);
+		
+		System.out.println("Query :" + sql);
+		
+		TypedQuery<Skill> result = em.createQuery(sql, Skill.class);
+		result.setFirstResult(start);
+		result.setMaxResults(max);
+		List<Skill> response = result.getResultList();
+		return response; */
+		
+		
+		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+		CriteriaQuery<Skill> criteriaQuery = criteriaBuilder.createQuery(Skill.class);
+		Root<Skill> from = criteriaQuery.from(Skill.class);
+		CriteriaQuery<Skill> select = criteriaQuery.select(from);
+		
+		Join<Skill, Keyword> join = null;
+		if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
+		{
+			join = from.join("keywords");
+		}
+			
+		Join<Skill, Topic> join1 = from.join("topic");
+		Join<Topic, ClassificationTopic> join2 = join1.join("classificationTopic");
+		Join<ClassificationTopic, MainClassification> join3 = join2.join("mainClassification");
+		
+		
+		//ListJoin<Skill, Topic> test = from.join("");
+		
+		
+		if (chkAsc == 0)
+			select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")), criteriaBuilder.asc(from.get("shortcut")));
+		else if (chkAsc == 1)
+			select.orderBy(criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")), criteriaBuilder.desc(from.get("shortcut")));
+		
+		Predicate predicate1 = null;
+		Predicate predicate2 = null;
+		Predicate predicate3 = null;
+		Predicate andPredicate = null;
+		
+		
+		if(topicId != null) //Topic
+		{
+			predicate1 = criteriaBuilder.equal(from.get("topic").get("id"), topicId);
+			if (andPredicate == null)
+				andPredicate = criteriaBuilder.and(predicate1);
+			else
+				andPredicate = criteriaBuilder.and(andPredicate, predicate1);
+		}		
+		else if(classificationTopicId != null) //ClassificationTopic
+		{
+			predicate2 = criteriaBuilder.equal(from.get("topic").get("classificationTopic").get("id"), classificationTopicId);
+			if (andPredicate == null)
+				andPredicate = criteriaBuilder.and(predicate2);
+			else
+				andPredicate = criteriaBuilder.and(andPredicate, predicate2);
+		}		
+		else if(mainClassificationId != null) // main classification
+		{
+			predicate3 = criteriaBuilder.equal(from.get("topic").get("classificationTopic").get("mainClassification").get("id"), mainClassificationId);
+			if (andPredicate == null)
+				andPredicate = criteriaBuilder.and(predicate3);
+			else
+				andPredicate = criteriaBuilder.and(andPredicate, predicate3);
+		}
+		else if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
+		{
+			Expression<String> skillDescExp = from.get("description");
+			Expression<String> germanTestExp = from.get("german_text");
+			
+			//Join<Skill, Keyword> keywordJoin = from.join("keywords");
+			Expression<String> skillKeywordTextExp = join.get("name");
+			
+			Predicate pre1 = criteriaBuilder.like(skillDescExp, fulltextSearch);
+			Predicate pre2 = criteriaBuilder.like(germanTestExp, fulltextSearch);
+			Predicate pre3 = criteriaBuilder.like(skillKeywordTextExp, fulltextSearch);
+			
+			Predicate orPre = criteriaBuilder.or(pre1, pre2, pre3);
+			
+			if (andPredicate == null)
+				andPredicate = criteriaBuilder.and(orPre);
+			else
+				andPredicate = criteriaBuilder.and(andPredicate, orPre);
+		}
+		if (andPredicate != null)
+			criteriaQuery.where(andPredicate);
+		
+		TypedQuery<Skill> result = entityManager().createQuery(criteriaQuery);
+		
+		int totalSize=result.getResultList().size();
+		
+		System.out.println("~~QUERY : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
+		
+		List<Skill> skillresultList  = result.getResultList();
+		System.out.println("RESULTLISTSIZE : " + skillresultList.size());
+		
+		List<SkillLevels> skillAcquiredList =findSkillAcquiredByStudents(skillresultList,studentId);
+		System.out.println("Skill Acquired size :" + skillAcquiredList.size());
+		
+		SkillFilteredResult finalresult = new SkillFilteredResult();
+
+		finalresult.setTotalSkill(totalSize);
+		finalresult.setSkillList(skillresultList);
+		finalresult.setSkilltLevelsAcquiredList(skillAcquiredList);
+		
+	
+		
+		/* calulate progress(5/20) for main/class topic/topic */
+		
+		/*List<Topic> topics=new ArrayList<Topic>();
+		List<ClassificationTopic> ctopics=new ArrayList<ClassificationTopic>();
+		List<MainClassification> mainClassifications=new ArrayList<MainClassification>();
+		
+		for(int i=0;i<skillresultList.size();i++)
+		{
+			Skill skill=skillresultList.get(i);
+			Topic topic=skill.getTopic();
+			ClassificationTopic ctopic=topic.getClassificationTopic();
+			MainClassification mainClassification=ctopic.getMainClassification();
+			
+			
+			if(i==0)
+			{
+				
+				topics.add(topic);
+				ctopics.add(ctopic);
+				mainClassifications.add(mainClassification);
+					
+				
+				
+			}
+			else
+			{
+				if( ( topic.getId() != skillresultList.get(i-1).getTopic().getId()))
+				{
+					topics.add(topic);
+				}
+				else if( ( ctopic.getId() != skillresultList.get(i-1).getTopic().getClassificationTopic().getId()))
+					{
+						ctopics.add(ctopic);
+					}
+				else if( ( mainClassification.getId() != skillresultList.get(i-1).getTopic().getClassificationTopic().getMainClassification().getId()))
+				{
+					mainClassifications.add(mainClassification);
+				}
+				}
+			}
+		
+		List<String> mainClassificationProgress=new ArrayList<String>();
+		List<String> mainClassificationkey=new ArrayList<String>();
+		for(int i=0;i<mainClassifications.size();i++)
+		{
+			mainClassificationProgress.add(findProgressOfMainClassification( mainClassifications.get(i), studentId));
+			mainClassificationkey.add("m"+mainClassifications.get(i));
+		}
+			 
+		finalresult.setMainClassificationkey(mainClassificationkey);
+		finalresult.setMainClassificationProgress(mainClassificationProgress);*/
+		
+		return finalresult;
+	}
+  
+  
   	public static String findProgressOfMainClassification(MainClassification mainClassification,Long studentId)
   	{
   		
@@ -450,7 +652,25 @@ public class Skill {
   		return count;
     }
 
-  	
+  		public static Integer findSkillLevelAcquired(long studentId,long skillId)
+  	{
+  		EntityManager em = entityManager();
+  		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		CriteriaQuery<SkillAcquired> criteriaQuery = criteriaBuilder.createQuery(SkillAcquired.class);
+		Root<SkillAcquired> from = criteriaQuery.from(SkillAcquired.class);
+		CriteriaQuery<SkillAcquired> select = criteriaQuery.select(from);
+		Predicate p1=criteriaBuilder.and(criteriaBuilder.equal(from.get("student").get("id"), studentId));
+		Predicate p2=criteriaBuilder.and(criteriaBuilder.equal(from.get("skill").get("id"), skillId));
+		select.where(p1);
+		select.where(p2);
+		
+		TypedQuery<SkillAcquired> result=em.createQuery(criteriaQuery);
+		
+		if(result.getResultList().size() > 0)
+			return result.getResultList().get(0).getSkillLevel().getLevelNumber();
+		else 
+			return null;
+  	}
   	
     private static List<SkillLevels> findSkillAcquiredByStudents(List<Skill> skillresultList,Long studentId) {
     	
@@ -476,12 +696,13 @@ public class Skill {
     	
 	
 }
-	public static String retrieveHtmlFile() {
+	public static String retrieveHtmlFile(Long studentId,Long mainClassificationId, Long classificationTopicId, Long topicId,String fulltextSearch,int chkAsc) {
     	
     	try {
-    	String fileSeparator = System.getProperty("file.separator");
-		String File_To_Convert =RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath(fileSeparator) +  "public/assignment_sp_1.htm";
+   // 	String fileSeparator = System.getProperty("file.separator");
+	//	String File_To_Convert =RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath(fileSeparator) +  "public/assignment_sp_1.htm";
 		
+		String File_To_Convert=createHtml(Skill.findMainClassificatonBySearchCriteria(studentId, mainClassificationId, classificationTopicId, topicId, fulltextSearch, chkAsc), studentId);
 		
 		return  FileUtils.readFileToString(new File(File_To_Convert));
     	}catch(Exception e){
@@ -490,6 +711,239 @@ public class Skill {
     	}
     }
     
+	
+	public static org.w3c.dom.Document createDocument()
+	{
+		try{
+		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
+        org.w3c.dom.Document doc = docBuilder.newDocument();
+        return doc;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+        
+	}
+	
+	public static Element createChildNode(String nodeName,String nodeValue,org.w3c.dom.Document doc,Element parent)
+	{
+		 Element element = doc.createElement(nodeName);//create  node
+		 parent.appendChild(element);	//append to its parent
+	        Text text2 = doc.createTextNode(nodeValue);	//create Text node/ value
+	        element.appendChild(text2); 
+	        return element;
+	}
+	public static Element createEmptyChildNode(String nodeName,org.w3c.dom.Document doc,Element parent)
+	{
+		 Element element = doc.createElement(nodeName);//create  node
+		 parent.appendChild(element);	//append to its parent
+	      //  Text text2 = doc.createTextNode(nodeValue);	//create Text node/ value
+	    //    element.appendChild(text2); 
+	        return element;
+	}
+	
+	public static String  createHtml(SkillFilteredResult result,Long studentId)
+	{
+		org.w3c.dom.Document doc=createDocument();
+		
+		Element root = doc.createElement("mainClassifications");
+		
+		//append root to document
+		doc.appendChild(root);
+		List<Skill> skills=result.getSkillList();
+		
+		Element classificationTopicsElement=null;
+		Element topicsElement=null;
+		Element skillsElement=null;
+
+		for(int i=0;i<skills.size();i++)
+		{
+			Skill skill=skills.get(i);
+			String topicDescription=skill.getTopic().getTopicDescription();
+			String ctopicDescription=skill.getTopic().getClassificationTopic().getDescription();
+			String mDescription=(skill.getTopic().getClassificationTopic().getMainClassification().getDescription());
+			
+			
+		
+			
+			if(i==0)
+			{
+				 Element mainClassificationElement=createEmptyChildNode("mainClassification",doc,root);
+				 createChildNode("description", mDescription, doc, mainClassificationElement);
+				 
+				  classificationTopicsElement=createEmptyChildNode("classificationTopics",doc,mainClassificationElement);
+				 Element classificationTopicElement=createEmptyChildNode("classificationTopic",doc,classificationTopicsElement);
+				 createChildNode("description", ctopicDescription, doc, classificationTopicElement);
+				 
+				  topicsElement=createEmptyChildNode("topics",doc,classificationTopicElement);
+				 Element topicElement=createEmptyChildNode("topic",doc,topicsElement);
+				 createChildNode("description", topicDescription, doc, topicElement);
+				  skillsElement=createEmptyChildNode("skills",doc,topicElement);
+
+			}
+			else
+			{
+				if( ( skill.getTopic().getId() != skills.get(i-1).getTopic().getId()))
+				{
+					
+					 Element topicElement=createEmptyChildNode("topic",doc,topicsElement);
+					 createChildNode("description", topicDescription, doc, topicElement);
+					 skillsElement=createEmptyChildNode("skills",doc,topicElement);
+					
+				}
+				else if( ( skill.getTopic().getClassificationTopic().getId() != skills.get(i-1).getTopic().getClassificationTopic().getId()))
+					{
+					if(!skill.getTopic().getClassificationTopic().getDescription().equals("Blank"))
+					{
+						
+						 Element classificationTopicElement=createEmptyChildNode("classificationTopic",doc,classificationTopicsElement);
+						 createChildNode("description", ctopicDescription, doc, classificationTopicElement);
+						 
+						  topicsElement=createEmptyChildNode("topics",doc,classificationTopicElement);
+						 Element topicElement=createEmptyChildNode("topic",doc,topicsElement);
+						 createChildNode("description", topicDescription, doc, topicElement);
+					}
+					}
+				else if( ( skill.getTopic().getClassificationTopic().getMainClassification().getId() != skills.get(i-1).getTopic().getClassificationTopic().getMainClassification().getId()))
+				{
+					Element mainClassificationElement=createEmptyChildNode("mainClassification",doc,root);
+					 createChildNode("description", mDescription, doc, mainClassificationElement);
+					 
+					  classificationTopicsElement=createEmptyChildNode("classificationTopics",doc,mainClassificationElement);
+					 Element classificationTopicElement=createEmptyChildNode("classificationTopic",doc,classificationTopicsElement);
+					 createChildNode("description", ctopicDescription, doc, classificationTopicElement);
+					 
+					  topicsElement=createEmptyChildNode("topics",doc,classificationTopicElement);
+					 Element topicElement=createEmptyChildNode("topic",doc,topicsElement);
+					 createChildNode("description", topicDescription, doc, topicElement);
+					 skillsElement=createEmptyChildNode("skills",doc,topicElement);
+				}
+			}
+			
+			
+			Element skillElement=createEmptyChildNode("skill",doc,skillsElement);
+			createChildNode("description", skill.getDescription(), doc, skillElement);
+			
+			String ctopicShortCut="";
+			String mainClassificationShortcut="";
+			if(skill.getTopic().getClassificationTopic().getShortcut() !=null)
+				ctopicShortCut=skill.getTopic().getClassificationTopic().getShortcut();
+			
+			if(skill.getTopic().getClassificationTopic().getMainClassification().getShortcut() !=null)
+				mainClassificationShortcut=skill.getTopic().getClassificationTopic().getMainClassification().getShortcut();
+			
+			
+			createChildNode("shortcut", mainClassificationShortcut+ " "+ ctopicShortCut +" "+skill.getShortcut(), doc, skillElement);
+			createChildNode("skillLevel", skill.getSkillLevel().getLevelNumber().toString(), doc, skillElement);	
+			
+			Integer levelNum=Skill.findSkillLevelAcquired(studentId, skill.getId());
+			if(levelNum !=null)
+				createChildNode("skillLevelAcquired", levelNum.toString(), doc, skillElement);
+			else
+				createChildNode("skillLevelAcquired", "-", doc, skillElement);
+			
+			
+		}
+		
+		
+		return saveXML(doc);
+		
+	}
+	
+	
+	
+	
+	public static String saveXML(org.w3c.dom.Document doc)
+	{
+		try{
+			TransformerFactory factory = TransformerFactory.newInstance();
+	        Transformer transformer = factory.newTransformer();
+	        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+	        StringWriter sw = new StringWriter();
+	        StreamResult result = new StreamResult(sw);
+	        DOMSource source = new DOMSource(doc);
+	        transformer.transform(source, result);
+	        String xmlString = sw.toString();
+
+	       // File file = new File("osMaEntry/gwt/unibas/"+System.currentTimeMillis()+".xml");
+	        String path=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
+	        String fileName=path+System.currentTimeMillis()+".xml";
+	        
+	        
+	        File file = new File(fileName);
+	        file.createNewFile();
+	        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true)));
+	        bw.write(xmlString);
+	        bw.flush();
+	        bw.close();
+	        
+	        
+	        String htmlFileName=convertXmlToHtml(fileName);
+	        
+	        return htmlFileName;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public static String convertXmlToHtml(String fileName)
+	{
+		 try
+	        {
+			 
+			 	
+			 	
+	            TransformerFactory tFactory = TransformerFactory.newInstance();
+	            String xslPath=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/skill.xsl");
+	            Source xslDoc = new StreamSource(xslPath);
+	            Source xmlDoc = new StreamSource(fileName);
+	            
+	            String path=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
+	            String outputFileName =path +System.currentTimeMillis()+".html";
+	            OutputStream htmlFile = new FileOutputStream(outputFileName);
+
+	            Transformer transformer = tFactory.newTransformer(xslDoc);
+	            transformer.setErrorListener(new ErrorListener() {
+					
+					@Override
+					public void warning(TransformerException exception)
+							throws TransformerException {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void fatalError(TransformerException exception)
+							throws TransformerException {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void error(TransformerException exception)
+							throws TransformerException {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+	            transformer.transform(xmlDoc, new StreamResult(htmlFile));
+	            htmlFile.close();
+	            File xmlFile=new File(fileName);
+	            xmlFile.delete();
+	           return outputFileName;
+	        }
+	        catch(Exception e)
+	        {
+	            e.printStackTrace();
+	            return null;
+	        }
+	}
+	
     public static SkillLevels getSkillAcquiredbyStudentAtThisLevel(Long studentID,Long skillID){
     	
     	Log.info("Inside isSkillAcquiredbyStudentAtFirstLevel with student " + studentID + " skill : " +skillID );

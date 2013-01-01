@@ -115,14 +115,15 @@
 		<url-pattern>/gwtRequest</url-pattern>
 	</filter-mapping>
 	
- <servlet>
-		<servlet-name>resourceDownloaderServlet</servlet-name>
-        <servlet-class>logbook.server.resourcedownloader.ResourceDownloaderServlet</servlet-class>
+
+	
+	<servlet>
+		<servlet-name>SkillPdfExport</servlet-name>
+        <servlet-class>logbook.server.servlet.SkillPdfExport</servlet-class>
 	</servlet>
-		
 	<servlet-mapping>
-		<servlet-name>resourceDownloaderServlet</servlet-name>
-		<url-pattern>/downloadFile</url-pattern>
+		<servlet-name>SkillPdfExport</servlet-name>
+		<url-pattern>/SkillPdfExport</url-pattern>
 	</servlet-mapping>
     
 </web-app>
