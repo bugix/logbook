@@ -2,6 +2,8 @@ package logbook.client.a_nonroo.app.client.activity;
 
 import java.util.List;
 
+import logbook.client.ApplicationLoadingScreenEvent;
+import logbook.client.ApplicationLoadingScreenHandler;
 import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
 import logbook.client.a_nonroo.app.client.place.SkillPlace;
 import logbook.client.a_nonroo.app.client.ui.SkillLevelCheckboxView;
@@ -91,6 +93,8 @@ public class SkillActivity extends AbstractActivity implements
 
 		this.requests = requests;
 		this.placeController = placeController;
+		
+		initLoading();
 	}
 
 	public void onStop() {
@@ -126,6 +130,7 @@ public class SkillActivity extends AbstractActivity implements
 		checkBoxview.setDelegate(this);*/
 		
 	//	findCurrentStudent();
+		
 		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() {
 
 			@Override
@@ -153,7 +158,19 @@ public class SkillActivity extends AbstractActivity implements
 		
 
 	}
+	private void initLoading(){
+		ApplicationLoadingScreenEvent.initialCounter();
+		ApplicationLoadingScreenEvent.register(requests.getEventBus(),
+				new ApplicationLoadingScreenHandler() {
+					@Override
+					public void onEventReceived(
+							ApplicationLoadingScreenEvent event) {
+//						Log.info("ApplicationLoadingScreenEvent onEventReceived Called");
+						event.display();
+					}
+				});
 
+	}
 	/*private void findCurrentStudent() {
 		
 		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() {
@@ -171,7 +188,7 @@ public class SkillActivity extends AbstractActivity implements
 	//chkAsc: 1=Sort Descending ShortCut
 	private void initSkillTableData(StudentProxy student,int chkAsc) {
 		
-		
+		showApplicationLoading(true);
 		skillFlexTable.removeAllRows();
 		
 		System.out.println("student is :" + student.getId());
@@ -189,6 +206,7 @@ public class SkillActivity extends AbstractActivity implements
 			/*for(SkillProxy skill : response){
 				System.out.println("id : " + skill.getId());
 			}*/
+				showApplicationLoading(false);	
 			view.getPager().setRowCount(response.getTotalSkill());
 			view.createHeader(view.getSkillFlexTable());
 			view.setSource(response);
@@ -730,9 +748,10 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		Log.info("url :" + url);
 		Window.open(url, "skill"+view.getStudent().getName()+".pdf", "enabled");
 		
-		
-		
-		
+	}
+	public void showApplicationLoading(Boolean show) {
+		requests.getEventBus().fireEvent(new ApplicationLoadingScreenEvent(show));
+
 	}
 	/*@Override
 	public Boolean isSkillAcquiredbyStudentAtFirstLevel(Long studentID,
