@@ -20,6 +20,7 @@ import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 import logbook.client.managed.proxy.SkillAcquiredProxy;
 import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.request.StudentRequest;
+import logbook.shared.StudentStatus;
 import logbook.shared.StudyYears;
 import logbook.shared.i18n.LogBookConstants;
 import logbook.shared.scaffold.LogBookConstant;
@@ -488,16 +489,19 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	{
 		Log.info("Student is going to Finalize.");
 		Log.info("Student Id: " + studentProxy.getId());
+		
 		StudentRequest studentRequest=requests.studentRequest();
-		StudentProxy student=studentProxy;
-		studentRequest.edit(student);
-		requests.studentRequest().persist().using(student).fire(new Receiver<Void>() 
+		StudentProxy proxy=studentProxy;
+		proxy=studentRequest.edit(proxy);
+		
+		proxy.setStudentStatus(StudentStatus.Fianllized);
+		
+		studentRequest.persist().using(proxy).fire(new Receiver<Void>() 
 		{
-
 			@Override
 			public void onSuccess(Void response) 
 			{
-				Log.info("Successfully Save.");
+				Log.info("Successfully Saved.");
 			}
 			@Override
 			public void onFailure(ServerFailure error) 
