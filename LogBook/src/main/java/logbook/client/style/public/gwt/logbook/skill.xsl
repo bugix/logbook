@@ -23,26 +23,34 @@
       .mainClassification{
       	background-color:rgb(198,236,81);
       	width:100%;
+      	 font-size:14px;
+      	 padding:2px;
       }
       .classificationTopic{
       margin-bottom:20px;
       width:100%;
+       font-size:12px;
+       padding:2px;
       }
       .topic{
       	margin-left:20px;
       	background-color:rgb(255,255,119);
       	 margin-bottom:5px;
+      	  font-size:11px;
+      	  padding:2px;
       }
       
       .skillTable{
       margin-bottom:30px;
       text-align:center;
+       font-size:10px;
       }
       
       .skillTableRow{
       diplay:block;
-       border-bottom:1px solid rgb(198,236,81);
+       border-bottom:1px solid rgb(180,230,29);
        text-align:left;
+      padding:2px;
       }
       .td1{
       min-width="60px";
@@ -72,7 +80,7 @@
    <xsl:for-each select="mainClassifications/mainClassification">
    
 	   	<div class="mainClassification" >
-	   		<h2><b><xsl:value-of select="description" /></b></h2>
+	   		<b><xsl:value-of select="description" /></b>
 	   	</div>
 	   	
 	   	<xsl:for-each select="classificationTopics/classificationTopic">
@@ -85,15 +93,15 @@
 					   			</div>
 					   			<table cellspacing="0"  align="center" class="skillTable" cellpadding="0">
 					   						<tr  >
-					   							 <td class="skillTableRow" align="left"><b>Shortcut</b>
+					   							 <td valign="bottom" colspan="2" width="80%" class="skillTableRow" align="left"><b>Objective Id</b>
 					   							</td>
 					   							
-					   							<td  class="skillTableRow padLeft" width="70%" align="left"><b>Description</b>
-					   							</td>
+					   							<!-- <td  class="skillTableRow padLeft" width="70%" align="left"><b>Description</b>
+					   							</td> -->
 					   							
-					   							<td class="skillTableRow"><b>Skill Level</b>
+					   							<td valign="bottom" class="skillTableRow"><b>Skill Level</b>
 					   							</td>
-					   							<td class="skillTableRow"><b>Skill Acquired Level</b>
+					   							<td  valign="bottom" class="skillTableRow"><b> Acquired Level</b>
 					   							</td> 
 					   							
 					   							<!-- <div class="skillTableRow" width="595px">
@@ -106,18 +114,18 @@
 									   			<xsl:for-each select="skills/skill">
 									   				
 									   						<tr >
-									   							 <td class="skillTableRow" align="left">
+									   							 <td  valign="top" width="10%" class="skillTableRow" align="left">
 									   								<xsl:value-of select="shortcut" />
 									   							</td >
 									   							
-									   							<td class="skillTableRow" align="left">
+									   							<td valign="top" width="70%" class="skillTableRow" align="left">
 									   								<xsl:value-of select="description" />
 									   							</td>
 									   							
-									   							<td class="skillTableRow">
+									   							<td  valign="top" width="10%" class="skillTableRow">
 									   								<xsl:value-of select="skillLevel" />
 									   							</td>
-									   							<td class="skillTableRow">
+									   							<td valign="top" width="10%" class="skillTableRow">
 									   								<xsl:value-of select="skillLevelAcquired" />
 									   							</td> 
 									   							<!-- <div class="skillTableRow" width="595px">

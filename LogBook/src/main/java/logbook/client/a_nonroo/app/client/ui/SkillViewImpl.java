@@ -290,7 +290,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 	public void savePdfClicked(ClickEvent event){
 		event.preventDefault();
 		event.stopPropagation();
-		delegate.generatePdfClicked();
+	delegate.exportPDF();
 	}
 	
 	@UiHandler("hyperLnkPrint")
@@ -702,9 +702,23 @@ public class SkillViewImpl extends Composite implements SkillView {
 			}
 			else
 			{
-				/*if( ( tproxy.getId() != data.get(i-1).getTopic().getId()))
+				
+				
+	/*			 if( ( mProxy.getId() != data.get(i-1).getTopic().getClassificationTopic().getMainClassification().getId()))
 				{
+					skillFlexTable.setWidget(++row, 0, createMainClassificationWidget(mProxy));
+					delegate.findProgressOfMainClassification(mProxy,row,1,student);
+					//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
+					skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
+					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "mainClassificationBG");
+					mainClassificationRow=row;
 					
+					skillFlexTable.setWidget(++row, 0, createClassificationTopicWidget(ctProxy));
+					delegate.findProgressOfClassificationTopic(ctProxy,row,1,student);
+					//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
+					skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
+					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "classificationTopicBG");
+					classificationTopicRow=row;
 					
 					skillFlexTable.setWidget(++row,0,createTopicWidget(tproxy));
 					delegate.findProgressOfTopic(tproxy,row,1,student);
@@ -713,7 +727,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "topicBG");
 					topicRow=row;
 				}
-				else if( ( ctProxy.getId() != data.get(i-1).getTopic().getClassificationTopic().getId()))
+				 else if( ( ctProxy.getId() != data.get(i-1).getTopic().getClassificationTopic().getId()))
 					{
 					if(!ctProxy.getDescription().equals("Blank"))
 					{
@@ -723,17 +737,26 @@ public class SkillViewImpl extends Composite implements SkillView {
 						skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
 						skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "classificationTopicBG");
 						classificationTopicRow=row;
+						
+						skillFlexTable.setWidget(++row,0,createTopicWidget(tproxy));
+						delegate.findProgressOfTopic(tproxy,row,1,student);
+						//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
+						skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
+						skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "topicBG");
+						topicRow=row;
 					}
 					}
-				else if( ( mProxy.getId() != data.get(i-1).getTopic().getClassificationTopic().getMainClassification().getId()))
-				{
-					skillFlexTable.setWidget(++row, 0, createMainClassificationWidget(mProxy));
-					delegate.findProgressOfMainClassification(mProxy,row,1,student);
-					//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
-					skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
-					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "mainClassificationBG");
-					mainClassificationRow=row;
-				}*/
+				 else if( ( tproxy.getId() != data.get(i-1).getTopic().getId()))
+					{
+						
+						
+						skillFlexTable.setWidget(++row,0,createTopicWidget(tproxy));
+						delegate.findProgressOfTopic(tproxy,row,1,student);
+						//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
+						skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
+						skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "topicBG");
+						topicRow=row;
+					}*/
 				if( ( tproxy.getId() != data.get(i-1).getTopic().getId())){
 					
 					if( ( ctProxy.getId() != data.get(i-1).getTopic().getClassificationTopic().getId())){
@@ -835,6 +858,12 @@ public class SkillViewImpl extends Composite implements SkillView {
 			}
 			
 		}
+	}
+	
+	@UiHandler("imgpdf")
+	public void pdfClicked(ClickEvent event)
+	{
+		delegate.exportPDF();
 	}
 	
 	

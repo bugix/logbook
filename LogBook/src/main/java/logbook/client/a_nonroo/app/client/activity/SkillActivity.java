@@ -445,7 +445,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 			topicId=tProxy.getId();
 		}
 		
-		requests.skillRequestNonRoo().retrieveHtmlFile(view.getStudent().getId(),mainClassifcationId,classifcationTopicId,topicId,fullTextSearch,0).fire(new Receiver<String>() {
+		requests.skillRequestNonRoo().retrieveHtmlFile(view.getStudent().getId(),mainClassifcationId,classifcationTopicId,topicId,fullTextSearch,view.getIsAsc()).fire(new Receiver<String>() {
 
 			@Override
 			public void onSuccess(String response) {
@@ -725,7 +725,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 			topicId=tProxy.getId().toString();
 		}
 		
-		String chkAsc="0";
+		String chkAsc=new Integer(view.getIsAsc()).toString();
 		String url=GWT.getHostPageBaseURL()+"SkillPdfExport?studentId="+view.getStudent().getId()+"&mainClassifcationId="+mainClassifcationId+"&classifcationId="+classifcationTopicId+"&topicId="+topicId+"&chkAsc="+chkAsc+"&fullTextSearch="+fullTextSearch;
 		Log.info("url :" + url);
 		Window.open(url, "skill"+view.getStudent().getName()+".pdf", "enabled");
