@@ -452,6 +452,8 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 							
 							proxy.setEmail(email);
 							proxy.setStudyYear(studyYear);
+							final StudentProxy tempStudentProxy=proxy;
+							
 							
 							studentRequest.persist().using(proxy).fire(new Receiver<Void>() {
 
@@ -460,6 +462,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 									Log.info("Successfully updated.");
 									view.getLblEmailVal().setText(email);
 									view.getLblStudeyYearvalue().setText(studyYear.name());
+									view.setStudentProxy(tempStudentProxy);
 									popupView.hide();
 									
 								}

@@ -7,8 +7,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -536,6 +534,14 @@ public class Skill {
 		List<Skill> skillresultList  = new ArrayList<Skill>();
 		
 		int totalSize = 0;
+		
+		totalSize=result.getResultList().size();
+		
+		
+		
+		skillresultList  = result.getResultList();
+		
+		Log.info("RESULTLISTSIZE : " + skillresultList.size());
 		
 /*		if (fulltextSearch != "" && (!fulltextSearch.equals("")) && fulltextSearch != null)
 		{
