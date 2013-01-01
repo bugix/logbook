@@ -21,6 +21,8 @@ public interface StudentInformationView extends IsWidget{
 	 */
 	interface Delegate {
 		public void changeStudentInformationClicked(ClickEvent event);
+
+		public void finalizeLogBookClick(StudentProxy studentProxy);
 	}
 	
 	interface presenter {

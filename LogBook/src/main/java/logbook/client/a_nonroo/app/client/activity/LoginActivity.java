@@ -480,8 +480,38 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			}
 		});
 		
-	
-		
+	}
+
+	// Finalize Student
+	@Override
+	public void finalizeLogBookClick(StudentProxy studentProxy) 
+	{
+		Log.info("Student is going to Finalize.");
+		Log.info("Student Id: " + studentProxy.getId());
+		StudentRequest studentRequest=requests.studentRequest();
+		StudentProxy student=studentProxy;
+		studentRequest.edit(student);
+		requests.studentRequest().persist().using(student).fire(new Receiver<Void>() 
+		{
+
+			@Override
+			public void onSuccess(Void response) 
+			{
+				Log.info("Successfully Save.");
+			}
+			@Override
+			public void onFailure(ServerFailure error) 
+			{
+				super.onFailure(error);
+				Log.info("Failure to Save.");
+			}
+			@Override
+			public void onConstraintViolation(Set<ConstraintViolation<?>> violations) 
+			{
+				super.onConstraintViolation(violations);
+				Log.info("Constraint Violate when Save.");
+			}
+		});
 	}
 	
 }	

@@ -7,15 +7,13 @@ import java.util.Set;
 import logbook.client.a_nonroo.app.client.MyCellTableResources;
 import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
 import logbook.client.managed.proxy.SkillAcquiredProxy;
-import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.style.Resources.MySimplePagerResources;
-import logbook.server.domain.SkillAcquired;
 import logbook.shared.SkillLevels;
-import logbook.shared.StudyYears;
 import logbook.shared.i18n.LogBookConstants;
 import logbook.shared.scaffold.LogBookConstant;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.text.shared.AbstractRenderer;
@@ -29,7 +27,6 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -115,7 +112,12 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	@UiField(provided = true)
 	public SimplePager pager;
 
-	
+	@UiHandler("btnFinalizeLogBook")
+	public void btnFinalizeLogBookClicked(ClickEvent event)
+	{
+		Log.info("Finalize Student Clicked.");
+		delegate.finalizeLogBookClick(studentProxy);
+	}
 	
 	@UiHandler("btnChange")
 	public void btnChangeClicked(ClickEvent event)
@@ -127,9 +129,6 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	protected Set<String> paths = new HashSet<String>();
 	
 	LogBookConstants constants = GWT.create(LogBookConstants.class);
-	
-	
-	
 	
 	@Override
 	public Label getLblPersonnelInformation() {
