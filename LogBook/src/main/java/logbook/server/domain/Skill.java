@@ -289,13 +289,15 @@ public class Skill {
 		}
 		else*/
 		{
-			totalSize=result.getResultList().size();
+			
 			
 			result.setFirstResult(start);
 			
 			result.setMaxResults(max);
 			
 			skillresultList  = result.getResultList();
+			
+			totalSize=skillresultList.size();
 			
 			Log.info("RESULTLISTSIZE : " + skillresultList.size());
 		}
@@ -535,11 +537,12 @@ public class Skill {
 		
 		int totalSize = 0;
 		
-		totalSize=result.getResultList().size();
+		
 		
 		
 		
 		skillresultList  = result.getResultList();
+		totalSize=skillresultList.size();
 		
 		Log.info("RESULTLISTSIZE : " + skillresultList.size());
 		
@@ -626,7 +629,7 @@ public class Skill {
 			});
 		}*/
 		
-		List<SkillLevels> skillAcquiredList =findSkillAcquiredByStudents(skillresultList,studentId);
+		//List<SkillLevels> skillAcquiredList =findSkillAcquiredByStudents(skillresultList,studentId);
 		//System.out.println("Skill Acquired size :" + skillAcquiredList.size());
 		
 		SkillFilteredResult finalresult = new SkillFilteredResult();
@@ -638,7 +641,7 @@ public class Skill {
 
 		finalresult.setTotalSkill(totalSize);
 		finalresult.setSkillList(skillresultList);
-		finalresult.setSkilltLevelsAcquiredList(skillAcquiredList);
+		//finalresult.setSkilltLevelsAcquiredList(skillAcquiredList);
 		
 	
 		
@@ -921,6 +924,7 @@ public class Skill {
 						  topicsElement=createEmptyChildNode("topics",doc,classificationTopicElement);
 						 Element topicElement=createEmptyChildNode("topic",doc,topicsElement);
 						 createChildNode("description", topicDescription, doc, topicElement);
+						 skillsElement=createEmptyChildNode("skills",doc,topicElement);
 					}
 					}
 				else if( ( skill.getTopic().getClassificationTopic().getMainClassification().getId() != skills.get(i-1).getTopic().getClassificationTopic().getMainClassification().getId()))
@@ -1025,29 +1029,7 @@ public class Skill {
 	            OutputStream htmlFile = new FileOutputStream(outputFileName);
 
 	            Transformer transformer = tFactory.newTransformer(xslDoc);
-	            transformer.setErrorListener(new ErrorListener() {
-					
-					@Override
-					public void warning(TransformerException exception)
-							throws TransformerException {
-						// TODO Auto-generated method stub
-						
-					}
-					
-					@Override
-					public void fatalError(TransformerException exception)
-							throws TransformerException {
-						// TODO Auto-generated method stub
-						
-					}
-					
-					@Override
-					public void error(TransformerException exception)
-							throws TransformerException {
-						// TODO Auto-generated method stub
-						
-					}
-				});
+	
 	            transformer.transform(xmlDoc, new StreamResult(htmlFile));
 	            htmlFile.close();
 	            File xmlFile=new File(fileName);

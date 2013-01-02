@@ -1,15 +1,10 @@
 package logbook.server.servlet;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
@@ -39,19 +34,6 @@ import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 import org.xhtmlrenderer.pdf.ITextRenderer;
-
-
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Font.FontFamily;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfWriter;
 
 public class SkillPdfExport   extends HttpServlet {
 
@@ -145,7 +127,9 @@ public class SkillPdfExport   extends HttpServlet {
 	{
 		try{
 		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+		builderFactory.setValidating(true);
         DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
+       
         org.w3c.dom.Document doc = docBuilder.newDocument();
         return doc;
 		}
@@ -175,7 +159,7 @@ public class SkillPdfExport   extends HttpServlet {
 	
 	public String createHtml(SkillFilteredResult result,Long studentId)
 	{
-		org.w3c.dom.Document doc=createDocument();
+		 org.w3c.dom.Document doc=createDocument();
 		
 		Element root = doc.createElement("mainClassifications");
 		
@@ -233,6 +217,7 @@ public class SkillPdfExport   extends HttpServlet {
 						  topicsElement=createEmptyChildNode("topics",doc,classificationTopicElement);
 						 Element topicElement=createEmptyChildNode("topic",doc,topicsElement);
 						 createChildNode("description", topicDescription, doc, topicElement);
+						 skillsElement=createEmptyChildNode("skills",doc,topicElement);
 					}
 					}
 				else if( ( skill.getTopic().getClassificationTopic().getMainClassification().getId() != skills.get(i-1).getTopic().getClassificationTopic().getMainClassification().getId()))
