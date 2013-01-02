@@ -250,7 +250,7 @@ public class Skill {
 		
 		TypedQuery<Skill> result = entityManager().createQuery(criteriaQuery);
 		
-		System.out.println("Critera query is :" + result.unwrap(Query.class).getQueryString());
+		Log.info("Critera query is :" + result.unwrap(Query.class).getQueryString());
 		
 		List<Skill> skillresultList  = new ArrayList<Skill>();
 		
@@ -529,7 +529,7 @@ public class Skill {
 		
 		TypedQuery<Skill> result = entityManager().createQuery(criteriaQuery);
 		
-		System.out.println("Critera query is :" + result.unwrap(Query.class).getQueryString());
+		Log.info("Critera query is :" + result.unwrap(Query.class).getQueryString());
 		
 		List<Skill> skillresultList  = new ArrayList<Skill>();
 		
@@ -802,7 +802,7 @@ public class Skill {
     			result.add(getSkillAcquiredbyStudentAtThisLevel(studentId, skill.getId()));
     			
     		}catch(Exception e){
-    			System.out.println("Error" + e.getStackTrace());
+    			Log.info("Error" + e.getStackTrace());
     		}
     	}
     	

@@ -21,6 +21,7 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
 @RooJavaBean
@@ -62,7 +63,7 @@ public class Student {
     {
         HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
         String mailId = (String) session.getAttribute(UNIQUE_ID);
-        System.out.println("Mail id: " + mailId);
+        Log.info("Mail id: " + mailId);
         Student student=Student.findStudentsByEmailEquals(mailId).getResultList().get(0);
         return student;
     }

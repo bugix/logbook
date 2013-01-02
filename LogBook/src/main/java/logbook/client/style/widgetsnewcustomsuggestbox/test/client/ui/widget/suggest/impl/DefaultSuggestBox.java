@@ -72,14 +72,14 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 
 	public DefaultSuggestBox() {
 		this(null);
-		System.out.println("Call Constructor1");
+		Log.info("Call Constructor1");
 		this.setWidth(200);
 		//textField.addStyleName("addBorder");
 	}
 
 	public DefaultSuggestBox(String defaultText) {
 		this(defaultText, new DefaultSuggestOracle<T>());
-		System.out.println("Call Constructor2");
+		Log.info("Call Constructor2");
 		textField.addStyleName("customControls");
 		this.setWidth(200);
 	}
@@ -90,7 +90,7 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 		init(defaultText);		
 		this.suggestOracle = suggestOracle;
 		suggestOracle.setSuggestBox((AbstractSuggestBox<T, EventHandlingValueHolderItem<T>>) this);
-		System.out.println("Call Constructor3");
+		Log.info("Call Constructor3");
 		this.setWidth(130);
 	}
 

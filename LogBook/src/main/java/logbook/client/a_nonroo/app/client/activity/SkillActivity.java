@@ -191,11 +191,11 @@ public class SkillActivity extends AbstractActivity implements
 		showApplicationLoading(true);
 		skillFlexTable.removeAllRows();
 		
-		System.out.println("student is :" + student.getId());
+		Log.info("student is :" + student.getId());
 		
 		String fullTextSearchString=view.getFullTextSearchBox().getValue();
 		
-		System.out.println("full text : " + fullTextSearchString);
+		Log.info("full text : " + fullTextSearchString);
 		
 	
 	
@@ -224,11 +224,11 @@ public class SkillActivity extends AbstractActivity implements
 		
 		skillFlexTable.removeAllRows();
 		
-		System.out.println("student is :" + student.getId());
+		Log.info("student is :" + student.getId());
 		
 		String fullTextSearchString=view.getFullTextSearchBox().getValue();
 		
-		System.out.println("full text : " + fullTextSearchString);
+		Log.info("full text : " + fullTextSearchString);
 		
 	
 	
@@ -433,7 +433,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 	@Override
 	public void generatePdfClicked() {
 		String url = GWT.getHostPageBaseURL() + "downloadFile";
-		System.out.println("URL :" + url);
+		Log.info("URL :" + url);
 		Window.open(url, "", "");
 		
 	}
@@ -502,7 +502,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 			@Override
 			public void onSuccess(String response) {
 				//Window.alert("Operation complete");
-				System.out.println("Operation is :" + response);
+				Log.info("Operation is :" + response);
 				if(response.equalsIgnoreCase("INSERT")){
 					skillLevelCheckboxViewImpl.getCheckbox().setValue(true);
 					

@@ -444,7 +444,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 						{
 							final String email=popupView.getTxtEmailValue().getText();
 							final StudyYears studyYear=popupView.getLstBoxStudyYear().getValue();
-							System.out.println("E Mail: " + email + " Study Year: " + studyYear.name());
+							Log.info("E Mail: " + email + " Study Year: " + studyYear.name());
 							
 							StudentRequest studentRequest=requests.studentRequest();
 							 StudentProxy proxy=studentProxy;

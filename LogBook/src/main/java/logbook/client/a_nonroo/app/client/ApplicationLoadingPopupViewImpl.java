@@ -17,14 +17,6 @@ public class ApplicationLoadingPopupViewImpl extends DialogBox implements
 			UiBinder<Widget, ApplicationLoadingPopupViewImpl> {
 	}
 
-	// private final OsceConstants constants = GWT.create(OsceConstants.class);
-
-	// @UiField
-	// NotificationMole mole;
-
-	// @UiField
-	// VerticalPanel vPanel;
-
 	@UiField
 	Image loading;
 
@@ -44,7 +36,6 @@ public class ApplicationLoadingPopupViewImpl extends DialogBox implements
 		
 		//setPopupPosition(getAbsoluteLeft() / 2, getAbsoluteTop() / 2);
 		 center();
-		// setText(constants.loading());
 		this.getElement().removeClassName("gwt-DialogBox");
 		 this.getElement().getStyle().setZIndex(1);
 
