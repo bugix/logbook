@@ -2,7 +2,12 @@ package logbook.client.a_nonroo.app.client.activity;
 
 
 import java.util.List;
+import java.util.Set;
 
+import javax.validation.ConstraintViolation;
+
+import logbook.client.ApplicationLoadingScreenEvent;
+import logbook.client.ApplicationLoadingScreenHandler;
 import logbook.client.a_nonroo.app.client.TopicFilteredResultProxy;
 import logbook.client.a_nonroo.app.client.place.ProgressPlace;
 import logbook.client.a_nonroo.app.client.ui.ProgressView;
@@ -26,6 +31,7 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.google.web.bindery.requestfactory.shared.ServerFailure;
 /**
  * @author Manish
  *
@@ -93,16 +99,32 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 		this.widget = panel;
 		init();
 		initProgressFlexTable();
+		initLoading();
 		
 		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() {
 
 			@Override
 			public void onSuccess(StudentProxy response) {
+				
 				initProgressFlexTableData(response);				
 			}
 		});
 	}
 		
+
+	private void initLoading() 
+	{
+			ApplicationLoadingScreenEvent.initialCounter();
+			ApplicationLoadingScreenEvent.register(requests.getEventBus(),
+					new ApplicationLoadingScreenHandler() {
+						@Override
+						public void onEventReceived(
+								ApplicationLoadingScreenEvent event) {
+							event.display();
+						}
+					});
+	}
+
 
 	private void initProgressFlexTable() 
 	{
@@ -125,9 +147,9 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 			public void onSuccess(TopicFilteredResultProxy response) 
 			{
 				
-				Log.info("Topic List Size: " + response.getTopicList().size());
-				Log.info("Total Topic Size: " + response.getTotalTopicList().size());
-				Log.info("Acquired Topic Size: " + response.getTopicAcquiredList().size());
+				//Log.info("Topic List Size: " + response.getTopicList().size());
+				//Log.info("Total Topic Size: " + response.getTotalTopicList().size());
+				//Log.info("Acquired Topic Size: " + response.getTopicAcquiredList().size());
 				
 				view.createHeader(view.getProgressFlexTable());
 				view.setSource(response.getTopicList(),response.getTotalTopicList(),response.getTopicAcquiredList(),studentProxy);
@@ -138,6 +160,7 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 
 	private void initProgressFlexTableData(final StudentProxy studentProxy) 
 	{
+		showApplicationLoading(true);
 		progressFlexTable.removeAllRows();
 		requests.topicRequestNonRoo().findTopicOrderByClassification(view.getPager().getStart(),view.getPager().getLength(),studentProxy).with("topicList.classificationTopic","topicList.classificationTopic.mainClassification").fire(new Receiver<TopicFilteredResultProxy>() {
 
@@ -145,17 +168,33 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 			public void onSuccess(TopicFilteredResultProxy response) 
 			{
 				
-				Log.info("Topic List Size: " + response.getTopicList().size());
-				Log.info("Total Topic Size: " + response.getTotalTopicList().size());
-				Log.info("Acquired Topic Size: " + response.getTopicAcquiredList().size());
-				
+				//Log.info("Topic List Size: " + response.getTopicList().size());
+				//Log.info("Total Topic Size: " + response.getTotalTopicList().size());
+				//Log.info("Acquired Topic Size: " + response.getTopicAcquiredList().size());
+				showApplicationLoading(false);
 				view.getPager().setRowCount(response.getTotalTopics());
 				view.createHeader(view.getProgressFlexTable());
 				view.setSource(response.getTopicList(),response.getTotalTopicList(),response.getTopicAcquiredList(),studentProxy);
 			}
+			@Override
+			public void onFailure(ServerFailure error) 
+			{
+				showApplicationLoading(false);
+				super.onFailure(error);
+				
+			}
+			@Override
+			public void onConstraintViolation(Set<ConstraintViolation<?>> violations) 
+			{
+				showApplicationLoading(false);
+				super.onConstraintViolation(violations);
+			}
 		});
 	}
-	
+	public void showApplicationLoading(Boolean show) {
+		requests.getEventBus().fireEvent(new ApplicationLoadingScreenEvent(show));
+
+	}
 
 	private void init(){
 		ProgressView systemStartView = new ProgressViewImpl();
@@ -187,10 +226,8 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 
 
 	@Override
-	public void findProgressOfMainClassification(
-			MainClassificationProxy mainClassificationProxy,final int row,final int i,
-			StudentProxy studentProxy) {
-		
+	public void findProgressOfMainClassification(MainClassificationProxy mainClassificationProxy,final int row,final int i,StudentProxy studentProxy) 
+	{
 		requests.skillRequestNonRoo().findProgressOfMainClassification(mainClassificationProxy, studentProxy.getId()).fire(new Receiver<String>() {
 
 			@Override
