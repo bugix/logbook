@@ -896,7 +896,7 @@ color: #77BBD8;
    
 }
 .gwt-ProgressBar-shell .gwt-ProgressBar-text {
-  padding: 0px;
+  padding-left: 5px;
   margin: 0px;
   color: black;
   font-size: 76%;
@@ -981,7 +981,7 @@ color: #77BBD8;
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelContent
 {
-	padding:  6px;
+	padding:  25px;
     border-width: 0px !important;	
     position: relative !important;
 }
@@ -1147,7 +1147,6 @@ color: #77BBD8;
 	width: 863px;
 	overflow: visible !important;
 	position: relative !important;
-	
 }
 .logo
 {
@@ -1225,15 +1224,20 @@ color: #77BBD8;
 }
 .mainClassificationDescription{
 	padding-left: 7px;
-	padding-top:4px;
+	padding-top:5px;
+	padding-bottom:5px;
+width: 95%;
+	
 }
 .classificationDescription{
 	padding-left: 13px;
-	padding-top:4px;
+	padding-top:5px;
+	padding-bottom:5px;
 }
 .topicDescription{
 	padding-left: 17px;
-	padding-top:4px;
+	padding-top:5px;
+	padding-bottom:5px;
 }
 
 .skillDescription{
@@ -1243,6 +1247,8 @@ color: #77BBD8;
 	/*margin-top: 1px;*/
 	/*margin-bottom: 1px;*/
 	min-height: 20px;
+padding-top: 3px;
+	padding-bottom: 3px;
 }
 .skillChkBox{
 		
@@ -1252,7 +1258,7 @@ color: #77BBD8;
 		
 	}
 .mainClassificationSkillProgress{
-	margin: 2px;
+	margin: 5px;
 	width: 97%;
 	max-height: 13px;
 }
@@ -1270,7 +1276,7 @@ color: #77BBD8;
 	background-color: rgb(238,238,238);
 }
 .skillCountPadding{
-	width:50px;
+	width:64px;
     margin-top: 3px;
 }
 
@@ -1346,5 +1352,27 @@ color: #77BBD8;
 {
 	vertical-align: middle;
 	padding: 5px;
+}
+.searchLabel{
+	 font-family: verdana,Arial,sans-serif;
+	 font-style: normal;
+	 font-weight: normal;
+	/*  width: 140px; */
+}
+.topIndentLoginShell
+{
+	background-color: white;
+    border: 1px solid lightblue;
+    border-radius: 10px 10px 10px 10px;
+    height: 600px;
+    margin: auto;
+    overflow: visible !important;
+    position: relative !important;
+    top: 59px !important;
+    width: 863px;
+}
+.gwt-Label 
+{ 
+	 font-family: verdana,Arial,sans-serif;
 }
 /*pager end*/

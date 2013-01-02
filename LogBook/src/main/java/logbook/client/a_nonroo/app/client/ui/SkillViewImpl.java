@@ -3,12 +3,11 @@ package logbook.client.a_nonroo.app.client.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
 import logbook.client.a_nonroo.app.client.activity.SkillActivity;
+import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager;
 import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager.RangeChangeListener;
-import logbook.client.a_nonroo.app.client.ui.custom.widget.*;
+import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
 import logbook.client.managed.proxy.SkillProxy;
@@ -16,37 +15,26 @@ import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
 import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.DefaultSuggestBox;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultSuggestOracle;
 import logbook.shared.SkillLevels;
 import logbook.shared.i18n.LogBookConstants;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.text.shared.AbstractRenderer;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.FocusPanel;
-import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class SkillViewImpl extends Composite implements SkillView {
@@ -448,7 +436,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 		hyperlnkSavePDF.setText(constants.saveAsPdf());
 
 		lblError.setVisible(false);
-		lblError.setText("Error...");
+		//lblError.setText("Error...");
 		
 		//levelLabel.setText(constants.level());
 		
@@ -577,7 +565,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 			mainClassificationText+=" ( " + mProxy.getShortcut() + " ) ";
 		
 		mainSkillLbl.setText(mainClassificationText);
-		mainSkillLbl.setWidth("90%");
+		mainSkillLbl.setWidth("97%");
 		mainSkillLbl.addStyleName("mainClassificationDescription");
 		Label skillProgress=new Label("0/0");
 		//skillProgress.setWidth("10%");

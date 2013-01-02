@@ -4,8 +4,10 @@ import com.google.gwt.i18n.client.Constants;
 
 public interface LogBookConstants extends Constants {
 
+	public String home();
+	
 	public String login();
-
+	
 	public String skill();
 
 	public String progress();
@@ -78,5 +80,15 @@ public String shortcut();
 	public String l2();
 	
 	public String noSkillAcquired();
+
+public String ErrorMessage();
+	
+	public String skillAcquireError();	
+
+	//Logout Tab
+	
+	public String forgotPassword();
+	
+	public String studentsPleaseLoginHere();
 
 }

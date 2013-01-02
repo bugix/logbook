@@ -29,10 +29,15 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 /**
@@ -83,6 +88,7 @@ public class LogBookNav extends Composite {
 	Label logout;
 
 	
+	
 	@Inject
 	public LogBookNav(LogBookRequestFactory requests, PlaceController placeController,final PlaceHistoryHandler placeHistoryHandler,LogBookActivityMapper mcAppActivitiesMapper,EventBus eventBus) {
         
@@ -90,7 +96,7 @@ public class LogBookNav extends Composite {
 		this.requests = requests;
         this.placeController = placeController;
       
-        login.setText(constants.login());
+        login.setText(constants.home());
 		skill.setText(constants.skill());
 		progress.setText(constants.progress());
 		logout.setText(constants.logout());
@@ -98,9 +104,6 @@ public class LogBookNav extends Composite {
 		logBookNav=this;
 		
 		SkillPlace.nav=logBookNav;
-		
-		
-
 		
 		CachingActivityMapper cached = new CachingActivityMapper(mcAppActivitiesMapper);
 		FilterForMainPlaces filterForMainPlaces = new FilterForMainPlaces();
@@ -150,7 +153,9 @@ public class LogBookNav extends Composite {
 		
 		 //placeHistoryHandler.handleCurrentHistory();
 		 
+			 
     }
+	
 	
 	
 	private int both = 0;

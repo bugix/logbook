@@ -397,7 +397,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 
 	@Override
 	public void resetButtonClicked() {
-		
+		view.getLblError().setVisible(false);
 		this.mainClassificationId=null;
 		this.classificaitonTopicId=null;
 		this.topicId=null;
@@ -417,16 +417,24 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 
 	@Override
 	public void showButtonClicked() {
+		view.getLblError().setVisible(false);
 		this.mainClassificationId=view.getMainClassificationSuggestBox().getSelected() !=null ? view.getMainClassificationSuggestBox().getSelected().getId() : null;
 		this.classificaitonTopicId=view.getClassificationTopicSuggestBox().getSelected()!=null ? view.getClassificationTopicSuggestBox().getSelected().getId() : null;
 		this.topicId=view.getTopicSuggestBox().getSelected() !=null ? view.getTopicSuggestBox().getSelected().getId():null;
 		
+		if(mainClassificationId==null && classificaitonTopicId==null && topicId==null){
+			view.getLblError().setVisible(true);
+			view.getLblError().setText(constants.ErrorMessage());
+		}
+		else{
+			
 		view.setIsAsc(0);
 		
 		view.getPager().setStart(1);
 		//view.getPager().setLength(20);*/
 		
 		initSkillTableData(view.getStudent(),view.getIsAsc());
+		}
 		
 	}
 
@@ -485,6 +493,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 	@Override
 	public void chekBoxSelected(SkillProxy skillProxy,final boolean isLevel1,final SkillLevelCheckboxViewImpl skillLevelCheckboxViewImpl) {
 		
+		view.getLblError().setVisible(false);
 		final int row =skillLevelCheckboxViewImpl.getRow();
 		Boolean isDeleteOperation=true;
 		final SkillLevelCheckboxViewImpl s =(SkillLevelCheckboxViewImpl)view.getSkillFlexTable().getWidget(row, 2);
@@ -629,6 +638,11 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 					view.getSkillFlexTable().getRowFormatter().removeStyleName(row, "yellowBG");
 					view.getSkillFlexTable().getRowFormatter().addStyleName(row, "redBG");
 					
+					
+				}
+				else if(response.equals("ERROR")){
+					view.getLblError().setVisible(true);
+					view.getLblError().setText(constants.skillAcquireError());
 					
 				}
 				

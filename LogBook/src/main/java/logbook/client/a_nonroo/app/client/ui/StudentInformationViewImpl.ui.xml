@@ -24,7 +24,7 @@
 			border-radius: 5px;
 			border-color: lightblue;
 			padding: 15px;
-			width: 90%;
+			width: 91%;
 			height: 90%;
 		}
 		
@@ -49,28 +49,40 @@
 		
 		.infoLabelStyle {
 			font-style: normal;
-			color: grey;
+			font-size: 98%;
+			color: #888888;
+			display: block;
 			padding-top: 5px;
 			padding-left: 5px;
+			float: left;
 		}
 		
 		.valueLabelStyle {
+			font-size: 97%;
 			font-style: normal;
-			color: black;
+			color: #333333;
+			display: block;
+			float: left;
 			padding-top: 5px;
+			padding-left: 30px;
+			margin-right: 60px;
 		}
 		
-		.headingLabelStyle {
+		.headingLabelStyle 
+		{
 			font-style: normal;
-			color: grey;
-			padding-bottom: 5px;
+			color: #888888;
+			font-size: 124%;
+			line-height: 32px;
+			padding-bottom: 1px;
 			padding-left: 5px;
+			text-transform: uppercase;
 		}
 		
 		.finalizeButtonStyle {
 			border-radius: 5px;
 			margin-left: 25px;
-			padding: 3px 0;
+			padding: 3px 0;			
 		}
 		
 		.tableBodyStyle {
@@ -78,7 +90,7 @@
 		}
 		
 		.progressBarLeftPadding {
-			
+			margin-left: 10px;
 		}
 		
 		.latestAcquiredSkillSPStyle {
@@ -95,8 +107,10 @@
 			padding: 15px;
 		}
 		
-		.trStyle {
+		.trStyle 
+		{
 			height: 20px;
+			float: left;
 		}
 		
 		.tablePadding {
@@ -139,21 +153,20 @@
 						<tr addStyleNames="{style.mainTrStyle}">
 							<g:HorizontalPanel addStyleNames="{style.informationHPStyle}">
 								<g:HTMLPanel addStyleNames="{style.personnelInforamationSPStyle}">
+								<g:Label ui:field="lblPersonnelInformation" addStyleNames="{style.headingLabelStyle}"></g:Label>
 									<table>
 										<tbody>
-											<tr addStyleNames="{style.trStyle}">
+											<!-- <tr addStyleNames="{style.trStyle}">
 												<td>
-													<g:Label ui:field="lblPersonnelInformation"
-														addStyleNames="{style.headingLabelStyle}"></g:Label>
+													
 												</td>
-											</tr>
-
+											</tr> -->
 											<tr addStyleNames="{style.trStyle}">
 												<td>
 													<g:Label ui:field="lblName" addStyleNames="{style.infoLabelStyle}"></g:Label>
 												</td>
 												<td>
-													<g:Label ui:field="lblNameVal"></g:Label>
+													<g:Label ui:field="lblNameVal" addStyleNames="{style.valueLabelStyle}"></g:Label>
 												</td>
 											</tr>
 											<tr addStyleNames="{style.trStyle}">
@@ -161,7 +174,7 @@
 													<g:Label ui:field="lblStudentId" addStyleNames="{style.infoLabelStyle}"></g:Label>
 												</td>
 												<td>
-													<g:Label ui:field="lblStudentIdVal"></g:Label>
+													<g:Label ui:field="lblStudentIdVal" addStyleNames="{style.valueLabelStyle}"></g:Label>
 												</td>
 											</tr>
 											<tr addStyleNames="{style.trStyle}">
@@ -170,7 +183,7 @@
 													</g:Label>
 												</td>
 												<td>
-													<g:Label ui:field="lblStudeyYearvalue"></g:Label>
+													<g:Label ui:field="lblStudeyYearvalue" addStyleNames="{style.valueLabelStyle}"></g:Label>
 												</td>
 											</tr>
 											<tr addStyleNames="{style.trStyle}">
@@ -179,7 +192,7 @@
 													</g:Label>
 												</td>
 												<td>
-													<g:Label ui:field="lblEmailVal"></g:Label>
+													<g:Label ui:field="lblEmailVal" addStyleNames="{style.valueLabelStyle}"></g:Label>
 												</td>
 											</tr>
 											<tr addStyleNames="{style.trStyle}">
@@ -200,8 +213,7 @@
 										<tbody>
 											<tr addStyleNames="{style.trStyle}">
 												<td>
-													<g:Label ui:field="lblCurrentProgress"
-														addStyleNames="{style.headingLabelStyle}"></g:Label>
+													<g:Label ui:field="lblCurrentProgress" addStyleNames="{style.headingLabelStyle}"></g:Label>
 												</td>
 											</tr>
 

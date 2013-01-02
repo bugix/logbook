@@ -15,7 +15,6 @@
 			border-radius: 5px;
 			border-color: lightblue;			
 			width: 100%;
-			padding-left: 20px;	
 			padding-top: 10px;
 			padding-bottom: 10px;
 					
@@ -74,6 +73,25 @@
 			width:201px;
 			margin:5px;
 		}	
+		.suggestBoxStyle
+		{
+			margin-left: 70px;
+		}
+		.labelPadding
+		{
+			margin-left: 20px;
+		}
+		.buttonStyle
+		{
+			width:70px;
+			height: 33px; 
+		}
+		.showButtonStyle
+		{
+			width:70px;
+			height: 33px; 
+			margin-left: 70px;
+		}
 	</ui:style>
 	<g:HTMLPanel>
 		<g:VerticalPanel addStyleNames="{style.mainVerticlePanelStyle}"
@@ -82,7 +100,7 @@
 				<table>
 					<tbody>
 						<tr>
-							<g:HorizontalPanel >
+							<g:HorizontalPanel width="100%">
 								<g:Label ui:field="lblError" addStyleNames="{style.mainErrorLabelStyle}" height="20%" visible="false"></g:Label>
 							</g:HorizontalPanel>
 
@@ -91,32 +109,32 @@
 						<td>
 							<g:VerticalPanel addStyleNames="{style.skillSearchPanelStyle}">
 								<g:HTMLPanel>
-									<table cellpadding="2">
+									<table cellpadding="3">
 										<tbody>
 											<tr>
 												<td>
-													<g:Label ui:field="mainClassificationLabel"></g:Label>
+													<g:Label ui:field="mainClassificationLabel" addStyleNames="{style.labelPadding}"></g:Label>
 												</td>
 												<td>
-												<i:DefaultSuggestBox ui:field="mainClassificationSuggestBox" width="700px"></i:DefaultSuggestBox>
+												<i:DefaultSuggestBox ui:field="mainClassificationSuggestBox" width="400px" addStyleNames="{style.suggestBoxStyle}"></i:DefaultSuggestBox>
 													<!-- <g:SuggestBox width="500px"></g:SuggestBox> -->
 												</td>
 											</tr>
 											<tr>
 												<td>
-													<g:Label ui:field="classificationTopic"></g:Label>
+													<g:Label ui:field="classificationTopic" addStyleNames="{style.labelPadding}"></g:Label>
 												</td>
 												<td>
-												<i:DefaultSuggestBox ui:field="classificationTopicSuggestBox" width="200px"></i:DefaultSuggestBox>
+												<i:DefaultSuggestBox ui:field="classificationTopicSuggestBox" width="200px" addStyleNames="{style.suggestBoxStyle}"></i:DefaultSuggestBox>
 													<!-- <g:SuggestBox width="200px"></g:SuggestBox> -->
 												</td>
 											</tr>
 											<tr>
 												<td>
-													<g:Label ui:field="topic"></g:Label>
+													<g:Label ui:field="topic" addStyleNames="{style.labelPadding}"></g:Label>
 												</td>
 												<td>
-												<i:DefaultSuggestBox ui:field="topicSuggestBox" width="200px"></i:DefaultSuggestBox>
+												<i:DefaultSuggestBox ui:field="topicSuggestBox" width="200px" addStyleNames="{style.suggestBoxStyle}"></i:DefaultSuggestBox>
 													<!-- <g:SuggestBox width="200px"></g:SuggestBox> -->
 												</td>
 											</tr>
@@ -131,19 +149,19 @@
 											</tr> -->
 											<tr>
 												<td>
-													<g:Label ui:field="fullTextSearch"></g:Label>
+													<g:Label ui:field="fullTextSearch" addStyleNames="{style.labelPadding}"></g:Label>
 												</td>
 												<td>
 												<!-- <i:DefaultSuggestBox ui:field="fullTextSearchSuggestBox" width="200px"></i:DefaultSuggestBox> -->
-													<g:TextBox ui:field="fullTextSearchBox"></g:TextBox>
+													<g:TextBox ui:field="fullTextSearchBox" addStyleNames="{style.suggestBoxStyle}"></g:TextBox>
 													<!-- <g:SuggestBox width="200px"></g:SuggestBox> -->
 												</td>
 											</tr>
 											<tr>
 												<td>&nbsp;</td>
 												<td>
-													<g:Button ui:field="btnShow"></g:Button>&nbsp;&nbsp;&nbsp;&nbsp;
-													<g:Button ui:field="btnReset"></g:Button>
+													<g:Button ui:field="btnShow" addStyleNames="{style.showButtonStyle}"></g:Button>&nbsp;&nbsp;&nbsp;&nbsp;
+													<g:Button ui:field="btnReset" addStyleNames="{style.buttonStyle}"></g:Button>
 												</td>
 											</tr>
 										</tbody>
