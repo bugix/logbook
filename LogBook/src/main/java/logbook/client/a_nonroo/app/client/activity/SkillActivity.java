@@ -422,7 +422,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		this.classificaitonTopicId=view.getClassificationTopicSuggestBox().getSelected()!=null ? view.getClassificationTopicSuggestBox().getSelected().getId() : null;
 		this.topicId=view.getTopicSuggestBox().getSelected() !=null ? view.getTopicSuggestBox().getSelected().getId():null;
 		
-		if(mainClassificationId==null && classificaitonTopicId==null && topicId==null){
+		if(mainClassificationId==null && classificaitonTopicId==null && topicId==null && view.getFullTextSearchBox().getValue()==""){
 			view.getLblError().setVisible(true);
 			view.getLblError().setText(constants.ErrorMessage());
 		}
