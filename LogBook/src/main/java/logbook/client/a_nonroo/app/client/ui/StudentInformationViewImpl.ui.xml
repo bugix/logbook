@@ -64,7 +64,7 @@
 			display: block;
 			float: left;
 			padding-top: 5px;
-			padding-left: 30px;
+			padding-left: 10px;
 			margin-right: 60px;
 		}
 		

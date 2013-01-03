@@ -394,13 +394,13 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			studyYear=getEmptyStringIfNull(studentProxy.getStudyYear().name());
 		String email=getEmptyStringIfNull(studentProxy.getEmail());
 		
-		view.getLblNameVal().setText(getFormatedString(studentName, 30));
+		view.getLblNameVal().setText(getFormatedString(studentName, 15));
 		view.getLblNameVal().setTitle(studentName);		
-		view.getLblStudentIdVal().setText(getFormatedString(studentId, 30));
+		view.getLblStudentIdVal().setText(getFormatedString(studentId, 15));
 		view.getLblStudentIdVal().setTitle(studentId);		
-		view.getLblStudeyYearvalue().setText(getFormatedString(studyYear, 30));
+		view.getLblStudeyYearvalue().setText(getFormatedString(studyYear, 15));
 		view.getLblStudeyYearvalue().setTitle(studyYear);		
-		view.getLblEmailVal().setText(getFormatedString(email, 30));
+		view.getLblEmailVal().setText(getFormatedString(email, 15));
 		view.getLblEmailVal().setTitle(email);
 		
 	}

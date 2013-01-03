@@ -54,7 +54,7 @@
 			border-style: solid;
 			border-width: 1px;
 			border-radius: 5px;
-			border-color: lightblue;
+			border-color: #FCD113;
 			font-family: Verdana, Arial, sans-serif;
 			padding-top: 5px;
 			padding-bottom: 5px;
@@ -101,7 +101,7 @@
 					<tbody>
 						<tr>
 							<g:HorizontalPanel width="100%">
-								<g:Label ui:field="lblError" addStyleNames="{style.mainErrorLabelStyle}" height="20%" visible="false"></g:Label>
+								<g:Label ui:field="lblError" addStyleNames="{style.mainErrorLabelStyle}" height="20%" visible="false"></g:Label>								
 							</g:HorizontalPanel>
 
 						</tr>
