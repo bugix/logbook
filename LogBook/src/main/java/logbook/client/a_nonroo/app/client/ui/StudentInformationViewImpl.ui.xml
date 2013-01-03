@@ -33,10 +33,10 @@
 			border-width: 1px;
 			border-radius: 5px;
 			border-color: lightblue;
-			padding-bottom: 15px;
+			padding: 15px 15px 15px 5px;
+    		width: 92%;
 			padding-left: 15px;
-			padding-top: 15px;
-			width: 90%;
+			padding-top: 15px;			
 		}
 		
 		.latestSkillHPStyle {
@@ -52,8 +52,7 @@
 			font-size: 98%;
 			color: #888888;
 			display: block;
-			padding-top: 5px;
-			padding-left: 5px;
+			padding-top: 5px;			
 			float: left;
 		}
 		
@@ -74,8 +73,7 @@
 			color: #888888;
 			font-size: 124%;
 			line-height: 32px;
-			padding-bottom: 1px;
-			padding-left: 5px;
+			padding-bottom: 1px;			
 			text-transform: uppercase;
 		}
 		

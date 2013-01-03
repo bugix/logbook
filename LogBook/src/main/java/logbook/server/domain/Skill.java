@@ -112,6 +112,8 @@ public class Skill {
   public static SkillFilteredResult findSkillBySearchCriteria(int start, int max,Long studentId,Long mainClassificationId, Long classificationTopicId, Long topicId,String fulltextSearch,int chkAsc)
 	{
 	  
+	 if(start!=0)
+	  start--;
 	  	//select s from Skill s,Topic t,ClassificationTopic c,MainClassification m  where s.topic=t.id and t.classificationTopic=c.id and c.mainClassification=m.id order by m.description,c.description,t.topicDescription,s.description
 		/*EntityManager em = entityManager();
 		String sql = "SELECT s FROM Skill As s where";
@@ -293,7 +295,7 @@ public class Skill {
 		}
 		else*/
 		{
-			
+			totalSize=result.getResultList().size();
 			
 			result.setFirstResult(start);
 			
@@ -301,7 +303,7 @@ public class Skill {
 			
 			skillresultList  = result.getResultList();
 			
-			totalSize=skillresultList.size();
+			//totalSize=skillresultList.size();
 			
 			Log.info("RESULTLISTSIZE : " + skillresultList.size());
 		}
@@ -541,12 +543,12 @@ public class Skill {
 		
 		int totalSize = 0;
 		
-		
+		totalSize=result.getResultList().size();
 		
 		
 		
 		skillresultList  = result.getResultList();
-		totalSize=skillresultList.size();
+		//totalSize=skillresultList.size();
 		
 		Log.info("RESULTLISTSIZE : " + skillresultList.size());
 		

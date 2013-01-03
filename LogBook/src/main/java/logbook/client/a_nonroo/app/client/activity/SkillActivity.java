@@ -504,7 +504,11 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		if(isFirstSelected || isSecondSelected){
 			isDeleteOperation=false;
 		}
-		final Integer skillLevel=skillProxy.getSkillLevel().getLevelNumber();
+		final Integer skillLevel;
+		if(skillProxy.getSkillLevel()==null)
+		skillLevel=1;
+		else
+		skillLevel=skillProxy.getSkillLevel().getLevelNumber();
 		
 		requests.skillAcquiredRequestNonRoo().acquireORDeleteSkill(view.getStudent().getId(),skillLevelCheckboxViewImpl.getSkillProxy().getId(),isLevel1,isDeleteOperation).fire(new Receiver<String>() {
 

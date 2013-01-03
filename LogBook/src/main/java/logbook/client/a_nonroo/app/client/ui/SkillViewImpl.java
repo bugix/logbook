@@ -801,13 +801,21 @@ public class SkillViewImpl extends Composite implements SkillView {
 				checkBox2.getCheckbox().setValue(true);
 			}
 			
-			if(skillLevel==SkillLevels.SOME_PRACTICLE_EXPERIENCE && sproxy.getSkillLevel().getLevelNumber()==2)
+			int skillSkillLevel;
+			
+			if(sproxy.getSkillLevel()==null)
+			skillSkillLevel=1;
+			else
+			skillSkillLevel=sproxy.getSkillLevel().getLevelNumber();
+			
+			
+			if(skillLevel==SkillLevels.SOME_PRACTICLE_EXPERIENCE && skillSkillLevel==2)
 			{
 				skillFlexTable.getRowFormatter().removeStyleName(row, "redBG");
 				skillFlexTable.getRowFormatter().removeStyleName(row, "greenBG");
 				skillFlexTable.getRowFormatter().addStyleName(row, "yellowBG");
 			}
-			else if(skillLevel==SkillLevels.SOME_PRACTICLE_EXPERIENCE && sproxy.getSkillLevel().getLevelNumber()==1)
+			else if(skillLevel==SkillLevels.SOME_PRACTICLE_EXPERIENCE && skillSkillLevel==1)
 			{
 				skillFlexTable.getRowFormatter().removeStyleName(row, "redBG");
 				skillFlexTable.getRowFormatter().removeStyleName(row, "yellowBG");

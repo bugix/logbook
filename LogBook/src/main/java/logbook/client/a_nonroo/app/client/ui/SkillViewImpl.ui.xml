@@ -5,7 +5,7 @@
 	xmlns:i="urn:import:logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl" xmlns:a="urn:import:logbook.client.a_nonroo.app.client.ui.custom.widget">
 	<ui:style>
 		.mainVerticlePanelStyle {
-			width: 100%;
+			width: 800px;
 			height: 100%;
 		}
 		
@@ -14,7 +14,7 @@
 			border-width: 1px;
 			border-radius: 5px;
 			border-color: lightblue;			
-			width: 100%;
+			width: 800px;
 			padding-top: 10px;
 			padding-bottom: 10px;
 					
@@ -24,7 +24,7 @@
 			border-width: 1px;
 			border-radius: 5px;
 			border-color: lightblue;			
-			width: 100%;
+			width: 800px;
 		}
 		.anchor {
             text-decoration: underline;
@@ -45,7 +45,7 @@
 		}
 		
 		.mainErrorLabelStyle {
-			width: 94%;
+			width: 754px;
 			height: 40%;
 			background: url("/public/images/ui-bg_glass_55_f8da4e_1x400.png")
 				repeat-x scroll 50% 50% #F8DA4E;
@@ -61,7 +61,7 @@
 			padding-left: 47px;
 		}
 		.skillTableSize {
-			width: 100%;
+			width: 800px;
 			padding: 15px;
 		}
 		.skillTablePagerStyle
@@ -100,7 +100,7 @@
 				<table>
 					<tbody>
 						<tr>
-							<g:HorizontalPanel width="100%">
+							<g:HorizontalPanel width="800px">
 								<g:Label ui:field="lblError" addStyleNames="{style.mainErrorLabelStyle}" height="20%" visible="false"></g:Label>								
 							</g:HorizontalPanel>
 
@@ -190,7 +190,7 @@
 											<tr>
 							<!-- <c:CellTable addStyleNames="{style.skillTableSize}" /> -->
 							<!-- <c:CellTable ui:field="skillTable" addStyleNames="{style.skillTableSize}" /> -->
-							<g:ScrollPanel width="100%" height="100%">
+							<g:ScrollPanel width="800px" height="100%">
 								<g:HTMLPanel>
 									<g:FlexTable ui:field="skillFlexTable" addStyleNames="style.skilltable-style"></g:FlexTable>
 									<a:CustomPager ui:field="pager" addStyleNames="{style.skillTablePagerStyle}"></a:CustomPager>
