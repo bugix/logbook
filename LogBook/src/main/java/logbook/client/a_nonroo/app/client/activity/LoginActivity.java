@@ -11,8 +11,6 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
-import org.apache.tools.ant.taskdefs.condition.Os;
-
 import logbook.client.a_nonroo.app.client.place.LoginPlace;
 import logbook.client.a_nonroo.app.client.ui.StudentEditPopupViewImpl;
 import logbook.client.a_nonroo.app.client.ui.StudentInformationView;
@@ -42,9 +40,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.ColumnSortEvent;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.gwt.user.client.ui.PopupListener;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.Range;
 import com.google.gwt.view.client.RangeChangeEvent;

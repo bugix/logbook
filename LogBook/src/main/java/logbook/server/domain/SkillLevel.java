@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.OneToMany;
 import javax.persistence.TypedQuery;
 
-import org.mortbay.log.Log;
+import org.apache.log4j.Logger;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -18,7 +18,8 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class SkillLevel {
 
     private Integer levelNumber;
-
+    private final static Logger log = Logger.getLogger(SkillLevel.class);
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "skillLevel")
     private Set<Skill> skills = new HashSet<Skill>();
     
@@ -27,11 +28,11 @@ public class SkillLevel {
     
     public static SkillLevel findSkillByLevelNumber(Integer levelNumber)
     {
-    	Log.info("Inside findSkillByLevelNumber with levelno " +levelNumber );
+    	log.info("Inside findSkillByLevelNumber with levelno " +levelNumber );
     	EntityManager em = entityManager();
     	
     	String query = "SELECT sl from SkillLevel as sl where sl.levelNumber="+levelNumber ;
-    	Log.info("Query is :" + query);
+    	log.info("Query is :" + query);
     	TypedQuery<SkillLevel> result = em.createQuery(query, SkillLevel.class);
     	
     	return result.getSingleResult();
