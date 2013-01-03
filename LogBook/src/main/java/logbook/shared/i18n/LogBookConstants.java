@@ -90,5 +90,7 @@ public String ErrorMessage();
 	public String forgotPassword();
 	
 	public String studentsPleaseLoginHere();
+	
+	public String enterValidEmail();
 
 }

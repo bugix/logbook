@@ -449,6 +449,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 	@Override
 	public void printPdfClicked() {
 		
+		showApplicationLoading(true);
 		MainClassificationProxy mProxy=view.getMainClassificationSuggestBox().getSelected();
 		ClassificationTopicProxy ctProxy=view.getClassificationTopicSuggestBox().getSelected();
 		TopicProxy tProxy=view.getTopicSuggestBox().getSelected();
@@ -477,6 +478,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 			public void onSuccess(String response) {
 				
 				Print.it(response);
+				showApplicationLoading(false);
 			}
 			
 		});

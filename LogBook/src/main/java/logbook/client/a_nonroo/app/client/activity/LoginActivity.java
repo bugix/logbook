@@ -498,7 +498,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 								@Override
 								public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
 									view.getLblError().setVisible(true);
-									view.getLblError().setText("Please enter valid Email Address");
+									view.getLblError().setText(constants.enterValidEmail());
 									//Window.alert("Please enter valid Email Address");
 								}
 								@Override
