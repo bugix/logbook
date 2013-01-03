@@ -726,6 +726,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 
 	@Override
 	public void shortCutClicked() {
+		view.getPager().setStart(1);
 		initSkillTableData(view.getStudent(),view.getIsAsc());
 		//onRangeChanged(view.getStudent(),view.getIsAsc());
 		

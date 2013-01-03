@@ -34,6 +34,8 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.place.shared.Place;
@@ -42,6 +44,8 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.ColumnSortEvent;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.user.client.ui.PopupListener;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.Range;
 import com.google.gwt.view.client.RangeChangeEvent;
 import com.google.web.bindery.requestfactory.shared.Receiver;
@@ -239,6 +243,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	
 	private void initStudentInfo() 
 	{
+		view.getLblError().setVisible(false);
 		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() 
 		{
 			@Override
@@ -414,7 +419,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	public void changeStudentInformationClicked(ClickEvent event) 
 	{
 		Log.info("Change student Infomation Clicked");
-		
+		view.getLblError().setVisible(false);
 		initStudentEditPopup(view.getStudentProxy(),event);
 	}
 
@@ -424,6 +429,14 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 		final StudentEditPopupViewImpl popupView=new StudentEditPopupViewImpl();
 		popupView.setPopupPosition(event.getClientX()-60, event.getClientY()-135);
 		
+		popupView.addCloseHandler(new CloseHandler<PopupPanel>() 
+		{
+			@Override
+			public void onClose(CloseEvent<PopupPanel> event) 
+			{
+				view.getLblError().setVisible(false);
+			}
+		});
 		
 		requests.studentRequest().findStudent(studentProxy.getId()).fire(new Receiver<StudentProxy>() {
 
@@ -467,6 +480,8 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 
 								@Override
 								public void onSuccess(Void response) {
+									
+									view.getLblError().setVisible(false);
 									Log.info("Successfully updated.");
 									view.getLblEmailVal().setText(getFormatedString(email, 15));
 									view.getLblEmailVal().setTitle(email);
@@ -486,7 +501,9 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 								}
 								@Override
 								public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
-									Window.alert("Please enter valid Email Address.");
+									view.getLblError().setVisible(true);
+									view.getLblError().setText("Please enter valid Email Address");
+									//Window.alert("Please enter valid Email Address");
 								}
 								@Override
 								public void onFailure(ServerFailure error) {
@@ -497,7 +514,16 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 
 						//}
 					}
-				});			
+				});
+				
+				popupView.getBtnClose().addClickHandler(new ClickHandler() {
+					
+					@Override
+					public void onClick(ClickEvent event) {
+						view.getLblError().setVisible(false);
+						popupView.hide();
+					}
+				});
 			}
 		});
 		
@@ -509,6 +535,8 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	{
 		Log.info("Student is going to Finalize.");
 		Log.info("Student Id: " + studentProxy.getId());
+		
+		view.getLblError().setVisible(false);
 		
 		StudentRequest studentRequest=requests.studentRequest();
 		StudentProxy proxy=studentProxy;		

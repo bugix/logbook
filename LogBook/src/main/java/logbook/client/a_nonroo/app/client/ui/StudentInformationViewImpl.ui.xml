@@ -143,6 +143,23 @@
 		{
 			float: right;
 		}
+		.mainErrorLabelStyle {
+			width: 94%;
+			height: 40%;
+			background: url("/public/images/ui-bg_glass_55_f8da4e_1x400.png")
+				repeat-x scroll 50% 50% #F8DA4E;
+			background-repeat: repeat-x;
+			color: #A25617;
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 5px;
+			border-color: #FCD113;
+			font-family: Verdana, Arial, sans-serif;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			padding-left: 47px;
+			margin-bottom: 10px;
+		}
 	</ui:style>
 	<g:HTMLPanel>
 		<g:VerticalPanel addStyleNames="{style.mainVerticlePanelStyle}"
@@ -150,6 +167,11 @@
 			<g:HTMLPanel>
 				<table>
 					<tbody>
+					<tr>
+							<g:HorizontalPanel width="100%">
+								<g:Label ui:field="lblError" addStyleNames="{style.mainErrorLabelStyle}" height="20%" visible="false"></g:Label>								
+							</g:HorizontalPanel>
+						</tr>
 						<tr addStyleNames="{style.mainTrStyle}">
 							<g:HorizontalPanel addStyleNames="{style.informationHPStyle}">
 								<g:HTMLPanel addStyleNames="{style.personnelInforamationSPStyle}">

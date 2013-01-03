@@ -68,6 +68,7 @@ public interface StudentInformationView extends IsWidget{
 	public void setLblLevel1Progress(Label lblLevel1Progress);
 	public Label getLblLevel2Progress();
 	public void setLblLevel2Progress(Label lblLevel1Progress);
+	public Label getLblError();
 
 	StudentProxy getStudentProxy();
 

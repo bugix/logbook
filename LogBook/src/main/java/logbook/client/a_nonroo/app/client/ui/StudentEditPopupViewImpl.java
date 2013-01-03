@@ -52,8 +52,8 @@ public class StudentEditPopupViewImpl extends PopupPanel implements StudentEditP
 	
 	@UiHandler("btnClose")
 	public void btnCloseClicked(ClickEvent event)
-	{
-		this.hide();
+	{		
+		//this.hide();		
 	}
 	
 	

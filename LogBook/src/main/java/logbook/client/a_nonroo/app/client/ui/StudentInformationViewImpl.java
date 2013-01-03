@@ -111,6 +111,9 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	
 	@UiField(provided = true)
 	public SimplePager pager;
+	
+	@UiField
+	Label lblError;
 
 	@UiHandler("btnFinalizeLogBook")
 	public void btnFinalizeLogBookClicked(ClickEvent event)
@@ -333,6 +336,13 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	public void setPrgBarTotal(CustomProgressbar prgBarTotal) {
 		this.prgBarTotal = prgBarTotal;
 	}
+	public Label getLblError() {
+		return lblError;
+	}
+
+	public void setLblError(Label lblError) {
+		this.lblError = lblError;
+	}
 
 
 	
@@ -365,6 +375,8 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 		intiProgressBar(prgBarLevel1);
 		intiProgressBar(prgBarLevel2);
 		intiProgressBar(prgBarTotal);
+		
+		lblError.setVisible(false);
 			
 	}
 	

@@ -61,8 +61,8 @@ public class Skill {
     @Size(max = 1024)
     private String description;
 
-    @Size(max = 255)
-    private String shortcut;
+   // @Size(max = 255)
+    private Integer shortcut;
 
     @ManyToOne
     private Topic topic;
@@ -164,12 +164,16 @@ public class Skill {
 		else if (chkAsc == 1)
 			select.orderBy(criteriaBuilder.desc(from.get("shortcut")), criteriaBuilder.asc(join3.get("description")), criteriaBuilder.asc(join2.get("description")), criteriaBuilder.asc(join1.get("topicDescription")), criteriaBuilder.asc(from.get("description")));*/
 		
-		if (chkAsc == 0)
-			select.orderBy(criteriaBuilder.asc(join3.get("shortcut")), criteriaBuilder.asc(join2.get("shortcut")), criteriaBuilder.asc(join1.get("topicDescription"))/*, criteriaBuilder.asc(from.get("description"))*/, criteriaBuilder.asc(from.get("shortcut")));
-		else if (chkAsc == 1)
+		if (chkAsc == 0){
+			//select.orderBy(criteriaBuilder.asc(join3.get("shortcut")), criteriaBuilder.asc(join2.get("shortcut")), criteriaBuilder.asc(join1.get("topicDescription"))/*, criteriaBuilder.asc(from.get("description")), criteriaBuilder.asc(from.get("shortcut")));
+			select.orderBy(criteriaBuilder.asc(join1.get("id")),criteriaBuilder.asc(from.get("shortcut"))/*, criteriaBuilder.asc(from.get("description"))*//*, criteriaBuilder.asc(from.get("shortcut"))*/);
+		}
+		else if (chkAsc == 1){
 			//select.orderBy(criteriaBuilder.desc(join3.get("shortcut")), criteriaBuilder.desc(join2.get("shortcut")), criteriaBuilder.desc(join1.get("topicDescription"))/*, criteriaBuilder.desc(from.get("description"))*/, criteriaBuilder.desc(join1.get("topicDescription")), criteriaBuilder.desc(from.get("shortcut")));
-			select.orderBy(criteriaBuilder.desc(join3.get("shortcut")), criteriaBuilder.desc(join2.get("shortcut")), criteriaBuilder.desc(join1.get("topicDescription"))/*, criteriaBuilder.asc(from.get("description"))*/, criteriaBuilder.desc(from.get("shortcut")));
-		
+			//select.orderBy(criteriaBuilder.desc(join3.get("shortcut")), criteriaBuilder.desc(join2.get("shortcut")), criteriaBuilder.desc(join1.get("topicDescription"))/*, criteriaBuilder.asc(from.get("description"))*/, criteriaBuilder.desc(from.get("shortcut")));
+			//select.orderBy(criteriaBuilder.desc(join3.get("shortcut")), criteriaBuilder.desc(join2.get("shortcut")), criteriaBuilder.desc(join1.get("topicDescription"))/*, criteriaBuilder.asc(from.get("description"))*/, criteriaBuilder.desc(from.get("shortcut")));
+			select.orderBy(criteriaBuilder.desc(join1.get("id")),criteriaBuilder.desc(from.get("shortcut"))/*, criteriaBuilder.asc(from.get("description"))*//*, criteriaBuilder.asc(from.get("shortcut"))*/);
+		}
 		List<Predicate> predicateList = new ArrayList<Predicate>();
 		
 		Predicate predicate1 = null;
