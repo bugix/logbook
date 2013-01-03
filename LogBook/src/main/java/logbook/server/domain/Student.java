@@ -1,5 +1,7 @@
 package logbook.server.domain;
 
+import static logbook.shared.scaffold.LogBookConstant.*;
+import static logbook.shared.scaffold.LogBookConstant.STUDENT;
 import static logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
 
 import java.util.HashSet;
@@ -21,7 +23,6 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
-import com.allen_sauer.gwt.log.client.Log;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
 @RooJavaBean
@@ -29,13 +30,13 @@ import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 @RooJpaActiveRecord(finders = { "findStudentsByEmailEquals" })
 public class Student {
 
-    @Size(max = 45)
+	@Size(max = 45)
     private String studentId;
 
     @Size(max = 50)
     private String shib_id;
 
-    /* @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$")*/
+    @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$")
     @Size(max = 40)   
     private String email;
 
@@ -62,9 +63,25 @@ public class Student {
     public static logbook.server.domain.Student findStudentFromSession() 
     {
         HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
-        String mailId = (String) session.getAttribute(UNIQUE_ID);
-        Log.info("Mail id: " + mailId);
-        Student student=Student.findStudentsByEmailEquals(mailId).getResultList().get(0);
+        Long studId = Long.parseLong((String) session.getAttribute(UNIQUE_ID),10);
+        System.out.println("Student id: " + studId);
+        Student student=Student.findStudent(studId);
         return student;
+    }
+    
+    public static Boolean isCurrentUserStudent() {
+    	HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
+    	if(STUDENT.equals(session.getAttribute(CURRENT_USER))) {
+    		return true;
+    	}else if(ADMIN.equals(session.getAttribute(CURRENT_USER))) {
+    		return false;
+    	}
+    	else {
+    		return null;
+    	}
+    }
+    public static void setSessionAttribute(String currentUser) {
+    	HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
+    	session.setAttribute(CURRENT_USER, currentUser);
     }
 }

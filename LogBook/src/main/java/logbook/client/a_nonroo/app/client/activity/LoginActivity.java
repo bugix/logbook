@@ -438,22 +438,28 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 					@Override
 					public void onClick(ClickEvent event) 
 					{
-						if(popupView.getLstBoxStudyYear().getValue()==null)
+						/*if(popupView.getLstBoxStudyYear().getValue()==null)
 						{
 							Window.alert(constants.studyYearCanNotbeNull());
 						}
 						else
-						{
+						{*/
 							final String email=popupView.getTxtEmailValue().getText();
-							final StudyYears studyYear=popupView.getLstBoxStudyYear().getValue();
-							Log.info("E Mail: " + email + " Study Year: " + studyYear.name());
+							final StudyYears studyYear=popupView.getLstBoxStudyYear().getValue();							
 							
 							StudentRequest studentRequest=requests.studentRequest();
-							 StudentProxy proxy=studentProxy;
+							StudentProxy proxy=studentProxy;
 							proxy=studentRequest.edit(proxy);
-							
 							proxy.setEmail(email);
-							proxy.setStudyYear(studyYear);
+							if(popupView.getLstBoxStudyYear().getValue()==null)
+							{
+								Log.info("Study Year is Null");
+								proxy.setStudyYear(null);
+							}
+							else
+								proxy.setStudyYear(studyYear);
+							
+							
 							final StudentProxy tempStudentProxy=proxy;
 							
 							
@@ -462,16 +468,25 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 								@Override
 								public void onSuccess(Void response) {
 									Log.info("Successfully updated.");
-									view.getLblEmailVal().setText(email);
-									view.getLblStudeyYearvalue().setText(studyYear.name());
+									view.getLblEmailVal().setText(getFormatedString(email, 15));
+									view.getLblEmailVal().setTitle(email);
+									if(studyYear==null)
+									{
+										view.getLblStudeyYearvalue().setText(getFormatedString("", 15));
+										view.getLblStudeyYearvalue().setTitle("");
+									}
+									else
+									{
+										view.getLblStudeyYearvalue().setText(getFormatedString(studyYear.name(), 15));
+										view.getLblStudeyYearvalue().setTitle(studyYear.name());										
+									}
 									view.setStudentProxy(tempStudentProxy);
 									popupView.hide();
 									
 								}
 								@Override
 								public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
-									super.onConstraintViolation(violations);
-									Log.info("Violation");
+									Window.alert("Please enter valid Email Address.");
 								}
 								@Override
 								public void onFailure(ServerFailure error) {
@@ -480,7 +495,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 								}
 							});
 
-						}
+						//}
 					}
 				});			
 			}
@@ -496,7 +511,8 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 		Log.info("Student Id: " + studentProxy.getId());
 		
 		StudentRequest studentRequest=requests.studentRequest();
-		StudentProxy proxy=studentProxy;
+		StudentProxy proxy=studentProxy;		
+		
 		proxy=studentRequest.edit(proxy);
 		
 		proxy.setStudentStatus(StudentStatus.Fianllized);
