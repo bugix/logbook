@@ -93,4 +93,5 @@ public String ErrorMessage();
 	
 	public String enterValidEmail();
 
+	public String nodataFound();
 }
