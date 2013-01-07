@@ -948,7 +948,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	text-decoration: none !important;
 	cursor: pointer;
 	cursor: hand;	
-	background: url("/public/images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
+	background: url("images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
 	border: 1px solid #999;
 	color: white;
 	height: 23px;
@@ -960,7 +960,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 .gwt-Button:hover {
 	outline-style: none;
 	border: 1px solid #77D5F7;
-	background: url("/public/images/ui-bg_glass_75_79c9ec_1x400.png") repeat-x scroll 50% 50% #0078AE;
+	background: url("images/ui-bg_glass_75_79c9ec_1x400.png") repeat-x scroll 50% 50% #0078AE;
 }
 
 .gwt-TabLayoutPanel{
@@ -988,7 +988,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
     position: relative !important;
 }
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {	
-	/* background: url("/public/images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
+	/* background: url("images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
     border: 1px solid lightblue;
     color: #454545;
     cursor: pointer;
@@ -1004,7 +1004,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
     overflow-x: scroll;
     overflow-y: hidden; */
     
-   /*  background: url("/public/images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
+   /*  background: url("images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
     border: 1px solid lightblue;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -1019,7 +1019,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
     text-decoration: none;
     align: center; */
     
-     background: url("/public/images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
+     background: url("images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
     border: 1px solid lightblue;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -1042,7 +1042,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab-selected  {
-	background: url("/public/images/ui-bg_gloss-wave_50_6eac2c_500x100.png") repeat-x scroll 50% 50% #7EB544;
+	background: url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png") repeat-x scroll 50% 50% #7EB544;
 	border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     align: center;
@@ -1062,7 +1062,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
     border-color: lightblue;
     border-width:1px;
     border-bottom-width:0px; 
-    background: url("/public/images/ui-bg_gloss-wave_75_2191c0_500x100.png") 50% 50%;
+    background: url("images/ui-bg_gloss-wave_75_2191c0_500x100.png") 50% 50%;
 }
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab:HOVER {
 
@@ -1116,7 +1116,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .gwt-TabBar .gwt-TabBarItem-selected, .gwt-TabBar .gwt-TabBarItem-selected:hover {
-    background: url("/public/images/ui-bg_gloss-wave_50_6eac2c_500x100.png") repeat-x scroll 50% 50% #7EB544;    
+    background: url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png") repeat-x scroll 50% 50% #7EB544;    
     color: #454545;
 }
 
@@ -1152,7 +1152,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 .logo
 {
-	background-image: url("/public/images/logo.png");
+	background-image: url("images/logo.png");
 }
 .gwt-Hyperlink 
 { 

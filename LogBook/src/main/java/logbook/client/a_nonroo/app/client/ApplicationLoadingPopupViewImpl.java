@@ -25,7 +25,7 @@ public class ApplicationLoadingPopupViewImpl extends DialogBox implements
 	private ApplicationLoadingPopupViewImpl() {
 
 		setWidget(uiBinder.createAndBindUi(this));
-		loading.setUrl("/public/images/loader.gif");
+		loading.setUrl("applicationScaffold/gwt/logbook/images/loader.gif");
 
 		setGlassEnabled(true);
 		setAnimationEnabled(true);

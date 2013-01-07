@@ -300,8 +300,8 @@ public class SkillViewImpl extends Composite implements SkillView {
 		
 		//shortcut=new SimplePanel();
 		
-		downArrow =new Image("public/images/down.png");//
-		upArrow = new Image("public/images/up.png");
+		downArrow =new Image("applicationScaffold/gwt/logbook/images/down.png");//
+		upArrow = new Image("applicationScaffold/gwt/logbook/images/up.png");
 		 
 		sortcutHP = new HorizontalPanel();
 		sortcutLabel= new Label(constants.shortcut());
@@ -427,10 +427,10 @@ public class SkillViewImpl extends Composite implements SkillView {
 		fullTextSearch.setText(constants.fullTextSearch());
 		
 		imgPrint.setAltText(constants.imageNotFound());
-		imgPrint.setUrl("/public/images/print.png");
+		imgPrint.setUrl("applicationScaffold/gwt/logbook/images/print.png");
 
 		imgpdf.setAltText(constants.imageNotFound());
-		imgpdf.setUrl("/public/images/pdf.png");
+		imgpdf.setUrl("applicationScaffold/gwt/logbook/images/pdf.png");
 
 		hyperLnkPrint.setText(constants.print());
 		hyperlnkSavePDF.setText(constants.saveAsPdf());
