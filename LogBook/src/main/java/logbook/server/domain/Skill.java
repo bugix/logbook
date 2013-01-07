@@ -997,12 +997,13 @@ public class Skill {
 
 	       // File file = new File("osMaEntry/gwt/unibas/"+System.currentTimeMillis()+".xml");
 	        String path=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
-	        String fileName=path+System.currentTimeMillis()+".xml";
-	        
+	        String fileName=path+"/"+System.currentTimeMillis()+".xml";
+	        System.out.println("Path: " + fileName);
 	        
 	        File file = new File(fileName);
 	        file.createNewFile();
-	        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true)));
+	        //BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true)));
+	        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true),"UTF-8"));
 	        bw.write(xmlString);
 	        bw.flush();
 	        bw.close();
@@ -1031,7 +1032,8 @@ public class Skill {
 	            Source xmlDoc = new StreamSource(fileName);
 	            
 	            String path=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
-	            String outputFileName =path +System.currentTimeMillis()+".html";
+	            String outputFileName =path+"/" +System.currentTimeMillis()+".html";
+	            System.out.println("Path: " + outputFileName);
 	            OutputStream htmlFile = new FileOutputStream(outputFileName);
 
 	            Transformer transformer = tFactory.newTransformer(xslDoc);

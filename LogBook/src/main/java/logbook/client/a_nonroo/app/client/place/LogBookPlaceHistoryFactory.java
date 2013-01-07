@@ -31,8 +31,7 @@ private final ProgressPlace.Tokenizer placeProgressTokenizer;
 	public PlaceTokenizer<LoginPlace> getLoginPlaceTokenizer()
 	{
 		LogBookNav.logBookNav.masterActivityManager.setDisplay((SimplePanel)LogBookNav.logBookNav.getMainLoogBookTabpanel().getWidget(0));
-		
-		
+		LogBookNav.logBookNav.getMainLoogBookTabpanel().selectTab(0,false);
 		return placeLoginTokenizer;
 	}
 
@@ -40,10 +39,9 @@ private final ProgressPlace.Tokenizer placeProgressTokenizer;
 	{
 		
 			LogBookNav.logBookNav.masterActivityManager.setDisplay((SimplePanel)LogBookNav.logBookNav.getMainLoogBookTabpanel().getWidget(1));
-			if(SkillPlace.tabIndex==0)
-			{
+			
 				LogBookNav.logBookNav.getMainLoogBookTabpanel().selectTab(1,false);
-			}
+			
 			SkillPlace.tabIndex=1;
 		
 		return placeSkillTokenizer;
@@ -51,10 +49,9 @@ private final ProgressPlace.Tokenizer placeProgressTokenizer;
 	public PlaceTokenizer<ProgressPlace> getProgressPlaceTokenizer()
 	{
 		LogBookNav.logBookNav.masterActivityManager.setDisplay((SimplePanel)LogBookNav.logBookNav.getMainLoogBookTabpanel().getWidget(2));
-		if(ProgressPlace.tabIndex==0)
-		{
+		
 			LogBookNav.logBookNav.getMainLoogBookTabpanel().selectTab(2,false);
-		}
+		
 		ProgressPlace.tabIndex=1;
 		return placeProgressTokenizer;
 	}

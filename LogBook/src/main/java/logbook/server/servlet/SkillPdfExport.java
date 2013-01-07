@@ -286,12 +286,14 @@ public class SkillPdfExport   extends HttpServlet {
 
 	       // File file = new File("osMaEntry/gwt/unibas/"+System.currentTimeMillis()+".xml");
 	        String path=getServletConfig().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
-	        String fileName=path+System.currentTimeMillis()+".xml";
-	        
+	        String fileName=path+"/"+System.currentTimeMillis()+".xml";
+	        System.out.println("Path: " + fileName);
 	        
 	        File file = new File(fileName);
 	        file.createNewFile();
-	        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true)));
+	        //BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true)));
+	        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true),"UTF-8"));
+
 	        bw.write(xmlString);
 	        bw.flush();
 	        bw.close();
@@ -320,7 +322,8 @@ public class SkillPdfExport   extends HttpServlet {
 	            Source xmlDoc = new StreamSource(fileName);
 	            
 	            String path=getServletConfig().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
-	            String outputFileName =path +System.currentTimeMillis()+".html";
+	            String outputFileName =path +"/"+System.currentTimeMillis()+".html";
+		        System.out.println("Path: " + outputFileName);    
 	            OutputStream htmlFile = new FileOutputStream(outputFileName);
 
 	            Transformer transformer = tFactory.newTransformer(xslDoc);
@@ -329,22 +332,23 @@ public class SkillPdfExport   extends HttpServlet {
 					@Override
 					public void warning(TransformerException exception)
 							throws TransformerException {
-						// TODO Auto-generated method stub
+						System.out.println("Warning.");
 						
+						Log.error("Warning", exception);
 					}
 					
 					@Override
 					public void fatalError(TransformerException exception)
 							throws TransformerException {
-						// TODO Auto-generated method stub
-						
+						System.out.println("fatal Error.");
+						Log.error("fatal Error.", exception);
 					}
 					
 					@Override
 					public void error(TransformerException exception)
 							throws TransformerException {
-						// TODO Auto-generated method stub
-						
+						System.out.println("Error.");	
+						Log.error("Error", exception);
 					}
 				});
 	            transformer.transform(xmlDoc, new StreamResult(htmlFile));
@@ -360,7 +364,7 @@ public class SkillPdfExport   extends HttpServlet {
 	        }
 	}
 	
-	private void createPDF(OutputStream os,String htmlFileName) throws  IOException, com.lowagie.text.DocumentException {
+	private void createPDF(OutputStream os,String htmlFileName) {
 //		String contextFileSeparator = "/";
 		
 		
@@ -388,12 +392,16 @@ public class SkillPdfExport   extends HttpServlet {
         	System.out.println(datainput.readLine());
         	}
 */
-
-        ITextRenderer renderer = new ITextRenderer();
-        renderer.setDocument(new File(htmlFileName));      
-        renderer.layout();
-        renderer.createPDF(os);  
-        os.close();
+        try {
+	        ITextRenderer renderer = new ITextRenderer();
+	        System.out.println("Skill PDF Export->Create PDF->File name: " + htmlFileName);
+	        renderer.setDocument(new File(htmlFileName));      
+	        renderer.layout();
+	        renderer.createPDF(os);  
+	        os.close();
+        }catch (Exception e) {
+        	Log.error("Error in SkillPdfExport",e);
+        }
 	}
 	
 /*	public void createPDF(ServletOutputStream outputStream,SkillFilteredResult result) throws Exception

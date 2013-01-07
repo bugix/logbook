@@ -11,6 +11,7 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
+import logbook.client.a_nonroo.app.client.LogBookNav;
 import logbook.client.a_nonroo.app.client.place.LoginPlace;
 import logbook.client.a_nonroo.app.client.ui.StudentEditPopupViewImpl;
 import logbook.client.a_nonroo.app.client.ui.StudentInformationView;
@@ -87,6 +88,9 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
     	this.handlerManager = loginPlace.handler;
 
     	LoginActivity = this;
+    	
+    	LogBookNav.logBookNav.getMainLoogBookTabpanel().selectTab(0,false);
+		
 
 	}	
 	
@@ -97,9 +101,11 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	}*/
 	
 	public LoginActivity(LogBookRequestFactory requests , PlaceController placeController) {
-		Log.info("Call Activity Login");
+		Log.info("Call Activity Login..");
 		this.requests = requests;
     	this.placeController = placeController;
+
+    	LogBookNav.logBookNav.getMainLoogBookTabpanel().selectTab(0,false);
 	}
 
 	
