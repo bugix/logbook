@@ -94,4 +94,13 @@ public String ErrorMessage();
 	public String enterValidEmail();
 
 	public String nodataFound();
+	
+	public String exceedEmailLength();
+	
+	public String poweredBy();
+	
+	public String LernzentrumMedizin();
+	
+	public String contact();
+
 }
