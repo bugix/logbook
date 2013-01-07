@@ -370,10 +370,14 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		view.getClassificationTopicSuggestBox().setSelected(null);
 		classificaitonTopicId = null;
 		
-		initClassificationTopicSuggestion(mainClassificationId);
-		
 		view.getTopicSuggestBox().setSelected(null);
 		topicId = null;
+		
+		//view.getClassificationTopicSuggestBox().getTextField().advancedTextBox.setText(constants.allClassificationTopics());
+		//view.getTopicSuggestBox().getTextField().advancedTextBox.setText(constants.allTopics());
+		view.setDefaultMessageOfSuggestionbox();
+		
+		initClassificationTopicSuggestion(mainClassificationId);
 		
 		initTopicSuggestion(classificaitonTopicId);
 		
@@ -388,6 +392,9 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		view.getTopicSuggestBox().setSelected(null);
 		topicId = null;
 		
+		//view.getTopicSuggestBox().getTextField().advancedTextBox.setText(constants.allTopics());
+		view.setDefaultMessageOfSuggestionbox();
+		
 		initTopicSuggestion(classificaitonTopicId);
 		//initSkillTableData();
 		
@@ -396,6 +403,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 	@Override
 	public void topicSuggestboxChanged(Long topicId) {
 		this.topicId=topicId;
+		view.setDefaultMessageOfSuggestionbox();
 		//initSkillTableData();
 		
 	}
@@ -411,6 +419,8 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		view.getMainClassificationSuggestBox().setSelected(null);
 		view.getClassificationTopicSuggestBox().setSelected(null);
 		view.getTopicSuggestBox().setSelected(null);
+		
+		view.setDefaultMessageOfSuggestionbox();
 		
 		initAllSkillSuggestions();
 		

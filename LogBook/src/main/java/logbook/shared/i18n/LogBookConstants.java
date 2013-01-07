@@ -103,4 +103,10 @@ public String ErrorMessage();
 	
 	public String contact();
 
+	public String allMainClassifications();
+	
+	public String allClassificationTopics();
+	
+	public String allTopics();
+
 }

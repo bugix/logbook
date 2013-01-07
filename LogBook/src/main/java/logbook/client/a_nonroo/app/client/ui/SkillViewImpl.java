@@ -454,6 +454,8 @@ public class SkillViewImpl extends Composite implements SkillView {
 		levelList.add(constants.level1());
 		levelList.add(constants.level2());
 		
+
+		setDefaultMessageOfSuggestionbox();
 		//DefaultSuggestOracle<String> suggestOracle = (DefaultSuggestOracle<String>) levelSuggestBox.getSuggestOracle();
 		//suggestOracle.setPossiblilities(levelList);
 		/*levelSuggestBox.setSuggestOracle(suggestOracle);
@@ -483,7 +485,9 @@ public class SkillViewImpl extends Composite implements SkillView {
 					else
 					{
 						//System.out.println("MAIN CLASSI : " + mainClassificationSuggestBox.getSelected().getId());
+						setDefaultMessageOfSuggestionbox();
 						delegate.mainClassificationSuggestboxChanged(null);
+						
 					}
 				}
 			});
@@ -494,8 +498,11 @@ public class SkillViewImpl extends Composite implements SkillView {
 				public void onChange(ChangeEvent event) {
 					if (classificationTopicSuggestBox.getSelected() != null)
 						delegate.classificationTopicSuggestboxChanged(classificationTopicSuggestBox.getSelected().getId());
-					else
+					else{
+						setDefaultMessageOfSuggestionbox();	
 						delegate.classificationTopicSuggestboxChanged(null);
+							
+					}
 				}
 			});
 		 
@@ -504,12 +511,27 @@ public class SkillViewImpl extends Composite implements SkillView {
 				public void onChange(ChangeEvent event) {
 					if (topicSuggestBox.getSelected() != null)
 						delegate.topicSuggestboxChanged(topicSuggestBox.getSelected().getId());
-					else
+					else{
+						setDefaultMessageOfSuggestionbox();
 						delegate.topicSuggestboxChanged(null);
+					}
 				}
 			});
 		 
 	}
+	public void setDefaultMessageOfSuggestionbox() {
+
+		if(mainClassificationSuggestBox.getSelected()==null || mainClassificationSuggestBox.getTextField().advancedTextBox.getText()=="")
+		mainClassificationSuggestBox.getTextField().advancedTextBox.setText(constants.allMainClassifications());
+		
+		if(classificationTopicSuggestBox.getSelected()==null || classificationTopicSuggestBox.getTextField().advancedTextBox.getText()=="")
+		classificationTopicSuggestBox.getTextField().advancedTextBox.setText(constants.allClassificationTopics());
+		
+		if(topicSuggestBox.getSelected()==null || topicSuggestBox.getTextField().advancedTextBox.getText()=="")
+		topicSuggestBox.getTextField().advancedTextBox.setText(constants.allTopics());
+		
+	}
+
 	@Override
 	public DefaultSuggestBox<MainClassificationProxy, EventHandlingValueHolderItem<MainClassificationProxy>> getMainClassificationSuggestBox() {
 		return mainClassificationSuggestBox;

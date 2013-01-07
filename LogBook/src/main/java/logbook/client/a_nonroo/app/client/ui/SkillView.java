@@ -98,6 +98,8 @@ public interface SkillView extends IsWidget{
 	public void createHeader(FlexTable flexTable);
 	
 	public void setSource(SkillFilteredResultProxy data);
+	
+	public void setDefaultMessageOfSuggestionbox();
 
 	StudentProxy getStudent();
 
