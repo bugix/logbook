@@ -144,7 +144,7 @@
 		.mainErrorLabelStyle {
 			width: 94%;
 			height: 40%;
-			background: url("/public/images/ui-bg_glass_55_f8da4e_1x400.png")
+			background: url("public/images/ui-bg_glass_55_f8da4e_1x400.png")
 				repeat-x scroll 50% 50% #F8DA4E;
 			background-repeat: repeat-x;
 			color: #A25617;
@@ -158,6 +158,8 @@
 			padding-left: 47px;
 			margin-bottom: 10px;
 		}
+	
+	
 	</ui:style>
 	<g:HTMLPanel>
 		<g:VerticalPanel addStyleNames="{style.mainVerticlePanelStyle}"
@@ -291,6 +293,9 @@
 							</g:VerticalPanel>								
 							</g:ScrollPanel>
 							</g:VerticalPanel>
+						</tr>
+						<tr>
+							<custom:CustomCopyrightWidget></custom:CustomCopyrightWidget>
 						</tr>
 					</tbody>
 				</table>

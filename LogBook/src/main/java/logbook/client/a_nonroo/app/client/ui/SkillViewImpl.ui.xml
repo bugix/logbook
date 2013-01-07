@@ -47,7 +47,7 @@
 		.mainErrorLabelStyle {
 			width: 754px;
 			height: 40%;
-			background: url("/public/images/ui-bg_glass_55_f8da4e_1x400.png")
+			background: url("public/images/ui-bg_glass_55_f8da4e_1x400.png")
 				repeat-x scroll 50% 50% #F8DA4E;
 			background-repeat: repeat-x;
 			color: #A25617;
@@ -56,6 +56,17 @@
 			border-radius: 5px;
 			border-color: #FCD113;
 			font-family: Verdana, Arial, sans-serif;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			padding-left: 47px;
+		}
+		.mainErrorLabelTextStyle {
+			width: 754px;
+			height: 40%;
+			
+			
+			color: #A25617;
+			
 			padding-top: 5px;
 			padding-bottom: 5px;
 			padding-left: 47px;
@@ -101,6 +112,12 @@
 					<tbody>
 						<tr>
 							<g:HorizontalPanel width="800px">
+								<!-- <div style="padding:5px; margin-bottom:10px;" class="ui-state-highlight ui-corner-all">
+			                        <p>
+			                        	<span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-info"></span>
+			                        	<g:Label ui:field="lblError" addStyleNames="{style.mainErrorLabelTextStyle}" height="20%" visible="false"></g:Label>
+			                        </p>
+			                    </div> -->
 								<g:Label ui:field="lblError" addStyleNames="{style.mainErrorLabelStyle}" height="20%" visible="false"></g:Label>								
 							</g:HorizontalPanel>
 
@@ -197,11 +214,15 @@
 								</g:HTMLPanel>
 							</g:ScrollPanel>
 							</tr>
+							<tr>
+							<a:CustomCopyrightWidget></a:CustomCopyrightWidget>
+						</tr>	
 							</tbody>
 							</table>							
 						</g:HTMLPanel>
 						</td>
 						</tr>
+							
 					</tbody>
 				</table>
 

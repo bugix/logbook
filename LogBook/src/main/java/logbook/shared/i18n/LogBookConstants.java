@@ -108,5 +108,16 @@ public String ErrorMessage();
 	public String allClassificationTopics();
 	
 	public String allTopics();
+	
+
+	public String first();
+
+	public String next();
+
+	public String previous();
+
+	public String last();
+	
+	public String copyrightSeperator();
 
 }

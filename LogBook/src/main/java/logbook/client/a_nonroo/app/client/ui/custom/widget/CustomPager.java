@@ -3,7 +3,10 @@ package logbook.client.a_nonroo.app.client.ui.custom.widget;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import logbook.shared.i18n.LogBookConstants;
+
 import com.allen_sauer.gwt.log.client.Log;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.dom.client.Style.VerticalAlign;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -16,6 +19,9 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
 public class CustomPager extends Composite implements ClickHandler {
+	
+	private static LogBookConstants constants = GWT.create(LogBookConstants.class);
+	
 	// public class CustomPager extends Widget implements ClickHandler {
 	private Button first = new Button("");
 	private Button next = new Button("");
@@ -47,15 +53,20 @@ public class CustomPager extends Composite implements ClickHandler {
 		buttonContainer.add(last);
 		recordDisplay.addStyleName("labelForPager");
 		first.setEnabled(false);
-		previous.setEnabled(false);
-		container.add(labelContainer);
+		previous.setEnabled(false);		
 		container.add(buttonContainer);
+		container.add(labelContainer);
 		
 		first.addClickHandler(this);
 		next.addClickHandler(this);
 		previous.addClickHandler(this);
 		last.addClickHandler(this);
-
+		
+		first.setTitle(constants.first());
+		next.setTitle(constants.next());
+		previous.setTitle(constants.previous());
+		last.setTitle(constants.last());
+		
 		recordDisplay.setText(start + "-" + end + " of " + totalrecord);
 		// setElement(container.getElement());
 		initWidget(container);

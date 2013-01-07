@@ -1,0 +1,41 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+			.copyrightStyle
+		{
+			color: #666666;
+    		float: right;
+    		font-family: arial,sans-serif;
+    		font-size: 80%;
+    		margin-top: 20px;
+    		margin-bottom: 20px;
+    		padding-right: 5px;
+		}
+		.copyrightWithUnderlineStyle
+		{
+	
+			color: #666666;
+    		float: right;
+    		font-family: arial,sans-serif;
+    		font-size: 80%;
+    		margin-top: 20px;
+    		margin-bottom: 20px;
+    		padding-right: 5px;
+			text-decoration: underline;
+		}
+		
+		.copyrightHPStyle
+		{
+			float: right;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:HorizontalPanel addStyleNames="{style.copyrightHPStyle}" >						
+								<g:Label addStyleNames="{style.copyrightStyle}" ui:field="lblPoweredBy"></g:Label>
+								<g:Label ui:field="lblPoweredByName" addStyleNames="{style.copyrightWithUnderlineStyle}"></g:Label>
+								<g:Label ui:field="lblLine" addStyleNames="{style.copyrightStyle}"></g:Label>
+								<g:Label ui:field="lblContact" addStyleNames="{style.copyrightWithUnderlineStyle}"></g:Label>
+							</g:HorizontalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

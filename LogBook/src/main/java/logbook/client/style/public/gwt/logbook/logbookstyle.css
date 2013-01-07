@@ -975,14 +975,15 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	background-color: white;
 	position: relative !important;
 	margin-bottom: 60px;
-	padding-bottom: 60px;
+	/* padding-bottom: 60px; */
 }
 
 
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelContent
 {
-	padding:  25px;
+	 padding:  25px; 
+	 padding-bottom: 0px;
     border-width: 0px !important;	
     position: relative !important;
 }
