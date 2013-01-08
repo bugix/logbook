@@ -87,7 +87,18 @@ public class SkillActivity extends AbstractActivity implements
 	 * 
 	 * }
 	 */
-
+	
+	static class  ShowCriteria{
+		
+		
+		static MainClassificationProxy mProxy=null;
+		static ClassificationTopicProxy ctProxy=null;
+		static TopicProxy tProxy=null;
+		static String fullTextSearch="";
+		static String chkAsc=new Integer(0).toString();
+		
+	}
+	
 	public SkillActivity(LogBookRequestFactory requests,
 			PlaceController placeController) {
 
@@ -428,10 +439,20 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		
 		view.setIsAsc(0);
 		initSkillTableData(view.getStudent(),view.getIsAsc());
+		
+		ShowCriteria.mProxy=view.getMainClassificationSuggestBox().getSelected();
+		ShowCriteria.tProxy=view.getTopicSuggestBox().getSelected();
+		ShowCriteria.ctProxy=view.getClassificationTopicSuggestBox().getSelected();
+		ShowCriteria.chkAsc=new Integer(view.getIsAsc()).toString();
+		ShowCriteria.fullTextSearch=view.getFullTextSearchBox().getValue();
 	}
 
 	@Override
 	public void showButtonClicked() {
+		
+		
+		
+		
 		view.getLblError().setVisible(false);
 		this.mainClassificationId=view.getMainClassificationSuggestBox().getSelected() !=null ? view.getMainClassificationSuggestBox().getSelected().getId() : null;
 		this.classificaitonTopicId=view.getClassificationTopicSuggestBox().getSelected()!=null ? view.getClassificationTopicSuggestBox().getSelected().getId() : null;
@@ -451,6 +472,12 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		initSkillTableData(view.getStudent(),view.getIsAsc());
 		}
 		
+		ShowCriteria.mProxy=view.getMainClassificationSuggestBox().getSelected();
+		ShowCriteria.tProxy=view.getTopicSuggestBox().getSelected();
+		ShowCriteria.ctProxy=view.getClassificationTopicSuggestBox().getSelected();
+		ShowCriteria.chkAsc=new Integer(view.getIsAsc()).toString();
+		ShowCriteria.fullTextSearch=view.getFullTextSearchBox().getValue();
+		
 	}
 
 	@Override
@@ -465,10 +492,10 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 	public void printPdfClicked() {
 		
 		showApplicationLoading(true);
-		MainClassificationProxy mProxy=view.getMainClassificationSuggestBox().getSelected();
-		ClassificationTopicProxy ctProxy=view.getClassificationTopicSuggestBox().getSelected();
-		TopicProxy tProxy=view.getTopicSuggestBox().getSelected();
-		String fullTextSearch=view.getFullTextSearchBox().getText();
+		MainClassificationProxy mProxy=ShowCriteria.mProxy;
+		ClassificationTopicProxy ctProxy=ShowCriteria.ctProxy;
+		TopicProxy tProxy=ShowCriteria.tProxy;
+		String fullTextSearch=ShowCriteria.fullTextSearch;
 		
 		Long mainClassifcationId=null;
 		Long classifcationTopicId=null;
@@ -487,7 +514,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 			topicId=tProxy.getId();
 		}
 		
-		requests.skillRequestNonRoo().retrieveHtmlFile(view.getStudent().getId(),mainClassifcationId,classifcationTopicId,topicId,fullTextSearch,view.getIsAsc()).fire(new Receiver<String>() {
+		requests.skillRequestNonRoo().retrieveHtmlFile(view.getStudent().getId(),mainClassifcationId,classifcationTopicId,topicId,fullTextSearch,new Integer(ShowCriteria.chkAsc).intValue()).fire(new Receiver<String>() {
 
 			@Override
 			public void onSuccess(String response) {
@@ -773,10 +800,10 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 	public void exportPDF() {
 		Log.info("exportPDF");
 		
-		MainClassificationProxy mProxy=view.getMainClassificationSuggestBox().getSelected();
-		ClassificationTopicProxy ctProxy=view.getClassificationTopicSuggestBox().getSelected();
-		TopicProxy tProxy=view.getTopicSuggestBox().getSelected();
-		String fullTextSearch=view.getFullTextSearchBox().getText();
+		MainClassificationProxy mProxy=ShowCriteria.mProxy;
+		ClassificationTopicProxy ctProxy=ShowCriteria.ctProxy;
+		TopicProxy tProxy=ShowCriteria.tProxy;
+		String fullTextSearch=ShowCriteria.fullTextSearch;
 		
 		String mainClassifcationId="0";
 		String classifcationTopicId="0";
@@ -795,7 +822,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 			topicId=tProxy.getId().toString();
 		}
 		
-		String chkAsc=new Integer(view.getIsAsc()).toString();
+		String chkAsc=ShowCriteria.chkAsc;
 		String url=GWT.getHostPageBaseURL()+"SkillPdfExport?studentId="+view.getStudent().getId()+"&mainClassifcationId="+mainClassifcationId+"&classifcationId="+classifcationTopicId+"&topicId="+topicId+"&chkAsc="+chkAsc+"&fullTextSearch="+fullTextSearch;
 		Log.info("url :" + url);
 		Window.open(url, "skill"+view.getStudent().getName()+".pdf", "enabled");
