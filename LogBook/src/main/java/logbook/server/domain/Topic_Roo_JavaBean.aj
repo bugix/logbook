@@ -3,7 +3,7 @@
 
 package logbook.server.domain;
 
-import java.util.Set;
+import java.util.List;
 import logbook.server.domain.ClassificationTopic;
 import logbook.server.domain.Skill;
 import logbook.server.domain.Topic;
@@ -18,11 +18,11 @@ privileged aspect Topic_Roo_JavaBean {
         this.topicDescription = topicDescription;
     }
     
-    public Set<Skill> Topic.getSkills() {
+    public List<Skill> Topic.getSkills() {
         return this.skills;
     }
     
-    public void Topic.setSkills(Set<Skill> skills) {
+    public void Topic.setSkills(List<Skill> skills) {
         this.skills = skills;
     }
     

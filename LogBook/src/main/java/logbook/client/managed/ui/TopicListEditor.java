@@ -28,6 +28,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import logbook.client.managed.proxy.ClassificationTopicProxy;
+import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.managed.ui.TopicListEditor.NameLabel;
 import logbook.client.scaffold.ui.CollectionRenderer;
@@ -81,7 +83,7 @@ public class TopicListEditor extends TopicListEditor_Roo_Gwt {
             return;
         }
         for (TopicProxy proxy : displayedList) {
-            if (proxy.getId().equals(picker.getValue().getId())) {
+            if (proxy.getTopicDescription().equals(picker.getValue().getTopicDescription())) {
                 return;
             }
         }
@@ -166,7 +168,7 @@ public class TopicListEditor extends TopicListEditor_Roo_Gwt {
 
     class NameLabel extends Composite implements LeafValueEditor<TopicProxy> {
 
-        final Label idEditor = new Label();
+        final Label topicDescriptionEditor = new Label();
 
         private TopicProxy proxy = null;
 
@@ -175,12 +177,12 @@ public class TopicListEditor extends TopicListEditor_Roo_Gwt {
         }
 
         public NameLabel(EventBus eventBus) {
-            initWidget(idEditor);
+            initWidget(topicDescriptionEditor);
         }
 
         public void setValue(TopicProxy proxy) {
             this.proxy = proxy;
-            idEditor.setText(logbook.client.managed.ui.TopicProxyRenderer.instance().render(proxy));
+            topicDescriptionEditor.setText(logbook.client.managed.ui.TopicProxyRenderer.instance().render(proxy));
         }
 
         @Override

@@ -10,7 +10,10 @@ import com.google.gwt.text.shared.AbstractRenderer;
 import com.google.gwt.text.shared.AbstractSafeHtmlRenderer;
 import com.google.gwt.text.shared.Renderer;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import logbook.client.managed.proxy.ClassificationTopicProxy;
+import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.scaffold.ScaffoldMobileApp;
 import logbook.client.scaffold.ui.MobileProxyListView;
@@ -41,16 +44,16 @@ public class TopicMobileListView extends TopicMobileListView_Roo_Gwt {
 
         private final String secondaryStyle = ScaffoldMobileApp.getMobileListResources().cellListStyle().secondaryProp();
 
-        private final Renderer<Long> primaryRenderer = new AbstractRenderer<Long>() {
+        private final Renderer<String> primaryRenderer = new AbstractRenderer<String>() {
 
-            public String render(java.lang.Long obj) {
+            public String render(java.lang.String obj) {
                 return obj == null ? "" : String.valueOf(obj);
             }
         };
 
-        private final Renderer<Integer> secondaryRenderer = new AbstractRenderer<Integer>() {
+        private final Renderer<Long> secondaryRenderer = new AbstractRenderer<Long>() {
 
-            public String render(java.lang.Integer obj) {
+            public String render(java.lang.Long obj) {
                 return obj == null ? "" : String.valueOf(obj);
             }
         };
@@ -61,13 +64,13 @@ public class TopicMobileListView extends TopicMobileListView_Roo_Gwt {
                 return SafeHtmlUtils.EMPTY_SAFE_HTML;
             }
             SafeHtmlBuilder sb = new SafeHtmlBuilder();
-            if (value.getId() != null) {
-                sb.appendEscaped(primaryRenderer.render(value.getId()));
+            if (value.getTopicDescription() != null) {
+                sb.appendEscaped(primaryRenderer.render(value.getTopicDescription()));
             }
             sb.appendHtmlConstant("<div style=\"position:relative;\">");
             sb.appendHtmlConstant("<div class=\"" + secondaryStyle + "\">");
-            if (value.getVersion() != null) {
-                sb.appendEscaped(secondaryRenderer.render(value.getVersion()));
+            if (value.getId() != null) {
+                sb.appendEscaped(secondaryRenderer.render(value.getId()));
             }
             sb.appendHtmlConstant("</div>");
             sb.appendHtmlConstant("<div class=\"" + dateStyle + "\">");

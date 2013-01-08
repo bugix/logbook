@@ -16,6 +16,7 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
@@ -77,7 +78,7 @@ public abstract class MainClassificationListView_Roo_Gwt extends AbstractProxyLi
         paths.add("classificationTopics");
         table.addColumn(new TextColumn<MainClassificationProxy>() {
 
-            Renderer<java.util.Set> renderer = logbook.client.scaffold.place.CollectionRenderer.of(logbook.client.managed.ui.ClassificationTopicProxyRenderer.instance());
+            Renderer<java.util.List> renderer = logbook.client.scaffold.place.CollectionRenderer.of(logbook.client.managed.ui.ClassificationTopicProxyRenderer.instance());
 
             @Override
             public String getValue(MainClassificationProxy object) {

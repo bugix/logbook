@@ -19,25 +19,25 @@
   <g:HTMLPanel debugId="boundElementHolder" styleName="{style.outer}">
     <div class="{style.error}" ui:field="errors"/>
     
-
-    <g:Button ui:field="save">Save</g:Button>
-  <div id="topicDescription">
+    <div id="topicDescription">
             <div class="{style.label}">Topic Description</div>
             <div class="{style.value}">
                 <g:TextBox ui:field="topicDescription"/>
             </div>
         </div>
-        <div id="skills">
+    <div id="skills">
             <div class="{style.label}">Skills</div>
             <div class="{style.value}">
-                <a:SkillSetEditor ui:field="skills"/>
+                <a:SkillListEditor ui:field="skills"/>
             </div>
         </div>
-        <div id="classificationTopic">
+    <div id="classificationTopic">
             <div class="{style.label}">Classification Topic</div>
             <div class="{style.value}">
                 <g:ValueListBox ui:field="classificationTopic"/>
             </div>
         </div>
-    </g:HTMLPanel>
+
+    <g:Button ui:field="save">Save</g:Button>
+  </g:HTMLPanel>
 </ui:UiBinder>

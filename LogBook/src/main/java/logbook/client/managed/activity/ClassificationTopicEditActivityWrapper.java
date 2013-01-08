@@ -13,7 +13,9 @@ import java.util.Collections;
 import java.util.List;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
+import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.managed.request.ApplicationRequestFactory;
+import logbook.client.managed.ui.TopicListEditor;
 import logbook.client.scaffold.activity.IsScaffoldMobileActivity;
 import logbook.client.scaffold.place.ProxyEditView;
 import logbook.client.scaffold.place.ProxyListPlace;
@@ -68,5 +70,7 @@ public class ClassificationTopicEditActivityWrapper extends ClassificationTopicE
     public interface View<V extends logbook.client.scaffold.place.ProxyEditView<logbook.client.managed.proxy.ClassificationTopicProxy, V>> extends ProxyEditView<ClassificationTopicProxy, V> {
 
         void setMainClassificationPickerValues(Collection<logbook.client.managed.proxy.MainClassificationProxy> values);
+
+        void setTopicsPickerValues(Collection<logbook.client.managed.proxy.TopicProxy> values);
     }
 }

@@ -13,37 +13,31 @@
   </ui:style>
 
   <g:HTMLPanel debugId="boundElementHolder" styleName="{style.outer}">
-    
-    
-    
-    
-    
-    
-
-    <g:Button ui:field="delete">Delete</g:Button>
-  <div id="id">
+    <div id="id">
             <div class="{style.label}">Id</div>
             <div class="{style.value}" ui:field="id"/>
         </div>
-        <div id="description">
+    <div id="description">
             <div class="{style.label}">Description</div>
             <div class="{style.value}" ui:field="description"/>
         </div>
-        <div id="shortcut">
+    <div id="shortcut">
             <div class="{style.label}">Shortcut</div>
             <div class="{style.value}" ui:field="shortcut"/>
         </div>
-        <div id="mainClassification">
+    <div id="mainClassification">
             <div class="{style.label}">Main Classification</div>
             <div class="{style.value}" ui:field="mainClassification"/>
         </div>
-        <div id="topics">
+    <div id="topics">
             <div class="{style.label}">Topics</div>
             <div class="{style.value}" ui:field="topics"/>
         </div>
-        <div id="version">
+    <div id="version">
             <div class="{style.label}">Version</div>
             <div class="{style.value}" ui:field="version"/>
         </div>
-    </g:HTMLPanel>
+
+    <g:Button ui:field="delete">Delete</g:Button>
+  </g:HTMLPanel>
 </ui:UiBinder>

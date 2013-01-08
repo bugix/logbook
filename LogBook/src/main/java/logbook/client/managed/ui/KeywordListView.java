@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import java.util.HashSet;
 import java.util.Set;
 import logbook.client.managed.proxy.KeywordProxy;
+import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.scaffold.place.AbstractProxyListView;
 
 public class KeywordListView extends KeywordListView_Roo_Gwt {

@@ -64,7 +64,7 @@
                     <div class="{style.label}">Classification Topics:</div>
                 </td>
                 <td>
-                    <a:ClassificationTopicSetEditor ui:field="classificationTopics"/>
+                    <a:ClassificationTopicListEditor ui:field="classificationTopics"/>
                 </td>
             </tr>
     </table>

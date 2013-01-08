@@ -11,8 +11,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import logbook.client.managed.proxy.KeywordProxy;
+import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.request.ApplicationRequestFactory;
+import logbook.client.managed.ui.SkillSetEditor;
 import logbook.client.scaffold.activity.IsScaffoldMobileActivity;
 import logbook.client.scaffold.place.ProxyEditView;
 import logbook.client.scaffold.place.ProxyListPlace;
@@ -65,5 +68,7 @@ public class KeywordEditActivityWrapper extends KeywordEditActivityWrapper_Roo_G
     }
 
     public interface View<V extends logbook.client.scaffold.place.ProxyEditView<logbook.client.managed.proxy.KeywordProxy, V>> extends ProxyEditView<KeywordProxy, V> {
+
+        void setSkillPickerValues(Collection<logbook.client.managed.proxy.SkillProxy> values);
     }
 }

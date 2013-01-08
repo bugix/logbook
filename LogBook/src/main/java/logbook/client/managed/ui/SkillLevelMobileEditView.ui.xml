@@ -19,27 +19,25 @@
   <g:HTMLPanel debugId="boundElementHolder" styleName="{style.outer}">
     <div class="{style.error}" ui:field="errors"/>
     
-    
-    
-
-    <g:Button ui:field="save">Save</g:Button>
-  <div id="levelNumber">
+    <div id="levelNumber">
             <div class="{style.label}">Level Number</div>
             <div class="{style.value}">
                 <g:IntegerBox ui:field="levelNumber"/>
             </div>
         </div>
-        <div id="skills">
+    <div id="skills">
             <div class="{style.label}">Skills</div>
             <div class="{style.value}">
                 <a:SkillSetEditor ui:field="skills"/>
             </div>
         </div>
-        <div id="skillAcquired">
+    <div id="skillAcquired">
             <div class="{style.label}">Skill Acquired</div>
             <div class="{style.value}">
                 <a:SkillAcquiredSetEditor ui:field="skillAcquired"/>
             </div>
         </div>
-    </g:HTMLPanel>
+
+    <g:Button ui:field="save">Save</g:Button>
+  </g:HTMLPanel>
 </ui:UiBinder>

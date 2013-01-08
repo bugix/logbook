@@ -32,6 +32,6 @@ public abstract class SkillMobileListView_Roo_Gwt extends MobileProxyListView<Sk
 
     public void init() {
         paths.add("description");
-        paths.add("shortcut");
+        paths.add("german_text");
     }
 }

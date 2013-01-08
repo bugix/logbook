@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import java.util.Set;
+import logbook.client.managed.proxy.SkillAcquiredProxy;
 import logbook.client.managed.proxy.SkillLevelProxy;
 import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.scaffold.place.ProxyDetailsView;

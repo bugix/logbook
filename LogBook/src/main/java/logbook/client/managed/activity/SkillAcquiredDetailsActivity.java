@@ -15,7 +15,6 @@ import logbook.client.managed.proxy.SkillLevelProxy;
 import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.request.ApplicationRequestFactory;
-import logbook.client.managed.ui.SkillSetEditor;
 import logbook.client.scaffold.activity.IsScaffoldMobileActivity;
 import logbook.client.scaffold.place.ProxyDetailsView;
 import logbook.client.scaffold.place.ProxyListPlace;

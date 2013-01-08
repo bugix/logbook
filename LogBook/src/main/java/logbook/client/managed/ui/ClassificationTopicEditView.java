@@ -29,6 +29,7 @@ import java.util.List;
 import logbook.client.managed.activity.ClassificationTopicEditActivityWrapper;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
+import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.scaffold.place.ProxyEditView;
 import logbook.client.scaffold.ui.*;
 

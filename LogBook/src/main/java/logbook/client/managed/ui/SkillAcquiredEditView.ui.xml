@@ -43,7 +43,6 @@
     <div class="{style.errors}" ui:field="errors"/>
 
     <table class="{style.fields}" id="boundElementHolder">
-      
       <tr id="created">
                 <td>
                     <div class="{style.label}">Created:</div>

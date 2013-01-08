@@ -31,6 +31,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import logbook.client.managed.proxy.KeywordProxy;
+import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.ui.KeywordSetEditor.NameLabel;
 import logbook.client.scaffold.ui.CollectionRenderer;
 

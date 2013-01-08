@@ -17,9 +17,9 @@ public interface SkillProxy extends EntityProxy {
 
     abstract void setDescription(String description);
 
-    abstract String getShortcut();
+    abstract Integer getShortcut();
 
-    abstract void setShortcut(String shortcut);
+    abstract void setShortcut(Integer shortcut);
 
     abstract TopicProxy getTopic();
 
@@ -28,6 +28,10 @@ public interface SkillProxy extends EntityProxy {
     abstract SkillLevelProxy getSkillLevel();
 
     abstract void setSkillLevel(SkillLevelProxy skillLevel);
+
+    abstract String getGerman_text();
+
+    abstract void setGerman_text(String german_text);
 
     abstract Set<logbook.client.managed.proxy.SkillAcquiredProxy> getSkillsAcquired();
 

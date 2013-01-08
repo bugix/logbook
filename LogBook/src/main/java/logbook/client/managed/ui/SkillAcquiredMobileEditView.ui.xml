@@ -19,7 +19,6 @@
   <g:HTMLPanel debugId="boundElementHolder" styleName="{style.outer}">
     <div class="{style.error}" ui:field="errors"/>
     
-    
     <div id="created">
             <div class="{style.label}">Created</div>
             <div class="{style.value}">

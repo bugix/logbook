@@ -65,9 +65,9 @@ public abstract class SkillListView_Roo_Gwt extends AbstractProxyListView<SkillP
         paths.add("shortcut");
         table.addColumn(new TextColumn<SkillProxy>() {
 
-            Renderer<java.lang.String> renderer = new AbstractRenderer<java.lang.String>() {
+            Renderer<java.lang.Integer> renderer = new AbstractRenderer<java.lang.Integer>() {
 
-                public String render(java.lang.String obj) {
+                public String render(java.lang.Integer obj) {
                     return obj == null ? "" : String.valueOf(obj);
                 }
             };
@@ -97,6 +97,21 @@ public abstract class SkillListView_Roo_Gwt extends AbstractProxyListView<SkillP
                 return renderer.render(object.getSkillLevel());
             }
         }, "Skill Level");
+        paths.add("german_text");
+        table.addColumn(new TextColumn<SkillProxy>() {
+
+            Renderer<java.lang.String> renderer = new AbstractRenderer<java.lang.String>() {
+
+                public String render(java.lang.String obj) {
+                    return obj == null ? "" : String.valueOf(obj);
+                }
+            };
+
+            @Override
+            public String getValue(SkillProxy object) {
+                return renderer.render(object.getGerman_text());
+            }
+        }, "German_text");
         paths.add("skillsAcquired");
         table.addColumn(new TextColumn<SkillProxy>() {
 

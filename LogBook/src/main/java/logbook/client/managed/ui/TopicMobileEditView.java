@@ -27,6 +27,8 @@ import com.google.web.bindery.requestfactory.shared.RequestFactory;
 import java.util.Collection;
 import java.util.List;
 import logbook.client.managed.activity.TopicEditActivityWrapper;
+import logbook.client.managed.proxy.ClassificationTopicProxy;
+import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.scaffold.place.ProxyEditView;
 import logbook.client.scaffold.ui.*;

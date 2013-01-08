@@ -17,7 +17,6 @@
             <div class="{style.label}">Id</div>
             <div class="{style.value}" ui:field="id"/>
         </div>
-    
     <div id="created">
             <div class="{style.label}">Created</div>
             <div class="{style.value}" ui:field="created"/>

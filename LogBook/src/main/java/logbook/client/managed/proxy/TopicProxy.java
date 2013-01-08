@@ -4,6 +4,7 @@ package logbook.client.managed.proxy;
 
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
+import java.util.List;
 import java.util.Set;
 import org.springframework.roo.addon.gwt.RooGwtProxy;
 
@@ -17,9 +18,9 @@ public interface TopicProxy extends EntityProxy {
 
     abstract void setTopicDescription(String topicDescription);
 
-    abstract Set<logbook.client.managed.proxy.SkillProxy> getSkills();
+    abstract List<logbook.client.managed.proxy.SkillProxy> getSkills();
 
-    abstract void setSkills(Set<logbook.client.managed.proxy.SkillProxy> skills);
+    abstract void setSkills(List<logbook.client.managed.proxy.SkillProxy> skills);
 
     abstract ClassificationTopicProxy getClassificationTopic();
 

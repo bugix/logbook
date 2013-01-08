@@ -41,6 +41,9 @@ public abstract class SkillMobileDetailsView_Roo_Gwt extends Composite implement
     Element skillLevel;
 
     @UiField
+    Element german_text;
+
+    @UiField
     Element skillsAcquired;
 
     @UiField
@@ -58,6 +61,7 @@ public abstract class SkillMobileDetailsView_Roo_Gwt extends Composite implement
         shortcut.setInnerText(proxy.getShortcut() == null ? "" : String.valueOf(proxy.getShortcut()));
         topic.setInnerText(proxy.getTopic() == null ? "" : logbook.client.managed.ui.TopicProxyRenderer.instance().render(proxy.getTopic()));
         skillLevel.setInnerText(proxy.getSkillLevel() == null ? "" : logbook.client.managed.ui.SkillLevelProxyRenderer.instance().render(proxy.getSkillLevel()));
+        german_text.setInnerText(proxy.getGerman_text() == null ? "" : String.valueOf(proxy.getGerman_text()));
         skillsAcquired.setInnerText(proxy.getSkillsAcquired() == null ? "" : logbook.client.scaffold.place.CollectionRenderer.of(logbook.client.managed.ui.SkillAcquiredProxyRenderer.instance()).render(proxy.getSkillsAcquired()));
         keywords.setInnerText(proxy.getKeywords() == null ? "" : logbook.client.scaffold.place.CollectionRenderer.of(logbook.client.managed.ui.KeywordProxyRenderer.instance()).render(proxy.getKeywords()));
         version.setInnerText(proxy.getVersion() == null ? "" : String.valueOf(proxy.getVersion()));

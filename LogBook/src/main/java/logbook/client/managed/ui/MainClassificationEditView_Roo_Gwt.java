@@ -28,7 +28,6 @@ import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriv
 import com.google.web.bindery.requestfactory.shared.RequestFactory;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import logbook.client.managed.activity.MainClassificationEditActivityWrapper;
 import logbook.client.managed.activity.MainClassificationEditActivityWrapper.View;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
@@ -45,7 +44,7 @@ public abstract class MainClassificationEditView_Roo_Gwt extends Composite imple
     TextBox shortcut;
 
     @UiField
-    ClassificationTopicSetEditor classificationTopics;
+    ClassificationTopicListEditor classificationTopics;
 
     public void setClassificationTopicsPickerValues(Collection<logbook.client.managed.proxy.ClassificationTopicProxy> values) {
         classificationTopics.setAcceptableValues(values);

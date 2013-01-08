@@ -11,6 +11,7 @@ import com.google.gwt.text.shared.AbstractSafeHtmlRenderer;
 import com.google.gwt.text.shared.Renderer;
 import java.util.HashSet;
 import java.util.Set;
+import logbook.client.managed.proxy.KeywordProxy;
 import logbook.client.managed.proxy.SkillAcquiredProxy;
 import logbook.client.managed.proxy.SkillLevelProxy;
 import logbook.client.managed.proxy.SkillProxy;
@@ -69,8 +70,8 @@ public class SkillMobileListView extends SkillMobileListView_Roo_Gwt {
             }
             sb.appendHtmlConstant("<div style=\"position:relative;\">");
             sb.appendHtmlConstant("<div class=\"" + secondaryStyle + "\">");
-            if (value.getShortcut() != null) {
-                sb.appendEscaped(secondaryRenderer.render(value.getShortcut()));
+            if (value.getGerman_text() != null) {
+                sb.appendEscaped(secondaryRenderer.render(value.getGerman_text()));
             }
             sb.appendHtmlConstant("</div>");
             sb.appendHtmlConstant("<div class=\"" + dateStyle + "\">");

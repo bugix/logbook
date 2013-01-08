@@ -10,9 +10,11 @@ import com.google.gwt.text.shared.AbstractRenderer;
 import com.google.gwt.text.shared.AbstractSafeHtmlRenderer;
 import com.google.gwt.text.shared.Renderer;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
+import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.scaffold.ScaffoldMobileApp;
 import logbook.client.scaffold.ui.MobileProxyListView;
 

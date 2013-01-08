@@ -28,7 +28,6 @@ import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriv
 import com.google.web.bindery.requestfactory.shared.RequestFactory;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import logbook.client.managed.activity.ClassificationTopicEditActivityWrapper;
 import logbook.client.managed.activity.ClassificationTopicEditActivityWrapper.View;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
@@ -49,7 +48,7 @@ public abstract class ClassificationTopicMobileEditView_Roo_Gwt extends Composit
     ValueListBox<MainClassificationProxy> mainClassification = new ValueListBox<MainClassificationProxy>(logbook.client.managed.ui.MainClassificationProxyRenderer.instance(), new com.google.web.bindery.requestfactory.gwt.ui.client.EntityProxyKeyProvider<logbook.client.managed.proxy.MainClassificationProxy>());
 
     @UiField
-    TopicSetEditor topics;
+    TopicListEditor topics;
 
     public void setMainClassificationPickerValues(Collection<logbook.client.managed.proxy.MainClassificationProxy> values) {
         mainClassification.setAcceptableValues(values);

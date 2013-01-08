@@ -19,58 +19,49 @@
   <g:HTMLPanel debugId="boundElementHolder" styleName="{style.outer}">
     <div class="{style.error}" ui:field="errors"/>
     
-    
-    
-    
-    
-    
-
-    <g:Button ui:field="save">Save</g:Button>
-  
-        
-        
-        
-        
-    
-        
-        
-        
-        
     <div id="description">
             <div class="{style.label}">Description</div>
             <div class="{style.value}">
                 <g:TextBox ui:field="description"/>
             </div>
         </div>
-        <div id="shortcut">
+    <div id="shortcut">
             <div class="{style.label}">Shortcut</div>
             <div class="{style.value}">
                 <g:TextBox ui:field="shortcut"/>
             </div>
         </div>
-        <div id="topic">
+    <div id="topic">
             <div class="{style.label}">Topic</div>
             <div class="{style.value}">
                 <g:ValueListBox ui:field="topic"/>
             </div>
         </div>
-        <div id="skillLevel">
+    <div id="skillLevel">
             <div class="{style.label}">Skill Level</div>
             <div class="{style.value}">
                 <g:ValueListBox ui:field="skillLevel"/>
             </div>
         </div>
-        <div id="skillsAcquired">
+    <div id="german_text">
+            <div class="{style.label}">German_text</div>
+            <div class="{style.value}">
+                <g:TextBox ui:field="german_text"/>
+            </div>
+        </div>
+    <div id="skillsAcquired">
             <div class="{style.label}">Skills Acquired</div>
             <div class="{style.value}">
                 <a:SkillAcquiredSetEditor ui:field="skillsAcquired"/>
             </div>
         </div>
-        <div id="keywords">
+    <div id="keywords">
             <div class="{style.label}">Keywords</div>
             <div class="{style.value}">
                 <a:KeywordSetEditor ui:field="keywords"/>
             </div>
         </div>
-    </g:HTMLPanel>
+
+    <g:Button ui:field="save">Save</g:Button>
+  </g:HTMLPanel>
 </ui:UiBinder>

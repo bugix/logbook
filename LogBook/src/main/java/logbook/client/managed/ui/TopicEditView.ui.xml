@@ -43,7 +43,7 @@
     <div class="{style.errors}" ui:field="errors"/>
 
     <table class="{style.fields}" id="boundElementHolder">
-    <tr id="topicDescription">
+      <tr id="topicDescription">
                 <td>
                     <div class="{style.label}">Topic Description:</div>
                 </td>
@@ -51,15 +51,15 @@
                     <g:TextBox ui:field="topicDescription"/>
                 </td>
             </tr>
-            <tr id="skills">
+      <tr id="skills">
                 <td>
                     <div class="{style.label}">Skills:</div>
                 </td>
                 <td>
-                    <a:SkillSetEditor ui:field="skills"/>
+                    <a:SkillListEditor ui:field="skills"/>
                 </td>
             </tr>
-            <tr id="classificationTopic">
+      <tr id="classificationTopic">
                 <td>
                     <div class="{style.label}">Classification Topic:</div>
                 </td>
@@ -67,7 +67,7 @@
                     <g:ValueListBox ui:field="classificationTopic"/>
                 </td>
             </tr>
-        </table>
+    </table>
 
     <div class="{style.bar}">
       <g:Button addStyleNames="{style.button}" ui:field="save">Save</g:Button>

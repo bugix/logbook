@@ -12,6 +12,7 @@ import com.google.gwt.text.shared.Renderer;
 import java.util.HashSet;
 import java.util.Set;
 import logbook.client.managed.proxy.KeywordProxy;
+import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.scaffold.ScaffoldMobileApp;
 import logbook.client.scaffold.ui.MobileProxyListView;
 

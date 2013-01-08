@@ -1,7 +1,6 @@
 package logbook.client.managed.ui;
 
 import com.google.web.bindery.requestfactory.gwt.ui.client.ProxyRenderer;
-import java.util.Set;
 import logbook.client.managed.proxy.SkillAcquiredProxy;
 import logbook.client.managed.proxy.SkillLevelProxy;
 import logbook.client.managed.proxy.SkillProxy;

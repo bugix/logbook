@@ -43,11 +43,7 @@
     <div class="{style.errors}" ui:field="errors"/>
 
     <table class="{style.fields}" id="boundElementHolder">
-      
-      
-      
-      
-    <tr id="description">
+      <tr id="description">
                 <td>
                     <div class="{style.label}">Description:</div>
                 </td>
@@ -55,7 +51,7 @@
                     <g:TextBox ui:field="description"/>
                 </td>
             </tr>
-            <tr id="shortcut">
+      <tr id="shortcut">
                 <td>
                     <div class="{style.label}">Shortcut:</div>
                 </td>
@@ -63,7 +59,7 @@
                     <g:TextBox ui:field="shortcut"/>
                 </td>
             </tr>
-            <tr id="mainClassification">
+      <tr id="mainClassification">
                 <td>
                     <div class="{style.label}">Main Classification:</div>
                 </td>
@@ -71,15 +67,15 @@
                     <g:ValueListBox ui:field="mainClassification"/>
                 </td>
             </tr>
-            <tr id="topics">
+      <tr id="topics">
                 <td>
                     <div class="{style.label}">Topics:</div>
                 </td>
                 <td>
-                    <a:TopicSetEditor ui:field="topics"/>
+                    <a:TopicListEditor ui:field="topics"/>
                 </td>
             </tr>
-        </table>
+    </table>
 
     <div class="{style.bar}">
       <g:Button addStyleNames="{style.button}" ui:field="save">Save</g:Button>

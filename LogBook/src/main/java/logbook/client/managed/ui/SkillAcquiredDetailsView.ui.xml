@@ -43,7 +43,6 @@
                     <span ui:field="id"/>
                 </td>
             </tr>
-      
       <tr id="created">
                 <td>
                     <span class="{style.label}">Created:</span>

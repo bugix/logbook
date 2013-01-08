@@ -11,7 +11,6 @@ import logbook.client.managed.proxy.SkillLevelProxy;
 import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.managed.request.ApplicationRequestFactory;
-import logbook.client.managed.request.SkillRequest;
 import logbook.client.managed.ui.KeywordSetEditor;
 import logbook.client.managed.ui.SkillAcquiredSetEditor;
 import logbook.client.managed.ui.SkillDetailsView;
@@ -23,6 +22,7 @@ import logbook.client.scaffold.ScaffoldApp;
 import logbook.client.scaffold.place.CreateAndEditProxy;
 import logbook.client.scaffold.place.FindAndEditProxy;
 import logbook.client.scaffold.place.ProxyPlace;
+import logbook.shared.scaffold.SkillNonRooRequest;
 
 public class SkillActivitiesMapper extends SkillActivitiesMapper_Roo_Gwt {
 

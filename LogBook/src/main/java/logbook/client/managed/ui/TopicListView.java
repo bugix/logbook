@@ -14,7 +14,10 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import logbook.client.managed.proxy.ClassificationTopicProxy;
+import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.scaffold.place.AbstractProxyListView;
 

@@ -4,6 +4,7 @@ package logbook.client.managed.proxy;
 
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
+import java.util.List;
 import java.util.Set;
 import org.springframework.roo.addon.gwt.RooGwtProxy;
 
@@ -21,9 +22,9 @@ public interface MainClassificationProxy extends EntityProxy {
 
     abstract void setShortcut(String shortcut);
 
-    abstract Set<logbook.client.managed.proxy.ClassificationTopicProxy> getClassificationTopics();
+    abstract List<logbook.client.managed.proxy.ClassificationTopicProxy> getClassificationTopics();
 
-    abstract void setClassificationTopics(Set<logbook.client.managed.proxy.ClassificationTopicProxy> classificationTopics);
+    abstract void setClassificationTopics(List<logbook.client.managed.proxy.ClassificationTopicProxy> classificationTopics);
 
     abstract Integer getVersion();
 }

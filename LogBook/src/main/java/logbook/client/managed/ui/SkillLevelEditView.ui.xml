@@ -43,9 +43,7 @@
     <div class="{style.errors}" ui:field="errors"/>
 
     <table class="{style.fields}" id="boundElementHolder">
-      
-      
-    <tr id="levelNumber">
+      <tr id="levelNumber">
                 <td>
                     <div class="{style.label}">Level Number:</div>
                 </td>
@@ -53,7 +51,7 @@
                     <g:IntegerBox ui:field="levelNumber"/>
                 </td>
             </tr>
-            <tr id="skills">
+      <tr id="skills">
                 <td>
                     <div class="{style.label}">Skills:</div>
                 </td>
@@ -61,7 +59,7 @@
                     <a:SkillSetEditor ui:field="skills"/>
                 </td>
             </tr>
-            <tr id="skillAcquired">
+      <tr id="skillAcquired">
                 <td>
                     <div class="{style.label}">Skill Acquired:</div>
                 </td>
@@ -69,7 +67,7 @@
                     <a:SkillAcquiredSetEditor ui:field="skillAcquired"/>
                 </td>
             </tr>
-        </table>
+    </table>
 
     <div class="{style.bar}">
       <g:Button addStyleNames="{style.button}" ui:field="save">Save</g:Button>

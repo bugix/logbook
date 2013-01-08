@@ -11,13 +11,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import logbook.client.managed.proxy.SkillAcquiredProxy;
 import logbook.client.managed.proxy.SkillLevelProxy;
 import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.request.ApplicationRequestFactory;
-import logbook.client.managed.ui.SkillSetEditor;
 import logbook.client.scaffold.activity.IsScaffoldMobileActivity;
 import logbook.client.scaffold.place.ProxyEditView;
 import logbook.client.scaffold.place.ProxyListPlace;
@@ -70,8 +68,6 @@ public class SkillAcquiredEditActivityWrapper extends SkillAcquiredEditActivityW
     }
 
     public interface View<V extends logbook.client.scaffold.place.ProxyEditView<logbook.client.managed.proxy.SkillAcquiredProxy, V>> extends ProxyEditView<SkillAcquiredProxy, V> {
-
-        void setSkillsPickerValues(Collection<logbook.client.managed.proxy.SkillProxy> values);
 
         void setSkillPickerValues(Collection<logbook.client.managed.proxy.SkillProxy> values);
 

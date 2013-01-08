@@ -34,6 +34,7 @@ privileged aspect SkillDataOnDemand_Roo_DataOnDemand {
     public Skill SkillDataOnDemand.getNewTransientSkill(int index) {
         Skill obj = new Skill();
         setDescription(obj, index);
+        setGerman_text(obj, index);
         setShortcut(obj, index);
         return obj;
     }
@@ -46,11 +47,16 @@ privileged aspect SkillDataOnDemand_Roo_DataOnDemand {
         obj.setDescription(description);
     }
     
-    public void SkillDataOnDemand.setShortcut(Skill obj, int index) {
-        String shortcut = "shortcut_" + index;
-        if (shortcut.length() > 255) {
-            shortcut = shortcut.substring(0, 255);
+    public void SkillDataOnDemand.setGerman_text(Skill obj, int index) {
+        String german_text = "german_text_" + index;
+        if (german_text.length() > 255) {
+            german_text = german_text.substring(0, 255);
         }
+        obj.setGerman_text(german_text);
+    }
+    
+    public void SkillDataOnDemand.setShortcut(Skill obj, int index) {
+        Integer shortcut = new Integer(index);
         obj.setShortcut(shortcut);
     }
     

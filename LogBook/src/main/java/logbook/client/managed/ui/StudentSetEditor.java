@@ -30,6 +30,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import logbook.client.managed.proxy.SkillAcquiredProxy;
 import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.ui.StudentSetEditor.NameLabel;
 import logbook.client.scaffold.ui.CollectionRenderer;

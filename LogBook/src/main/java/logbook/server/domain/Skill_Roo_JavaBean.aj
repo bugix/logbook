@@ -20,11 +20,11 @@ privileged aspect Skill_Roo_JavaBean {
         this.description = description;
     }
     
-    public String Skill.getShortcut() {
+    public Integer Skill.getShortcut() {
         return this.shortcut;
     }
     
-    public void Skill.setShortcut(String shortcut) {
+    public void Skill.setShortcut(Integer shortcut) {
         this.shortcut = shortcut;
     }
     
@@ -42,6 +42,14 @@ privileged aspect Skill_Roo_JavaBean {
     
     public void Skill.setSkillLevel(SkillLevel skillLevel) {
         this.skillLevel = skillLevel;
+    }
+    
+    public String Skill.getGerman_text() {
+        return this.german_text;
+    }
+    
+    public void Skill.setGerman_text(String german_text) {
+        this.german_text = german_text;
     }
     
     public Set<SkillAcquired> Skill.getSkillsAcquired() {

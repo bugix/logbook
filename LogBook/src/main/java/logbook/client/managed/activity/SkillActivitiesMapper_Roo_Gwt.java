@@ -13,7 +13,6 @@ import logbook.client.managed.proxy.SkillLevelProxy;
 import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.managed.request.ApplicationRequestFactory;
-import logbook.client.managed.request.SkillRequest;
 import logbook.client.managed.ui.KeywordSetEditor;
 import logbook.client.managed.ui.SkillAcquiredSetEditor;
 import logbook.client.managed.ui.SkillDetailsView;
@@ -25,6 +24,7 @@ import logbook.client.scaffold.ScaffoldApp;
 import logbook.client.scaffold.place.CreateAndEditProxy;
 import logbook.client.scaffold.place.FindAndEditProxy;
 import logbook.client.scaffold.place.ProxyPlace;
+import logbook.shared.scaffold.SkillNonRooRequest;
 
 public abstract class SkillActivitiesMapper_Roo_Gwt {
 
@@ -34,7 +34,7 @@ public abstract class SkillActivitiesMapper_Roo_Gwt {
 
     protected Activity makeCreateActivity() {
         SkillEditView.instance().setCreating(true);
-        final SkillRequest request = requests.skillRequest();
+        final SkillNonRooRequest request = requests.skillRequest();
         Activity activity = new CreateAndEditProxy<SkillProxy>(SkillProxy.class, request, ScaffoldApp.isMobile() ? SkillMobileEditView.instance() : SkillEditView.instance(), placeController) {
 
             @Override
@@ -58,7 +58,7 @@ public abstract class SkillActivitiesMapper_Roo_Gwt {
 
             @Override
             protected RequestContext createSaveRequest(SkillProxy proxy) {
-                SkillRequest request = requests.skillRequest();
+                SkillNonRooRequest request = requests.skillRequest();
                 request.persist().using(proxy);
                 return request;
             }

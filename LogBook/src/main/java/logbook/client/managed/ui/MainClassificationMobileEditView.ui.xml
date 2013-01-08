@@ -34,7 +34,7 @@
     <div id="classificationTopics">
             <div class="{style.label}">Classification Topics</div>
             <div class="{style.value}">
-                <a:ClassificationTopicSetEditor ui:field="classificationTopics"/>
+                <a:ClassificationTopicListEditor ui:field="classificationTopics"/>
             </div>
         </div>
 

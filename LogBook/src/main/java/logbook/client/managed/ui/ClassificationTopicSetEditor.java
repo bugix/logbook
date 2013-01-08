@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Set;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
+import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.managed.ui.ClassificationTopicSetEditor.NameLabel;
 import logbook.client.scaffold.ui.CollectionRenderer;
 

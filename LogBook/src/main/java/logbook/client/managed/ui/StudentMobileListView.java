@@ -11,6 +11,7 @@ import com.google.gwt.text.shared.AbstractSafeHtmlRenderer;
 import com.google.gwt.text.shared.Renderer;
 import java.util.HashSet;
 import java.util.Set;
+import logbook.client.managed.proxy.SkillAcquiredProxy;
 import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.scaffold.ScaffoldMobileApp;
 import logbook.client.scaffold.ui.MobileProxyListView;

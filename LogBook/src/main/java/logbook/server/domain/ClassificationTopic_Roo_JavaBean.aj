@@ -3,7 +3,7 @@
 
 package logbook.server.domain;
 
-import java.util.Set;
+import java.util.List;
 import logbook.server.domain.ClassificationTopic;
 import logbook.server.domain.MainClassification;
 import logbook.server.domain.Topic;
@@ -34,11 +34,11 @@ privileged aspect ClassificationTopic_Roo_JavaBean {
         this.mainClassification = mainClassification;
     }
     
-    public Set<Topic> ClassificationTopic.getTopics() {
+    public List<Topic> ClassificationTopic.getTopics() {
         return this.topics;
     }
     
-    public void ClassificationTopic.setTopics(Set<Topic> topics) {
+    public void ClassificationTopic.setTopics(List<Topic> topics) {
         this.topics = topics;
     }
     

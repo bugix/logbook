@@ -13,7 +13,9 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
+import java.util.Set;
 import logbook.client.managed.proxy.KeywordProxy;
+import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.scaffold.place.ProxyDetailsView;
 
 public class KeywordMobileDetailsView extends KeywordMobileDetailsView_Roo_Gwt {

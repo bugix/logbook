@@ -28,7 +28,6 @@ import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriv
 import com.google.web.bindery.requestfactory.shared.RequestFactory;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import logbook.client.managed.activity.TopicEditActivityWrapper;
 import logbook.client.managed.activity.TopicEditActivityWrapper.View;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
@@ -43,7 +42,7 @@ public abstract class TopicMobileEditView_Roo_Gwt extends Composite implements V
     TextBox topicDescription;
 
     @UiField
-    SkillSetEditor skills;
+    SkillListEditor skills;
 
     @UiField(provided = true)
     ValueListBox<ClassificationTopicProxy> classificationTopic = new ValueListBox<ClassificationTopicProxy>(logbook.client.managed.ui.ClassificationTopicProxyRenderer.instance(), new com.google.web.bindery.requestfactory.gwt.ui.client.EntityProxyKeyProvider<logbook.client.managed.proxy.ClassificationTopicProxy>());

@@ -13,60 +13,43 @@
   </ui:style>
 
   <g:HTMLPanel debugId="boundElementHolder" styleName="{style.outer}">
-    
-    
-    
-    
-    
-    
-    
-
-    <g:Button ui:field="delete">Delete</g:Button>
-  
-        
-        
-        
-        
-        
-        
-    
-        
-        
-        
-        
-        
-        
     <div id="id">
             <div class="{style.label}">Id</div>
             <div class="{style.value}" ui:field="id"/>
         </div>
-        <div id="description">
+    <div id="description">
             <div class="{style.label}">Description</div>
             <div class="{style.value}" ui:field="description"/>
         </div>
-        <div id="shortcut">
+    <div id="shortcut">
             <div class="{style.label}">Shortcut</div>
             <div class="{style.value}" ui:field="shortcut"/>
         </div>
-        <div id="topic">
+    <div id="topic">
             <div class="{style.label}">Topic</div>
             <div class="{style.value}" ui:field="topic"/>
         </div>
-        <div id="skillLevel">
+    <div id="skillLevel">
             <div class="{style.label}">Skill Level</div>
             <div class="{style.value}" ui:field="skillLevel"/>
         </div>
-        <div id="skillsAcquired">
+    <div id="german_text">
+            <div class="{style.label}">German_text</div>
+            <div class="{style.value}" ui:field="german_text"/>
+        </div>
+    <div id="skillsAcquired">
             <div class="{style.label}">Skills Acquired</div>
             <div class="{style.value}" ui:field="skillsAcquired"/>
         </div>
-        <div id="keywords">
+    <div id="keywords">
             <div class="{style.label}">Keywords</div>
             <div class="{style.value}" ui:field="keywords"/>
         </div>
-        <div id="version">
+    <div id="version">
             <div class="{style.label}">Version</div>
             <div class="{style.value}" ui:field="version"/>
         </div>
-    </g:HTMLPanel>
+
+    <g:Button ui:field="delete">Delete</g:Button>
+  </g:HTMLPanel>
 </ui:UiBinder>

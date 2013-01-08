@@ -26,8 +26,10 @@ import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriv
 import com.google.web.bindery.requestfactory.shared.RequestFactory;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import logbook.client.managed.activity.KeywordEditActivityWrapper;
 import logbook.client.managed.proxy.KeywordProxy;
+import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.scaffold.place.ProxyEditView;
 import logbook.client.scaffold.ui.*;
 

@@ -11,8 +11,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import logbook.client.managed.proxy.SkillAcquiredProxy;
 import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.request.ApplicationRequestFactory;
+import logbook.client.managed.ui.SkillAcquiredSetEditor;
 import logbook.client.scaffold.activity.IsScaffoldMobileActivity;
 import logbook.client.scaffold.place.ProxyEditView;
 import logbook.client.scaffold.place.ProxyListPlace;
@@ -74,5 +77,7 @@ public class StudentEditActivityWrapper extends StudentEditActivityWrapper_Roo_G
         void setStudentStatusPickerValues(Collection<logbook.shared.StudentStatus> values);
 
         void setStudyYearPickerValues(Collection<logbook.shared.StudyYears> values);
+
+        void setSkillAcquiredPickerValues(Collection<logbook.client.managed.proxy.SkillAcquiredProxy> values);
     }
 }

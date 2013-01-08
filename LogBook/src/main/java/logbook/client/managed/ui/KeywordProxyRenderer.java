@@ -1,7 +1,9 @@
 package logbook.client.managed.ui;
 
 import com.google.web.bindery.requestfactory.gwt.ui.client.ProxyRenderer;
+import java.util.Set;
 import logbook.client.managed.proxy.KeywordProxy;
+import logbook.client.managed.proxy.SkillProxy;
 
 public class KeywordProxyRenderer extends ProxyRenderer<KeywordProxy> {
 

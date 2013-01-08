@@ -45,13 +45,16 @@ public abstract class SkillEditView_Roo_Gwt extends Composite implements View<Sk
     TextBox description;
 
     @UiField
-    TextBox shortcut;
+    IntegerBox shortcut;
 
     @UiField(provided = true)
     ValueListBox<TopicProxy> topic = new ValueListBox<TopicProxy>(logbook.client.managed.ui.TopicProxyRenderer.instance(), new com.google.web.bindery.requestfactory.gwt.ui.client.EntityProxyKeyProvider<logbook.client.managed.proxy.TopicProxy>());
 
     @UiField(provided = true)
     ValueListBox<SkillLevelProxy> skillLevel = new ValueListBox<SkillLevelProxy>(logbook.client.managed.ui.SkillLevelProxyRenderer.instance(), new com.google.web.bindery.requestfactory.gwt.ui.client.EntityProxyKeyProvider<logbook.client.managed.proxy.SkillLevelProxy>());
+
+    @UiField
+    TextBox german_text;
 
     @UiField
     SkillAcquiredSetEditor skillsAcquired;
