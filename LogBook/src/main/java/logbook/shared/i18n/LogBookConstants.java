@@ -118,6 +118,14 @@ public String ErrorMessage();
 
 	public String last();
 	
+	public String fastForward();
+	
 	public String copyrightSeperator();
+
+	public String LernzentrumMedizinHref();
+
+	public String contactHref();
+
+	public String adminLogin();
 
 }

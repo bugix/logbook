@@ -252,7 +252,9 @@ public class SkillPdfExport   extends HttpServlet {
 			createChildNode("shortcut", mainClassificationShortcut+ " "+ ctopicShortCut +" "+skill.getShortcut(), doc, skillElement);
 			
 			if(skill.getSkillLevel() != null)
-			createChildNode("skillLevel", skill.getSkillLevel().getLevelNumber().toString(), doc, skillElement);	
+				createChildNode("skillLevel", skill.getSkillLevel().getLevelNumber().toString(), doc, skillElement);
+			else 
+				createChildNode("skillLevel", "-", doc, skillElement);
 			
 			Integer levelNum=Skill.findSkillLevelAcquired(studentId, skill.getId());
 			if(levelNum !=null)

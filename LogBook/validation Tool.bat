@@ -1,0 +1,12 @@
+
+
+cls
+d:
+cd D:\LOGBOOK_DMT\src\logbook\LogBook
+set path=C:\Program Files\Java\jdk1.6.0_32\bin;
+set CLASSPATH=.;D:\LOGBOOK_DMT\src\logbook\LogBook\target\LogBook-0.1.0.BUILD-SNAPSHOT\WEB-INF\classes;C:\Users\darshanm\.m2\repository\javax\servlet\servlet-api\2.5\servlet-api-2.5.jar;C:\Users\darshanm\.m2\repository\log4j\log4j\1.2.16\log4j-1.2.16.jar;C:\Users\darshanm\.m2\repository\org\springframework\spring-context\3.1.1.RELEASE\spring-context-3.1.1.RELEASE.jar;C:\Users\darshanm\.m2\repository\javax\validation\validation-api\1.0.0.GA\validation-api-1.0.0.GA.jar;C:\Users\darshanm\.m2\repository\org\springframework\spring-aspects\3.1.1.RELEASE\spring-aspects-3.1.1.RELEASE.jar;C:\Users\darshanm\.m2\repository\org\springframework\spring-beans\3.1.1.RELEASE\spring-beans-3.1.1.RELEASE.jar;C:\Users\darshanm\.m2\repository\org\hibernate\javax\persistence\hibernate-jpa-2.0-api\1.0.1.Final\hibernate-jpa-2.0-api-1.0.1.Final.jar;C:\Users\darshanm\.m2\repository\org\hibernate\hibernate-annotations\3.5.6-Final\*.jar;C:\Users\darshanm\.m2\repository\*\*\*\*\*\*\*.jar;C:\Users\darshanm\.m2\repository\*\*\*\*\*\*.jar;C:\Users\darshanm\.m2\repository\*\*\*\*\*.jar;C:\Users\darshanm\.m2\repository\*\*\*\*.jar;C:\Users\darshanm\.m2\repository\*\*\*.jar;C:\Users\darshanm\.m2\repository\*\*.jar;D:\LOGBOOK\src\logbook\LogBook\src\main\java;C:\Users\darshanm\.m2\repository\org\springframework\roo\org.springframework.roo.annotations\1.2.2.RELEASE\org.springframework.roo.annotations-1.2.2.RELEASE.jar;C:\Users\darshanm\.m2\repository\org\springframework\roo\org.springframework.roo.root\1.2.2.RELEASE\*.jar;C:\Users\darshanm\.m2\repository\org\springframework\roo\org.springframework.roo.osgi.bundle\1.2.2.RELEASE\*.jar;C:\Users\darshanm\.m2\repository\com\google\web\bindery\requestfactory-apt\2.5.0\requestfactory-apt-2.5.0.jar;C:\Users\darshanm\.m2\repository\com\google\web\bindery\requestfactory-server\2.5.0\requestfactory-server-2.5.0.jar;D:\LOGBOOK\src\logbook\LogBook\target\LogBook-0.1.0.BUILD-SNAPSHOT\WEB-INF\lib\*;C:\Users\darshanm\.m2\repository\com\google\guava\guava-gwt\14.0-rc1\guava-gwt-14.0-rc1.jar;C:\Users\darshanm\.m2\repository\com\google\guava\guava\14.0-rc1\guava-14.0-rc1.jar;
+java  com.google.web.bindery.requestfactory.apt.ValidationTool  .\target\LogBook-0.1.0.BUILD-SNAPSHOT\WEB-INF\classes  logbook.client.a_nonroo.app.request.LogBookRequestFactory logbook.client.managed.request.ApplicationRequestFactory logbook.shared.scaffold.ScaffoldRequestFactory
+pause
+
+
+

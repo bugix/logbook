@@ -14,8 +14,7 @@
 		}
 		.copyrightWithUnderlineStyle
 		{
-	
-			color: #666666;
+			color: #666666  !important;
     		float: right;
     		font-family: arial,sans-serif;
     		font-size: 80%;
@@ -29,13 +28,24 @@
 		{
 			float: right;
 		}
+		
+		/*For footer link*/
+		.copyrightWithUnderlineStyle:link {
+		    color: #666 !important;
+		    text-decoration: underline;
+		}
+		.copyrightWithUnderlineStyle:hover {
+		    color: #666 !important;
+		    cursor: pointer;
+		    text-decoration: underline !important;
+		}
 	</ui:style>
 	<g:HTMLPanel>
 		<g:HorizontalPanel addStyleNames="{style.copyrightHPStyle}" >						
 								<g:Label addStyleNames="{style.copyrightStyle}" ui:field="lblPoweredBy"></g:Label>
-								<g:Label ui:field="lblPoweredByName" addStyleNames="{style.copyrightWithUnderlineStyle}"></g:Label>
+								<g:Anchor ui:field="anchorPoweredByName"  addStyleNames="{style.copyrightWithUnderlineStyle}" target="_blank"></g:Anchor> 
 								<g:Label ui:field="lblLine" addStyleNames="{style.copyrightStyle}"></g:Label>
-								<g:Label ui:field="lblContact" addStyleNames="{style.copyrightWithUnderlineStyle}"></g:Label>
+								<g:Anchor ui:field="anchorContact" addStyleNames="{style.copyrightWithUnderlineStyle}"></g:Anchor>
 							</g:HorizontalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

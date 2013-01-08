@@ -5,6 +5,7 @@ package logbook.client.a_nonroo.app.client;
 
 
 
+import logbook.client.a_nonroo.app.client.place.AdminPlace;
 import logbook.client.a_nonroo.app.client.place.LoginPlace;
 import logbook.client.a_nonroo.app.client.place.ProgressPlace;
 import logbook.client.a_nonroo.app.client.place.SkillPlace;
@@ -26,6 +27,9 @@ public class FilterForMainPlaces implements FilteredActivityMapper.Filter {
 		if (place instanceof LoginPlace)
 			return (LoginPlace) place;
 		
+			if (place instanceof AdminPlace)
+			return (AdminPlace) place;
+			
 		/*if (place instanceof LoginDetailsPlace) {
 			LoginDetailsPlace loginDetailsPlace = (LoginDetailsPlace) place;
 			return new LoginPlace(

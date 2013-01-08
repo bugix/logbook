@@ -5,6 +5,7 @@ import logbook.shared.i18n.LogBookConstants;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
@@ -24,19 +25,22 @@ public class CustomCopyrightWidget extends Composite {
 	Label lblPoweredBy;
 	
 	@UiField
-	Label lblPoweredByName;
+	Anchor anchorPoweredByName;
 	
 	@UiField
 	Label lblLine;
 	
 	@UiField
-	Label lblContact;
+	Anchor anchorContact;
 	
 	public CustomCopyrightWidget() {
 		initWidget(uiBinder.createAndBindUi(this));
 		lblPoweredBy.setText(constants.poweredBy());
-		lblPoweredByName.setText(constants.LernzentrumMedizin());
+		anchorPoweredByName.setText(constants.LernzentrumMedizin());
+		anchorPoweredByName.setHref(constants.LernzentrumMedizinHref());
 		lblLine.setText(constants.copyrightSeperator());
-		lblContact.setText(constants.contact());
+		anchorContact.setText(constants.contact());
+		anchorContact.setHref(constants.contactHref());
+		
 	}
 }

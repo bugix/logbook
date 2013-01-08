@@ -60,6 +60,9 @@ public class LogBookConstant {
 	
 	public static final SafeHtml COLOR_PICKER_ICON = new SafeHtmlBuilder().appendHtmlConstant("<span class=\"ui-icon ui-icon-triangle-1-s\"></span>").toSafeHtml();
 	public static final String UNIQUE_ID = "uniqueID";
+	public static final String CURRENT_USER = "currentUser";
+	public static final String STUDENT = "student";
+	public static final String ADMIN = "admin";
 	
 	// Total Skill Acquired Display in Home Tab Skill Acquired Table
 	public static final int TOTAL_SKILL_ACQUIRED_DISPLAY=20;

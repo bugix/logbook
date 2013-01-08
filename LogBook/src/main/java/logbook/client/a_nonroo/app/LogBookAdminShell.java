@@ -2,12 +2,14 @@ package logbook.client.a_nonroo.app;
 
 
 
+import logbook.client.a_nonroo.app.client.LogBookAdminNav;
 import logbook.client.a_nonroo.app.client.LogBookNav;
 import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 import logbook.shared.i18n.LogBookConstants;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Node;
 import com.google.gwt.dom.client.StyleInjector;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.place.shared.PlaceController;
@@ -15,7 +17,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 /**
@@ -23,10 +24,10 @@ import com.google.gwt.user.client.ui.Widget;
  * @author milan
  *
  */
-public class LogBookShell extends Composite {
+public class LogBookAdminShell extends Composite {
 
-	private static LogBookShellUiBinder uiBinder = GWT
-			.create(LogBookShellUiBinder.class);
+	private static LogBookAdminShellUiBinder uiBinder = GWT
+			.create(LogBookAdminShellUiBinder.class);
 	
 	/*@UiField
 	SimplePanel mcAppNav;*/
@@ -34,13 +35,8 @@ public class LogBookShell extends Composite {
 	SimplePanel topPanel;
 	
 	@UiField
-	SimplePanel topPanel4;
-	
-	@UiField
 	DockLayoutPanel masterDockPanel;
 	
-	@UiField
-	Image imgLoogBookLogo; 
 	/*@UiField
 	StudentInformationViewImpl studentInfromationViewImpl;*/
 	
@@ -69,13 +65,11 @@ public class LogBookShell extends Composite {
 		return logBookNavSimplePanel;
 	}
 
-	interface LogBookShellUiBinder extends UiBinder<Widget, LogBookShell> {
+	interface LogBookAdminShellUiBinder extends UiBinder<Widget, LogBookAdminShell> {
 	}
 
-	public LogBookShell() {
+	public LogBookAdminShell() {
 
-		Log.info("in  LogBookShell");
-		System.out.println("in  LogBookShell");
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		init();
@@ -315,8 +309,7 @@ public class LogBookShell extends Composite {
 	//	return mole;
 	//}
 
-	public void setNavigation(LogBookNav nav) {
-		
+	public void setNavigation(LogBookAdminNav nav) {
 		
 		//logBookNavSimplePanel.getParent().getParent().getParent().getElement().getStyle().setTop(76, Unit.PX);
 		getLogBookNavSimplePanel().add(nav);

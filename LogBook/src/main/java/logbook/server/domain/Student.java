@@ -1,6 +1,6 @@
 package logbook.server.domain;
 
-import static logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
+import static logbook.shared.scaffold.LogBookConstant.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -62,9 +62,21 @@ public class Student {
     public static logbook.server.domain.Student findStudentFromSession() 
     {
         HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
-        String mailId = (String) session.getAttribute(UNIQUE_ID);
-        Log.info("Mail id: " + mailId);
-        Student student=Student.findStudentsByEmailEquals(mailId).getResultList().get(0);
+        Long studId = Long.parseLong((String) session.getAttribute(UNIQUE_ID),10);
+        System.out.println("Student id: " + studId);
+        Student student=Student.findStudent(studId);
         return student;
+    }
+    
+    public static Boolean isCurrentUserStudent() {
+    	HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
+    	if(STUDENT.equals(session.getAttribute(CURRENT_USER))) {
+    		return true;
+    	}else if(ADMIN.equals(session.getAttribute(CURRENT_USER))) {
+    		return false;
+    	}
+    	else {
+    		return null;
+    	}
     }
 }

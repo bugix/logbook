@@ -1,0 +1,67 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" 
+	xmlns:c="urn:import:com.google.gwt.user.cellview.client" 
+	xmlns:cell="urn:import:com.google.gwt.cell.client" 
+	xmlns:custom="urn:import:logbook.client.a_nonroo.app.client.ui.custom.widget">
+	<ui:style>
+.textBoxStyle
+{
+	color: #888888;
+	margin: 0;
+	width: 180px;
+	height: 30px;
+	margin: 7px;
+}
+.buttonStyle
+{
+	margin: 0;
+	width: 185px;
+	margin: 7px;
+	height: 34px;
+	font-size: medium;
+}
+.buttonStyle:hover
+{
+	color: #1A68A0;
+}
+
+.mainVerticlePanelStyle
+{
+	 height:auto;
+	/*border-width:1px solid lightblue !important;*/
+	border: 1px solid lightblue!important; 
+	border-radius:4px;	 
+	padding: 20px;
+}
+.studentLoginPanelStyle
+{
+	border: 1px solid lightblue!important; 
+	border-radius:4px;	 
+	height: 60px;
+	text-indent: 10px;
+	color:#222222;
+	width: 100%;
+	text-align: left;
+	margin-top: 30px;
+}
+.linkStyle
+{
+	color: #222222;
+	margin-left: 8px;
+	font-size: 11px;
+}
+.linkStyle:hover
+{
+	color: #222222;
+	margin-left: 8px;
+	text-decoration:underline;
+	font-size: 11px;
+	 
+}
+</ui:style>
+	<g:HTMLPanel>
+		<g:Label>Admin View aaa</g:Label>
+		
+	</g:HTMLPanel>
+</ui:UiBinder> 

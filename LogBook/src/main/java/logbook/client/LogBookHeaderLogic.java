@@ -3,6 +3,7 @@ package logbook.client;
 import java.util.ArrayList;
 import java.util.List;
 
+import logbook.client.a_nonroo.app.client.place.AdminPlace;
 import logbook.client.a_nonroo.app.client.place.LogBookDetailsPlace;
 import logbook.client.a_nonroo.app.client.place.LoginPlace;
 import logbook.client.a_nonroo.app.client.place.ProgressPlace;
@@ -144,6 +145,9 @@ public class LogBookHeaderLogic implements LogBookHeader.Delegate {
 		String placeDescription;
 		if (place instanceof LoginPlace) {
 			placeDescription = constants.login();
+		}
+		else if (place instanceof AdminPlace) {
+			placeDescription = constants.adminLogin();
 		}
 		else if (place instanceof SkillPlace) {
 			placeDescription = constants.skill();

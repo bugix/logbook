@@ -33,6 +33,9 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.event.logical.shared.CloseEvent;
 import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.event.shared.EventBus;
@@ -52,9 +55,8 @@ import com.google.web.bindery.requestfactory.shared.ServerFailure;
  * @author Darshan
  *
  */
-public class LoginActivity extends AbstractActivity implements StudentInformationView.presenter, StudentInformationView.Delegate{
-	
-	
+public class LoginActivity extends AbstractActivity implements StudentInformationView.presenter, StudentInformationView.Delegate
+{
 	private LogBookRequestFactory requests;
 	private PlaceController placeController;
 	private AcceptsOneWidget widget;
@@ -448,7 +450,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 				popupView.setLstBoxStudyYear(studentProxy.getStudyYear()!=null?studentProxy.getStudyYear():null);
 				popupView.show();	
 				
-				popupView.getBtnSave().addClickHandler(new ClickHandler() {
+				ClickHandler handler =new ClickHandler() {
 					
 					@Override
 					public void onClick(ClickEvent event) 
@@ -522,6 +524,20 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 
 						//}
 					}
+				};
+				
+				popupView.getBtnSave().addClickHandler(handler);
+				
+				popupView.getTxtEmailValue().addKeyPressHandler(new KeyPressHandler() {
+					
+					@Override
+					public void onKeyPress(KeyPressEvent event) {
+						boolean value=KeyCodes.KEY_ENTER == event.getNativeEvent().getKeyCode();
+						if(value){
+							popupView.getBtnSave().click();
+						}
+						
+					}
 				});
 				
 				popupView.getBtnClose().addClickHandler(new ClickHandler() {
@@ -573,9 +589,5 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 				Log.info("Constraint Violate when Save.");
 			}
 		});
-	
-	
-	
 	}
-	
 }	

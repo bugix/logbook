@@ -15,6 +15,7 @@ import logbook.shared.scaffold.LogBookConstant;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.NodeList;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.text.shared.AbstractRenderer;
 import com.google.gwt.text.shared.Renderer;
@@ -352,6 +353,28 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 		SimplePager.Resources pagerResources = GWT.create(MySimplePagerResources.class);
 		table = new CellTable<SkillAcquiredProxy>(LogBookConstant.TABLE_PAGE_SIZE, tableResources);
 		pager = new SimplePager(SimplePager.TextLocation.RIGHT, pagerResources, true, LogBookConstant.TABLE_JUMP_SIZE, true);
+		
+		 final NodeList<com.google.gwt.dom.client.Element> tdElems = pager.getElement().getElementsByTagName("td");
+			for (int i = 0; i < tdElems.getLength(); i++) {
+
+	  final String toolTipText;
+
+	  if (i == 0)
+	    toolTipText = constants.first();
+	  else if (i == 1)
+	    toolTipText = constants.previous();
+	  else if (i == 2)
+		  toolTipText = constants.next();
+	  else if (i == 3)
+		  toolTipText = constants.fastForward();
+	  else if (i == 4)
+	    toolTipText = constants.last();
+	  else
+	    continue;
+
+	  tdElems.getItem(i).setTitle(toolTipText);
+	}
+
 		
 		initWidget(uiBinder.createAndBindUi(this));
 		

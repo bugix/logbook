@@ -2,9 +2,11 @@ package logbook.client.a_nonroo.app.activities;
 
 
 
+import logbook.client.a_nonroo.app.client.activity.AdminActivity;
 import logbook.client.a_nonroo.app.client.activity.LoginActivity;
 import logbook.client.a_nonroo.app.client.activity.ProgressActivity;
 import logbook.client.a_nonroo.app.client.activity.SkillActivity;
+import logbook.client.a_nonroo.app.client.place.AdminPlace;
 import logbook.client.a_nonroo.app.client.place.LoginPlace;
 import logbook.client.a_nonroo.app.client.place.ProgressPlace;
 import logbook.client.a_nonroo.app.client.place.SkillPlace;
@@ -15,7 +17,6 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.inject.Inject;
 /**
  * ActivityMapper for all main places. 
@@ -53,6 +54,11 @@ public class LogBookActivityMapper implements ActivityMapper {
 			Log.debug("is ProgressPlace");
 			return new ProgressActivity(requests, placeController);
 		}
+		if (place instanceof AdminPlace) {
+			Log.debug("is AdminPlace");
+			return new AdminActivity(requests, placeController);
+		}
+		
 		
 		return null;
 		 

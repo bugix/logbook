@@ -1,6 +1,7 @@
 package logbook.client.a_nonroo.app.client.activity;
 
 
+import logbook.client.a_nonroo.app.client.place.AdminPlace;
 import logbook.client.a_nonroo.app.client.place.LoginPlace;
 import logbook.client.a_nonroo.app.client.place.SkillPlace;
 import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
@@ -39,6 +40,10 @@ public class ApplicationMainActivitiesMapper implements ActivityMapper {
 		if (place instanceof SkillPlace) {
 			Log.debug("is SkillPlace");
 			return new SkillActivity(requests, placeController);
+		}
+		if (place instanceof AdminPlace) {
+			Log.debug("is AdminPlace");
+			return new AdminActivity(requests, placeController);
 		}
 		return null;
 	}
