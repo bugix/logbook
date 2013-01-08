@@ -70,7 +70,7 @@ public class AuthenticationFilter implements Filter {
 		/* for production uniqueID and for testing uid */
 		//String userId = request.getHeader("uniqueID");
 		//String userId = request.getHeader("uid");
-		String uniqueID = "1@osce.ch";
+		String uniqueID = "1";
 		Log.info("UNIQUE_ID : " + UNIQUE_ID);
 		boolean flag = false;
 		// Session Management

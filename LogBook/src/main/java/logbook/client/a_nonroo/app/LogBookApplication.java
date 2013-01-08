@@ -65,13 +65,13 @@ public class LogBookApplication {
 
 		/* Add handlers, setup activities */
 
-		requestFactory.studentRequestNonRoo().isCurrentUserStudent().fire(new Receiver<Boolean>() {
+		/*requestFactory.studentRequestNonRoo().isCurrentUserStudent().fire(new Receiver<Boolean>() {
 
 			@Override
 			public void onSuccess(Boolean isStudent) {
 				if(isStudent == null) {
-					/*loginInit();
-					RootLayoutPanel.get().add(loginShell);*/
+					loginInit();
+					RootLayoutPanel.get().add(loginShell);
 				}
 				else if(isStudent == true) {
 					initStudent();
@@ -85,10 +85,11 @@ public class LogBookApplication {
 				}
 
 			}
-		});
+		});*/
 		
-		/*//initStudent();
-		initAdmin();*/
+		initStudent();
+		 
+		/*initAdmin();*/
 
 		/* Hide the loading message */
 
@@ -98,8 +99,8 @@ public class LogBookApplication {
 		/* And show the user the shell */
 
 		Log.debug("McApp.addPanlel");
-		//RootLayoutPanel.get().add(shell);
-		RootLayoutPanel.get().add(adminShell);
+		RootLayoutPanel.get().add(studentShell);
+		//RootLayoutPanel.get().add(adminShell);
 		Log.debug("McApp.addPanlel.after");
 
 	}
