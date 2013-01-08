@@ -74,12 +74,14 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 		this(null);
 		Log.info("Call Constructor1");
 		this.setWidth(200);
+		textField.setFocus(true);
 		//textField.addStyleName("addBorder");
 	}
 
 	public DefaultSuggestBox(String defaultText) {
 		this(defaultText, new DefaultSuggestOracle<T>());
 		Log.info("Call Constructor2");
+		textField.setFocus(true);
 		textField.addStyleName("customControls");
 		this.setWidth(200);
 	}
@@ -128,6 +130,7 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 		if (commit || strictMode) {
 			super.fillValue(t, commit);
 			if (!commit && !strictMode) {
+				textField.setFocus(true);
 				textField.setSelectionRange(startIndex, textField.getText().length() - startIndex);
 			}
 			return true;

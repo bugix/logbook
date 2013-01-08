@@ -523,7 +523,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		}
 		final Integer skillLevel;
 		if(skillProxy.getSkillLevel()==null)
-		skillLevel=1;
+		skillLevel=0;
 		else
 		skillLevel=skillProxy.getSkillLevel().getLevelNumber();
 		

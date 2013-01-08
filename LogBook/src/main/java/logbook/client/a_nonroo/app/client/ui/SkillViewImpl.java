@@ -24,6 +24,9 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -425,6 +428,17 @@ public class SkillViewImpl extends Composite implements SkillView {
 		btnReset.setText(constants.reset());
 
 		fullTextSearch.setText(constants.fullTextSearch());
+		fullTextSearchBox.addKeyPressHandler(new KeyPressHandler() {
+			
+			@Override
+			public void onKeyPress(KeyPressEvent event) {
+				boolean value=KeyCodes.KEY_ENTER == event.getNativeEvent().getKeyCode();
+				if(value){
+					btnShow.click();
+				}
+				
+			}
+		});
 		
 		imgPrint.setAltText(constants.imageNotFound());
 		imgPrint.setUrl("applicationScaffold/gwt/logbook/images/print.png");
@@ -825,8 +839,14 @@ public class SkillViewImpl extends Composite implements SkillView {
 			
 			int skillSkillLevel;
 			
-			if(sproxy.getSkillLevel()==null)
-			skillSkillLevel=1;
+			if(sproxy.getSkillLevel()==null){
+			
+				skillSkillLevel=0;
+				checkBox.setVisible(false);
+				checkBox2.setVisible(false);
+			}
+			
+			
 			else
 			skillSkillLevel=sproxy.getSkillLevel().getLevelNumber();
 			
