@@ -17,6 +17,8 @@ public interface LogBookConstants extends Constants {
 	/* Home Tab : Student Information Constants */
 
 	public String personnelInformation();
+	
+	public String recentlyAcquiredSkill();
 
 	public String name();
 

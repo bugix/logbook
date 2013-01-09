@@ -386,6 +386,7 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	private void init() 
 	{
 		lblPersonnelInformation.setText(constants.personnelInformation());
+		lblLatestAcquiredSkill.setText(constants.recentlyAcquiredSkill());
 		lblName.setText(constants.name()+": ");
 		lblStudentId.setText(constants.studentId()+":");
 		lblStudyYear.setText(constants.studyYear()+": ");
