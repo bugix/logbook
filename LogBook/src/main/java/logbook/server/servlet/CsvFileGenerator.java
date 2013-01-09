@@ -1,11 +1,7 @@
 package logbook.server.servlet;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -15,17 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
-import org.mortbay.io.ByteArrayBuffer;
-
-import logbook.server.domain.ClassificationTopic;
-import logbook.server.domain.MainClassification;
-import logbook.server.domain.Skill;
-import logbook.server.domain.SkillAcquired;
-import logbook.server.domain.Student;
-import logbook.server.domain.Topic;
-
-import com.csvreader.CsvWriter;
-import com.itextpdf.text.log.SysoLogger;
 
 /**
  * Servlet implementation class CsvFileCreator
