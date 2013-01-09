@@ -106,7 +106,7 @@
     <!-- Uncomment for production mode -->
     <filter-mapping>
 		<filter-name>AuthenticationFilter</filter-name>
-		<url-pattern>/*.html</url-pattern>
+		<url-pattern>*.html</url-pattern>
 	</filter-mapping>
 	
 	
