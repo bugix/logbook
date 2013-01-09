@@ -7,6 +7,7 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.inject.Inject;
+import logbook.client.managed.proxy.AdministratorProxy;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.KeywordProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
@@ -32,6 +33,11 @@ public abstract class ApplicationDetailsActivities_Roo_Gwt implements ActivityMa
         }
         final ProxyPlace proxyPlace = (ProxyPlace) place;
         return new ApplicationEntityTypesProcessor<Activity>() {
+
+            @Override
+            public void handleAdministrator(AdministratorProxy proxy) {
+                setResult(new AdministratorActivitiesMapper(requests, placeController).getActivity(proxyPlace));
+            }
 
             @Override
             public void handleClassificationTopic(ClassificationTopicProxy proxy) {

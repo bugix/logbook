@@ -7,6 +7,7 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.inject.Inject;
+import logbook.client.managed.proxy.AdministratorProxy;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.KeywordProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
@@ -18,6 +19,8 @@ import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.managed.request.ApplicationEntityTypesProcessor;
 import logbook.client.managed.request.ApplicationRequestFactory;
+import logbook.client.managed.ui.AdministratorListView;
+import logbook.client.managed.ui.AdministratorMobileListView;
 import logbook.client.managed.ui.ClassificationTopicListView;
 import logbook.client.managed.ui.ClassificationTopicMobileListView;
 import logbook.client.managed.ui.KeywordListView;
@@ -51,6 +54,11 @@ public abstract class ApplicationMasterActivities_Roo_Gwt implements ActivityMap
         }
         ProxyListPlace listPlace = (ProxyListPlace) place;
         return new ApplicationEntityTypesProcessor<Activity>() {
+
+            @Override
+            public void handleAdministrator(AdministratorProxy isNull) {
+                setResult(new AdministratorListActivity(requests, ScaffoldApp.isMobile() ? AdministratorMobileListView.instance() : AdministratorListView.instance(), placeController));
+            }
 
             @Override
             public void handleClassificationTopic(ClassificationTopicProxy isNull) {

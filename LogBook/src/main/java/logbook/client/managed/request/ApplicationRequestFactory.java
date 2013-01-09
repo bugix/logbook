@@ -3,8 +3,11 @@
 package logbook.client.managed.request;
 
 import logbook.shared.scaffold.ScaffoldRequestFactory;
+import logbook.shared.scaffold.SkillNonRooRequest;
 
 public interface ApplicationRequestFactory extends ScaffoldRequestFactory {
+
+    AdministratorRequest administratorRequest();
 
     ClassificationTopicRequest classificationTopicRequest();
 
@@ -18,7 +21,7 @@ public interface ApplicationRequestFactory extends ScaffoldRequestFactory {
 
     SkillLevelRequest skillLevelRequest();
 
-    SkillRequest skillRequest();
+    SkillNonRooRequest skillRequest();
 
     StudentRequest studentRequest();
 

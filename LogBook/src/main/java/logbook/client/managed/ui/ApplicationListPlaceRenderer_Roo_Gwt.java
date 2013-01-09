@@ -3,6 +3,7 @@
 package logbook.client.managed.ui;
 
 import com.google.gwt.text.shared.AbstractRenderer;
+import logbook.client.managed.proxy.AdministratorProxy;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.KeywordProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
@@ -19,6 +20,11 @@ public abstract class ApplicationListPlaceRenderer_Roo_Gwt extends AbstractRende
 
     public String render(ProxyListPlace object) {
         return new ApplicationEntityTypesProcessor<String>() {
+
+            @Override
+            public void handleAdministrator(AdministratorProxy isNull) {
+                setResult("Administrators");
+            }
 
             @Override
             public void handleClassificationTopic(ClassificationTopicProxy isNull) {

@@ -6,6 +6,7 @@ import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import logbook.client.managed.proxy.AdministratorProxy;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.KeywordProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
@@ -32,6 +33,7 @@ public abstract class ApplicationEntityTypesProcessor<T> {
 
     public static Set<java.lang.Class<? extends com.google.web.bindery.requestfactory.shared.EntityProxy>> getAll() {
         Set<Class<? extends EntityProxy>> rtn = new HashSet<Class<? extends EntityProxy>>();
+        rtn.add(AdministratorProxy.class);
         rtn.add(ClassificationTopicProxy.class);
         rtn.add(KeywordProxy.class);
         rtn.add(MainClassificationProxy.class);
@@ -45,6 +47,10 @@ public abstract class ApplicationEntityTypesProcessor<T> {
     }
 
     private static void process(logbook.client.managed.request.ApplicationEntityTypesProcessor<?> processor, Class<?> clazz) {
+        if (AdministratorProxy.class.equals(clazz)) {
+            processor.handleAdministrator((AdministratorProxy) null);
+            return;
+        }
         if (ClassificationTopicProxy.class.equals(clazz)) {
             processor.handleClassificationTopic((ClassificationTopicProxy) null);
             return;
@@ -85,6 +91,10 @@ public abstract class ApplicationEntityTypesProcessor<T> {
     }
 
     private static void process(logbook.client.managed.request.ApplicationEntityTypesProcessor<?> processor, Object proxy) {
+        if (proxy instanceof AdministratorProxy) {
+            processor.handleAdministrator((AdministratorProxy) proxy);
+            return;
+        }
         if (proxy instanceof ClassificationTopicProxy) {
             processor.handleClassificationTopic((ClassificationTopicProxy) proxy);
             return;
@@ -126,6 +136,8 @@ public abstract class ApplicationEntityTypesProcessor<T> {
 
     public void handleNonProxy(Object object) {
     }
+
+    public abstract void handleAdministrator(AdministratorProxy proxy);
 
     public abstract void handleClassificationTopic(ClassificationTopicProxy proxy);
 
