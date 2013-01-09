@@ -122,10 +122,10 @@
 									   								<xsl:value-of select="description" />
 									   							</td>
 									   							
-									   							<td  valign="top" width="10%" class="skillTableRow">
+									   							<td  valign="top" width="10%" class="skillTableRow" style="text-align:center">
 									   								<xsl:value-of select="skillLevel" />
 									   							</td>
-									   							<td valign="top" width="10%" class="skillTableRow">
+									   							<td valign="top" width="10%" class="skillTableRow" style="text-align:center">
 									   								<xsl:value-of select="skillLevelAcquired" />
 									   							</td> 
 									   							<!-- <div class="skillTableRow" width="595px">
