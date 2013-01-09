@@ -59,10 +59,10 @@
 	font-size: 11px;
 	 
 }
-.finalizeButtonStyle {
-			border-radius: 5px;
-			margin-left: 25px;
-			padding: 3px 0;			
+	.finalizeButtonStyle {
+			  border-radius: 5px 5px 5px 5px;
+    		  margin-left: 10px;
+    		  padding: 2px 14px;	
 		}
 .changeBtnTrStyle {
 			float: right;
@@ -188,7 +188,7 @@
 												</td>
 												<td>
 													<g:Button ui:field="btnExportLogBook"
-														addStyleNames="{style.finalizeButtonStyle}">Export LogBook</g:Button>
+														addStyleNames="{style.finalizeButtonStyle}"></g:Button>
 												</td>
 											</tr>
 
