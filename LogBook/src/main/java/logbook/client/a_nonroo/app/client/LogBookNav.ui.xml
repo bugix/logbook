@@ -26,13 +26,13 @@
 							<!-- <g:Label>Progress of Skill Acquired</g:Label> -->
 							</g:SimplePanel>
 						</g:tab>
-						<g:tab>
+					<!-- 	<g:tab>
 						
 							<g:customHeader><g:Label ui:field="logout"></g:Label></g:customHeader>
 							<g:SimplePanel>
-							<!-- <g:Label>logout</g:Label> -->
+							<g:Label>logout</g:Label>
 							</g:SimplePanel>
-						</g:tab>
+						</g:tab> -->
 
 					</g:TabLayoutPanel> 
 	

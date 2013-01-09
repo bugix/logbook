@@ -118,7 +118,7 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 
 	private void initAdminDetails() {
 		
-		requests.administratorRequest().findAdministrator(1l).fire(new Receiver<AdministratorProxy>() {
+		requests.administratorRequest().findAdministratorFromSession().fire(new Receiver<AdministratorProxy>() {
 
 			@Override
 			public void onSuccess(AdministratorProxy response) {
@@ -143,7 +143,7 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 	@Override
 	public void exportStudentClicked(boolean checkboxSelected) {
 		
-		//showApplicationLoading(true);
+		showApplicationLoading(true);
 		//Window.alert("clicked :"  + checkboxSelected);
 		RemoteEventServiceFactory theEventServiceFactory = RemoteEventServiceFactory.getInstance();
 		final RemoteEventService theEventService = theEventServiceFactory.getRemoteEventService();

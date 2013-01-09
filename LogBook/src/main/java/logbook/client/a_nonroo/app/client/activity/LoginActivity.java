@@ -278,6 +278,11 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	{
 		Log.info("intiCurrentProgressInformation Student Id: " +studentProxy.getId());
 	
+		if(studentProxy.getStudentStatus() != null && studentProxy.getStudentStatus().equals(StudentStatus.Fianllized)) 
+		{
+			view.getBtnFinalizeLogBook().setEnabled(false);
+			
+		}
 		final long studentId=studentProxy.getId();
 		// Find Total Skill for Level 1 and Level 2
 		requests.skillRequestNonRoo().findCountOfSkillBySkillLevel().fire(new Receiver<List<Long>>() 

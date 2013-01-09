@@ -84,9 +84,9 @@ public class LogBookNav extends Composite {
 	@UiField
 	Label progress;
 	
-	@UiField
+	/*@UiField
 	Label logout;
-
+*/
 	
 	
 	@Inject
@@ -99,7 +99,7 @@ public class LogBookNav extends Composite {
         login.setText(constants.home());
 		skill.setText(constants.skill());
 		progress.setText(constants.progress());
-		logout.setText(constants.logout());
+		/*logout.setText(constants.logout());*/
 		
 		logBookNav=this;
 		

@@ -36,7 +36,7 @@
 	<g:DockLayoutPanel unit='PX' ui:field="masterDockPanel" addStyleNames="{style.eastPanelStyle} {style.scroll}">
 		<g:north size='110'>
 			<g:HTMLPanel>
-				<g:Image addStyleNames="{style.logBookLogo}"></g:Image>
+				<g:Image url="applicationScaffold/gwt/logbook/images/logo.png"  addStyleNames="{style.logBookLogo}"></g:Image>
 				<g:SimplePanel ui:field="topPanel" addStyleNames="{style.northPanelStyle}"></g:SimplePanel>
 			</g:HTMLPanel>
 		</g:north>		

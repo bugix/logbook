@@ -71,8 +71,8 @@ public class LogBookAdminNav extends Composite {
 	Label login;
 		
 	
-	@UiField
-	Label logout;
+	/*@UiField
+	Label logout;*/
 
 
 	
@@ -83,8 +83,8 @@ public class LogBookAdminNav extends Composite {
 		this.requests = requests;
         this.placeController = placeController;
       
-        login.setText(constants.login());	
-		logout.setText(constants.logout());
+        login.setText(constants.home());	
+		/*logout.setText(constants.logout());*/
 		
 		logBookNav=this;
 				
@@ -99,8 +99,8 @@ public class LogBookAdminNav extends Composite {
 		 //Fix in default style( without it tab content will not show properly)
 		 mainLoogBookTabpanel.getElement().getChild(2).getChild(0).getParentElement().getStyle().setPosition(Position.RELATIVE);
 		 Element element=mainLoogBookTabpanel.getElement().getChild(2).getChild(0).getParentElement();	
-		 element.getChild(0).getChild(2).getChild(0).getParentElement().getStyle().setPosition(Position.RELATIVE);	 
-		 Log.info("HTML :"+element.getChild(0).getChild(2).getChild(0).getParentElement());
+		 /*element.getChild(0).getChild(2).getChild(0).getParentElement().getStyle().setPosition(Position.RELATIVE);	 
+		 Log.info("HTML :"+element.getChild(0).getChild(2).getChild(0).getParentElement());*/
 		 
 		
 		 //Log.info("HTML :"+mainLoogBookTabpanel.getElement().getChild(2).getChild(1).getParentElement());

@@ -69,7 +69,7 @@ public class CsvFileGenerator extends HttpServlet implements SingleThreadModel{
 		response.setContentType("text/csv"); 
 		    
 		response.setHeader("Content-Disposition", "attachment; filename=\""
-				+ fileName + "\"");
+				+ "finalized_students.csv" + "\"");
 		
 		response.setContentLength(csv.length);
 		if(csv.length > 0) {

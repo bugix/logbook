@@ -82,7 +82,7 @@
 			border-radius: 5px;
 			border-color: lightblue;
 			padding: 15px;
-			width: 91%;
+			width: 95%;
 			height: 90%;
 		}
 		.headingLabelStyle 
@@ -121,7 +121,7 @@
 </ui:style>
 	<g:HTMLPanel>
 		<!-- <g:Label>Admin View aaa</g:Label> -->
-		<g:HorizontalPanel addStyleNames="{style.informationHPStyle}">
+		<g:VerticalPanel addStyleNames="{style.informationHPStyle}">
 								<g:HTMLPanel addStyleNames="{style.personnelInforamationSPStyle}">
 								
 								<g:Label ui:field="lblPersonnelInformation" addStyleNames="{style.headingLabelStyle}"></g:Label>
@@ -191,12 +191,14 @@
 														addStyleNames="{style.finalizeButtonStyle}"></g:Button>
 												</td>
 											</tr>
-
+											
 										</tbody>
 									</table>
 								</g:HTMLPanel>
-							</g:HorizontalPanel>
-		
+								
+								<custom:CustomCopyrightWidget></custom:CustomCopyrightWidget>
+							</g:VerticalPanel>
+								
 		
 	</g:HTMLPanel>
 </ui:UiBinder> 

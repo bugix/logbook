@@ -24,6 +24,7 @@ import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.place.shared.Place;
@@ -121,8 +122,11 @@ public class SkillActivity extends AbstractActivity implements
 		systemStartView.setSkillActivity(this);
 		this.view = systemStartView;
 		view.setDelegate(this);
+		
 		widget.setWidget(systemStartView.asWidget());
-
+		
+		systemStartView.asWidget().getElement().getParentElement().getParentElement().getStyle().setPosition(Position.RELATIVE);
+		
 		checkBoxview=new SkillLevelCheckboxViewImpl();
 		checkBoxview.setDelegate(this);
 		init();

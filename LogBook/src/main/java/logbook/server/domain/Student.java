@@ -8,6 +8,11 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -17,6 +22,7 @@ import logbook.shared.Gender;
 import logbook.shared.StudentStatus;
 import logbook.shared.StudyYears;
 
+import org.hibernate.Query;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -62,13 +68,29 @@ public class Student {
     public static logbook.server.domain.Student findStudentFromSession() 
     {
         HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
-        Long studId = Long.parseLong((String) session.getAttribute(UNIQUE_ID),10);
-        System.out.println("Student id: " + studId);
-        Student student=Student.findStudent(studId);
+        Long shibId = Long.parseLong((String) session.getAttribute(UNIQUE_ID),10);
+        System.out.println("shib id: " + shibId);
+        Student student=Student.findStudentUsingShibId(shibId);
         return student;
     }
     
-    public static Boolean isCurrentUserStudent() {
+    public static Student findStudentUsingShibId(Long shibId) {
+    	
+    	CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+		CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
+		Root<Student> from = criteriaQuery.from(Student.class);
+					
+		Predicate shibIdPredicate = criteriaBuilder.equal(from.get("shib_id"), shibId);
+		criteriaQuery.where(shibIdPredicate);
+		
+		TypedQuery<Student> q = entityManager().createQuery(criteriaQuery);
+		
+		System.out.println("Query : " + q.unwrap(Query.class).getQueryString());
+		
+        return q.getSingleResult();
+	}
+
+	public static Boolean isCurrentUserStudent() {
     	HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
     	if(STUDENT.equals(session.getAttribute(CURRENT_USER))) {
     		return true;

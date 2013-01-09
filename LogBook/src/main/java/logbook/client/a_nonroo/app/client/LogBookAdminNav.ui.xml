@@ -68,12 +68,12 @@
 								</g:HorizontalPanel> -->
 							</g:SimplePanel>
 						</g:tab>						
-						<g:tab>
+						<!-- <g:tab>
 							<g:customHeader><g:Label ui:field="logout"></g:Label></g:customHeader>
 							<g:SimplePanel>
 								</g:SimplePanel>
 						</g:tab>
-
+ -->
 					</g:TabLayoutPanel> 
 	
 </ui:UiBinder> 
