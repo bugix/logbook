@@ -198,14 +198,22 @@ public class SkillPdfExport   extends HttpServlet {
 			}
 			else
 			{
-				if( ( skill.getTopic().getId() != skills.get(i-1).getTopic().getId()))
-				{
-					
-					 Element topicElement=createEmptyChildNode("topic",doc,topicsElement);
-					 createChildNode("description", topicDescription, doc, topicElement);
-					 skillsElement=createEmptyChildNode("skills",doc,topicElement);
-					
-				}
+				
+				 if( ( skill.getTopic().getClassificationTopic().getMainClassification().getId() != skills.get(i-1).getTopic().getClassificationTopic().getMainClassification().getId()))
+					{
+						Element mainClassificationElement=createEmptyChildNode("mainClassification",doc,root);
+						 createChildNode("description", mDescription, doc, mainClassificationElement);
+						 
+						  classificationTopicsElement=createEmptyChildNode("classificationTopics",doc,mainClassificationElement);
+						 Element classificationTopicElement=createEmptyChildNode("classificationTopic",doc,classificationTopicsElement);
+						 createChildNode("description", ctopicDescription, doc, classificationTopicElement);
+						 
+						  topicsElement=createEmptyChildNode("topics",doc,classificationTopicElement);
+						 Element topicElement=createEmptyChildNode("topic",doc,topicsElement);
+						 createChildNode("description", topicDescription, doc, topicElement);
+						 skillsElement=createEmptyChildNode("skills",doc,topicElement);
+					}
+				
 				else if( ( skill.getTopic().getClassificationTopic().getId() != skills.get(i-1).getTopic().getClassificationTopic().getId()))
 					{
 					if(!skill.getTopic().getClassificationTopic().getDescription().equals("Blank"))
@@ -220,20 +228,16 @@ public class SkillPdfExport   extends HttpServlet {
 						 skillsElement=createEmptyChildNode("skills",doc,topicElement);
 					}
 					}
-				else if( ( skill.getTopic().getClassificationTopic().getMainClassification().getId() != skills.get(i-1).getTopic().getClassificationTopic().getMainClassification().getId()))
-				{
-					Element mainClassificationElement=createEmptyChildNode("mainClassification",doc,root);
-					 createChildNode("description", mDescription, doc, mainClassificationElement);
-					 
-					  classificationTopicsElement=createEmptyChildNode("classificationTopics",doc,mainClassificationElement);
-					 Element classificationTopicElement=createEmptyChildNode("classificationTopic",doc,classificationTopicsElement);
-					 createChildNode("description", ctopicDescription, doc, classificationTopicElement);
-					 
-					  topicsElement=createEmptyChildNode("topics",doc,classificationTopicElement);
-					 Element topicElement=createEmptyChildNode("topic",doc,topicsElement);
-					 createChildNode("description", topicDescription, doc, topicElement);
-					 skillsElement=createEmptyChildNode("skills",doc,topicElement);
-				}
+				 
+				 else if( ( skill.getTopic().getId() != skills.get(i-1).getTopic().getId()))
+					{
+						
+						 Element topicElement=createEmptyChildNode("topic",doc,topicsElement);
+						 createChildNode("description", topicDescription, doc, topicElement);
+						 skillsElement=createEmptyChildNode("skills",doc,topicElement);
+						
+					}
+				
 			}
 			
 			
