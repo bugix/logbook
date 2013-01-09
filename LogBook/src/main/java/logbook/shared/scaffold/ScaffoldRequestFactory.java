@@ -22,4 +22,6 @@ TopicRequestNonRoo  topicRequestNonRoo();
 	SkillRequestNonRoo skillRequestNonRoo();
 	
 	SkillAcquiredRequestNonRoo skillAcquiredRequestNonRoo();
+	
+	AdministratorRequestNonRoo administratorRequestNonRoo();
 }

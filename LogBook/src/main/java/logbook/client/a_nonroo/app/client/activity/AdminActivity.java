@@ -118,7 +118,7 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 
 	private void initAdminDetails() {
 		
-		requests.administratorRequest().findAdministratorFromSession().fire(new Receiver<AdministratorProxy>() {
+		requests.administratorRequestNonRoo().findAdministratorFromSession().fire(new Receiver<AdministratorProxy>() {
 
 			@Override
 			public void onSuccess(AdministratorProxy response) {

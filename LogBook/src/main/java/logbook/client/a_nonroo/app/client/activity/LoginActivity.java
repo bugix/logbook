@@ -580,6 +580,8 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			public void onSuccess(Void response) 
 			{
 				Log.info("Successfully Saved.");
+				view.getBtnFinalizeLogBook().setEnabled(false);
+				
 			}
 			@Override
 			public void onFailure(ServerFailure error) 
