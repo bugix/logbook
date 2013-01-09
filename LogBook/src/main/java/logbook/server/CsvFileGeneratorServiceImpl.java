@@ -21,6 +21,8 @@ import logbook.shared.CsvFileGeneratorEvent;
 import logbook.shared.StudentStatus;
 
 import com.csvreader.CsvWriter;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -77,6 +79,8 @@ public class CsvFileGeneratorServiceImpl  extends RemoteEventServiceServlet impl
 				String fileName = getServletContext().getRealPath(fileSeparator) +  "public/test.csv";
 
 				File csvFile = new File(fileName);
+				
+				FileUtils.touch(csvFile);
 				
 				CsvWriter writer = new CsvWriter(new FileWriter(fileName),',');
 

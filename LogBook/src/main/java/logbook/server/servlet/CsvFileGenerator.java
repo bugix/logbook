@@ -33,6 +33,8 @@ public class CsvFileGenerator extends HttpServlet implements SingleThreadModel{
 			
 			File csvFile = new File(fileName);
 			
+			FileUtils.touch(csvFile);
+			
 			sendFile(response,csvFile ,fileName);
 			
 		}
