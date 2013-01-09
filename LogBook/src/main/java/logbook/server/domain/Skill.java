@@ -1126,6 +1126,41 @@ private static String getSkillIdList(List<Skill> skillList){
 		}
 		return skillId.toString();
 	}
+public static List<Skill> findAllSkillforCsvexport(){
+	
+	CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+	CriteriaQuery<Skill> criteriaQuery = criteriaBuilder.createQuery(Skill.class);
+	Root<Skill> from = criteriaQuery.from(Skill.class);
+	CriteriaQuery<Skill> select = criteriaQuery.select(from);
+	
+	Join<Skill, Topic> join1 = from.join("topic");
+	Join<Topic, ClassificationTopic> join2 = join1.join("classificationTopic");
+	Join<ClassificationTopic, MainClassification> join3 = join2.join("mainClassification");
+	
+	select.orderBy(criteriaBuilder.asc(join1.get("id")),criteriaBuilder.asc(from.get("shortcut")));
+	
+	TypedQuery<Skill> result = entityManager().createQuery(criteriaQuery);
+	
+	Log.info("Critera query is :" + result.unwrap(Query.class).getQueryString());
+	
+	
+	return result.getResultList();
+}
+
+public static List<Student> findAllFinalizedStudent(){
+	
+	CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+	CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
+	Root<Student> from = criteriaQuery.from(Student.class);
+	CriteriaQuery<Student> select = criteriaQuery.select(from);
+	
+	criteriaQuery.where(criteriaBuilder.equal(from.get("studentStatus"),0));
+	TypedQuery<Student> result = entityManager().createQuery(criteriaQuery);
+	//System.out.println("~~QUERY +++ : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
+    return result.getResultList();
+	
+	
+}
     
 
 }

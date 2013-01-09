@@ -59,9 +59,144 @@
 	font-size: 11px;
 	 
 }
+.finalizeButtonStyle {
+			border-radius: 5px;
+			margin-left: 25px;
+			padding: 3px 0;			
+		}
+.changeBtnTrStyle {
+			float: right;
+		}
+		
+		.informationHPStyle {
+			height: 30%;
+			width: 100%;
+			padding-bottom: 10px;
+			padding-left: 2px;
+			vertical-align: inherit;
+		}
+		
+		.personnelInforamationSPStyle {
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 5px;
+			border-color: lightblue;
+			padding: 15px;
+			width: 91%;
+			height: 90%;
+		}
+		.headingLabelStyle 
+		{
+			font-style: normal;
+			color: #888888;
+			font-size: 124%;
+			line-height: 32px;
+			padding-bottom: 1px;			
+			text-transform: uppercase;
+		}
+	
+		.valueLabelStyle {
+			font-size: 97%;
+			font-style: normal;
+			color: #333333;
+			display: block;
+			float: left;
+			padding-top: 5px;
+			padding-left: 10px;
+			margin-right: 60px;
+		}
+	.infoLabelStyle {
+			font-style: normal;
+			font-size: 98%;
+			color: #888888;
+			display: block;
+			padding-top: 5px;			
+			float: left;
+		}
+		.trStyle 
+		{
+			height: 20px;
+			float: left;
+		}
 </ui:style>
 	<g:HTMLPanel>
-		<g:Label>Admin View aaa</g:Label>
+		<!-- <g:Label>Admin View aaa</g:Label> -->
+		<g:HorizontalPanel addStyleNames="{style.informationHPStyle}">
+								<g:HTMLPanel addStyleNames="{style.personnelInforamationSPStyle}">
+								
+								<g:Label ui:field="lblPersonnelInformation" addStyleNames="{style.headingLabelStyle}"></g:Label>
+									<table>
+										<tbody>
+											<!-- <tr addStyleNames="{style.trStyle}">
+												<td>
+													
+												</td>
+											</tr> -->
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblName" addStyleNames="{style.infoLabelStyle}"></g:Label>
+												</td>
+												<td>
+													<g:Label ui:field="lblNameVal" addStyleNames="{style.valueLabelStyle}"></g:Label>
+												</td>
+											</tr>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblPrename" addStyleNames="{style.infoLabelStyle}"></g:Label>
+												</td>
+												<td>
+													<g:Label ui:field="lblPrenameVal" addStyleNames="{style.valueLabelStyle}"></g:Label>
+												</td>
+											</tr>
+											<!-- <tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblStudyYear" addStyleNames="{style.infoLabelStyle}">
+													</g:Label>
+												</td>
+												<td>
+													<g:Label ui:field="lblStudeyYearvalue" addStyleNames="{style.valueLabelStyle}"></g:Label>
+												</td>
+											</tr> -->
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblEmail" addStyleNames="{style.infoLabelStyle}">
+													</g:Label>
+												</td>
+												<td>
+													<g:Label ui:field="lblEmailVal" addStyleNames="{style.valueLabelStyle}"></g:Label>
+												</td>
+											</tr>
+											<!-- <tr addStyleNames="{style.trStyle}">
+												<td>
+												</td>
+												<td>
+													<g:Anchor ui:field="btnChange" addStyleNames="{style.changeBtnTrStyle}"></g:Anchor>
+												</td>
+											</tr> -->
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblExport" addStyleNames="{style.infoLabelStyle}"></g:Label>
+												</td>
+												<td>
+													<g:CheckBox ui:field="exportCheckbox"
+														addStyleNames="{style.finalizeButtonStyle}"></g:CheckBox>
+												</td>
+											</tr>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label addStyleNames="{style.infoLabelStyle}">&nbsp;</g:Label>
+												</td>
+												<td>
+													<g:Button ui:field="btnExportLogBook"
+														addStyleNames="{style.finalizeButtonStyle}">Export LogBook</g:Button>
+												</td>
+											</tr>
+
+										</tbody>
+									</table>
+								</g:HTMLPanel>
+							</g:HorizontalPanel>
+		
 		
 	</g:HTMLPanel>
 </ui:UiBinder> 

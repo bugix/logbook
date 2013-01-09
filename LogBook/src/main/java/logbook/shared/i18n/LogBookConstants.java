@@ -130,4 +130,10 @@ public String ErrorMessage();
 
 	public String adminLogin();
 
+	public String preName();
+	
+	public String changeFilalizeToExport();
+	
+	public String exportLogBook();
+
 }

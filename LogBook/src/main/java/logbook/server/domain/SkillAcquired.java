@@ -308,5 +308,20 @@ public static Integer countSkillAcquiredByStudentandSkill(Long studentId,List<Sk
 		}
 	}
     
+	public static List<SkillAcquired> findSkillAcquiredByStudent(Long studentId){
+		
+		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+		CriteriaQuery<SkillAcquired> criteriaQuery = criteriaBuilder.createQuery(SkillAcquired.class);
+		Root<SkillAcquired> from = criteriaQuery.from(SkillAcquired.class);
+		CriteriaQuery<SkillAcquired> select = criteriaQuery.select(from);
+		
+		select.orderBy(criteriaBuilder.asc(from.get("skill")));
+				
+		criteriaQuery.where(criteriaBuilder.equal(from.get("student"),studentId));
+		TypedQuery<SkillAcquired> result = entityManager().createQuery(criteriaQuery);
+		//System.out.println("~~QUERY +++ : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
+	    return result.getResultList();
+		
+	}
  
 }

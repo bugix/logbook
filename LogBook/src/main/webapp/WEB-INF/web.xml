@@ -106,7 +106,7 @@
     <!-- Uncomment for production mode -->
     <filter-mapping>
 		<filter-name>AuthenticationFilter</filter-name>
-		<url-pattern>*.html</url-pattern>
+		<url-pattern>/*.html</url-pattern>
 	</filter-mapping>
 	
 	
@@ -125,5 +125,37 @@
 		<servlet-name>SkillPdfExport</servlet-name>
 		<url-pattern>/SkillPdfExport</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>exportCSV</servlet-name>
+        <servlet-class>logbook.server.servlet.CsvFileGenerator</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>exportCSV</servlet-name>
+		<url-pattern>/exportCSV</url-pattern>
+	</servlet-mapping>
+	
+	 <!--ServerPush event  {-->
+  	<servlet>
+		<servlet-name>EventService</servlet-name>
+		<servlet-class>de.novanic.eventservice.service.EventServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>EventService</servlet-name>
+		<url-pattern>/applicationScaffold/gwteventservice</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CsvFileGenerator</servlet-name>
+		<servlet-class>logbook.server.CsvFileGeneratorServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CsvFileGenerator</servlet-name>
+		<url-pattern>/applicationScaffold/CsvFileGenerator</url-pattern>
+	</servlet-mapping>
+	
+  <!--ServerPush event } -->
     
 </web-app>
