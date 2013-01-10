@@ -380,7 +380,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 
 	@Override
 	public void mainClassificationSuggestboxChanged(Long mainClassificationId) {
-		this.mainClassificationId = mainClassificationId;
+		//this.mainClassificationId = mainClassificationId;
 		
 		view.getClassificationTopicSuggestBox().setSelected(null);
 		classificaitonTopicId = null;
@@ -402,7 +402,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 
 	@Override
 	public void classificationTopicSuggestboxChanged(Long classificationId) {
-		this.classificaitonTopicId = classificationId;
+		//this.classificaitonTopicId = classificationId;
 		
 		view.getTopicSuggestBox().setSelected(null);
 		topicId = null;
@@ -417,7 +417,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 
 	@Override
 	public void topicSuggestboxChanged(Long topicId) {
-		this.topicId=topicId;
+		//this.topicId=topicId;
 		view.setDefaultMessageOfSuggestionbox();
 		//initSkillTableData();
 		
