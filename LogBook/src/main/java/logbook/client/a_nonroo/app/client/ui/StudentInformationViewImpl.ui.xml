@@ -183,6 +183,7 @@
 	
 	
 	</ui:style>
+		<g:FocusPanel ui:field="studentFocusPanel">
 	<g:HTMLPanel>
 		<g:VerticalPanel addStyleNames="{style.mainVerticlePanelStyle}"
 			verticalAlignment="top">
@@ -324,4 +325,5 @@
 			</g:HTMLPanel>
 		</g:VerticalPanel>
 	</g:HTMLPanel>
+	</g:FocusPanel>
 </ui:UiBinder> 

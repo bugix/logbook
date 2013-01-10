@@ -27,6 +27,8 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
+import com.google.gwt.event.dom.client.MouseWheelEvent;
+import com.google.gwt.event.dom.client.MouseWheelHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -34,6 +36,7 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
@@ -79,6 +82,9 @@ public class SkillViewImpl extends Composite implements SkillView {
 	
 	@UiField
 	Label fullTextSearch;
+	
+	@UiField
+	FocusPanel focusPanel;
 	
 	private List<String> levelList = new ArrayList<String>();
 	
@@ -339,6 +345,16 @@ public class SkillViewImpl extends Composite implements SkillView {
 		init(); // Initialize Skill Data
 		
 		pager.setLength(20);
+		
+		focusPanel.addMouseWheelHandler(new MouseWheelHandler() {
+			
+			@Override
+			public void onMouseWheel(MouseWheelEvent event) {
+				mainClassificationSuggestBox.getSuggestWidget().hide();
+				classificationTopicSuggestBox.getSuggestWidget().hide();
+				topicSuggestBox.getSuggestWidget().hide();
+			}
+		});
 		
 		pager.addRangeChangeListener(new RangeChangeListener() {
 			

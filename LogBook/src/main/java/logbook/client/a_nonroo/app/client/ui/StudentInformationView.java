@@ -12,6 +12,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
@@ -85,6 +86,10 @@ public interface StudentInformationView extends IsWidget{
 	void setPrgBarLevel2(CustomProgressbar prgBarLevel2);
 
 	CustomProgressbar getPrgBarTotal();
+
+	FocusPanel getStudentFocusPanel();
+
+	void setStudentFocusPanel(FocusPanel studentFocusPanel);
 	
 	
 

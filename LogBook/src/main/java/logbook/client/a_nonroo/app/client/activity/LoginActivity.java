@@ -36,6 +36,8 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
+import com.google.gwt.event.dom.client.MouseWheelEvent;
+import com.google.gwt.event.dom.client.MouseWheelHandler;
 import com.google.gwt.event.logical.shared.CloseEvent;
 import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.event.shared.EventBus;
@@ -437,6 +439,14 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 		Log.info("Student Proxy: " + studentProxy.getId());
 		final StudentEditPopupViewImpl popupView=new StudentEditPopupViewImpl();
 		popupView.setPopupPosition(event.getClientX()-60, event.getClientY()-135);
+		
+		view.getStudentFocusPanel().addMouseWheelHandler(new MouseWheelHandler() {
+			
+			@Override
+			public void onMouseWheel(MouseWheelEvent event) {
+				popupView.hide();
+			}
+		});
 		
 		popupView.addCloseHandler(new CloseHandler<PopupPanel>() 
 		{

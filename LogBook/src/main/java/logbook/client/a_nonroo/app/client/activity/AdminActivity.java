@@ -1,6 +1,10 @@
 package logbook.client.a_nonroo.app.client.activity;
 
 
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+
 import logbook.client.ApplicationLoadingScreenEvent;
 import logbook.client.CsvFileGeneratorService;
 import logbook.client.CsvFileGeneratorServiceAsync;
@@ -26,6 +30,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 import de.novanic.eventservice.client.event.RemoteEventService;
 import de.novanic.eventservice.client.event.RemoteEventServiceFactory;
@@ -128,6 +133,15 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 					view.getLblEmailVal().setText(response.getEmail()!=null ? response.getEmail():"");
 				}
 				
+			}
+			@Override
+			public void onFailure(ServerFailure error) {
+				Log.info("~~~~Error");
+			}
+			@Override
+			public void onConstraintViolation(
+					Set<ConstraintViolation<?>> violations) {
+				Log.info("~~~~Error~~~~");
 			}
 		});
 		

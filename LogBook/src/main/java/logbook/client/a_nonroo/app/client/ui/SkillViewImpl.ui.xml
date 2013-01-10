@@ -104,6 +104,7 @@
 			margin-left: 70px;
 		}
 	</ui:style>
+	<g:FocusPanel ui:field="focusPanel">
 	<g:HTMLPanel>
 		<g:VerticalPanel addStyleNames="{style.mainVerticlePanelStyle}"
 			verticalAlignment="top">
@@ -124,6 +125,7 @@
 						</tr>
 						<tr>
 						<td>
+						<!-- <g:FocusPanel ui:field="focusPanel"> -->
 							<g:VerticalPanel addStyleNames="{style.skillSearchPanelStyle}">
 								<g:HTMLPanel>
 									<table cellpadding="3">
@@ -185,6 +187,7 @@
 									</table>
 								</g:HTMLPanel>
 							</g:VerticalPanel>
+							<!-- </g:FocusPanel> -->
 							</td>
 						</tr>
 						<tr>
@@ -229,6 +232,7 @@
 			</g:HTMLPanel>
 		</g:VerticalPanel>
 	</g:HTMLPanel>
+	</g:FocusPanel>
 
 
 

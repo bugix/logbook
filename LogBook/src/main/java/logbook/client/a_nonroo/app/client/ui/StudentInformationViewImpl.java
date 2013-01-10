@@ -28,6 +28,7 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -115,6 +116,9 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	
 	@UiField
 	Label lblError;
+	
+	@UiField
+	FocusPanel studentFocusPanel;
 
 	@UiHandler("btnFinalizeLogBook")
 	public void btnFinalizeLogBookClicked(ClickEvent event)
@@ -510,6 +514,16 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	public void setDelegate(Delegate delegate) {
 		this.delegate=delegate;
 		
+	}
+	
+	@Override
+	public FocusPanel getStudentFocusPanel() {
+		return studentFocusPanel;
+	}
+
+	@Override
+	public void setStudentFocusPanel(FocusPanel studentFocusPanel) {
+		this.studentFocusPanel = studentFocusPanel;
 	}
 
 }
