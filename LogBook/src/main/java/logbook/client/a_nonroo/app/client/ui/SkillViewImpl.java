@@ -141,6 +141,10 @@ public class SkillViewImpl extends Composite implements SkillView {
 	 @UiField
 	 public DefaultSuggestBox<TopicProxy, EventHandlingValueHolderItem<TopicProxy>> topicSuggestBox;
 	 
+	 public static DefaultSuggestBox<MainClassificationProxy, EventHandlingValueHolderItem<MainClassificationProxy>> mainClassificationSuggestBoxPopup;
+	 public static DefaultSuggestBox<ClassificationTopicProxy, EventHandlingValueHolderItem<ClassificationTopicProxy>> classificationTopicSuggestBoxPopup;
+	 public static DefaultSuggestBox<TopicProxy, EventHandlingValueHolderItem<TopicProxy>> topicSuggestBoxPoopup;
+	 
 	/* @UiField
 	 public DefaultSuggestBox<String, EventHandlingValueHolderItem<String>> levelSuggestBox;*/
 	 
@@ -436,6 +440,11 @@ public class SkillViewImpl extends Composite implements SkillView {
 	}
 
 	private void init() {
+		mainClassificationSuggestBoxPopup= mainClassificationSuggestBox;
+		classificationTopicSuggestBoxPopup=classificationTopicSuggestBox;
+		topicSuggestBoxPoopup=topicSuggestBox;
+		
+		
 		mainClassificationLabel.setText(constants.mainClassification() + "    ");
 		classificationTopic.setText(constants.classificationTopic() + "   ");
 		topic.setText(constants.topic() + "   ");

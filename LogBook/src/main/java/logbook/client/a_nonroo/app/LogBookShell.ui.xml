@@ -32,11 +32,17 @@
 		overflow: auto;
 
 		}
+		.scrollFp{
+		overflow: auto;
+		background-color: #EEEEEE;
+		
+		}
 	</ui:style>
 	<!--  <g:RootLayoutPanel width="800px" height="800px">
   	  <g:layer>
   	   <g:ScrollPanel width="800px" height="800px"> -->
-	<g:DockLayoutPanel unit='PX' ui:field="masterDockPanel" addStyleNames="{style.eastPanelStyle} {style.scroll}">
+  	   <g:FocusPanel ui:field="fpMain" addStyleNames="{style.scrollFp}" >
+	<g:DockLayoutPanel unit='PX' ui:field="masterDockPanel" addStyleNames="{style.eastPanelStyle}">
 		<g:north size='110'>
 			<g:HTMLPanel>
 				<g:Image ui:field="imgLoogBookLogo" url="applicationScaffold/gwt/logbook/images/logo.png" addStyleNames="{style.logBookLogo}"></g:Image>				
@@ -54,8 +60,9 @@
 			<g:SimplePanel ui:field="topPanel3" addStyleNames="{style.eastPanelStyle}"></g:SimplePanel>
 		</g:east> -->
 		<g:south size='0'>
-
-			<g:SimplePanel ui:field="topPanel4" addStyleNames="{style.eastPanelStyle}"></g:SimplePanel>
+		<g:HTMLPanel>
+				<g:SimplePanel ui:field="topPanel4" addStyleNames="{style.eastPanelStyle}"></g:SimplePanel>
+		</g:HTMLPanel>
 		</g:south>
 
 		<g:center >
@@ -71,9 +78,10 @@
 					<!-- The order of the children determines which way they slide -->
 					<!-- <e:ExpenseReportList /> </g:SimplePanel> </g:FlowPanel> -->
 			<!-- 	</g:center> -->
-		<!-- 	</g:SplitLayoutPanel> -->				
+		<!-- 	</g:SplitLayoutPanel> -->	
 		</g:center>
 	</g:DockLayoutPanel>
+	</g:FocusPanel>
 <!-- 	</g:ScrollPanel>
 	</g:layer>
 	</g:RootLayoutPanel> -->

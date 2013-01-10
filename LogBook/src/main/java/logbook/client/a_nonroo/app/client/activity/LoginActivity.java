@@ -67,7 +67,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	private LoginActivity LoginActivity;
 	private LoginPlace place;
 	private int tabIndex=0; 
-	
+	public static StudentEditPopupViewImpl popupViewImpl;
 	private ActivityManager activityManager;
 	
 	public HandlerManager handlerManager;// = new HandlerManager(this);
@@ -437,7 +437,8 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	private void initStudentEditPopup(final StudentProxy studentProxy, ClickEvent event) 
 	{
 		Log.info("Student Proxy: " + studentProxy.getId());
-		final StudentEditPopupViewImpl popupView=new StudentEditPopupViewImpl();
+		final StudentEditPopupViewImpl popupView=new StudentEditPopupViewImpl();		
+			popupViewImpl=popupView;
 		popupView.setPopupPosition(event.getClientX()-60, event.getClientY()-135);
 		
 		view.getStudentFocusPanel().addMouseWheelHandler(new MouseWheelHandler() {
