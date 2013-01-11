@@ -20,6 +20,8 @@ import logbook.shared.i18n.LogBookConstants;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.DivElement;
+import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -37,6 +39,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
@@ -241,14 +244,6 @@ public class SkillViewImpl extends Composite implements SkillView {
 		this.hyperlnkSavePDF = hyperlnkSavePDF;
 	}
 
-	public Label getLblError() {
-		return lblError;
-	}
-
-	public void setLblError(Label lblError) {
-		this.lblError = lblError;
-	}
-
 	@Override
 	public FlexTable getSkillFlexTable() {
 		return skillFlexTable;
@@ -286,6 +281,12 @@ public class SkillViewImpl extends Composite implements SkillView {
 
 	@UiField
 	Anchor hyperlnkSavePDF;
+	
+	@UiField
+	DivElement lblErrorMessage;
+	
+	@UiField
+	HTMLPanel hpErrorMessage;
 
 	@UiHandler("hyperlnkSavePDF")
 	public void savePdfClicked(ClickEvent event){
@@ -299,8 +300,23 @@ public class SkillViewImpl extends Composite implements SkillView {
 		delegate.printPdfClicked();
 	}
 	
-	@UiField
-	Label lblError;
+	
+
+	public HTMLPanel getHpErrorMessage() {
+		return hpErrorMessage;
+	}
+
+	public void setHpErrorMessage(HTMLPanel hpErrorMessage) {
+		this.hpErrorMessage = hpErrorMessage;
+	}
+
+	public DivElement getLblErrorMessage() {
+		return lblErrorMessage;
+	}
+
+	public void setLblErrorMessage(DivElement lblErrorMessage) {
+		this.lblErrorMessage = lblErrorMessage;
+	}
 
 	public SkillViewImpl() {
 
@@ -369,6 +385,8 @@ public class SkillViewImpl extends Composite implements SkillView {
 				delegate.refreshFlextable(skillFlexTable, pager.getStart(), pager.getLength());
 			}
 		});
+		
+	
 
 	}
 	
@@ -474,7 +492,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 		hyperLnkPrint.setText(constants.print());
 		hyperlnkSavePDF.setText(constants.saveAsPdf());
 
-		lblError.setVisible(false);
+		hpErrorMessage.setVisible(false);
 		//lblError.setText("Error...");
 		
 		//levelLabel.setText(constants.level());

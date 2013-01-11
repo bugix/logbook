@@ -324,9 +324,9 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .ui-icon {
-	background-image: url('images/ui-icons_454545.png');
-	height: 11px;
-	width: 11px;
+	background-image: url("images/ui-icons_ef8c08_256x240.png");
+	height: 15px;
+	width: 15px;
 	background-repeat: no-repeat;
     display: block;
     overflow: hidden;
@@ -338,7 +338,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .ui-icon:hover {
-	background-image: url('images/ui-icons_222222.png');
+	/* background-image: url('images/ui-icons_222222.png'); */
 }
 
 .ui-icon-carat-1-n {
@@ -705,7 +705,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
     background-position: -3px -148px;
 }
 .ui-icon-info {
-    background-position: -19px -148px;
+    background-position: -17px -143px;
 }
 .ui-icon-notice {
     background-position: -35px -148px;
@@ -963,6 +963,13 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	background: url("images/ui-bg_glass_75_79c9ec_1x400.png") repeat-x scroll 50% 50% #0078AE;
 }
 
+.gwt-Button:active
+{
+     background: url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png") repeat-x scroll 50% 50% #7EB544;
+    border: 1px solid #ACDD4A;
+    color: #FFFFFF;
+    font-weight: normal;
+}
 .gwt-TabLayoutPanel{
 	position: relative !important;
 }
@@ -1377,4 +1384,17 @@ padding-top: 3px;
 { 
 	 font-family: verdana,Arial,sans-serif;
 }
+
+		.mainErrorLabelStyle {
+			
+			background: url("images/ui-bg_glass_55_f8da4e_1x400.png") repeat-x scroll 50% 50% #F8DA4E;	
+			background-repeat: repeat-x;
+			color: #A25617;
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 5px;
+			border-color: #FCD113;
+			font-family: Verdana, Arial, sans-serif;
+			max-height:20px;
+		}
 /*pager end*/

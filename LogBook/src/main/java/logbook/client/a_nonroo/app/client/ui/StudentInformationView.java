@@ -7,12 +7,14 @@ import logbook.client.managed.proxy.SkillAcquiredProxy;
 import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.StudentProxy;
 
+import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
@@ -69,8 +71,8 @@ public interface StudentInformationView extends IsWidget{
 	public void setLblLevel1Progress(Label lblLevel1Progress);
 	public Label getLblLevel2Progress();
 	public void setLblLevel2Progress(Label lblLevel1Progress);
-	public Label getLblError();
-
+	public DivElement getLblErrorMessage();
+	public HTMLPanel getHpErrorMessage();
 	StudentProxy getStudentProxy();
 
 	void setStudentProxy(StudentProxy studentProxy);

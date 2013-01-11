@@ -15,6 +15,7 @@ import logbook.shared.scaffold.LogBookConstant;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.NodeList;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.text.shared.AbstractRenderer;
@@ -29,6 +30,7 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -115,7 +117,10 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	public SimplePager pager;
 	
 	@UiField
-	Label lblError;
+	DivElement lblErrorMessage;
+	
+	@UiField
+	HTMLPanel hpErrorMessage;
 	
 	@UiField
 	FocusPanel studentFocusPanel;
@@ -341,13 +346,22 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	public void setPrgBarTotal(CustomProgressbar prgBarTotal) {
 		this.prgBarTotal = prgBarTotal;
 	}
-	public Label getLblError() {
-		return lblError;
+	public HTMLPanel getHpErrorMessage() {
+		return hpErrorMessage;
 	}
 
-	public void setLblError(Label lblError) {
-		this.lblError = lblError;
+	public void setHpErrorMessage(HTMLPanel hpErrorMessage) {
+		this.hpErrorMessage = hpErrorMessage;
 	}
+
+	public DivElement getLblErrorMessage() {
+		return lblErrorMessage;
+	}
+
+	public void setLblErrorMessage(DivElement lblErrorMessage) {
+		this.lblErrorMessage = lblErrorMessage;
+	}
+
 
 
 	
@@ -404,7 +418,8 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 		intiProgressBar(prgBarLevel2);
 		intiProgressBar(prgBarTotal);
 		
-		lblError.setVisible(false);
+		hpErrorMessage.setVisible(false);
+			
 			
 	}
 	

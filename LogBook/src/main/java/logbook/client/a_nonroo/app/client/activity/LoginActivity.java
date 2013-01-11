@@ -249,7 +249,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	
 	private void initStudentInfo() 
 	{
-		view.getLblError().setVisible(false);
+		view.getHpErrorMessage().setVisible(false);
 		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() 
 		{
 			@Override
@@ -430,7 +430,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	public void changeStudentInformationClicked(ClickEvent event) 
 	{
 		Log.info("Change student Infomation Clicked");
-		view.getLblError().setVisible(false);
+		view.getHpErrorMessage().setVisible(false);
 		initStudentEditPopup(view.getStudentProxy(),event);
 	}
 
@@ -454,7 +454,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			@Override
 			public void onClose(CloseEvent<PopupPanel> event) 
 			{
-				view.getLblError().setVisible(false);
+				view.getHpErrorMessage().setVisible(false);
 			}
 		});
 		
@@ -480,8 +480,8 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 							final String email=popupView.getTxtEmailValue().getText();
 							if(email.length()>=40)
 							{
-								view.getLblError().setVisible(true);
-								view.getLblError().setText(constants.exceedEmailLength());
+								view.getHpErrorMessage().setVisible(true);
+								view.getLblErrorMessage().setInnerText(constants.exceedEmailLength());
 								return;
 							}
 							final StudyYears studyYear=popupView.getLstBoxStudyYear().getValue();							
@@ -507,7 +507,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 								@Override
 								public void onSuccess(Void response) {
 									
-									view.getLblError().setVisible(false);
+									view.getHpErrorMessage().setVisible(false);
 									Log.info("Successfully updated.");
 									view.getLblEmailVal().setText(getFormatedString(email, 15));
 									view.getLblEmailVal().setTitle(email);
@@ -527,8 +527,8 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 								}
 								@Override
 								public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
-									view.getLblError().setVisible(true);
-									view.getLblError().setText(constants.enterValidEmail());
+									view.getHpErrorMessage().setVisible(true);
+									view.getLblErrorMessage().setInnerText(constants.enterValidEmail());
 									//Window.alert("Please enter valid Email Address");
 								}
 								@Override
@@ -560,7 +560,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 					
 					@Override
 					public void onClick(ClickEvent event) {
-						view.getLblError().setVisible(false);
+						view.getHpErrorMessage().setVisible(false);
 						popupView.hide();
 					}
 				});
@@ -576,7 +576,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 		Log.info("Student is going to Finalize.");
 		Log.info("Student Id: " + studentProxy.getId());
 		
-		view.getLblError().setVisible(false);
+		view.getHpErrorMessage().setVisible(false);
 		
 		StudentRequest studentRequest=requests.studentRequest();
 		StudentProxy proxy=studentProxy;		

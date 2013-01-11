@@ -225,9 +225,9 @@ public class SkillActivity extends AbstractActivity implements
 			view.getPager().setRowCount(response.getTotalSkill());
 			view.createHeader(view.getSkillFlexTable());
 			if(response.getTotalSkill()==0){
-				
-			view.getLblError().setVisible(true);
-			view.getLblError().setText(constants.nodataFound());	
+			
+			view.getHpErrorMessage().setVisible(true);
+			view.getLblErrorMessage().setInnerHTML(constants.nodataFound());	
 			}else{
 				view.setSource(response);
 			}
@@ -425,7 +425,8 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 
 	@Override
 	public void resetButtonClicked() {
-		view.getLblError().setVisible(false);
+		
+		view.getHpErrorMessage().setVisible(false);
 		this.mainClassificationId=null;
 		this.classificaitonTopicId=null;
 		this.topicId=null;
@@ -454,17 +455,15 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 	@Override
 	public void showButtonClicked() {
 		
-		
-		
-		
-		view.getLblError().setVisible(false);
+		view.getHpErrorMessage().setVisible(false);
+	
 		this.mainClassificationId=view.getMainClassificationSuggestBox().getSelected() !=null ? view.getMainClassificationSuggestBox().getSelected().getId() : null;
 		this.classificaitonTopicId=view.getClassificationTopicSuggestBox().getSelected()!=null ? view.getClassificationTopicSuggestBox().getSelected().getId() : null;
 		this.topicId=view.getTopicSuggestBox().getSelected() !=null ? view.getTopicSuggestBox().getSelected().getId():null;
 		
-		if(mainClassificationId==null && classificaitonTopicId==null && topicId==null && view.getFullTextSearchBox().getValue()==""){
-			view.getLblError().setVisible(true);
-			view.getLblError().setText(constants.ErrorMessage());
+		if(mainClassificationId==null && classificaitonTopicId==null && topicId==null && view.getFullTextSearchBox().getValue()==""){			
+			view.getHpErrorMessage().setVisible(true);
+			view.getLblErrorMessage().setInnerHTML(constants.ErrorMessage());
 		}
 		else{
 			
@@ -541,7 +540,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 	@Override
 	public void chekBoxSelected(final SkillProxy skillProxy,final boolean isLevel1,final SkillLevelCheckboxViewImpl skillLevelCheckboxViewImpl) {
 		
-		view.getLblError().setVisible(false);
+		view.getHpErrorMessage().setVisible(false);
 		final int row =skillLevelCheckboxViewImpl.getRow();
 		Boolean isDeleteOperation=true;
 		final SkillLevelCheckboxViewImpl s =(SkillLevelCheckboxViewImpl)view.getSkillFlexTable().getWidget(row, 2);
@@ -708,9 +707,9 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 					
 					
 				}
-				else if(response.equals("ERROR")){
-					view.getLblError().setVisible(true);
-					view.getLblError().setText(constants.skillAcquireError());
+				else if(response.equals("ERROR")){					
+					view.getHpErrorMessage().setVisible(true);
+					view.getLblErrorMessage().setInnerHTML(constants.skillAcquireError());
 					
 				}
 				

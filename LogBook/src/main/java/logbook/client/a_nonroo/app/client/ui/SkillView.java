@@ -15,9 +15,12 @@ import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
 import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.DefaultSuggestBox;
 
+import com.google.gwt.dom.client.DivElement;
+import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
@@ -120,7 +123,9 @@ public interface SkillView extends IsWidget{
 	
 	public void setSortcutHP(HorizontalPanel sortcutHP);
 	
-	public Label getLblError();
+	public DivElement getLblErrorMessage();
+	
+	public HTMLPanel getHpErrorMessage();
 	/*public FocusPanel getShortCut();
 	
 	public void setShortCut(FocusPanel shortCut);*/

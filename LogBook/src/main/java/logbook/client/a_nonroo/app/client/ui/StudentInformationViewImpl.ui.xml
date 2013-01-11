@@ -191,11 +191,14 @@
 				<table>
 					<tbody>
 					<tr>
-							<g:HorizontalPanel width="100%">
-								<g:Label ui:field="lblError" addStyleNames="{style.mainErrorLabelStyle}" height="20%" visible="false"></g:Label>								
-							</g:HorizontalPanel>
-						</tr>
-						<tr addStyleNames="{style.mainTrStyle}">
+						<g:HTMLPanel ui:field="hpErrorMessage">
+							<div class="ui-state-highlight ui-corner-all mainErrorLabelStyle" style="padding:5px; margin-bottom:10px;">
+								<div  class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></div>
+								<div ui:field="lblErrorMessage"></div>									
+							</div> 
+						</g:HTMLPanel>
+					</tr>
+					<tr addStyleNames="{style.mainTrStyle}">
 							<g:HorizontalPanel addStyleNames="{style.informationHPStyle}">
 								<g:HTMLPanel addStyleNames="{style.personnelInforamationSPStyle}">
 								<g:Label ui:field="lblPersonnelInformation" addStyleNames="{style.headingLabelStyle}"></g:Label>
