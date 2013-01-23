@@ -63,7 +63,8 @@ public class Topic {
  public static TopicFilteredResult findTopicOrderByClassification(int start,int max,Student student)
     {    	
     	Log.info("findTopicOrderByClassification call");
-    	
+    	 if(start!=0)
+    		  start--;
     	TopicFilteredResult finalresult = new TopicFilteredResult();
     	
 		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
@@ -72,37 +73,39 @@ public class Topic {
 		CriteriaQuery<Topic> select = criteriaQuery.select(from);				
 		
 		select.orderBy(criteriaBuilder.asc(from.get("classificationTopic").get("mainClassification")), criteriaBuilder.asc(from.get("classificationTopic")));
-		from.join("classificationTopic");
+		//from.join("classificationTopic");
 		TypedQuery<Topic> result = entityManager().createQuery(criteriaQuery);
 		
 		int totalSize=result.getResultList().size();
 		result.setFirstResult(start);
 		result.setMaxResults(max);
 						
-		Log.info("Query String: " + result.unwrap(org.hibernate.Query.class).getQueryString());
-		Log.info("Result Size : Start: " +start + " Max: " + max );
-		
+		//Log.info("Query String: " + result.unwrap(org.hibernate.Query.class).getQueryString());
+		//Log.info("Result Size : Start: " +start + " Max: " + max );
+		//Log.info("Total Size : " + totalSize);
 		
 		List<Topic> resultList  = result.getResultList();		
 		List<Long> totalTopicBySkill=new ArrayList<Long>();
 		List<Long> totalAcquiredTopicBySkill=new ArrayList<Long>();
 		
-		for (Topic topic : resultList) {
+		for (Topic topic : resultList) 
+		{
 			Long totalTopicCount=Skill.findTotalSkillByTopic(topic.getId());
-			totalTopicBySkill.add(totalTopicCount);	
+			totalTopicBySkill.add(totalTopicCount);
+			//Log.info("TotalTopicCount : " + totalTopicCount);
 			Long totalAcquiredTopicCount=SkillAcquired.findTotalSkillAcquiredByTopicAndStudent(topic.getId(),student.getId());
 			totalAcquiredTopicBySkill.add(totalAcquiredTopicCount);
 
 		}
 		
-		Log.info("Topic Result Size: " + resultList.size());
-		Log.info("Total Topic Size: " + totalTopicBySkill.size());
-		Log.info("Total Acquired Topic Size: " + totalAcquiredTopicBySkill.size());
+		//Log.info("Topic Result Size: " + resultList.size());
+		//Log.info("Total Topic Size: " + totalTopicBySkill.size());
+		//Log.info("Total Acquired Topic Size: " + totalAcquiredTopicBySkill.size());
 		
 		
 		//Log.info("Topic Result: " + StringUtils.join(resultList,","));
-		Log.info("Total Topic: " + StringUtils.join(totalTopicBySkill,","));
-		Log.info("Total Acquired: " + StringUtils.join(totalAcquiredTopicBySkill,","));
+		//Log.info("Total Topic: " + StringUtils.join(totalTopicBySkill,","));
+		//Log.info("Total Acquired: " + StringUtils.join(totalAcquiredTopicBySkill,","));
 		
 		finalresult.setTotalTopic(totalSize);
 		finalresult.setTopicList(resultList);

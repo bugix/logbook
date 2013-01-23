@@ -1,6 +1,9 @@
 package logbook.server.domain;
 
-import static logbook.shared.scaffold.LogBookConstant.*;
+import static logbook.shared.scaffold.LogBookConstant.ADMIN;
+import static logbook.shared.scaffold.LogBookConstant.CURRENT_USER;
+import static logbook.shared.scaffold.LogBookConstant.STUDENT;
+import static logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,7 +30,6 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
-import com.allen_sauer.gwt.log.client.Log;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
 @RooJavaBean
@@ -68,13 +70,13 @@ public class Student {
     public static logbook.server.domain.Student findStudentFromSession() 
     {
         HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
-        Long shibId = Long.parseLong((String) session.getAttribute(UNIQUE_ID),10);
+        String shibId = (String) session.getAttribute(UNIQUE_ID);
         System.out.println("shib id: " + shibId);
         Student student=Student.findStudentUsingShibId(shibId);
         return student;
     }
     
-    public static Student findStudentUsingShibId(Long shibId) {
+    public static Student findStudentUsingShibId(String shibId) {
     	
     	CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
 		CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);

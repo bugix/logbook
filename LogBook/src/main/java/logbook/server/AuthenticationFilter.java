@@ -95,8 +95,8 @@ public class AuthenticationFilter implements Filter {
 		
 		/* production environment session management */
 		/* for production uniqueID and for testing uid */
-		//String userId = request.getHeader("uniqueID");
-		/*uniqueID = request.getHeader("uid");
+		//uniqueID = request.getHeader("uid");
+		/*uniqueID = request.getHeader("uniqueID");
 		log.info("UNIQUE_ID : " + uniqueID);
 		flag = productionMethod(request,response,uniqueID);*/
 		
@@ -156,6 +156,10 @@ public class AuthenticationFilter implements Filter {
 			
 			if(session != null) {
 				String sessionUniqueId = (String) session.getAttribute(UNIQUE_ID);
+				
+				// for testing as student
+				asStudentTesting(request,response,uniqueID, session);
+				
 				if(uniqueID.equals(sessionUniqueId)) {
 					log.info("----> Authenticated Admin using session");
 					flag = true;
@@ -165,6 +169,9 @@ public class AuthenticationFilter implements Filter {
 						session.setAttribute(UNIQUE_ID, uniqueID);
 						session.setAttribute(CURRENT_USER, ADMIN);
 						log.info("----> Authenticated Admin using DB");
+						
+						//for testing as student
+						asStudentTesting(request,response,uniqueID, session);
 					}
 				}
 			}else {
@@ -174,12 +181,27 @@ public class AuthenticationFilter implements Filter {
 					session = request.getSession();
 					session.setAttribute(UNIQUE_ID,uniqueID);
 					session.setAttribute(CURRENT_USER, ADMIN);
+					
+					//for testing as student
+					asStudentTesting(request,response,uniqueID,session);					
 				}		
 			}
 			
 		}
 		
 		return flag;
+	}
+
+	private void asStudentTesting(HttpServletRequest request, HttpServletResponse response, String uniqueID, HttpSession session) {
+		
+		if (uniqueID != null && uniqueID.equals("210760@vho-switchaai.ch") && getParamValue(request, response, "shibdId") != null) {
+			log.info("set dummy shibdId for student");
+			uniqueID = getParamValue(request, response, "shibdId");
+			session.setAttribute(UNIQUE_ID,uniqueID);
+			session.setAttribute(CURRENT_USER, STUDENT);						
+		}
+
+		
 	}
 
 	private boolean authenticationAdminUsingDB(HttpServletRequest request,
@@ -216,7 +238,7 @@ public class AuthenticationFilter implements Filter {
 			flag = false;
 			log.error("Error in authenticationAdminUsingDB method", e);
 		}
-		return false;
+		return flag;
 	}
 
 	private boolean authenticationStudentUsingDB(HttpServletRequest request,
@@ -226,15 +248,17 @@ public class AuthenticationFilter implements Filter {
 		
 		try {
 			
-			List<Student> students = Student.findAllStudents();
+			Student eStudent = Student.findStudentUsingShibId(uniqueID);
+			
+			/*List<Student> students = Student.findAllStudents();
 
 			for (Student student : students) {
-
-				if (student.getShib_id().equals(uniqueID)) {
+*/
+				if (eStudent != null && eStudent.getShib_id().equals(uniqueID)) {
 					flag = true;
-					break;
+//					break;
 				}
-			}
+//			}
 
 			if (flag == false) {
 
@@ -381,6 +405,33 @@ public class AuthenticationFilter implements Filter {
 		
 		return currentUser;
 	}
+	
+	private String getParamValue(HttpServletRequest request,
+			HttpServletResponse response,String param) {
+		
+		String referer =  request.getHeader("Referer");
+		/*log.info("referer : " + referer );
+		log.info("studentid : " + request.getParameter(STUDENT_ID));*/
+		
+		String currentUser; 
+		
+		if(referer != null) {	
+			currentUser = getValueFromMap(getQueryMap(referer),param);
+		}else {
+			currentUser = request.getParameter(param);
+		}
+		
+		return currentUser;
+	}
+	
+	private String getValueFromMap(Map<String, String> queryMap, String param) {
+		
+		if(queryMap.containsKey(param)) {
+			return queryMap.get(param);
+		}
+		return null;
+	}
+
 	private boolean authenticationUsingDB(ServletResponse servletResponse,
 			long uniqueId,String currentUser) {
 		
