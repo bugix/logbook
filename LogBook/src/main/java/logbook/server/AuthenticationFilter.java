@@ -89,16 +89,16 @@ public class AuthenticationFilter implements Filter {
 		String uniqueID;
 		
 		/* local development environment Session Management */ 
-		uniqueID = getUniqueId(request,response);
+		/*uniqueID = getUniqueId(request,response);
 		log.info("UNIQUE_ID : " + uniqueID);
-		flag = localWork(request, response, uniqueID);
+		flag = localWork(request, response, uniqueID);*/
 		
 		/* production environment session management */
 		/* for production uniqueID and for testing uid */
 		//uniqueID = request.getHeader("uid");
-		/*uniqueID = request.getHeader("uniqueID");
+		uniqueID = request.getHeader("uniqueID");
 		log.info("UNIQUE_ID : " + uniqueID);
-		flag = productionMethod(request,response,uniqueID);*/
+		flag = productionMethod(request,response,uniqueID);
 		
 		if(flag)
 			filterChain.doFilter(servletRequest, servletResponse);
@@ -359,14 +359,21 @@ public class AuthenticationFilter implements Filter {
 	public static Map<String, String> getQueryMap(String query)  
 	{  
 		
-	    String[] params = StringUtils.substringAfterLast(query,"?").split("&");  
-	    Map<String, String> map = new HashMap<String, String>();  
-	    for (String param : params)  
-	    {  
-	        String name = param.split("=")[0];  
-	        String value = param.split("=")[1];  
-	        map.put(name, value);  
-	    }  
+		Map<String, String> map = new HashMap<String, String>();
+		if(query.contains("?")) {
+			
+			String[] params = StringUtils.substringAfterLast(query,"?").split("&");  
+		      
+		    for (String param : params)  
+		    {
+		    	if(param.split("=").length  == 2) {
+		    		String name = param.split("=")[0];  
+			        String value = param.split("=")[1];  
+			        map.put(name, value);  
+		    	}
+		    }
+		}
+	      
 	    return map;  
 	}  
 	
