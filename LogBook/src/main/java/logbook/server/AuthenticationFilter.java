@@ -89,16 +89,16 @@ public class AuthenticationFilter implements Filter {
 		String uniqueID;
 		
 		/* local development environment Session Management */ 
-		/*uniqueID = getUniqueId(request,response);
+		uniqueID = getUniqueId(request,response);
 		log.info("UNIQUE_ID : " + uniqueID);
-		flag = localWork(request, response, uniqueID);*/
+		flag = localWork(request, response, uniqueID);
 		
 		/* production environment session management */
 		/* for production uniqueID and for testing uid */
 		//uniqueID = request.getHeader("uid");
-		uniqueID = request.getHeader("uniqueID");
+		/*uniqueID = request.getHeader("uniqueID");
 		log.info("UNIQUE_ID : " + uniqueID);
-		flag = productionMethod(request,response,uniqueID);
+		flag = productionMethod(request,response,uniqueID);*/
 		
 		if(flag)
 			filterChain.doFilter(servletRequest, servletResponse);
