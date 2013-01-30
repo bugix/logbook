@@ -8,6 +8,9 @@ import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
 import logbook.client.a_nonroo.app.client.place.SkillPlace;
 import logbook.client.a_nonroo.app.client.ui.SkillLevelCheckboxView;
 import logbook.client.a_nonroo.app.client.ui.SkillLevelCheckboxViewImpl;
+import logbook.client.a_nonroo.app.client.ui.SkillLevelIconButtonView;
+import logbook.client.a_nonroo.app.client.ui.SkillLevelIconButtonViewImpl;
+import logbook.client.a_nonroo.app.client.ui.SkillLevelTextAreaViewImpl;
 import logbook.client.a_nonroo.app.client.ui.SkillView;
 import logbook.client.a_nonroo.app.client.ui.SkillViewImpl;
 import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
@@ -19,6 +22,7 @@ import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultSuggestOracle;
 import logbook.shared.i18n.LogBookConstants;
+import logbook.shared.util.UtilityLogBook;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -35,6 +39,8 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextArea;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
 
@@ -43,7 +49,9 @@ import com.google.web.bindery.requestfactory.shared.Receiver;
  * 
  */
 public class SkillActivity extends AbstractActivity implements
-		SkillView.presenter, SkillView.Delegate,SkillLevelCheckboxView.presenter,SkillLevelCheckboxView.Delegate{
+		SkillView.presenter, SkillView.Delegate,
+		SkillLevelCheckboxView.presenter,SkillLevelCheckboxView.Delegate,
+		SkillLevelIconButtonView.presenter,SkillLevelIconButtonView.Delegate{
 
 	private LogBookRequestFactory requests;
 	private PlaceController placeController;
@@ -214,7 +222,7 @@ public class SkillActivity extends AbstractActivity implements
 		
 	
 	
-		requests.skillRequestNonRoo().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(),student.getId(),mainClassificationId, classificaitonTopicId, topicId,fullTextSearchString,chkAsc).with("skillList.topic","skillList.topic.classificationTopic","skillList.topic.classificationTopic.mainClassification","skillList.skillLevel").fire(new Receiver<SkillFilteredResultProxy>() {
+		requests.skillRequestNonRoo().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(),student.getId(),mainClassificationId, classificaitonTopicId, topicId,fullTextSearchString,chkAsc).with("skillList.topic","skillList.skillComment","skillList.topic.classificationTopic","skillList.topic.classificationTopic.mainClassification","skillList.skillLevel").fire(new Receiver<SkillFilteredResultProxy>() {
 
 			@Override
 			public void onSuccess(SkillFilteredResultProxy response) {
@@ -850,6 +858,64 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		});
 		
 	}*/
+
+	@Override
+	public void iconButtonClicked(final SkillProxy skillProxy,final SkillLevelIconButtonViewImpl skillLevelIconButtonViewImpl) {
+		Log.info("Skill Proxy is :" + skillProxy.getId());
+
+		view.getHpErrorMessage().setVisible(false);
+		
+		if(skillLevelIconButtonViewImpl.isSave()==false)
+		{
+			
+			final String comment=((SkillLevelTextAreaViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().getText();
+			
+			requests.skillRequestNonRoo().addCommnets(skillProxy.getId(),view.getStudent().getId(), comment).fire(new Receiver<String>() {
+
+				@Override
+				public void onSuccess(String response) {
+					Log.info("Operation Was :" + response);
+					if(response.compareToIgnoreCase("FAILURE")==0)
+					{
+						view.getHpErrorMessage().setVisible(true);
+						view.getLblErrorMessage().setInnerHTML(constants.commentError());
+						((SkillLevelTextAreaViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setEnabled(true);
+						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setStyleName("skillTextAreaEnabled");
+						((SkillLevelIconButtonViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),5)).getIconButton().setClassName("ui-icon ui-icon-disk");
+						((SkillLevelIconButtonViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),5)).setSave(true);						
+					}
+					else
+					{
+						((SkillLevelTextAreaViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setEnabled(false);
+						((SkillLevelIconButtonViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),5)).getIconButton().setClassName("ui-icon ui-icon-pencil");
+						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().removeStyleName("skillTextAreaEnabled");
+						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setStyleName("skillTextArea");
+						((SkillLevelIconButtonViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),5)).setSave(false);
+						
+						requests.skillRequest().findSkill(skillProxy.getId()).with("skillComment").fire(new Receiver<SkillProxy>() {
+
+							@Override
+							public void onSuccess(SkillProxy response) 
+							{
+								((SkillLevelIconButtonViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),5)).setSkillProxy(response);	
+								((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setText(UtilityLogBook.getFormatedString(comment,45));
+								((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setTitle(comment);
+							}
+						});
+						
+						
+			
+					}
+				}
+			});
+		}
+		else{
+		
+			((SkillLevelTextAreaViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setEnabled(true);
+		}
+		
+		
+	}
 
 	
 }

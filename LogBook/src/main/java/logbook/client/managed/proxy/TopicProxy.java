@@ -9,7 +9,7 @@ import java.util.Set;
 import org.springframework.roo.addon.gwt.RooGwtProxy;
 
 @ProxyForName(value = "logbook.server.domain.Topic", locator = "logbook.server.locator.TopicLocator")
-@RooGwtProxy(value = "logbook.server.domain.Topic", readOnly = { "version", "id" }, scaffold = true)
+@RooGwtProxy(value = "logbook.server.domain.Topic", readOnly = { "version", "id" })
 public interface TopicProxy extends EntityProxy {
 
     abstract Long getId();

@@ -17,6 +17,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -29,11 +30,9 @@ import javax.persistence.criteria.SetJoin;
 import javax.validation.constraints.Size;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.ErrorListener;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -75,6 +74,9 @@ public class Skill {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "skill")
     private Set<SkillAcquired> skillsAcquired = new HashSet<SkillAcquired>();
+     
+    @OneToOne
+    private SkillComment skillComment;
     
     @ManyToMany(/*cascade = CascadeType.ALL,*/ mappedBy = "skill")
     private Set<Keyword> keywords = new HashSet<Keyword>();
@@ -1158,6 +1160,61 @@ public static List<Student> findAllFinalizedStudent(){
 	TypedQuery<Student> result = entityManager().createQuery(criteriaQuery);
 	//System.out.println("~~QUERY +++ : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
     return result.getResultList();
+	
+	
+}
+public static String addCommnets(Long skillId,Long studentId,String comment){
+	
+	String result;
+	try{
+		
+		List<SkillComment> skillCommentList= getTotalComment(skillId,studentId);
+		if(skillCommentList.size()==0){
+			
+			Skill skill=Skill.findSkill(skillId);
+			
+			SkillComment skillComment = new SkillComment();
+			skillComment.setSkill(skill);
+			skillComment.setStudent(Student.findStudent(studentId));
+			skillComment.setComment(comment);
+			skillComment.persist();
+			
+			skill.setSkillComment(skillComment);
+			skill.persist();
+			
+			result="INSERT";
+		}else{
+			
+			SkillComment skillComment =skillCommentList.get(0);
+			skillComment.setComment(comment);
+			skillComment.persist();
+			
+			result="EDIT";
+		}
+	}catch(Exception e){
+		System.out.println("asdkh " + e.getStackTrace());
+		result="FAILURE";
+	}
+	return result;
+	
+}
+public static List<SkillComment> getTotalComment(Long skillId,Long studentId){
+	
+	CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+	CriteriaQuery<SkillComment> criteriaQuery = criteriaBuilder.createQuery(SkillComment.class);
+	Root<SkillComment> from = criteriaQuery.from(SkillComment.class);
+	CriteriaQuery<SkillComment> select = criteriaQuery.select(from);
+	
+	Predicate p1=criteriaBuilder.and(criteriaBuilder.equal(from.get("student").get("id"), studentId));
+	Predicate p2=criteriaBuilder.and(criteriaBuilder.equal(from.get("skill").get("id"), skillId));
+	
+	criteriaQuery.where(criteriaBuilder.and(p1,p2));
+	
+	TypedQuery<SkillComment> result=entityManager().createQuery(criteriaQuery);
+	
+	Log.info("Query is :" + result.unwrap(Query.class).getQueryString());
+	
+	return result.getResultList();
 	
 	
 }

@@ -1,35 +1,5 @@
 package logbook.client.scaffold;
 
-import logbook.client.managed.activity.*;
-import logbook.client.managed.request.ApplicationRequestFactory;
-import logbook.client.managed.ui.ApplicationListPlaceRenderer;
-import logbook.client.scaffold.activity.IsScaffoldMobileActivity;
-import logbook.client.scaffold.place.*;
-import logbook.client.scaffold.gae.GaeHelper;
-import logbook.client.style.MobileListResources;
-import com.google.gwt.activity.shared.*;
-import com.google.gwt.cell.client.AbstractCell;
-import com.google.gwt.cell.client.Cell;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.logging.client.LogConfiguration;
-import com.google.gwt.place.shared.*;
-import com.google.web.bindery.requestfactory.shared.LoggingRequest;
-import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
-import com.google.gwt.text.shared.Renderer;
-import com.google.gwt.user.cellview.client.CellList;
-import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
-import com.google.gwt.user.client.ui.*;
-import com.google.inject.Inject;
-import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryLogHandler;
-
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -37,13 +7,13 @@ import java.util.logging.Logger;
  */
 public class ScaffoldMobileApp extends ScaffoldApp {
 	
-	
+	/*
 	private static final Logger log = Logger.getLogger(Scaffold.class.getName());
 	public static final Place ROOT_PLACE = new Place() {};
 
-	/**
+	*//**
 	 * The root activity that shows all entities.
-	 */
+	 *//*
 	private static class DefaultActivity extends AbstractActivity implements IsScaffoldMobileActivity {
 		private final Widget widget;
 
@@ -79,9 +49,9 @@ public class ScaffoldMobileApp extends ScaffoldApp {
 
 	private static MobileListResources res = GWT.create(MobileListResources.class);
 
-	/**
+	*//**
 	 * Get the list resources used for mobile.
-	 */
+	 *//*
 	public static MobileListResources getMobileListResources() {
 		if (res == null) {
 			res = GWT.create(MobileListResources.class);
@@ -113,14 +83,14 @@ public class ScaffoldMobileApp extends ScaffoldApp {
 	public void run() {
 		isMobile = true;
 
-		/* Add handlers, setup activities */
+		 Add handlers, setup activities 
 		init();
 
-		/* Hide the loading message */
+		 Hide the loading message 
 		Element loading = Document.get().getElementById("loading");
 		loading.getParentElement().removeChild(loading);
 
-		/* And show the user the shell */
+		 And show the user the shell 
 		// TODO (jlabanca): Use RootLayoutPanel when we switch to DockLayoutPanel.
 		RootPanel.get().add(shell);
 	}
@@ -133,7 +103,7 @@ public class ScaffoldMobileApp extends ScaffoldApp {
 		});
 
 		if (LogConfiguration.loggingIsEnabled()) {
-			/* Add remote logging handler */
+			 Add remote logging handler 
 			RequestFactoryLogHandler.LoggingRequestProvider provider = new RequestFactoryLogHandler.LoggingRequestProvider() {
 				public LoggingRequest getLoggingRequest() {
 					return requestFactory.loggingRequest();
@@ -142,7 +112,7 @@ public class ScaffoldMobileApp extends ScaffoldApp {
 			Logger.getLogger("").addHandler(new RequestFactoryLogHandler(provider, Level.WARNING, new ArrayList<String>()));
 		}
 
-		/* Left side lets us pick from all the types of entities */
+		 Left side lets us pick from all the types of entities 
 
 		final Renderer<ProxyListPlace> placePickerRenderer = new ApplicationListPlaceRenderer();
 		Cell<ProxyListPlace> placePickerCell = new AbstractCell<ProxyListPlace>() {
@@ -160,10 +130,10 @@ public class ScaffoldMobileApp extends ScaffoldApp {
 		placePickerView.setAcceptableValues(getTopPlaces());
 		proxyListPlacePicker.register(eventBus, placePickerView);
 
-		/*
+		
 		 * Wrap the scaffoldMobileActivities so we can intercept activity requests
 		 * and remember the last activity (for back button support).
-		 */
+		 
 
 		scaffoldMobileActivities.setRootActivity(defaultActivity);
 		ActivityMapper activityMapper = new ActivityMapper() {
@@ -206,16 +176,16 @@ public class ScaffoldMobileApp extends ScaffoldApp {
 			}
 		};
 
-		/*
+		
 		 * The body is run by an ActivityManager that listens for PlaceChange events
 		 * and finds the corresponding Activity to run
-		 */
+		 
 
 		final ActivityManager activityManager = new ActivityManager(activityMapper, eventBus);
 
 		activityManager.setDisplay(shell.getBody());
 
-		/* Browser history integration */
+		 Browser history integration 
 		ScaffoldPlaceHistoryMapper mapper = GWT.create(ScaffoldPlaceHistoryMapper.class);
 		mapper.setFactory(placeHistoryFactory);
 		PlaceHistoryHandler placeHistoryHandler = new PlaceHistoryHandler(mapper);
@@ -242,5 +212,5 @@ public class ScaffoldMobileApp extends ScaffoldApp {
 				}
 			}
 		});
-	}
+	}*/
 }

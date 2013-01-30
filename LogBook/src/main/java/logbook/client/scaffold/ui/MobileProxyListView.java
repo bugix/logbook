@@ -43,7 +43,7 @@ public abstract class MobileProxyListView<P extends EntityProxy> extends Abstrac
 				renderer.render(value, sb);
 			}
 		};
-		this.list = new CellList<P>(cell, ScaffoldMobileApp.getMobileListResources());
+		//this.list = new CellList<P>(cell, ScaffoldMobileApp.getMobileListResources());
 		init(BINDER.createAndBindUi(this), list, newButton);
 
 		// Initialize the widget.

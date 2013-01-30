@@ -135,5 +135,11 @@ public String ErrorMessage();
 	public String changeFilalizeToExport();
 	
 	public String exportLogBook();
+	
+	public String shortcutExplanation();
+	
+	public String comment();
+	
+	public String commentError();
 
 }

@@ -17,11 +17,11 @@ import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.sug
 import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.DefaultSuggestBox;
 import logbook.shared.SkillLevels;
 import logbook.shared.i18n.LogBookConstants;
+import logbook.shared.util.UtilityLogBook;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
-import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -34,6 +34,7 @@ import com.google.gwt.event.dom.client.MouseWheelHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -283,6 +284,9 @@ public class SkillViewImpl extends Composite implements SkillView {
 	Anchor hyperlnkSavePDF;
 	
 	@UiField
+	Anchor shortcutExplanation;
+	
+	@UiField
 	DivElement lblErrorMessage;
 	
 	@UiField
@@ -300,7 +304,10 @@ public class SkillViewImpl extends Composite implements SkillView {
 		delegate.printPdfClicked();
 	}
 	
-	
+	@UiHandler("shortcutExplanation")
+	public void shortcutExplanationClicked(ClickEvent event){
+		Window.open("http://sclo.smifk.ch/sclo2008/fulltext/howtouse%3E","","");
+	}
 
 	public HTMLPanel getHpErrorMessage() {
 		return hpErrorMessage;
@@ -402,7 +409,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 	{
 		flexTable.setText(0, 0, constants.name());
 		flexTable.getCellFormatter().addStyleName(0, 0, "flexTable-header");
-		flexTable.getFlexCellFormatter().setWidth(0, 0, "70%");
+		flexTable.getFlexCellFormatter().setWidth(0, 0, "50%");
 		//HorizontalPanel sortcutHP = new HorizontalPanel();
 		
 		//Label sortcutLabel= new Label(constants.shortcut());
@@ -429,6 +436,16 @@ public class SkillViewImpl extends Composite implements SkillView {
 		flexTable.getFlexCellFormatter().setWidth(0, 2, "10%");
 		flexTable.getCellFormatter().addStyleName(0, 3, "flexTable-header");
 		flexTable.getFlexCellFormatter().setWidth(0, 3, "10%");
+		
+		flexTable.setText(0,4,constants.comment());
+		flexTable.getFlexCellFormatter().setWidth(0, 4, "15%");
+		flexTable.getCellFormatter().addStyleName(0, 4, "flexTable-header");
+		
+		flexTable.setText(0,5,"Edit");
+		flexTable.getFlexCellFormatter().setWidth(0, 5, "5%");
+		flexTable.getCellFormatter().addStyleName(0, 5, "flexTable-header");
+		
+		
 	}
 	
 	private void setSkillFlexTableStyles() {
@@ -493,6 +510,8 @@ public class SkillViewImpl extends Composite implements SkillView {
 		hyperlnkSavePDF.setText(constants.saveAsPdf());
 
 		hpErrorMessage.setVisible(false);
+		shortcutExplanation.setText(constants.shortcutExplanation());
+		
 		//lblError.setText("Error...");
 		
 		//levelLabel.setText(constants.level());
@@ -745,7 +764,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 				skillFlexTable.setWidget(row, 1, createProgressBar(new Integer(mP[0]),new Integer(mP[1])));*/
 				//skillFlexTable.setText(row, 1, mProxy.getDescription());
 				//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
-				skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
+				skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 5);
 				skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "mainClassificationBG");
 				mainClassificationRow=row;
 				
@@ -754,7 +773,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 					skillFlexTable.setWidget(++row, 0, createClassificationTopicWidget(ctProxy));
 					delegate.findProgressOfClassificationTopic(ctProxy,row,1,student);
 					//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
-					skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
+					skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 5);
 					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "classificationTopicBG");
 					classificationTopicRow=row;
 				}
@@ -762,7 +781,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 				skillFlexTable.setWidget(++row,0,createTopicWidget(tproxy));
 				delegate.findProgressOfTopic(tproxy,row,1,student);
 				//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
-				skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
+				skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 5);
 				skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "topicBG");
 				topicRow=row;
 				
@@ -807,7 +826,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 							skillFlexTable.setWidget(++row, 0, createMainClassificationWidget(mProxy));
 							delegate.findProgressOfMainClassification(mProxy,row,1,student);
 							//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
-							skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
+							skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 5);
 							skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "mainClassificationBG");
 							mainClassificationRow=row;
 						}
@@ -816,7 +835,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 							skillFlexTable.setWidget(++row, 0, createClassificationTopicWidget(ctProxy));
 							delegate.findProgressOfClassificationTopic(ctProxy,row,1,student);
 							//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
-							skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
+							skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 5);
 							skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "classificationTopicBG");
 							classificationTopicRow=row;
 						}
@@ -825,7 +844,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 					skillFlexTable.setWidget(++row,0,createTopicWidget(tproxy));
 					delegate.findProgressOfTopic(tproxy,row,1,student);
 					//skillFlexTable.setWidget(row, 1, createProgressBar(20,5));
-					skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 3);
+					skillFlexTable.getFlexCellFormatter().setColSpan(row, 1, 5);
 					skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "topicBG");
 					topicRow=row;
 				}
@@ -872,6 +891,87 @@ public class SkillViewImpl extends Composite implements SkillView {
 			checkBox2.setTopicRow(topicRow);
 			skillFlexTable.setWidget(row,3, checkBox2);
 			skillFlexTable.getFlexCellFormatter().addStyleName(row, 3, "skillChkBox");
+			
+			final SkillLevelTextAreaViewImpl commentTextArea = new SkillLevelTextAreaViewImpl();
+			//System.out.println(sproxy.getSkillComment());	
+			commentTextArea.getTextArea().addStyleName("skillTextArea");			
+			commentTextArea.getTextArea().setText(sproxy.getSkillComment()!=null && sproxy.getSkillComment().getComment() !=null ?UtilityLogBook.getFormatedString(sproxy.getSkillComment().getComment(),45):"");
+			commentTextArea.getTextArea().setTitle(sproxy.getSkillComment()!=null && sproxy.getSkillComment().getComment() !=null ?sproxy.getSkillComment().getComment():"");
+			skillFlexTable.setWidget(row,4,commentTextArea);
+			
+			final SkillLevelIconButtonViewImpl editButton = new SkillLevelIconButtonViewImpl();	
+			
+			//editButton.getIconButton().addStyleName("skillEditButton");
+			editButton.setRow(row);
+			editButton.setColumn(5);
+			editButton.setSkillProxy(sproxy);
+			editButton.setDelegate(skillActivity);
+			editButton.setSave(false);
+			
+			final SkillProxy skillProxy =sproxy;
+			//editButton.addStyleName("skillEditButton");
+		
+			/*editButton.addDomHandler(new ClickHandler() {
+				
+				@Override
+				public void onClick(ClickEvent event) {
+					
+					System.out.println("is Save1" + editButton.isSave());
+					if(editButton.isSave()==false)
+					{
+						editButton.setSave(true);			
+						editButton.getIconButton().setClassName("ui-icon ui-icon-disk");
+					}
+					else{
+						
+						editButton.setSave(false);	
+						editButton.getIconButton().setClassName("ui-icon ui-icon-pencil");
+					}
+					
+					//Window.alert("" +event.getValue() + "gwt skill :" + skillProxy.getId());
+					delegate.iconButtonClicked(skillProxy,editButton);
+					
+				}
+			}, ClickEvent.getType());*/
+			skillFlexTable.setWidget(row, 5,editButton);
+			/*skillFlexTable.setWidget(row, 5,editButton);
+			Element td = skillFlexTable.getCellFormatter().getElement(row, 5);
+			 Element maybeChild = DOM.getFirstChild(td);
+			 Widget widget = null;
+			 if (maybeChild != null) {
+			      
+			    }*/
+			 editButton.getEditButtonHP().addDomHandler(new ClickHandler() {
+				
+				@Override
+				public void onClick(ClickEvent event) {
+					
+					System.out.println("is Save1" + editButton.isSave());
+					//System.out.println("Skill Proxy : " +editButton.getSkillProxy().getId() + " Skill Comment: " +  editButton.getSkillProxy().getSkillComment().getId() + " Comment is :" + editButton.getSkillProxy().getSkillComment().getComment());
+					if(editButton.isSave()==false)
+					{
+						editButton.setSave(true);			
+						editButton.getIconButton().setClassName("ui-icon ui-icon-disk");	
+						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(editButton.getRow(),4)).getTextArea().setStyleName("skillTextAreaEnabled");	
+						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(editButton.getRow(),4)).getTextArea().setText(editButton.getSkillProxy().getSkillComment()!=null &&editButton.getSkillProxy().getSkillComment().getComment() !=null ?editButton.getSkillProxy().getSkillComment().getComment():"");
+						
+					}
+					else{
+						editButton.setSave(false);	
+						editButton.getIconButton().setClassName("ui-icon ui-icon-pencil");
+						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(editButton.getRow(),4)).getTextArea().removeStyleName("skillTextAreaEnabled");
+						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(editButton.getRow(),4)).getTextArea().addStyleName("skillTextArea");		
+					}
+					
+					//Window.alert("" +event.getValue() + "gwt skill :" + skillProxy.getId());
+					delegate.iconButtonClicked(skillProxy,editButton);
+					
+				}
+			}, ClickEvent.getType());
+			
+			//skillFlexTable.setHTML(row, 5,new SafeHtmlBuilder().appendHtmlConstant("<span class=\"ui-icon ui-icon-trash\"></span>").toSafeHtml());
+
+			//skillFlexTable.getFlexCellFormatter().addStyleName(row, 5, "skillEditButton");
 			
 			if(skillLevel==SkillLevels.SOME_PRACTICLE_EXPERIENCE){
 				checkBox.getCheckbox().setValue(true);
@@ -929,6 +1029,51 @@ public class SkillViewImpl extends Composite implements SkillView {
 	{
 		delegate.exportPDF();
 	}
+	
+	// Detete button
+			/*addColumn(new ActionCell<SkillProxy>(
+					new SafeHtmlBuilder().appendHtmlConstant("<span class=\"ui-icon ui-icon-trash\"></span>").toSafeHtml()
+, new ActionCell.Delegate<SpecialisationProxy>() {
+						public void execute(final SpecialisationProxy specialization) {
+							//Window.alert("You clicked " + institution.getInstitutionName());
+							
+							if(Window.confirm("wirklich löschen?"))
+								delegate.deleteClicked(specialization);
+							
+							// Issue Role
+							 final MessageConfirmationDialogBox dialogBox=new MessageConfirmationDialogBox(constants.warning());
+							 dialogBox.showYesNoDialog(constants.reallyDelete());
+							 dialogBox.getYesBtn().addClickHandler(new ClickHandler() {
+									
+									@Override
+									public void onClick(ClickEvent event) {
+										dialogBox.hide();									
+										Log.info("yes click");
+										delegate.deleteClicked(specialization);
+										return;
+
+											}
+										});
+
+								dialogBox.getNoBtnl().addClickHandler(new ClickHandler() {
+									
+									@Override
+									public void onClick(ClickEvent event) {
+										dialogBox.hide();
+										Log.info("no click");
+										return;
+										
+									}
+								});
+							// E: Issue Role
+							
+						}
+					}), "", new GetValue<SkillProxy>() {
+				public SkillProxy getValue(SkillProxy specialization) {
+					return specialization;
+				}
+			}, null);
+*/
 	
 	
 }

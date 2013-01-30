@@ -11,7 +11,8 @@ public interface SuggestWidget<T> {
 	void hide();
 
 	void show();
-
+	void hidecall();
+	
 	
 	void adjustPosition(int absoluteLeft, int absoluteTop);
 

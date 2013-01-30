@@ -7,7 +7,7 @@ import com.google.web.bindery.requestfactory.shared.ProxyForName;
 import org.springframework.roo.addon.gwt.RooGwtProxy;
 
 @ProxyForName(value = "logbook.server.domain.Administrator", locator = "logbook.server.locator.AdministratorLocator")
-@RooGwtProxy(value = "logbook.server.domain.Administrator", readOnly = { "version", "id" }, scaffold = true)
+@RooGwtProxy(value = "logbook.server.domain.Administrator", readOnly = { "version", "id" })
 public interface AdministratorProxy extends EntityProxy {
 
     abstract Long getId();

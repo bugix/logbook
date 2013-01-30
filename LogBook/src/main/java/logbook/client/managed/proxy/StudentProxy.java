@@ -11,7 +11,7 @@ import logbook.shared.StudyYears;
 import org.springframework.roo.addon.gwt.RooGwtProxy;
 
 @ProxyForName(value = "logbook.server.domain.Student", locator = "logbook.server.locator.StudentLocator")
-@RooGwtProxy(value = "logbook.server.domain.Student", readOnly = { "version", "id" }, scaffold = true)
+@RooGwtProxy(value = "logbook.server.domain.Student", readOnly = { "version", "id" })
 public interface StudentProxy extends EntityProxy {
 
     abstract Long getId();
@@ -51,6 +51,10 @@ public interface StudentProxy extends EntityProxy {
     abstract Set<logbook.client.managed.proxy.SkillAcquiredProxy> getSkillAcquired();
 
     abstract void setSkillAcquired(Set<logbook.client.managed.proxy.SkillAcquiredProxy> skillAcquired);
+
+    abstract Set<logbook.client.managed.proxy.SkillCommentProxy> getSkillComments();
+
+    abstract void setSkillComments(Set<logbook.client.managed.proxy.SkillCommentProxy> skillComments);
 
     abstract Integer getVersion();
 }

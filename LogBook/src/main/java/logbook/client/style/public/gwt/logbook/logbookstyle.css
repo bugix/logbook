@@ -619,6 +619,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 .ui-icon-pencil {
     background-position: -67px -116px;
+    /* background-position:  -115px -132px; */
 }
 .ui-icon-clock {
     background-position: -83px -116px;
@@ -1266,6 +1267,10 @@ padding-top: 3px;
 		padding-left :30px;
 		
 	}
+	.skillEditButton
+	{
+		margin-left :5px !important;
+	}
 .mainClassificationSkillProgress{
 	margin: 5px;
 	width: 97%;
@@ -1397,4 +1402,20 @@ padding-top: 3px;
 			font-family: Verdana, Arial, sans-serif;
 			max-height:20px;
 		}
+.skillTextArea{		
+	background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    padding: 2px;
+    resize: none !important;
+    font-family: verdana,Arial,sans-serif;
+    font-size: small;
+	}
+	.skillTextAreaEnabled{			
+    border: 0 none;
+    padding: 2px;
+    resize: none !important;
+    font-family: verdana,Arial,sans-serif;
+    font-size: small;
+	}
+	
 /*pager end*/

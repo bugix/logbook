@@ -66,7 +66,10 @@ public class Student {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private Set<SkillAcquired> skillAcquired = new HashSet<SkillAcquired>();
-
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    private Set<SkillComment> skillComments = new HashSet<SkillComment>();
+    
     public static logbook.server.domain.Student findStudentFromSession() 
     {
         HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();

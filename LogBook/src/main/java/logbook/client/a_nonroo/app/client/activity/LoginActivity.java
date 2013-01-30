@@ -326,19 +326,19 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 									Log.info(totalSkillAcquiredPercentage);
 									
 									
-									view.getLblLevel1Progress().setText(getFormatedString(level1SkillAcquiredPercentage, 34));
+									view.getLblLevel1Progress().setText(getFormatedString(level1SkillAcquiredPercentage, 30));
 									view.getLblLevel1Progress().setTitle(level1SkillAcquiredPercentage);
 									//setProgress(view.getPrgBarLevel1(),totalSkillAcquiredBySkillLevel.get(1),totalSkillListByLevel.get(1),totalPercentageLevel1);
 									setProgress(view.getPrgBarLevel1(),0L,totalSkillListByLevel.get(0),totalSkillAcquiredBySkillLevel.get(0));
 									
 									
-									view.getLblLevel2Progress().setText(getFormatedString(level2SkillAcquiredPercentage, 34));
+									view.getLblLevel2Progress().setText(getFormatedString(level2SkillAcquiredPercentage, 30));
 									view.getLblLevel2Progress().setTitle(level2SkillAcquiredPercentage);
 									//setProgress(view.getPrgBarLevel2(),totalSkillAcquiredBySkillLevel.get(0),totalSkillListByLevel.get(0),totalPercentageLevel2);
 									setProgress(view.getPrgBarLevel2(),0L,totalSkillListByLevel.get(1),totalSkillAcquiredBySkillLevel.get(1));
 									
 									
-									view.getLblTotalProgress().setText(getFormatedString(totalSkillAcquiredPercentage, 34));
+									view.getLblTotalProgress().setText(getFormatedString(totalSkillAcquiredPercentage, 30));
 									view.getLblTotalProgress().setTitle(totalSkillAcquiredPercentage);
 									//view.getPrgBarTotal().setProgress(totalPercentage);
 									setProgress(view.getPrgBarTotal(),0L,totalSkillBySkillLevel,totalSkillAcquiredByStudent);

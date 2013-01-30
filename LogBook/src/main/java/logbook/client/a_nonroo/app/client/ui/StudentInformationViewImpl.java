@@ -451,7 +451,7 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	                else
 	                	return renderer.render("");
 	            }
-	        }, "Name");
+	        }, constants.name());
 	        paths.add("skillLevel");
 	        table.addColumn(new TextColumn<SkillAcquiredProxy>() {
 
@@ -485,7 +485,7 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	            	}
 	            	return renderer.render(category);	            	 	            	
 	            }
-	        }, "Category");
+	        }, constants.category());
 	        paths.add("shortcut");
 	        table.addColumn(new TextColumn<SkillAcquiredProxy>() {
 	        	/*{
@@ -505,7 +505,7 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	            	 else
 	            		 return renderer.render("");
 	            }
-	        }, "Shortcut");
+	        }, constants.shortcut());
 	}
 	
 	@Override

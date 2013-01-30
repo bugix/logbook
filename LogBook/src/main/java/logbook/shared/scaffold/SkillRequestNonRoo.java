@@ -5,6 +5,7 @@ import java.util.List;
 import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
+import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.server.domain.Skill;
 
@@ -28,6 +29,8 @@ public interface SkillRequestNonRoo extends RequestContext {
 	abstract Request<String> findProgressOfClassificationTopic(ClassificationTopicProxy mainClassification,Long studentId);
 	
 	abstract Request<String> findProgressOfTopic(TopicProxy mainClassification,Long studentId);
+	
+	abstract Request<String> addCommnets(Long skillProxyId,Long studentId,String comment);
 	
 
 	//abstract Request<Boolean> isSkillAcquiredbyStudentAtFirstLevel(Long studentID,Long skillId, Long skillLevelID);

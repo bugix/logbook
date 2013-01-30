@@ -4,11 +4,12 @@ package logbook.client.managed.proxy;
 
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
+import java.util.List;
 import java.util.Set;
 import org.springframework.roo.addon.gwt.RooGwtProxy;
 
 @ProxyForName(value = "logbook.server.domain.Skill", locator = "logbook.server.locator.SkillLocator")
-@RooGwtProxy(value = "logbook.server.domain.Skill", readOnly = { "version", "id" }, scaffold = true)
+@RooGwtProxy(value = "logbook.server.domain.Skill", readOnly = { "version", "id" })
 public interface SkillProxy extends EntityProxy {
 
     abstract Long getId();
@@ -36,6 +37,10 @@ public interface SkillProxy extends EntityProxy {
     abstract Set<logbook.client.managed.proxy.SkillAcquiredProxy> getSkillsAcquired();
 
     abstract void setSkillsAcquired(Set<logbook.client.managed.proxy.SkillAcquiredProxy> skillsAcquired);
+
+    abstract SkillCommentProxy getSkillComment();
+
+    abstract void setSkillComment(SkillCommentProxy skillComment);
 
     abstract Set<logbook.client.managed.proxy.KeywordProxy> getKeywords();
 

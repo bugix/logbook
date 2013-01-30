@@ -83,6 +83,7 @@
 			float:right;
 			width:201px;
 			margin:5px;
+			margin-left: 69%;
 		}	
 		.suggestBoxStyle
 		{
@@ -192,6 +193,25 @@
 							</td>
 						</tr>
 						<tr>
+							<!-- <td align="left">
+							<g:Anchor ui:field="shortcutExplanation"></g:Anchor>
+							</td>
+							<td align="right">
+							<g:HorizontalPanel  addStyleNames="{style.printPdf}" verticalAlignment="middle">
+								<g:Image ui:field="imgPrint"></g:Image>
+								<g:Hyperlink ui:field="hyperLnkPrint"></g:Hyperlink>
+								<g:Anchor ui:field="hyperLnkPrint" addStyleNames="{style.anchor}" width="100%"></g:Anchor>
+								<g:Image ui:field="imgpdf" ></g:Image>
+								<g:Hyperlink ui:field="hyperlnkSavePDF"></g:Hyperlink>
+								<g:Anchor ui:field="hyperlnkSavePDF" addStyleNames="{style.anchor}"></g:Anchor>
+							</g:HorizontalPanel>
+							</td> -->
+							<td>
+						<table>
+						<tr>
+							<td align="left">
+								<g:Anchor ui:field="shortcutExplanation"></g:Anchor>
+							</td>
 							<td align="right">
 							<g:HorizontalPanel  addStyleNames="{style.printPdf}" verticalAlignment="middle">
 								<g:Image ui:field="imgPrint"></g:Image>
@@ -202,6 +222,9 @@
 								<g:Anchor ui:field="hyperlnkSavePDF" addStyleNames="{style.anchor}"></g:Anchor>
 							</g:HorizontalPanel>
 							</td>
+							</tr>
+						</table>
+						</td>
 						</tr>
 						<tr>
 						<td>

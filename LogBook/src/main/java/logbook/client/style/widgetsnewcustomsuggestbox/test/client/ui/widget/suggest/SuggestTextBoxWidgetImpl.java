@@ -59,7 +59,7 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 	public IconButton arrowButton =new IconButton();
 	
 	/** the suggest box that contains this widget */
-	protected AbstractSuggestBox<T, W> representer;
+	public AbstractSuggestBox<T, W> representer;
 
 	
 	protected int buttonWidth = 16;

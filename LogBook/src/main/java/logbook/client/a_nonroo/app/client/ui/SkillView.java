@@ -61,6 +61,9 @@ public interface SkillView extends IsWidget{
 		
 		void exportPDF();
 		//Boolean isSkillAcquiredbyStudentAtFirstLevel(Long studentID,Long skillId,Long skillLevelID);
+
+		void iconButtonClicked(SkillProxy skillProxy,
+				SkillLevelIconButtonViewImpl editButton);
 		
 		
 	}
