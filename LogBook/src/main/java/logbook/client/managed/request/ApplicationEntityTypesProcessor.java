@@ -2,20 +2,11 @@
 
 package logbook.client.managed.request;
 
-import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import logbook.client.managed.proxy.AdministratorProxy;
-import logbook.client.managed.proxy.ClassificationTopicProxy;
-import logbook.client.managed.proxy.KeywordProxy;
-import logbook.client.managed.proxy.MainClassificationProxy;
-import logbook.client.managed.proxy.SkilAcquiredProxy;
-import logbook.client.managed.proxy.SkillAcquiredProxy;
-import logbook.client.managed.proxy.SkillLevelProxy;
-import logbook.client.managed.proxy.SkillProxy;
-import logbook.client.managed.proxy.StudentProxy;
-import logbook.client.managed.proxy.TopicProxy;
+
+import com.google.web.bindery.requestfactory.shared.EntityProxy;
 
 public abstract class ApplicationEntityTypesProcessor<T> {
 
@@ -33,129 +24,21 @@ public abstract class ApplicationEntityTypesProcessor<T> {
 
     public static Set<java.lang.Class<? extends com.google.web.bindery.requestfactory.shared.EntityProxy>> getAll() {
         Set<Class<? extends EntityProxy>> rtn = new HashSet<Class<? extends EntityProxy>>();
-        rtn.add(AdministratorProxy.class);
-        rtn.add(ClassificationTopicProxy.class);
-        rtn.add(KeywordProxy.class);
-        rtn.add(MainClassificationProxy.class);
-        rtn.add(SkilAcquiredProxy.class);
-        rtn.add(SkillAcquiredProxy.class);
-        rtn.add(SkillLevelProxy.class);
-        rtn.add(SkillProxy.class);
-        rtn.add(StudentProxy.class);
-        rtn.add(TopicProxy.class);
+
         return Collections.unmodifiableSet(rtn);
     }
 
     private static void process(logbook.client.managed.request.ApplicationEntityTypesProcessor<?> processor, Class<?> clazz) {
-        if (AdministratorProxy.class.equals(clazz)) {
-            processor.handleAdministrator((AdministratorProxy) null);
-            return;
-        }
-        if (ClassificationTopicProxy.class.equals(clazz)) {
-            processor.handleClassificationTopic((ClassificationTopicProxy) null);
-            return;
-        }
-        if (KeywordProxy.class.equals(clazz)) {
-            processor.handleKeyword((KeywordProxy) null);
-            return;
-        }
-        if (MainClassificationProxy.class.equals(clazz)) {
-            processor.handleMainClassification((MainClassificationProxy) null);
-            return;
-        }
-        if (SkilAcquiredProxy.class.equals(clazz)) {
-            processor.handleSkilAcquired((SkilAcquiredProxy) null);
-            return;
-        }
-        if (SkillAcquiredProxy.class.equals(clazz)) {
-            processor.handleSkillAcquired((SkillAcquiredProxy) null);
-            return;
-        }
-        if (SkillLevelProxy.class.equals(clazz)) {
-            processor.handleSkillLevel((SkillLevelProxy) null);
-            return;
-        }
-        if (SkillProxy.class.equals(clazz)) {
-            processor.handleSkill((SkillProxy) null);
-            return;
-        }
-        if (StudentProxy.class.equals(clazz)) {
-            processor.handleStudent((StudentProxy) null);
-            return;
-        }
-        if (TopicProxy.class.equals(clazz)) {
-            processor.handleTopic((TopicProxy) null);
-            return;
-        }
+        
         processor.handleNonProxy(null);
     }
 
     private static void process(logbook.client.managed.request.ApplicationEntityTypesProcessor<?> processor, Object proxy) {
-        if (proxy instanceof AdministratorProxy) {
-            processor.handleAdministrator((AdministratorProxy) proxy);
-            return;
-        }
-        if (proxy instanceof ClassificationTopicProxy) {
-            processor.handleClassificationTopic((ClassificationTopicProxy) proxy);
-            return;
-        }
-        if (proxy instanceof KeywordProxy) {
-            processor.handleKeyword((KeywordProxy) proxy);
-            return;
-        }
-        if (proxy instanceof MainClassificationProxy) {
-            processor.handleMainClassification((MainClassificationProxy) proxy);
-            return;
-        }
-        if (proxy instanceof SkilAcquiredProxy) {
-            processor.handleSkilAcquired((SkilAcquiredProxy) proxy);
-            return;
-        }
-        if (proxy instanceof SkillAcquiredProxy) {
-            processor.handleSkillAcquired((SkillAcquiredProxy) proxy);
-            return;
-        }
-        if (proxy instanceof SkillLevelProxy) {
-            processor.handleSkillLevel((SkillLevelProxy) proxy);
-            return;
-        }
-        if (proxy instanceof SkillProxy) {
-            processor.handleSkill((SkillProxy) proxy);
-            return;
-        }
-        if (proxy instanceof StudentProxy) {
-            processor.handleStudent((StudentProxy) proxy);
-            return;
-        }
-        if (proxy instanceof TopicProxy) {
-            processor.handleTopic((TopicProxy) proxy);
-            return;
-        }
         processor.handleNonProxy(proxy);
     }
 
     public void handleNonProxy(Object object) {
     }
-
-    public abstract void handleAdministrator(AdministratorProxy proxy);
-
-    public abstract void handleClassificationTopic(ClassificationTopicProxy proxy);
-
-    public abstract void handleKeyword(KeywordProxy proxy);
-
-    public abstract void handleMainClassification(MainClassificationProxy proxy);
-
-    public abstract void handleSkilAcquired(SkilAcquiredProxy proxy);
-
-    public abstract void handleSkillAcquired(SkillAcquiredProxy proxy);
-
-    public abstract void handleSkillLevel(SkillLevelProxy proxy);
-
-    public abstract void handleSkill(SkillProxy proxy);
-
-    public abstract void handleStudent(StudentProxy proxy);
-
-    public abstract void handleTopic(TopicProxy proxy);
 
     public T process(Class<?> clazz) {
         setResult(defaultValue);

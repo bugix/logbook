@@ -1,5 +1,6 @@
 package logbook.client.a_nonroo.app.request;
 import logbook.client.managed.request.ApplicationRequestFactory;
+import logbook.client.managed.request.MainClassificationRequest;
 
 /**
  * "API generated" factory interface to build request objects for the methods of
@@ -11,6 +12,8 @@ import logbook.client.managed.request.ApplicationRequestFactory;
  */
 
 public interface LogBookRequestFactory extends ApplicationRequestFactory {
+
+
 
 	
 

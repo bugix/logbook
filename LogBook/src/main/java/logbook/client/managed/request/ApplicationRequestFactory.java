@@ -6,23 +6,4 @@ import logbook.shared.scaffold.ScaffoldRequestFactory;
 
 public interface ApplicationRequestFactory extends ScaffoldRequestFactory {
 
-    AdministratorRequest administratorRequest();
-
-    ClassificationTopicRequest classificationTopicRequest();
-
-    KeywordRequest keywordRequest();
-
-    MainClassificationRequest mainClassificationRequest();
-
-    SkilAcquiredRequest skilAcquiredRequest();
-
-    SkillAcquiredRequest skillAcquiredRequest();
-
-    SkillLevelRequest skillLevelRequest();
-
-    SkillRequest skillRequest();
-
-    StudentRequest studentRequest();
-
-    TopicRequest topicRequest();
 }
