@@ -430,12 +430,12 @@ public class SkillViewImpl extends Composite implements SkillView {
 		
 		flexTable.getCellFormatter().addStyleName(0, 1, "flexTable-header");
 		flexTable.setText(0, 2, constants.l1());
-		flexTable.getFlexCellFormatter().setWidth(0, 1, "10%");
+		flexTable.getFlexCellFormatter().setWidth(0, 1, "14%");
 		flexTable.getCellFormatter().addStyleName(0, 2, "flexTable-header");
 		flexTable.setText(0, 3, constants.l2());
-		flexTable.getFlexCellFormatter().setWidth(0, 2, "10%");
+		flexTable.getFlexCellFormatter().setWidth(0, 2, "8%");
 		flexTable.getCellFormatter().addStyleName(0, 3, "flexTable-header");
-		flexTable.getFlexCellFormatter().setWidth(0, 3, "10%");
+		flexTable.getFlexCellFormatter().setWidth(0, 3, "8%");
 		
 		flexTable.setText(0,4,constants.comment());
 		flexTable.getFlexCellFormatter().setWidth(0, 4, "15%");
