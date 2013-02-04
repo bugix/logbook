@@ -3,17 +3,23 @@ package  logbook.client.a_nonroo.app.client.ui;
  
 import java.util.List;
 
+import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
 import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager;
 import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager.RangeChangeListener;
 import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
+import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.proxy.TopicProxy;
+import logbook.shared.SkillLevels;
 import logbook.shared.i18n.LogBookConstants;
+import logbook.shared.util.UtilityLogBook;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
@@ -85,7 +91,7 @@ public class ProgressViewImpl extends Composite implements ProgressView{
 		flexTable.setText(0, 1, constants.progress());
 	}
 	
-	public void setSource(List<TopicProxy> topicData,List<Long> totalProgressList,List<Long> currentProgressList,StudentProxy studentProxy)
+	/*public void setSource(List<TopicProxy> topicData,List<Long> totalProgressList,List<Long> currentProgressList,StudentProxy studentProxy)
 	{
 		
 		
@@ -157,9 +163,109 @@ public class ProgressViewImpl extends Composite implements ProgressView{
 				Log.info("topicProxy.getClassificationTopic().getMainClassification() found Null");
 			}
 			
+			totalClassificationTopicProgress+=totalProgress;
+			acquiredClassificationTopicProgress+=currentProgress;
+		}
+	}*/
+	public void setSource(final List<TopicProxy> topicData,List<Long> totalProgressList,List<Long> currentProgressList,StudentProxy studentProxy)
+	{
+		//List<SkillProxy> data = result.getSkillList();
+		//List<SkillLevels> skillAcquiredList = result.getSkilltLevelsAcquiredList();
+		
+		
+		
+		int row=0;
+		//int mainClassificationRow=0;
+		//int topicRow=0;
+		//int classificationTopicRow=0;
+		
+		for(int i=0;i<topicData.size();i++)
+		{
+			TopicProxy topicProxy=topicData.get(i);
+			final Integer totalProgress=totalProgressList.get(i).intValue();
+			final Integer currentProgress=currentProgressList.get(i).intValue();
+			
+			/*SkillProxy sproxy=data.get(i);
+			TopicProxy tproxy=sproxy.getTopic();
+			ClassificationTopicProxy ctProxy=tproxy.getClassificationTopic();
+			MainClassificationProxy mProxy=ctProxy.getMainClassification();
+			SkillLevels skillLevel = skillAcquiredList.get(i);*/
+			
+			//Log.info("Topic: " + topicProxy.getId());
+			if(topicProxy.getClassificationTopic()!=null && topicProxy.getClassificationTopic().getMainClassification()!=null)
+			{
+				ClassificationTopicProxy classificationTopicProxy=topicProxy.getClassificationTopic();
+				MainClassificationProxy mainClassificationProxy=topicProxy.getClassificationTopic().getMainClassification();
+			
+			
+			if(i==0)
+			{
+				//System.out.println("Main Classifaication is :" + mainClassificationProxy.getId());
+				progressFlexTable.setWidget(++row, 0, createMainClassificationWidget(mainClassificationProxy));
+				delegate.findProgressOfMainClassification(mainClassificationProxy,row,1,studentProxy);
+				//progressFlexTable.setWidget(row, 1, createProgressBar(20,0));
+				progressFlexTable.getFlexCellFormatter().setColSpan(row, 1, 2);
+				progressFlexTable.getFlexCellFormatter().addStyleName(row, 1, "mainClassificationBG");
+				
+				if(!classificationTopicProxy.getDescription().equals("Blank"))
+				{
+					//System.out.println("classificationTopicProxy is :" + classificationTopicProxy.getId());
+					progressFlexTable.setWidget(++row, 0, createClassificationTopicWidget(classificationTopicProxy));
+					delegate.findProgressOfClassificationTopic(classificationTopicProxy,row,1,studentProxy);
+					//progressFlexTable.setWidget(row, 1, createProgressBar(20,5));
+					progressFlexTable.getFlexCellFormatter().setColSpan(row, 1, 2);
+					progressFlexTable.getFlexCellFormatter().addStyleName(row, 1, "classificationTopicBG");
+				}
+				
+							
+			}
+			else
+			{
+		       
+				
+					
+					if( ( classificationTopicProxy.getId() != topicData.get(i-1).getClassificationTopic().getId())){
+						
+						if( ( mainClassificationProxy.getId() != topicData.get(i-1).getClassificationTopic().getMainClassification().getId())){
+							
+							//System.out.println("Main Classifaication is :" + mainClassificationProxy.getId());
+							progressFlexTable.setWidget(++row, 0, createMainClassificationWidget(mainClassificationProxy));
+							delegate.findProgressOfMainClassification(mainClassificationProxy,row,1,studentProxy);
+							//progressFlexTable.setWidget(row, 1, createProgressBar(20,5));
+							progressFlexTable.getFlexCellFormatter().setColSpan(row, 1, 2);
+							progressFlexTable.getFlexCellFormatter().addStyleName(row, 1, "mainClassificationBG");
+							//mainClassificationRow=row;
+						}
+						if(!classificationTopicProxy.getDescription().equals("Blank"))
+						{
+							//System.out.println("classificationTopicProxy is :" + classificationTopicProxy.getId());
+							progressFlexTable.setWidget(++row, 0, createClassificationTopicWidget(classificationTopicProxy));
+							delegate.findProgressOfClassificationTopic(classificationTopicProxy,row,1,studentProxy);
+							//progressFlexTable.setWidget(row, 1, createProgressBar(20,5));
+							progressFlexTable.getFlexCellFormatter().setColSpan(row, 1, 2);
+							progressFlexTable.getFlexCellFormatter().addStyleName(row, 1, "classificationTopicBG");
+							//classificationTopicRow=row;
+						}
+						
+					}
+					
+						
+			}
+			progressFlexTable.setWidget(++row,0,createTopicWidget(topicProxy,totalProgress,currentProgress));
+			progressFlexTable.setWidget(row, 1, createProgressBar(totalProgress,currentProgress));
+			progressFlexTable.getFlexCellFormatter().setColSpan(row, 1, 2);
+			progressFlexTable.getFlexCellFormatter().addStyleName(row, 1, "topicBG");
+			Log.info("Topic: " + topicProxy.getId());
+			 
+			}
+			else
+			{
+				Log.info("topicProxy.getClassificationTopic().getMainClassification() found Null");
+			}
 			/*totalClassificationTopicProgress+=totalProgress;
 			acquiredClassificationTopicProgress+=currentProgress;*/
-		}
+			
+		}	
 	}
 	
 	public Widget createTopicWidget(TopicProxy tProxy, Integer totalProgress, Integer currentProgress)
