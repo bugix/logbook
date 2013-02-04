@@ -877,12 +877,36 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 					Log.info("Operation Was :" + response);
 					if(response.compareToIgnoreCase("FAILURE")==0)
 					{
-						view.getHpErrorMessage().setVisible(true);
+						/*view.getHpErrorMessage().setVisible(true);
 						view.getLblErrorMessage().setInnerHTML(constants.commentError());
 						((SkillLevelTextAreaViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setEnabled(true);
 						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setStyleName("skillTextAreaEnabled");
 						((SkillLevelIconButtonViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),5)).getIconButton().setClassName("ui-icon ui-icon-disk");
-						((SkillLevelIconButtonViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),5)).setSave(true);						
+						((SkillLevelIconButtonViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),5)).setSave(true);*/
+						
+						view.getHpErrorMessage().setVisible(true);
+						view.getLblErrorMessage().setInnerHTML(constants.commentError());
+						((SkillLevelTextAreaViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setEnabled(false);
+						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().removeStyleName("skillTextAreaEnabled");
+						((SkillLevelIconButtonViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),5)).getIconButton().setClassName("ui-icon ui-icon-pencil");
+						((SkillLevelIconButtonViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),5)).setSave(false);
+						
+						requests.skillRequest().findSkill(skillProxy.getId()).with("skillComment").fire(new Receiver<SkillProxy>() {
+							@Override
+							public void onSuccess(SkillProxy response) 
+							{
+								if(response.getSkillComment() !=null && response.getSkillComment().getComment() !=null)
+								{
+									((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setText(UtilityLogBook.getFormatedString(response.getSkillComment().getComment(),45));
+									((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setTitle(response.getSkillComment().getComment());
+								}
+								else
+								((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setText("");
+									
+							}
+						
+						});
+						
 					}
 					else
 					{
