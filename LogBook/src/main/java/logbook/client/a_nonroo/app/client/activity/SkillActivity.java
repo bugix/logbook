@@ -460,7 +460,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		//view.getTopicSuggestBox().getTextField().advancedTextBox.setText(constants.allTopics());
 		view.setDefaultMessageOfSuggestionbox();
 		
-		initTopicSuggestion(classificaitonTopicId);
+		initTopicSuggestion(classificationId);
 		//initSkillTableData();
 		
 	}
@@ -498,6 +498,10 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		
 		view.setIsAsc(0);
 		initSkillTableData(view.getStudent(),view.getIsAsc());
+		
+		view.getMainClassificationSuggestBox().setEnabled(true);
+		view.getClassificationTopicSuggestBox().setEnabled(false);
+		view.getTopicSuggestBox().setEnabled(false);
 		
 		ShowCriteria.mProxy=view.getMainClassificationSuggestBox().getSelected();
 		ShowCriteria.tProxy=view.getTopicSuggestBox().getSelected();

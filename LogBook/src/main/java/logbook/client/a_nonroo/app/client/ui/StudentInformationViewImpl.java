@@ -18,6 +18,7 @@ import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.NodeList;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.text.shared.AbstractRenderer;
 import com.google.gwt.text.shared.Renderer;
@@ -414,9 +415,8 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 		lblCurrentProgress.setText(constants.currentProgress());
 		
 		btnChange.setText(constants.change());
-		btnFinalizeLogBook.setText(constants.finalizeLogBook());
-			
-		
+		btnFinalizeLogBook.setText(constants.finalizeLogBook());		
+					
 		intiProgressBar(prgBarLevel1);
 		intiProgressBar(prgBarLevel2);
 		intiProgressBar(prgBarTotal);

@@ -3,23 +3,17 @@ package  logbook.client.a_nonroo.app.client.ui;
  
 import java.util.List;
 
-import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
 import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager;
 import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager.RangeChangeListener;
 import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
-import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.proxy.TopicProxy;
-import logbook.shared.SkillLevels;
 import logbook.shared.i18n.LogBookConstants;
-import logbook.shared.util.UtilityLogBook;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
@@ -182,6 +176,7 @@ public class ProgressViewImpl extends Composite implements ProgressView{
 		for(int i=0;i<topicData.size();i++)
 		{
 			TopicProxy topicProxy=topicData.get(i);
+			System.out.println("Topic :" + i + " is " + topicProxy.getId());
 			final Integer totalProgress=totalProgressList.get(i).intValue();
 			final Integer currentProgress=currentProgressList.get(i).intValue();
 			

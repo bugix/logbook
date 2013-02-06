@@ -90,7 +90,9 @@
 		.finalizeButtonStyle {
 			  border-radius: 5px 5px 5px 5px;
     		  margin-left: 10px;
-    		  padding: 2px 14px;	
+    		  padding: 7px 14px 2px;	
+    		  border:1px solid #77D5F7;
+    		  height: 22px; 
 		}
 		
 		.tableBodyStyle {
@@ -105,7 +107,7 @@
 			border-style: solid;
 			border-width: 1px;
 			border-radius: 5px;
-			border-color: lightblue;
+			border-color: lightblue #77D5F7;
 			padding-top: 12px;
 			width: 100%;
 		}
@@ -244,7 +246,7 @@
 								</g:HTMLPanel>
 
 								<g:HTMLPanel
-									addStyleNames="{style.currentProgressPanelStyle} {style.personnelInforamationSPStyle} {style.tablePadding}">
+									addStyleNames="{style.currentProgressPanelStyle} {style.personnelInforamationSPStyle}">
 									<table>
 										<tbody>
 											<tr addStyleNames="{style.trStyle}">

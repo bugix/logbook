@@ -65,26 +65,29 @@ public class Topic {
     	Log.info("findTopicOrderByClassification call");
     	 if(start!=0)
     		  start--;
-    	TopicFilteredResult finalresult = new TopicFilteredResult();
+    	TopicFilteredResult finalresult = new TopicFilteredResult();   	    	
+    	List<Topic> resultList =new ArrayList<Topic>();
+    	//resultList.clear();
     	
 		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
 		CriteriaQuery<Topic> criteriaQuery = criteriaBuilder.createQuery(Topic.class);
 		Root<Topic> from = criteriaQuery.from(Topic.class);
 		CriteriaQuery<Topic> select = criteriaQuery.select(from);				
 		
-		select.orderBy(criteriaBuilder.asc(from.get("classificationTopic").get("mainClassification")), criteriaBuilder.asc(from.get("classificationTopic")));
+		//select.orderBy(criteriaBuilder.asc(from.get("classificationTopic").get("mainClassification").get("id")), criteriaBuilder.asc(from.get("classificationTopic").get("id")));
+		select.orderBy(criteriaBuilder.asc(from.get("id")), criteriaBuilder.asc(from.get("classificationTopic").get("mainClassification").get("id")), criteriaBuilder.asc(from.get("classificationTopic").get("id")));
 		//from.join("classificationTopic");
 		TypedQuery<Topic> result = entityManager().createQuery(criteriaQuery);
-		
+		System.out.println("DB Second: " + result.getResultList().get(0).getId());
 		int totalSize=result.getResultList().size();
 		result.setFirstResult(start);
 		result.setMaxResults(max);
 						
-		//Log.info("Query String: " + result.unwrap(org.hibernate.Query.class).getQueryString());
+		Log.info("Query String: " + result.unwrap(org.hibernate.Query.class).getQueryString());
 		//Log.info("Result Size : Start: " +start + " Max: " + max );
 		//Log.info("Total Size : " + totalSize);
 		
-		List<Topic> resultList  = result.getResultList();		
+		resultList  = result.getResultList();		
 		List<Long> totalTopicBySkill=new ArrayList<Long>();
 		List<Long> totalAcquiredTopicBySkill=new ArrayList<Long>();
 		
@@ -109,6 +112,7 @@ public class Topic {
 		
 		finalresult.setTotalTopic(totalSize);
 		finalresult.setTopicList(resultList);
+		System.out.println("DB First: " + resultList.get(0).getId());
 		finalresult.setTotalTopicList(totalTopicBySkill);
 		finalresult.setTopicAcquiredList(totalAcquiredTopicBySkill);
 		

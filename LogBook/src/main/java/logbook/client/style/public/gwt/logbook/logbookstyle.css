@@ -1102,7 +1102,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 		scroll 50% 50% #0078AE;
 	border: 1px solid #999;
 	color: white;
-	height: 23px;
+	height: 24px;
 	/*align:center;*/
 	font-size: 90%;
 	border-radius: 4px;
@@ -1698,6 +1698,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 {
 	text-align: center;
 	background: url("images/ui-bg_glass_75_79c9ec_1x400.png") repeat-x scroll 50% 50% #0078AE;
+	border: 1px solid !important;
 } 
 
 /*pager end*/

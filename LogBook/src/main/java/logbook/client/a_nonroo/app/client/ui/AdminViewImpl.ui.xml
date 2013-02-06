@@ -63,6 +63,7 @@
 			  border-radius: 5px 5px 5px 5px;
     		  margin-left: 10px;
     		  padding: 2px 14px;	
+    		  height: 30px;
 		}
 .changeBtnTrStyle {
 			float: right;
