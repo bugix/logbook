@@ -18,6 +18,7 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ToggleButton;
 
 public interface StudentInformationView extends IsWidget{
 	 /* * Implemented by the owner of the view.
@@ -60,8 +61,8 @@ public interface StudentInformationView extends IsWidget{
 	public void setLblCurrentProgress(Label lblCurrentProgress) ;
 	public Label getLblTotalProgress() ;
 	public void setLblTotalProgress(Label lblTotalProgress) ;	
-	public Button getBtnFinalizeLogBook() ;
-	public void setBtnFinalizeLogBook(Button btnFinalizeLogBook) ;
+	public ToggleButton getBtnFinalizeLogBook() ;
+	public void setBtnFinalizeLogBook(ToggleButton btnFinalizeLogBook) ;
 	public Anchor getBtnChange() ;
 	public void setBtnChange(Anchor btnChange) ;
 	public Label getLblLatestAcquiredSkill() ;

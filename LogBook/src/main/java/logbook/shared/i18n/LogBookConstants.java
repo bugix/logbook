@@ -141,5 +141,11 @@ public String ErrorMessage();
 	public String comment();
 	
 	public String commentError();
+	
+	public String studentFinalized();
+	
+	public String studentUnFinalized();
+	
+	public String studentStatusChangeError();
 
 }

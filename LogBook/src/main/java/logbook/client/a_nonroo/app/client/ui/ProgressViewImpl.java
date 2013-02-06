@@ -63,7 +63,7 @@ public class ProgressViewImpl extends Composite implements ProgressView{
 		
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		pager.setLength(20);
+		pager.setLength(30);
 		
 		pager.addRangeChangeListener(new RangeChangeListener() {
 			

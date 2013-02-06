@@ -121,7 +121,7 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 	public void setText(String text) {
 		super.setText(text);
 		handleDefaultText();
-		this.setFocus(true);
+		//this.setFocus(true);
 		//this.setSelectionRange(0,0);
 		this.setCursorPos(0);
 	}

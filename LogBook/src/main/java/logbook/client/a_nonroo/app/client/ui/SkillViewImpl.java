@@ -306,7 +306,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 	
 	@UiHandler("shortcutExplanation")
 	public void shortcutExplanationClicked(ClickEvent event){
-		Window.open("http://sclo.smifk.ch/sclo2008/fulltext/howtouse%3E","","");
+		Window.open("http://sclo.smifk.ch/sclo2008/fulltext/howtouse","","");
 	}
 
 	public HTMLPanel getHpErrorMessage() {
@@ -524,6 +524,8 @@ public class SkillViewImpl extends Composite implements SkillView {
 		mainClassificationSuggestBox.setWidth(400);
 		classificationTopicSuggestBox.setWidth(350);
 		topicSuggestBox.setWidth(350);
+		classificationTopicSuggestBox.setEnabled(false);
+		topicSuggestBox.setEnabled(false);
 		fullTextSearchBox.setWidth("350px");
 		fullTextSearchBox.addStyleName("fullTextBoxsearchStyle");
 		//levelSuggestBox.setWidth(350);
@@ -597,13 +599,13 @@ public class SkillViewImpl extends Composite implements SkillView {
 	}
 	public void setDefaultMessageOfSuggestionbox() {
 
-		if(mainClassificationSuggestBox.getSelected()==null || mainClassificationSuggestBox.getTextField().advancedTextBox.getText()=="")
+		if(mainClassificationSuggestBox.getSelected()==null || mainClassificationSuggestBox.getTextField().advancedTextBox.getText().trim()=="")
 		mainClassificationSuggestBox.getTextField().advancedTextBox.setText(constants.allMainClassifications());
 		
-		if(classificationTopicSuggestBox.getSelected()==null || classificationTopicSuggestBox.getTextField().advancedTextBox.getText()=="")
+		if(classificationTopicSuggestBox.getSelected()==null || classificationTopicSuggestBox.getTextField().advancedTextBox.getText().trim()=="")
 		classificationTopicSuggestBox.getTextField().advancedTextBox.setText(constants.allClassificationTopics());
 		
-		if(topicSuggestBox.getSelected()==null || topicSuggestBox.getTextField().advancedTextBox.getText()=="")
+		if(topicSuggestBox.getSelected()==null || topicSuggestBox.getTextField().advancedTextBox.getText().trim()=="")
 		topicSuggestBox.getTextField().advancedTextBox.setText(constants.allTopics());
 		
 	}
@@ -865,7 +867,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 			shortcut+=" "+sproxy.getShortcut();
 			
 			skillFlexTable.setText(row,1,shortcut);
-			skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "skillDescription");
+			skillFlexTable.getFlexCellFormatter().addStyleName(row, 1, "skillShortcut");
 			skillFlexTable.getFlexCellFormatter().getElement(row, 1).setPropertyString("textAlign", "center");
 			
 			SkillLevelCheckboxViewImpl checkBox=new SkillLevelCheckboxViewImpl();

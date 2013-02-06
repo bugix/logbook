@@ -53,7 +53,9 @@ public class CustomPager extends Composite implements ClickHandler {
 		buttonContainer.add(last);
 		recordDisplay.addStyleName("labelForPager");
 		first.setEnabled(false);
-		previous.setEnabled(false);		
+		first.setStylePrimaryName("pagerFirstButtonDisable");
+		previous.setEnabled(false);
+		previous.setStylePrimaryName("pagerPreviousButtonDisable");
 		container.add(buttonContainer);
 		container.add(labelContainer);
 		
@@ -80,15 +82,20 @@ public class CustomPager extends Composite implements ClickHandler {
 		
 		this.totalrecord = totalRecord;
 		//recordDisplay.setText(start + "-" + end + " of " + totalrecord);
+		next.setStylePrimaryName("pagerNextButton");
+		last.setStylePrimaryName("pagerLastButton");
 		
 		start = 1;
 		end = start + range - 1;
 		recordDisplay.setText(start + "-" + end + " of " + totalrecord);
 		next.setEnabled(true);
+		next.setStylePrimaryName("pagerNextButton");
 		last.setEnabled(true);
+		last.setStylePrimaryName("pagerLastButton");
 		first.setEnabled(false);
+		first.setStylePrimaryName("pagerFirstButtonDisable");
 		previous.setEnabled(false);
-		
+		previous.setStylePrimaryName("pagerPreviousButtonDisable");
 		//first.setEnabled(true);
 		//previous.setEnabled(true);
 		//start = end + 1;
@@ -98,7 +105,9 @@ public class CustomPager extends Composite implements ClickHandler {
 			//start = end - range + 1;
 			recordDisplay.setText(start + "-" + end + " of " + totalrecord);
 			next.setEnabled(false);
+			next.setStylePrimaryName("pagerNextButtonDisable");
 			last.setEnabled(false);
+			last.setStylePrimaryName("pagerLastButtonDisable");
 		}
 		//recordDisplay.setText(start + "-" + end + " of " + totalrecord);
 		
@@ -139,7 +148,9 @@ public class CustomPager extends Composite implements ClickHandler {
 				start = end - range + 1;
 				recordDisplay.setText(start + "-" + end + " of " + totalrecord);
 				next.setEnabled(false);
+				next.setStylePrimaryName("pagerNextButtonDisable");
 				last.setEnabled(false);
+				last.setStylePrimaryName("pagerLastButtonDisable");
 			}
 		 
 		 if (start <=1) {
@@ -147,7 +158,9 @@ public class CustomPager extends Composite implements ClickHandler {
 				end = start + range - 1;
 				recordDisplay.setText(start + "-" + end + " of " + totalrecord);
 				first.setEnabled(false);
+				first.setStylePrimaryName("pagerFirstButtonDisable");
 				previous.setEnabled(false);
+				previous.setStylePrimaryName("pagerPreviousButtonDisable");
 			}
 		 
 	}
@@ -156,15 +169,23 @@ public class CustomPager extends Composite implements ClickHandler {
 		start = 1;
 		end = start + range - 1;
 		recordDisplay.setText(start + "-" + end + " of " + totalrecord);
+		
 		next.setEnabled(true);
+		next.setStylePrimaryName("pagerNextButton");
 		last.setEnabled(true);
+		last.setStylePrimaryName("pagerLastButton");
 		first.setEnabled(false);
+		first.setStylePrimaryName("pagerFirstButtonDisable");
 		previous.setEnabled(false);
+		previous.setStylePrimaryName("pagerPreviousButtonDisable");
 	}
 
 	private void nextClick() {
+		
 		first.setEnabled(true);
+		first.setStylePrimaryName("pagerFirstButton");
 		previous.setEnabled(true);
+		previous.setStylePrimaryName("pagerPreviousButton");
 		start = end + 1;
 		end = end + range;
 		if (end >=totalrecord) {
@@ -172,7 +193,9 @@ public class CustomPager extends Composite implements ClickHandler {
 			start = end - range + 1;
 			recordDisplay.setText(start + "-" + end + " of " + totalrecord);
 			next.setEnabled(false);
+			next.setStylePrimaryName("pagerNextButtonDisable");
 			last.setEnabled(false);
+			last.setStylePrimaryName("pagerLastButtonDisable");
 		}
 		recordDisplay.setText(start + "-" + end + " of " + totalrecord);
 	}
@@ -182,14 +205,22 @@ public class CustomPager extends Composite implements ClickHandler {
 		start = end - range + 1;
 		recordDisplay.setText(start + "-" + end + " of " + totalrecord);
 		next.setEnabled(false);
+		next.setStylePrimaryName("pagerNextButtonDisable");
 		last.setEnabled(false);
+		last.setStylePrimaryName("pagerLastButtonDisable");
+		
 		first.setEnabled(true);
+		first.setStylePrimaryName("pagerFirstButton");
 		previous.setEnabled(true);
+		previous.setStylePrimaryName("pagerPreviousButton");
 	}
 
 	private void previousClick() {
+		
 		next.setEnabled(true);
+		next.setStylePrimaryName("pagerNextButton");
 		last.setEnabled(true);
+		last.setStylePrimaryName("pagerLastButton");
 		end = start - 1;
 		start = end - range + 1;
 		if (start <=1) {
@@ -197,7 +228,9 @@ public class CustomPager extends Composite implements ClickHandler {
 			end = start + range - 1;
 			recordDisplay.setText(start + "-" + end + " of " + totalrecord);
 			first.setEnabled(false);
+			first.setStylePrimaryName("pagerFirstButtonDisable");
 			previous.setEnabled(false);
+			previous.setStylePrimaryName("pagerPreviousButtonDisable");
 		}
 		recordDisplay.setText(start + "-" + end + " of " + totalrecord);
 	}

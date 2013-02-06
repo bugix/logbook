@@ -3,5 +3,5 @@ package logbook.shared;
 
 public enum StudentStatus {
 
-    Fianllized, Exported;
+    UnFinalized,Fianllized, Exported;
 }

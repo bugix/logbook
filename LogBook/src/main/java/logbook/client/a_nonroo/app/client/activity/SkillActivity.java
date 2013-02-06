@@ -22,6 +22,7 @@ import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultSuggestOracle;
 import logbook.shared.i18n.LogBookConstants;
+import logbook.shared.scaffold.LogBookConstant;
 import logbook.shared.util.UtilityLogBook;
 
 import com.allen_sauer.gwt.log.client.Log;
@@ -34,6 +35,7 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.text.shared.AbstractRenderer;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -65,6 +67,7 @@ public class SkillActivity extends AbstractActivity implements
 	private SkillActivity skillActivity;
 	private SkillPlace place;
 	private int tabIndex = 0;
+	private Timer errorMessageTimer;
 
 	private static StudentProxy currentStudent=null;
 	
@@ -118,6 +121,17 @@ public class SkillActivity extends AbstractActivity implements
 	}
 
 	public void onStop() {
+		mainClassificationId=null;
+		classificaitonTopicId=null;
+		topicId=null;
+		view.getMainClassificationSuggestBox().setSelected(null);
+		view.getClassificationTopicSuggestBox().setSelected(null);
+		view.getTopicSuggestBox().setSelected(null);
+		ShowCriteria.mProxy=null;
+		ShowCriteria.ctProxy=null;
+		ShowCriteria.tProxy=null;
+		ShowCriteria.fullTextSearch="";
+		ShowCriteria.chkAsc=new Integer(0).toString();
 		widget.setWidget(null);
 	}
 
@@ -138,6 +152,15 @@ public class SkillActivity extends AbstractActivity implements
 		checkBoxview=new SkillLevelCheckboxViewImpl();
 		checkBoxview.setDelegate(this);
 		init();
+		errorMessageTimer =new Timer() {
+				
+				@Override
+				public void run() {
+					view.getHpErrorMessage().setVisible(false);
+									
+				}
+			};
+			errorMessageTimer.scheduleRepeating((int)(LogBookConstant.ERROR_MESSAGE_TIME));
 		
 	}
 
@@ -390,6 +413,19 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 	public void mainClassificationSuggestboxChanged(Long mainClassificationId) {
 		//this.mainClassificationId = mainClassificationId;
 		
+		if(mainClassificationId==null || view.getMainClassificationSuggestBox().getTextField().advancedTextBox.getText()==""){
+			view.getClassificationTopicSuggestBox().setEnabled(false);
+			view.getTopicSuggestBox().setEnabled(false);
+			//System.out.println("Data " + view.getMainClassificationSuggestBox().getTextField().advancedTextBox.getText());
+			//view.getMainClassificationSuggestBox().getTextField().advancedTextBox.setText(view.getMainClassificationSuggestBox().getTextField().advancedTextBox.getText());
+			//view.getMainClassificationSuggestBox().getTextField().advancedTextBox.setText("");
+			//view.getMainClassificationSuggestBox().setSelected(null);
+			//view.setDefaultMessageOfSuggestionbox();
+		}
+		else{
+			view.getClassificationTopicSuggestBox().setEnabled(true);
+		}
+			
 		view.getClassificationTopicSuggestBox().setSelected(null);
 		classificaitonTopicId = null;
 		
@@ -412,6 +448,12 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 	public void classificationTopicSuggestboxChanged(Long classificationId) {
 		//this.classificaitonTopicId = classificationId;
 		
+		if(classificationId==null || view.getClassificationTopicSuggestBox().getTextField().advancedTextBox.getText()==""){
+			view.getTopicSuggestBox().setEnabled(false);
+		}
+		else{
+			view.getTopicSuggestBox().setEnabled(true);
+		}
 		view.getTopicSuggestBox().setSelected(null);
 		topicId = null;
 		
@@ -426,6 +468,10 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 	@Override
 	public void topicSuggestboxChanged(Long topicId) {
 		//this.topicId=topicId;
+		/*if(topicId==null)
+		view.getTopicSuggestBox().setEnabled(false);
+		else
+		view.getTopicSuggestBox().setEnabled(true);*/
 		view.setDefaultMessageOfSuggestionbox();
 		//initSkillTableData();
 		
@@ -525,6 +571,9 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 			topicId=tProxy.getId();
 		}
 		
+		System.out.println("MainClassification :" + mainClassifcationId);
+		System.out.println("Classification Topic Id :" + classifcationTopicId);
+		System.out.println("Topic Id :" + topicId);
 		requests.skillRequestNonRoo().retrieveHtmlFile(view.getStudent().getId(),mainClassifcationId,classifcationTopicId,topicId,fullTextSearch,new Integer(ShowCriteria.chkAsc).intValue()).fire(new Receiver<String>() {
 
 			@Override
@@ -820,6 +869,10 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		String classifcationTopicId="0";
 		String topicId="0";
 		
+		mProxy=null;
+		ctProxy=null;
+		tProxy=null;
+		fullTextSearch="";
 		if(mProxy!=null)
 		{
 			mainClassifcationId=mProxy.getId().toString();

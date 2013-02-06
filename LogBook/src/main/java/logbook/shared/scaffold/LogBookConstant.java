@@ -66,5 +66,6 @@ public class LogBookConstant {
 	
 	// Total Skill Acquired Display in Home Tab Skill Acquired Table
 	public static final int TOTAL_SKILL_ACQUIRED_DISPLAY=20;
+	public static final long ERROR_MESSAGE_TIME=5000;
 	
 }

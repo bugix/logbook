@@ -46,7 +46,7 @@ public class DefaultSuggestOracle<T> extends SuggestOracle<T> {
 
 	public void setPossiblilities(List<T> possiblilities) {
 		this.possiblilities = possiblilities;
-		Log.info("Size: " + possiblilities.size());
+
 			
 	}
 

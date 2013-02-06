@@ -40,6 +40,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import logbook.shared.SkillFilteredResult;
 import logbook.shared.SkillLevels;
+import logbook.shared.StudentStatus;
 
 import org.apache.commons.io.FileUtils;
 import org.hibernate.Query;
@@ -1156,7 +1157,7 @@ public static List<Student> findAllFinalizedStudent(){
 	Root<Student> from = criteriaQuery.from(Student.class);
 	CriteriaQuery<Student> select = criteriaQuery.select(from);
 	
-	criteriaQuery.where(criteriaBuilder.equal(from.get("studentStatus"),0));
+	criteriaQuery.where(criteriaBuilder.equal(from.get("studentStatus"),StudentStatus.Fianllized));
 	TypedQuery<Student> result = entityManager().createQuery(criteriaQuery);
 	//System.out.println("~~QUERY +++ : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
     return result.getResultList();

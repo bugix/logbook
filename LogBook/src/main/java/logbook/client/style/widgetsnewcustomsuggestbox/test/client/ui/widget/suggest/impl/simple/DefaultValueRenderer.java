@@ -36,7 +36,7 @@ private Renderer<T> renderer;
 	
 	public DefaultValueRenderer(T value, String filterText,
 			boolean caseSensitive, ValueRendererFactory<T, ?> valueRendererFactory) {
-		Log.info("Const1");
+		
 		this.value = value;
 		this.caseSensitive = caseSensitive;
 		fillHtml(value, filterText, caseSensitive);
@@ -46,7 +46,7 @@ private Renderer<T> renderer;
 	
 	public DefaultValueRenderer(T value, String filterText,
 			boolean caseSensitive, ValueRendererFactory<T, ?> valueRendererFactory,Renderer<T> renderer) {
-		Log.info("Const2");
+
 		this.value = value;
 		this.caseSensitive = caseSensitive;
 		this.renderer=renderer;
@@ -61,10 +61,10 @@ private Renderer<T> renderer;
 		String html = toString(value);		
 		html = highlightMatchingSequence(html, filterText, caseSensitive);		
 		setHTML(html);		
-		Log.info("Get Width Value: " + widthValue);
+
 		setWidth(widthValue);
 		//Log.info("Before I Is: " + i);
-		Log.info("html.length() " + html.length());				
+
 		/*if(i<html.length())
 		{
 			i=html.length();

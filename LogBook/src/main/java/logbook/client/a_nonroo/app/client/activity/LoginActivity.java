@@ -46,6 +46,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.ColumnSortEvent;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.view.client.Range;
@@ -69,6 +70,9 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	private int tabIndex=0; 
 	public static StudentEditPopupViewImpl popupViewImpl;
 	private ActivityManager activityManager;
+	private Timer errorMessageTimer;
+	
+	String message="";
 	
 	public HandlerManager handlerManager;// = new HandlerManager(this);
 //	private HandlerRegistration rangeChangeHandler;
@@ -122,6 +126,15 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 		Log.info("SystemStartActivity.start()");
 		this.widget = panel;
 		init();
+		errorMessageTimer =new Timer() {
+			
+			@Override
+			public void run() {
+				view.getHpErrorMessage().setVisible(false);
+								
+			}
+		};
+		errorMessageTimer.scheduleRepeating((int)(LogBookConstant.ERROR_MESSAGE_TIME));
 		
 
 	}
@@ -257,6 +270,15 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			{
 				Log.info("Success");	
 				view.setStudentProxy(studentProxy);
+				System.out.println("Student Status :" + studentProxy.getStudentStatus().name());
+				
+				if(studentProxy.getStudentStatus()==StudentStatus.UnFinalized)
+					view.getBtnFinalizeLogBook().setDown(false);
+					else if(studentProxy.getStudentStatus()==StudentStatus.Fianllized)
+						view.getBtnFinalizeLogBook().setDown(true);
+					else if(studentProxy.getStudentStatus()==StudentStatus.Exported)
+						view.getBtnFinalizeLogBook().setEnabled(false);	
+					
 				intiPersonnelInformation(studentProxy); // Set Value to Personnel Information Panel i.e. Student Name, Study Year etc..
 				intiCurrentProgressInformation(studentProxy); // Set aValue to Current Progress Information Panel i.e. Total Level 1 and Level 2 Skill Acquired
 				intiSkillTable("created");				
@@ -280,7 +302,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	{
 		Log.info("intiCurrentProgressInformation Student Id: " +studentProxy.getId());
 	
-		if(studentProxy.getStudentStatus() != null && studentProxy.getStudentStatus().equals(StudentStatus.Fianllized)) 
+		if(studentProxy.getStudentStatus() != null && studentProxy.getStudentStatus().equals(StudentStatus.Exported)) 
 		{
 			view.getBtnFinalizeLogBook().setEnabled(false);
 			
@@ -573,17 +595,33 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	@Override
 	public void finalizeLogBookClick(StudentProxy studentProxy) 
 	{
+		errorMessageTimer.cancel();
 		Log.info("Student is going to Finalize.");
 		Log.info("Student Id: " + studentProxy.getId());
 		
-		view.getHpErrorMessage().setVisible(false);
+		requests.studentRequest().findStudent(studentProxy.getId()).fire(new Receiver<StudentProxy>() {
+
+			@Override
+			public void onSuccess(StudentProxy response) {
+				
 		
 		StudentRequest studentRequest=requests.studentRequest();
-		StudentProxy proxy=studentProxy;		
+		StudentProxy proxy=response;		
 		
 		proxy=studentRequest.edit(proxy);
 		
-		proxy.setStudentStatus(StudentStatus.Fianllized);
+		if(response.getStudentStatus() != StudentStatus.Exported){
+		
+		if(view.getBtnFinalizeLogBook().isDown())
+		{
+			proxy.setStudentStatus(StudentStatus.Fianllized);
+			message=constants.studentFinalized();
+		}
+		else
+		{			
+			proxy.setStudentStatus(StudentStatus.UnFinalized);
+			message=constants.studentUnFinalized();
+		}
 		
 		studentRequest.persist().using(proxy).fire(new Receiver<Void>() 
 		{
@@ -591,7 +629,10 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			public void onSuccess(Void response) 
 			{
 				Log.info("Successfully Saved.");
-				view.getBtnFinalizeLogBook().setEnabled(false);
+				view.getBtnFinalizeLogBook().setEnabled(true);
+				view.getHpErrorMessage().setVisible(true);
+				view.getLblErrorMessage().setInnerHTML(message);
+				errorMessageTimer.schedule((int)LogBookConstant.ERROR_MESSAGE_TIME);
 				
 			}
 			@Override
@@ -599,13 +640,25 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			{
 				super.onFailure(error);
 				Log.info("Failure to Save.");
+				view.getHpErrorMessage().setVisible(true);
+				view.getLblErrorMessage().setInnerHTML(constants.studentStatusChangeError());
+				errorMessageTimer.schedule((int)LogBookConstant.ERROR_MESSAGE_TIME);
 			}
 			@Override
 			public void onConstraintViolation(Set<ConstraintViolation<?>> violations) 
 			{
 				super.onConstraintViolation(violations);
 				Log.info("Constraint Violate when Save.");
+				errorMessageTimer.schedule((int)LogBookConstant.ERROR_MESSAGE_TIME);
 			}
 		});
+	}else{
+		
+		view.getHpErrorMessage().setVisible(true);
+		view.getLblErrorMessage().setInnerHTML(constants.studentFinalized());
+		view.getBtnFinalizeLogBook().setEnabled(false);
 	}
+	}
+});
+	}	
 }	

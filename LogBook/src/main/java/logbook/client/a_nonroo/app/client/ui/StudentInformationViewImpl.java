@@ -10,6 +10,7 @@ import logbook.client.managed.proxy.SkillAcquiredProxy;
 import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.style.Resources.MySimplePagerResources;
 import logbook.shared.SkillLevels;
+import logbook.shared.StudentStatus;
 import logbook.shared.i18n.LogBookConstants;
 import logbook.shared.scaffold.LogBookConstant;
 
@@ -32,6 +33,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ToggleButton;
 import com.google.gwt.user.client.ui.Widget;
 
 
@@ -93,7 +95,7 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	Label lblLevel2Progress;
 	
 	@UiField
-	Button btnFinalizeLogBook;
+	ToggleButton btnFinalizeLogBook;
 	
 	@UiField
 	Anchor btnChange;
@@ -254,12 +256,12 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	}
 
 	@Override
-	public Button getBtnFinalizeLogBook() {
+	public ToggleButton getBtnFinalizeLogBook() {
 		return btnFinalizeLogBook;
 	}
 
 	@Override
-	public void setBtnFinalizeLogBook(Button btnFinalizeLogBook) {
+	public void setBtnFinalizeLogBook(ToggleButton btnFinalizeLogBook) {
 		this.btnFinalizeLogBook = btnFinalizeLogBook;
 	}
 
@@ -413,6 +415,7 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 		
 		btnChange.setText(constants.change());
 		btnFinalizeLogBook.setText(constants.finalizeLogBook());
+			
 		
 		intiProgressBar(prgBarLevel1);
 		intiProgressBar(prgBarLevel2);

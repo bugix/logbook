@@ -148,8 +148,8 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 					valueSelected(selected);
 					fireChangeOnBlur = false;
 				}
-				if (currentText.trim().length() == 0)
-					setText("");
+				/*if (currentText.trim().length() == 0)
+					setText("");*/
 			}
 		}.schedule(200);
 		if (isShowingSuggestList()) {
@@ -481,7 +481,7 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 	protected boolean fillValue(final T t, boolean commit) {
 		getTextField().setText(toString(t));
 		hideSuggestList();
-		getTextField().setFocus(true);
+		//getTextField().setFocus(true);
 		selected = t;
 		typed = toString(t);
 		if (commit) {
