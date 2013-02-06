@@ -424,6 +424,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 		}
 		else{
 			view.getClassificationTopicSuggestBox().setEnabled(true);
+			view.getTopicSuggestBox().setEnabled(false);
 		}
 			
 		view.getClassificationTopicSuggestBox().setSelected(null);
