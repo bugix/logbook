@@ -176,7 +176,7 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 				showApplicationLoading(false);
 				view.getPager().setRowCount(response.getTotalTopics());
 				view.createHeader(view.getProgressFlexTable());
-				System.out.println("First Topic: " + response.getTopicList().get(0).getId());
+				//System.out.println("First Topic: " + response.getTopicList().get(0).getId());
 				view.setSource(response.getTopicList(),response.getTotalTopicList(),response.getTopicAcquiredList(),studentProxy);
 			}
 			@Override

@@ -176,7 +176,7 @@ public class ProgressViewImpl extends Composite implements ProgressView{
 		for(int i=0;i<topicData.size();i++)
 		{
 			TopicProxy topicProxy=topicData.get(i);
-			System.out.println("Topic :" + i + " is " + topicProxy.getId());
+			//System.out.println("Topic :" + i + " is " + topicProxy.getId());
 			final Integer totalProgress=totalProgressList.get(i).intValue();
 			final Integer currentProgress=currentProgressList.get(i).intValue();
 			

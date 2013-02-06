@@ -78,7 +78,7 @@ public class Topic {
 		select.orderBy(criteriaBuilder.asc(from.get("id")), criteriaBuilder.asc(from.get("classificationTopic").get("mainClassification").get("id")), criteriaBuilder.asc(from.get("classificationTopic").get("id")));
 		//from.join("classificationTopic");
 		TypedQuery<Topic> result = entityManager().createQuery(criteriaQuery);
-		System.out.println("DB Second: " + result.getResultList().get(0).getId());
+		//System.out.println("DB Second: " + result.getResultList().get(0).getId());
 		int totalSize=result.getResultList().size();
 		result.setFirstResult(start);
 		result.setMaxResults(max);
@@ -112,7 +112,7 @@ public class Topic {
 		
 		finalresult.setTotalTopic(totalSize);
 		finalresult.setTopicList(resultList);
-		System.out.println("DB First: " + resultList.get(0).getId());
+		//System.out.println("DB First: " + resultList.get(0).getId());
 		finalresult.setTotalTopicList(totalTopicBySkill);
 		finalresult.setTopicAcquiredList(totalAcquiredTopicBySkill);
 		
