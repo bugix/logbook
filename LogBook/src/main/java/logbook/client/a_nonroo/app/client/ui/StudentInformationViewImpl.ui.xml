@@ -56,6 +56,20 @@
 			float: left;
 		}
 		
+		.progressInfoLabelStyle {
+			font-style: normal;
+			font-size: 98%;
+			color: #888888;
+			display: block;
+			padding-top: 5px;			
+			float: left;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			width: 230px;
+			
+		}
+		
 		.valueLabelStyle {
 			font-size: 97%;
 			font-style: normal;
@@ -64,7 +78,11 @@
 			float: left;
 			padding-top: 5px;
 			padding-left: 10px;
-			margin-right: 60px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			width: 200px;
+			
 		}
 		
 		.headingLabelStyle 
@@ -88,8 +106,7 @@
 		}
 		
 		.finalizeButtonStyle {
-			  border-radius: 5px 5px 5px 5px;
-    		  margin-left: 10px;
+			  border-radius: 5px 5px 5px 5px;    		  
     		  padding: 7px 14px 2px;	
     		  border:1px solid #77D5F7;
     		  height: 22px; 
@@ -100,7 +117,7 @@
 		}
 		
 		.progressBarLeftPadding {
-			margin-left: 10px;
+			
 		}
 		
 		.latestAcquiredSkillSPStyle {
@@ -257,7 +274,7 @@
 
 											<tr addStyleNames="{style.trStyle}">
 												<td>
-													<g:Label ui:field="lblLevel1Progress" addStyleNames="{style.infoLabelStyle}"></g:Label>
+													<g:Label ui:field="lblLevel1Progress" addStyleNames="{style.progressInfoLabelStyle}"></g:Label>
 												</td>
 												<td>
 													<custom:CustomProgressbar ui:field="prgBarLevel1" addStyleNames="{style.progressBarLeftPadding}"></custom:CustomProgressbar> 
@@ -265,7 +282,7 @@
 											</tr>
 											<tr addStyleNames="{style.trStyle}">
 												<td>
-													<g:Label ui:field="lblLevel2Progress" addStyleNames="{style.infoLabelStyle}"></g:Label>
+													<g:Label ui:field="lblLevel2Progress" addStyleNames="{style.progressInfoLabelStyle}"></g:Label>
 												</td>
 												<td>
 													<custom:CustomProgressbar ui:field="prgBarLevel2" addStyleNames="{style.progressBarLeftPadding}"></custom:CustomProgressbar>
@@ -273,7 +290,7 @@
 											</tr>
 											<tr addStyleNames="{style.trStyle}">
 												<td>
-													<g:Label ui:field="lblTotalProgress" addStyleNames="{style.infoLabelStyle}"></g:Label>
+													<g:Label ui:field="lblTotalProgress" addStyleNames="{style.progressInfoLabelStyle}"></g:Label>
 												</td>
 												<td>
 													<custom:CustomProgressbar ui:field="prgBarTotal" addStyleNames="{style.progressBarLeftPadding}"></custom:CustomProgressbar>

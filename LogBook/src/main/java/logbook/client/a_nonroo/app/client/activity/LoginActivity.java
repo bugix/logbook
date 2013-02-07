@@ -348,19 +348,21 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 									Log.info(totalSkillAcquiredPercentage);
 									
 									
-									view.getLblLevel1Progress().setText(getFormatedString(level1SkillAcquiredPercentage, 30));
+									//view.getLblLevel1Progress().setText(getFormatedString(level1SkillAcquiredPercentage, 30));
+									view.getLblLevel1Progress().setText(level1SkillAcquiredPercentage);									
 									view.getLblLevel1Progress().setTitle(level1SkillAcquiredPercentage);
 									//setProgress(view.getPrgBarLevel1(),totalSkillAcquiredBySkillLevel.get(1),totalSkillListByLevel.get(1),totalPercentageLevel1);
 									setProgress(view.getPrgBarLevel1(),0L,totalSkillListByLevel.get(0),totalSkillAcquiredBySkillLevel.get(0));
 									
 									
-									view.getLblLevel2Progress().setText(getFormatedString(level2SkillAcquiredPercentage, 30));
+									//view.getLblLevel2Progress().setText(getFormatedString(level2SkillAcquiredPercentage, 30));
+									view.getLblLevel2Progress().setText(level2SkillAcquiredPercentage);
 									view.getLblLevel2Progress().setTitle(level2SkillAcquiredPercentage);
 									//setProgress(view.getPrgBarLevel2(),totalSkillAcquiredBySkillLevel.get(0),totalSkillListByLevel.get(0),totalPercentageLevel2);
 									setProgress(view.getPrgBarLevel2(),0L,totalSkillListByLevel.get(1),totalSkillAcquiredBySkillLevel.get(1));
 									
-									
-									view.getLblTotalProgress().setText(getFormatedString(totalSkillAcquiredPercentage, 30));
+									//view.getLblTotalProgress().setText(getFormatedString(totalSkillAcquiredPercentage, 30));
+									view.getLblTotalProgress().setText(totalSkillAcquiredPercentage);
 									view.getLblTotalProgress().setTitle(totalSkillAcquiredPercentage);
 									//view.getPrgBarTotal().setProgress(totalPercentage);
 									setProgress(view.getPrgBarTotal(),0L,totalSkillBySkillLevel,totalSkillAcquiredByStudent);
@@ -432,13 +434,17 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			studyYear=getEmptyStringIfNull(studentProxy.getStudyYear().name());
 		String email=getEmptyStringIfNull(studentProxy.getEmail());
 		
-		view.getLblNameVal().setText(getFormatedString(studentName, 16));
+		//view.getLblNameVal().setText(getFormatedString(studentName, 16));
+		view.getLblNameVal().setText(studentName);
 		view.getLblNameVal().setTitle(studentName);		
-		view.getLblStudentIdVal().setText(getFormatedString(studentId, 16));
-		view.getLblStudentIdVal().setTitle(studentId);		
-		view.getLblStudeyYearvalue().setText(getFormatedString(studyYear, 16));
-		view.getLblStudeyYearvalue().setTitle(studyYear);		
-		view.getLblEmailVal().setText(getFormatedString(email, 16));
+		//view.getLblStudentIdVal().setText(getFormatedString(studentId, 16));
+		view.getLblStudentIdVal().setText(studentId);
+		view.getLblStudentIdVal().setTitle(studentId);	
+		//view.getLblStudeyYearvalue().setText(getFormatedString(studyYear, 16));
+		view.getLblStudeyYearvalue().setText(studyYear);
+		view.getLblStudeyYearvalue().setTitle(studyYear);				
+		//view.getLblEmailVal().setText(getFormatedString(email, 16));
+		view.getLblEmailVal().setText(email);
 		view.getLblEmailVal().setTitle(email);
 		
 	}
@@ -531,16 +537,19 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 									
 									view.getHpErrorMessage().setVisible(false);
 									Log.info("Successfully updated.");
-									view.getLblEmailVal().setText(getFormatedString(email, 15));
+									//view.getLblEmailVal().setText(getFormatedString(email, 15));
+									view.getLblEmailVal().setText(email);
 									view.getLblEmailVal().setTitle(email);
 									if(studyYear==null)
 									{
-										view.getLblStudeyYearvalue().setText(getFormatedString("", 15));
+										//view.getLblStudeyYearvalue().setText(getFormatedString("", 15));
+										view.getLblStudeyYearvalue().setText("");
 										view.getLblStudeyYearvalue().setTitle("");
 									}
 									else
 									{
-										view.getLblStudeyYearvalue().setText(getFormatedString(studyYear.name(), 15));
+										//view.getLblStudeyYearvalue().setText(getFormatedString(studyYear.name(), 15));
+										view.getLblStudeyYearvalue().setText(studyYear.name());
 										view.getLblStudeyYearvalue().setTitle(studyYear.name());										
 									}
 									view.setStudentProxy(tempStudentProxy);
