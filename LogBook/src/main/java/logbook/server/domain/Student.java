@@ -6,6 +6,7 @@ import static logbook.shared.scaffold.LogBookConstant.STUDENT;
 import static logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -91,8 +92,12 @@ public class Student {
 		TypedQuery<Student> q = entityManager().createQuery(criteriaQuery);
 		
 		//Log.info("Query : " + q.unwrap(Query.class).getQueryString());
-		
-        return q.getSingleResult();
+		List<Student> students = q.getResultList();
+		if(students.size() > 0) {
+			return students.get(0); 
+		}else {
+			return null;	
+		}   
 	}
 
 	public static Boolean isCurrentUserStudent() {
