@@ -41,8 +41,6 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
 
@@ -576,9 +574,9 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 			topicId=tProxy.getId();
 		}
 		
-		System.out.println("MainClassification :" + mainClassifcationId);
-		System.out.println("Classification Topic Id :" + classifcationTopicId);
-		System.out.println("Topic Id :" + topicId);
+		Log.info("MainClassification :" + mainClassifcationId);
+		Log.info("Classification Topic Id :" + classifcationTopicId);
+		Log.info("Topic Id :" + topicId);
 		requests.skillRequestNonRoo().retrieveHtmlFile(view.getStudent().getId(),mainClassifcationId,classifcationTopicId,topicId,fullTextSearch,new Integer(ShowCriteria.chkAsc).intValue()).fire(new Receiver<String>() {
 
 			@Override

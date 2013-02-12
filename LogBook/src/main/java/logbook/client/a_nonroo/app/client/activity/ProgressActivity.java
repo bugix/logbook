@@ -17,7 +17,6 @@ import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
 import logbook.client.managed.proxy.StudentProxy;
 import logbook.client.managed.proxy.TopicProxy;
-import logbook.shared.scaffold.LogBookConstant;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -27,7 +26,6 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;

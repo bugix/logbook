@@ -25,11 +25,11 @@ import logbook.shared.Gender;
 import logbook.shared.StudentStatus;
 import logbook.shared.StudyYears;
 
-import org.hibernate.Query;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
 @RooJavaBean
@@ -74,7 +74,7 @@ public class Student {
     {
         HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
         String shibId = (String) session.getAttribute(UNIQUE_ID);
-        System.out.println("shib id: " + shibId);
+        Log.info("shib id: " + shibId);
         Student student=Student.findStudentUsingShibId(shibId);
         return student;
     }
@@ -90,7 +90,7 @@ public class Student {
 		
 		TypedQuery<Student> q = entityManager().createQuery(criteriaQuery);
 		
-		System.out.println("Query : " + q.unwrap(Query.class).getQueryString());
+		//Log.info("Query : " + q.unwrap(Query.class).getQueryString());
 		
         return q.getSingleResult();
 	}

@@ -293,7 +293,7 @@ public class SkillPdfExport   extends HttpServlet {
 	       // File file = new File("osMaEntry/gwt/unibas/"+System.currentTimeMillis()+".xml");
 	        String path=getServletConfig().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
 	        String fileName=path+"/"+System.currentTimeMillis()+".xml";
-	        System.out.println("Path: " + fileName);
+	        Log.info("Path: " + fileName);
 	        
 	        File file = new File(fileName);
 	        file.createNewFile();
@@ -329,7 +329,7 @@ public class SkillPdfExport   extends HttpServlet {
 	            
 	            String path=getServletConfig().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
 	            String outputFileName =path +"/"+System.currentTimeMillis()+".html";
-		        System.out.println("Path: " + outputFileName);    
+	            Log.info("Path: " + outputFileName);    
 	            OutputStream htmlFile = new FileOutputStream(outputFileName);
 
 	            Transformer transformer = tFactory.newTransformer(xslDoc);
@@ -338,7 +338,7 @@ public class SkillPdfExport   extends HttpServlet {
 					@Override
 					public void warning(TransformerException exception)
 							throws TransformerException {
-						System.out.println("Warning.");
+						Log.info("Warning.");
 						
 						Log.error("Warning", exception);
 					}
@@ -346,14 +346,14 @@ public class SkillPdfExport   extends HttpServlet {
 					@Override
 					public void fatalError(TransformerException exception)
 							throws TransformerException {
-						System.out.println("fatal Error.");
+						Log.info("fatal Error.");
 						Log.error("fatal Error.", exception);
 					}
 					
 					@Override
 					public void error(TransformerException exception)
 							throws TransformerException {
-						System.out.println("Error.");	
+						Log.info("Error.");	
 						Log.error("Error", exception);
 					}
 				});
@@ -379,7 +379,7 @@ public class SkillPdfExport   extends HttpServlet {
 //		String File_To_Convert = getServletContext().getContextPath() + "/public/assignment_sp_1.html";
 	 	//String File_To_Convert = "D:\\assignment_sp_1.htm";
         //String url = new File(File_To_Convert).toURI().toURL().toString();
-        System.out.println("url : "+htmlFileName);
+		Log.info("url : "+htmlFileName);
         //String HTML_TO_PDF = "D:\\ConvertedFile.pdf";
        // OutputStream os = new FileOutputStream(HTML_TO_PDF);  
         
@@ -400,7 +400,7 @@ public class SkillPdfExport   extends HttpServlet {
 */
         try {
 	        ITextRenderer renderer = new ITextRenderer();
-	        System.out.println("Skill PDF Export->Create PDF->File name: " + htmlFileName);
+	        Log.info("Skill PDF Export->Create PDF->File name: " + htmlFileName);
 	        renderer.setDocument(new File(htmlFileName));      
 	        renderer.layout();
 	        renderer.createPDF(os);  

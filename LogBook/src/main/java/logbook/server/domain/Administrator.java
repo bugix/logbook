@@ -11,13 +11,12 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.commons.math.util.MathUtils;
 import org.hibernate.Query;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
 @RooJavaBean
@@ -41,7 +40,7 @@ public class Administrator {
     {
         HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
         String mailId = (String) session.getAttribute(UNIQUE_ID);
-        System.out.println("mail id: " + mailId); 
+        Log.info("mail id: " + mailId); 
         Administrator administrator = Administrator.findAdministratorUsingEmail(mailId);
         return administrator;
  	
@@ -58,7 +57,7 @@ public class Administrator {
 		
 		TypedQuery<Administrator> q = entityManager().createQuery(criteriaQuery);
 		
-		System.out.println("Query : " + q.unwrap(Query.class).getQueryString());
+		Log.info("Query : " + q.unwrap(Query.class).getQueryString());
 		
         return q.getSingleResult();	
 	}

@@ -175,7 +175,7 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 				}
 				else{
 					showApplicationLoading(false);
-					System.out.println("Error during file generation");
+					Log.info("Error during file generation");
 				}
 			
 			}

@@ -3,7 +3,6 @@ package logbook.client.a_nonroo.app.client.activity;
 
 import static logbook.shared.util.UtilityLogBook.DECIMAL_FORMAT;
 import static logbook.shared.util.UtilityLogBook.getEmptyStringIfNull;
-import static logbook.shared.util.UtilityLogBook.getFormatedString;
 import static logbook.shared.util.UtilityLogBook.join;
 
 import java.util.List;
@@ -270,7 +269,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			{
 				Log.info("Success");	
 				view.setStudentProxy(studentProxy);
-				System.out.println("Student Status :" + studentProxy.getStudentStatus().name());
+				//System.out.println("Student Status :" + studentProxy.getStudentStatus().name());
 				
 				if(studentProxy.getStudentStatus()==StudentStatus.UnFinalized)
 					view.getBtnFinalizeLogBook().setDown(false);

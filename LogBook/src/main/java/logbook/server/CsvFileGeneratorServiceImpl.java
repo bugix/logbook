@@ -5,8 +5,6 @@ package logbook.server;
 
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.util.List;
 
@@ -20,14 +18,11 @@ import logbook.server.domain.Topic;
 import logbook.shared.CsvFileGeneratorEvent;
 import logbook.shared.StudentStatus;
 
-import com.csvreader.CsvWriter;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
-
+import com.csvreader.CsvWriter;
 
 import de.novanic.eventservice.client.event.domain.Domain;
 import de.novanic.eventservice.client.event.domain.DomainFactory;
@@ -68,7 +63,7 @@ public class CsvFileGeneratorServiceImpl  extends RemoteEventServiceServlet impl
 		
 		try{
 		
-	    		System.out.println("Inside Student");
+			Log.info("Inside Student");
 				List<Skill> allSkills=Skill.findAllSkillforCsvexport();
 				String string;
 				
@@ -86,7 +81,7 @@ public class CsvFileGeneratorServiceImpl  extends RemoteEventServiceServlet impl
 
 				writer.write("Student ID");
 				
-				System.out.println("Skills " + allSkills.size());
+				Log.info("Skills " + allSkills.size());
 				
 				for(Skill skill : allSkills){
 					
@@ -106,7 +101,7 @@ public class CsvFileGeneratorServiceImpl  extends RemoteEventServiceServlet impl
 				
 				List<Student> allFinalizedStudent = Skill.findAllFinalizedStudent();
 				
-				System.out.println("All finalized student  " + allFinalizedStudent.size());
+				Log.info("All finalized student  " + allFinalizedStudent.size());
 				
 				for(Student student : allFinalizedStudent){
 					
@@ -116,14 +111,14 @@ public class CsvFileGeneratorServiceImpl  extends RemoteEventServiceServlet impl
 					
 					List<SkillAcquired> skillAcquiredByStudent =SkillAcquired.findSkillAcquiredByStudent(student.getId());
 					
-					System.out.println("skillAcquiredByStudent Length : " + skillAcquiredByStudent.size());
+					Log.info("skillAcquiredByStudent Length : " + skillAcquiredByStudent.size());
 					
 					for(SkillAcquired skillacquired : skillAcquiredByStudent){
 						
 						acquiredArray[allSkills.indexOf(skillacquired.getSkill())]=skillacquired.getSkillLevel().getLevelNumber();
 					}
 					
-					System.out.println("acquiredArray.length" + acquiredArray.length);
+					Log.info("acquiredArray.length" + acquiredArray.length);
 					
 					for(int i=0;i<acquiredArray.length;i++){
 						

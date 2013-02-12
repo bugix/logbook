@@ -1013,7 +1013,7 @@ public class Skill {
 	       // File file = new File("osMaEntry/gwt/unibas/"+System.currentTimeMillis()+".xml");
 	        String path=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
 	        String fileName=path+"/"+System.currentTimeMillis()+".xml";
-	        System.out.println("Path: " + fileName);
+	        Log.info("Path: " + fileName);
 	        
 	        File file = new File(fileName);
 	        file.createNewFile();
@@ -1048,7 +1048,7 @@ public class Skill {
 	            
 	            String path=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
 	            String outputFileName =path+"/" +System.currentTimeMillis()+".html";
-	            System.out.println("Path: " + outputFileName);
+	            Log.info("Path: " + outputFileName);
 	            OutputStream htmlFile = new FileOutputStream(outputFileName);
 
 	            Transformer transformer = tFactory.newTransformer(xslDoc);
@@ -1193,7 +1193,7 @@ public static String addCommnets(Long skillId,Long studentId,String comment){
 			result="EDIT";
 		}
 	}catch(Exception e){
-		System.out.println("asdkh " + e.getStackTrace());
+		Log.info("asdkh " + e.getStackTrace());
 		result="FAILURE";
 	}
 	return result;
