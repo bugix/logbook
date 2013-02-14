@@ -900,7 +900,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 			final SkillLevelTextAreaViewImpl commentTextArea = new SkillLevelTextAreaViewImpl();
 			//System.out.println(sproxy.getSkillComment());	
 			commentTextArea.getTextArea().addStyleName("skillTextArea");			
-			commentTextArea.getTextArea().setText(UtilityLogBook.getFormatedString(comment,45));
+			commentTextArea.getTextArea().setText(UtilityLogBook.getFormatedString(comment,40));
 			commentTextArea.getTextArea().setTitle(comment);
 			skillFlexTable.setWidget(row,4,commentTextArea);
 			

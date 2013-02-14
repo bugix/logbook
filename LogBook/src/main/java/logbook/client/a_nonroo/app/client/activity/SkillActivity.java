@@ -953,7 +953,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 							{
 								//if(response.getSkillComment() !=null && response.getSkillComment().getComment() !=null)
 								//{
-									((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setText(UtilityLogBook.getFormatedString(response,45));
+									((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setText(UtilityLogBook.getFormatedString(response,40));
 									((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setTitle(response);
 								//}
 								/*else
@@ -995,7 +995,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 						
 						});*/
 						((SkillLevelIconButtonViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),5)).setSkillcomment(comment);
-						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setText(UtilityLogBook.getFormatedString(comment,45));
+						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setText(UtilityLogBook.getFormatedString(comment,40));
 						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setTitle(comment);
 			
 					}
