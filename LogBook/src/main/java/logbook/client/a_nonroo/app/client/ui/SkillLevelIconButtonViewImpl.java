@@ -29,6 +29,16 @@ public class SkillLevelIconButtonViewImpl extends Composite implements SkillLeve
 	
 	private boolean isSave;
 	
+	private String skillcomment;
+	
+	public String getSkillcomment() {
+		return skillcomment;
+	}
+
+	public void setSkillcomment(String skillcomment) {
+		this.skillcomment = skillcomment;
+	}
+
 	public boolean isSave() {
 		return isSave;
 	}

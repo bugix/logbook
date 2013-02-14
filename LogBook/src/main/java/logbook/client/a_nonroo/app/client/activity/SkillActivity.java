@@ -918,7 +918,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 	@Override
 	public void iconButtonClicked(final SkillProxy skillProxy,final SkillLevelIconButtonViewImpl skillLevelIconButtonViewImpl) {
 		Log.info("Skill Proxy is :" + skillProxy.getId());
-
+		
 		view.getHpErrorMessage().setVisible(false);
 		
 		if(skillLevelIconButtonViewImpl.isSave()==false)
@@ -947,17 +947,17 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 						((SkillLevelIconButtonViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),5)).getIconButton().setClassName("ui-icon ui-icon-pencil");
 						((SkillLevelIconButtonViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),5)).setSave(false);
 						
-						requests.skillRequest().findSkill(skillProxy.getId()).with("skillComment").fire(new Receiver<SkillProxy>() {
+						requests.skillRequestNonRoo().getCommentOfStudentForSkill(skillProxy.getId(),view.getStudent().getId()).fire(new Receiver<String>() {
 							@Override
-							public void onSuccess(SkillProxy response) 
+							public void onSuccess(String response) 
 							{
-								if(response.getSkillComment() !=null && response.getSkillComment().getComment() !=null)
-								{
-									((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setText(UtilityLogBook.getFormatedString(response.getSkillComment().getComment(),45));
-									((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setTitle(response.getSkillComment().getComment());
-								}
-								else
-								((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setText("");
+								//if(response.getSkillComment() !=null && response.getSkillComment().getComment() !=null)
+								//{
+									((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setText(UtilityLogBook.getFormatedString(response,45));
+									((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setTitle(response);
+								//}
+								/*else
+								((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setText("");*/
 									
 							}
 						
@@ -972,7 +972,7 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setStyleName("skillTextArea");
 						((SkillLevelIconButtonViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),5)).setSave(false);
 						
-						requests.skillRequest().findSkill(skillProxy.getId()).with("skillComment").fire(new Receiver<SkillProxy>() {
+						/*requests.skillRequest().findSkill(skillProxy.getId()).with("skillComment").fire(new Receiver<SkillProxy>() {
 
 							@Override
 							public void onSuccess(SkillProxy response) 
@@ -982,8 +982,21 @@ private void initTopicSuggestion(Long classificaitonTopicId) {
 								((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setTitle(comment);
 							}
 						});
+						*/
+							/*requests.skillRequestNonRoo().getCommentOfStudentForSkill(skillProxy.getId(),view.getStudent().getId()).fire(new Receiver<String>() {
+							@Override
+							public void onSuccess(String response) 
+							{
+									((SkillLevelIconButtonViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),5)).setSkillcomment(response);
+									((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setText(UtilityLogBook.getFormatedString(response,45));
+									((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setTitle(response);
+								
+							}
 						
-						
+						});*/
+						((SkillLevelIconButtonViewImpl)view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(),5)).setSkillcomment(comment);
+						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setText(UtilityLogBook.getFormatedString(comment,45));
+						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(),4)).getTextArea().setTitle(comment);
 			
 					}
 				}

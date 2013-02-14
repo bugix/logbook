@@ -24,7 +24,7 @@ public interface SkillFilteredResultProxy extends ValueProxy {
 	
 	public Integer getTotalSkill() ;
 	
-	
+	public List<String> getSkillComment();
 	
 /*	public List<TopicProxy> getTopicList();
 	

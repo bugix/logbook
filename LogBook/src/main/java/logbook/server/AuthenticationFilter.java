@@ -9,6 +9,7 @@ import static org.apache.commons.lang3.math.NumberUtils.createInteger;
 import static org.apache.commons.lang3.math.NumberUtils.isDigits;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,6 +28,7 @@ import javax.servlet.http.HttpSession;
 import logbook.server.domain.Administrator;
 import logbook.server.domain.Student;
 import logbook.shared.Gender;
+import logbook.shared.StudentStatus;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -35,14 +38,15 @@ public class AuthenticationFilter implements Filter {
 	private static Logger log = Logger.getLogger(AuthenticationFilter.class);
 	
 	private static final int ALLOWED_STUDY_BRANCH = 51;
-	private static final String AFFILIATION = "Shib-EP-Affiliation";
+	private static final String AFFILIATION = "affiliation";//"Shib-EP-Affiliation";
 	private static final String AFFILIATION_STUDENT = "student";
 	//private static final String AFFILIATION_ADMIN = "faculty"; //staff
-	private static final String STUDY_BRANCH = "Shib-SwissEP-swissEduPersonStudyBranch2"; // or studyBranch2
-	private static final String EMAIL = " mail";
+	private static final String STUDY_BRANCH = "studyBranch2"; //"Shib-SwissEP-swissEduPersonStudyBranch2"; // or studyBranch2
+	private static final String EMAIL = "mail";
 	private static final String GENDER = "gender";
 	private static final String NAME = "givenName";
 	private static final String PRENAME = "surname";
+	private static final String MATRICULATION_NUMBER = "matriculationNumber";
 	
 	// for local use
 	private static final String STUDENT_ID = "id";
@@ -61,44 +65,54 @@ public class AuthenticationFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest)servletRequest;
 		HttpServletResponse response = (HttpServletResponse)servletResponse;
 		//Enumeration<String> names = request.getHeaderNames();
-		/*Log.info("Headers are:");
+		/*log.info("Headers are:");
 		while(names.hasMoreElements())
 		{
 			String headerName = names.nextElement();
-			Log.info(headerName + " : " + request.getHeader(headerName));
+			log.info(headerName + " : " + request.getHeader(headerName));
 		}
 		
-		Log.info("Attributes are:");
+		log.info("Attributes are:");
 		names = request.getAttributeNames();
 		while(names.hasMoreElements())
 		{
 			String attributeName = names.nextElement();
-			Log.info(attributeName + " : " + request.getAttribute(attributeName));
+			log.info(attributeName + " : " + request.getAttribute(attributeName));
 		}
 		
 		Cookie[] cookies = request.getCookies();
-		Log.info("Cookies are:");
+		log.info("Cookies are:");
 		int index = 0;
-		while(index > cookies.length)
-		{			
-			Log.info(cookies[index].getName() + " : " + cookies[index].getValue());
-		}
-		*/
-		
+		if(cookies != null) 
+		{
+			while(index > cookies.length)
+			{			
+				log.info(cookies[index].getName() + " : " + cookies[index].getValue());
+			}	
+		}*/
+				
 		boolean flag = false;
 		String uniqueID;
-		
+		String matriculationNumber;
 		/* local development environment Session Management */ 
-		uniqueID = getUniqueId(request,response);
+		/*uniqueID = getUniqueId(request,response);
 		log.info("UNIQUE_ID : " + uniqueID);
-		flag = localWork(request, response, uniqueID);
+		flag = localWork(request, response, uniqueID);*/
 		
 		/* production environment session management */
 		/* for production uniqueID and for testing uid */
 		//uniqueID = request.getHeader("uid");
-		/*uniqueID = request.getHeader("uniqueID");
+		uniqueID = request.getHeader("uniqueID");
+		matriculationNumber =  request.getHeader(MATRICULATION_NUMBER);
+		
+		if(isNotBlank(matriculationNumber)) {
+			uniqueID = matriculationNumber;
+		}
+		
 		log.info("UNIQUE_ID : " + uniqueID);
-		flag = productionMethod(request,response,uniqueID);*/
+		log.info("matriculationNumber : " + matriculationNumber);
+		
+		flag = productionMethod(request,response,uniqueID);
 		
 		if(flag)
 			filterChain.doFilter(servletRequest, servletResponse);
@@ -114,7 +128,7 @@ public class AuthenticationFilter implements Filter {
 		// first check the affiliation using affiliation or Shib-EP-Affiliation -> student
 		String affiliation = request.getHeader(AFFILIATION);
 		
-		if(isNotBlank(affiliation) && affiliation.equals(AFFILIATION_STUDENT)){
+		//if(isNotBlank(affiliation) && affiliation.equals(AFFILIATION_STUDENT)){
 			
 			// than check for (verify alias)Shib-SwissEP-StudyBranch2 -> 51
 			// only  student of studyBranch 51 has the access, different StudyBranch has to be denied.
@@ -139,15 +153,15 @@ public class AuthenticationFilter implements Filter {
 						}
 					}
 				}else {
-					log.info("----> Authenticated student using New Session");
 					flag = authenticationStudentUsingDB(request,response, uniqueID);
 					if(flag == true){
 						session = request.getSession();
 						session.setAttribute(UNIQUE_ID, uniqueID);
 						session.setAttribute(CURRENT_USER, STUDENT);
+						log.info("----> Authenticated student using New Session");
 					}		
 				}
-			}
+			//}
 		}else {
 			
 			//For admin
@@ -175,13 +189,13 @@ public class AuthenticationFilter implements Filter {
 					}
 				}
 			}else {
-				log.info("----> Authenticated Admin using New Session");
+	
 				flag = authenticationAdminUsingDB(request,response, uniqueID);
 				if(flag == true){
 					session = request.getSession();
 					session.setAttribute(UNIQUE_ID,uniqueID);
 					session.setAttribute(CURRENT_USER, ADMIN);
-					
+					log.info("----> Authenticated Admin using New Session");	
 					//for testing as student
 					asStudentTesting(request,response,uniqueID,session);					
 				}		
@@ -255,6 +269,8 @@ public class AuthenticationFilter implements Filter {
 			for (Student student : students) {
 */
 				if (eStudent != null && eStudent.getShib_id().equals(uniqueID)) {
+					log.info("stib_id" + eStudent.getShib_id());
+					log.info("uniqueId : " + uniqueID);
 					flag = true;
 //					break;
 				}
@@ -282,6 +298,7 @@ public class AuthenticationFilter implements Filter {
 					student.setPreName(request.getHeader(PRENAME));
 				}
 				
+				student.setStudentStatus(StudentStatus.UnFinalized);				
 				student.persist();
 
 				flag = true;

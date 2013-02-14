@@ -76,8 +76,8 @@ public class Skill {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "skill")
     private Set<SkillAcquired> skillsAcquired = new HashSet<SkillAcquired>();
      
-    @OneToOne
-    private SkillComment skillComment;
+   /* @OneToOne
+    private SkillComment skillComment;*/
     
     @ManyToMany(/*cascade = CascadeType.ALL,*/ mappedBy = "skill")
     private Set<Keyword> keywords = new HashSet<Keyword>();
@@ -354,6 +354,7 @@ public class Skill {
 		}*/
 		
 		List<SkillLevels> skillAcquiredList =findSkillAcquiredByStudents(skillresultList,studentId);
+		List<String> skillCommentList = findSkillCommentByStudent(skillresultList,studentId);
 		//System.out.println("Skill Acquired size :" + skillAcquiredList.size());
 		
 		SkillFilteredResult finalresult = new SkillFilteredResult();
@@ -366,6 +367,8 @@ public class Skill {
 		finalresult.setTotalSkill(totalSize);
 		finalresult.setSkillList(skillresultList);
 		finalresult.setSkilltLevelsAcquiredList(skillAcquiredList);
+		finalresult.setSkillComment(skillCommentList);
+		
 		
 	
 		
@@ -805,7 +808,30 @@ public class Skill {
 		else 
 			return null;
   	}
-  	
+  	 private static List<String> findSkillCommentByStudent(List<Skill> skillresultList,Long studentId) {
+  	    	
+  	    	
+  	    	List<String> result = new ArrayList<String>();
+  	    	
+  	    	for(Skill skill : skillresultList){
+  	    		
+  	    		
+  	    		try {
+  	    		    			
+  	    			result.add(getCommentOfStudentForSkill(skill.getId(),studentId));
+  	    			
+  	    		}catch(Exception e){
+  	    			Log.info("Error" + e.getStackTrace());
+  	    		}
+  	    	}
+  	    	
+  	    	
+  	    	
+  	    	
+  	    	return result;
+  	    	
+  		
+  	}
     private static List<SkillLevels> findSkillAcquiredByStudents(List<Skill> skillresultList,Long studentId) {
     	
     	
@@ -1180,7 +1206,7 @@ public static String addCommnets(Long skillId,Long studentId,String comment){
 			skillComment.setComment(comment);
 			skillComment.persist();
 			
-			skill.setSkillComment(skillComment);
+			//skill.setSkillComment(skillComment);
 			skill.persist();
 			
 			result="INSERT";
@@ -1219,6 +1245,27 @@ public static List<SkillComment> getTotalComment(Long skillId,Long studentId){
 	
 	
 }
-    
 
+public static String getCommentOfStudentForSkill(Long skillId,Long studentId){
+	
+	CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+	CriteriaQuery<SkillComment> criteriaQuery = criteriaBuilder.createQuery(SkillComment.class);
+	Root<SkillComment> from = criteriaQuery.from(SkillComment.class);
+	CriteriaQuery<SkillComment> select = criteriaQuery.select(from);
+	
+	Predicate p1=criteriaBuilder.and(criteriaBuilder.equal(from.get("student").get("id"), studentId));
+	Predicate p2=criteriaBuilder.and(criteriaBuilder.equal(from.get("skill").get("id"), skillId));
+	
+	criteriaQuery.where(criteriaBuilder.and(p1,p2));
+	
+	TypedQuery<SkillComment> result=entityManager().createQuery(criteriaQuery);
+	
+	Log.info("Query is :" + result.unwrap(Query.class).getQueryString());
+	
+	if(result.getResultList().size() > 0 && result.getResultList().get(0).getComment()!=null)
+	return result.getResultList().get(0).getComment();
+	else
+	return "";
 }
+}
+

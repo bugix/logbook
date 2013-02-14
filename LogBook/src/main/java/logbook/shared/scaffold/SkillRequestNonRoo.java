@@ -5,9 +5,11 @@ import java.util.List;
 import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
 import logbook.client.managed.proxy.ClassificationTopicProxy;
 import logbook.client.managed.proxy.MainClassificationProxy;
+import logbook.client.managed.proxy.SkillCommentProxy;
 import logbook.client.managed.proxy.SkillProxy;
 import logbook.client.managed.proxy.TopicProxy;
 import logbook.server.domain.Skill;
+import logbook.server.domain.SkillComment;
 
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
@@ -34,5 +36,9 @@ public interface SkillRequestNonRoo extends RequestContext {
 	
 
 	//abstract Request<Boolean> isSkillAcquiredbyStudentAtFirstLevel(Long studentID,Long skillId, Long skillLevelID);
+	
+	abstract Request<String> getCommentOfStudentForSkill(Long skillId,Long studentId);
+	
+	
 
 }

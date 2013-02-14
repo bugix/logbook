@@ -24,6 +24,7 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -62,9 +63,8 @@ public interface SkillView extends IsWidget{
 		void exportPDF();
 		//Boolean isSkillAcquiredbyStudentAtFirstLevel(Long studentID,Long skillId,Long skillLevelID);
 
-		void iconButtonClicked(SkillProxy skillProxy,
-				SkillLevelIconButtonViewImpl editButton);
-		
+		void iconButtonClicked(SkillProxy skillProxy, SkillLevelIconButtonViewImpl editButton);
+
 		
 	}
 	

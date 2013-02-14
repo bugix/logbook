@@ -44,6 +44,7 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -742,6 +743,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 	{
 		List<SkillProxy> data = result.getSkillList();
 		List<SkillLevels> skillAcquiredList = result.getSkilltLevelsAcquiredList();
+		List<String> skillComment =result.getSkillComment();
 		
 		int row=0;
 		int mainClassificationRow=0;
@@ -755,6 +757,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 			ClassificationTopicProxy ctProxy=tproxy.getClassificationTopic();
 			MainClassificationProxy mProxy=ctProxy.getMainClassification();
 			SkillLevels skillLevel = skillAcquiredList.get(i);
+			final String comment=skillComment.get(i);
 			
 			if(i==0)
 			{
@@ -897,8 +900,8 @@ public class SkillViewImpl extends Composite implements SkillView {
 			final SkillLevelTextAreaViewImpl commentTextArea = new SkillLevelTextAreaViewImpl();
 			//System.out.println(sproxy.getSkillComment());	
 			commentTextArea.getTextArea().addStyleName("skillTextArea");			
-			commentTextArea.getTextArea().setText(sproxy.getSkillComment()!=null && sproxy.getSkillComment().getComment() !=null ?UtilityLogBook.getFormatedString(sproxy.getSkillComment().getComment(),45):"");
-			commentTextArea.getTextArea().setTitle(sproxy.getSkillComment()!=null && sproxy.getSkillComment().getComment() !=null ?sproxy.getSkillComment().getComment():"");
+			commentTextArea.getTextArea().setText(UtilityLogBook.getFormatedString(comment,45));
+			commentTextArea.getTextArea().setTitle(comment);
 			skillFlexTable.setWidget(row,4,commentTextArea);
 			
 			final SkillLevelIconButtonViewImpl editButton = new SkillLevelIconButtonViewImpl();	
@@ -909,6 +912,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 			editButton.setSkillProxy(sproxy);
 			editButton.setDelegate(skillActivity);
 			editButton.setSave(false);
+			editButton.setSkillcomment(comment);
 			
 			final SkillProxy skillProxy =sproxy;
 			//editButton.addStyleName("skillEditButton");
@@ -948,14 +952,16 @@ public class SkillViewImpl extends Composite implements SkillView {
 				@Override
 				public void onClick(ClickEvent event) {
 					
-					System.out.println("is Save1" + editButton.isSave());
+					Log.info("is Save1" + editButton.isSave());
+					
 					//System.out.println("Skill Proxy : " +editButton.getSkillProxy().getId() + " Skill Comment: " +  editButton.getSkillProxy().getSkillComment().getId() + " Comment is :" + editButton.getSkillProxy().getSkillComment().getComment());
 					if(editButton.isSave()==false)
 					{
 						editButton.setSave(true);			
 						editButton.getIconButton().setClassName("ui-icon ui-icon-disk");	
 						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(editButton.getRow(),4)).getTextArea().setStyleName("skillTextAreaEnabled");	
-						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(editButton.getRow(),4)).getTextArea().setText(editButton.getSkillProxy().getSkillComment()!=null &&editButton.getSkillProxy().getSkillComment().getComment() !=null ?editButton.getSkillProxy().getSkillComment().getComment():"");
+						//((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(editButton.getRow(),4)).getTextArea().setText(editButton.getSkillProxy().getSkillComment()!=null &&editButton.getSkillProxy().getSkillComment().getComment() !=null ?editButton.getSkillProxy().getSkillComment().getComment():"");
+						((SkillLevelTextAreaViewImpl)skillFlexTable.getWidget(editButton.getRow(),4)).getTextArea().setText(editButton.getSkillcomment()!=null ? editButton.getSkillcomment():"");
 						
 					}
 					else{
