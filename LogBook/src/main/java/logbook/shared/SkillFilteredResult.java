@@ -24,6 +24,16 @@ public class SkillFilteredResult {
 	
 	List<String> mainClassificationProgress;
 	
+	List<String> skillComment;
+	
+	public List<String> getSkillComment() {
+		return skillComment;
+	}
+
+	public void setSkillComment(List<String> skillComment) {
+		this.skillComment = skillComment;
+	}
+
 	public List<String> getMainClassificationProgress() {
 		return mainClassificationProgress;
 	}
