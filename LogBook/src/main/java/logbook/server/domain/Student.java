@@ -38,25 +38,25 @@ import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 @RooJpaActiveRecord(finders = { "findStudentsByEmailEquals" })
 public class Student {
 
-    @Size(max = 45)
+    @Size(max = 255)
     private String studentId;
 
-    @Size(max = 50)
+    @Size(max = 255)
     private String shib_id;
 
     @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$")
-    @Size(max = 40)   
+    @Size(max = 255)   
     private String email;
 
     @Enumerated
     private Gender gender;
 
     @NotNull
-    @Size(max = 40)
+    @Size(max = 255)
     private String name;
 
     @NotNull
-    @Size(max = 40)
+    @Size(max = 255)
     private String preName;
 
     @Enumerated

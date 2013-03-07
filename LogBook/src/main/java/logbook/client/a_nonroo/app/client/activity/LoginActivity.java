@@ -505,12 +505,12 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 						else
 						{*/
 							final String email=popupView.getTxtEmailValue().getText();
-							if(email.length()>=40)
+							/*if(email.length()>=40)
 							{
 								view.getHpErrorMessage().setVisible(true);
 								view.getLblErrorMessage().setInnerText(constants.exceedEmailLength());
 								return;
-							}
+							}*/
 							final StudyYears studyYear=popupView.getLstBoxStudyYear().getValue();							
 							
 							StudentRequest studentRequest=requests.studentRequest();

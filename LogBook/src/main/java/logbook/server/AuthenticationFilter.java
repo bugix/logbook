@@ -134,7 +134,20 @@ public class AuthenticationFilter implements Filter {
 			// only  student of studyBranch 51 has the access, different StudyBranch has to be denied.
 			String studyBranch = request.getHeader(STUDY_BRANCH);
 			
-			if(isDigits(studyBranch) && ((int)createInteger(studyBranch)) == ALLOWED_STUDY_BRANCH) {
+			String[] allStudyBranch = StringUtils.split(studyBranch,";");
+			log.info("StudyBranch : " + studyBranch);
+			
+			boolean hasAllowedStudyBranch = false;
+			for (String sb : allStudyBranch) {
+				log.info("sb : " + sb);
+				if(isDigits(sb) && ((int)createInteger(sb)) == ALLOWED_STUDY_BRANCH) {
+					hasAllowedStudyBranch = true;
+					break;
+				}
+			}
+			
+			if(hasAllowedStudyBranch == true) {
+			/*if(isDigits(studyBranch) && ((int)createInteger(studyBranch)) == ALLOWED_STUDY_BRANCH) {*/
 				
 				// Session Management
 				HttpSession session = request.getSession(false);
