@@ -798,8 +798,9 @@ public class Skill {
 		CriteriaQuery<SkillAcquired> select = criteriaQuery.select(from);
 		Predicate p1=criteriaBuilder.and(criteriaBuilder.equal(from.get("student").get("id"), studentId));
 		Predicate p2=criteriaBuilder.and(criteriaBuilder.equal(from.get("skill").get("id"), skillId));
-		select.where(p1);
-		select.where(p2);
+		Predicate p=criteriaBuilder.and(p1,p2);
+		select.where(p);
+		//select.where(p2);
 		
 		TypedQuery<SkillAcquired> result=em.createQuery(criteriaQuery);
 		
