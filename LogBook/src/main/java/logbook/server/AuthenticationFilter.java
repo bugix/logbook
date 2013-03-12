@@ -138,14 +138,15 @@ public class AuthenticationFilter implements Filter {
 			log.info("StudyBranch : " + studyBranch);
 			
 			boolean hasAllowedStudyBranch = false;
-			for (String sb : allStudyBranch) {
-				log.info("sb : " + sb);
-				if(isDigits(sb) && ((int)createInteger(sb)) == ALLOWED_STUDY_BRANCH) {
-					hasAllowedStudyBranch = true;
-					break;
+			if(allStudyBranch != null) {
+				for (String sb : allStudyBranch) {
+					log.info("sb : " + sb);
+					if(isDigits(sb) && ((int)createInteger(sb)) == ALLOWED_STUDY_BRANCH) {
+						hasAllowedStudyBranch = true;
+						break;
+					}
 				}
 			}
-			
 			if(hasAllowedStudyBranch == true) {
 			/*if(isDigits(studyBranch) && ((int)createInteger(studyBranch)) == ALLOWED_STUDY_BRANCH) {*/
 				

@@ -81,6 +81,8 @@ public class CsvFileGeneratorServiceImpl  extends RemoteEventServiceServlet impl
 
 				writer.write("Student ID");
 				
+				writer.write("Email");
+				
 				Log.info("Skills " + allSkills.size());
 				
 				for(Skill skill : allSkills){
@@ -105,7 +107,8 @@ public class CsvFileGeneratorServiceImpl  extends RemoteEventServiceServlet impl
 				
 				for(Student student : allFinalizedStudent){
 					
-					writer.write(""+student.getId());
+					writer.write(student.getStudentId()!=null?student.getStudentId():null);
+					writer.write(student.getEmail()!=null ?student.getEmail():null);
 					
 					int [] acquiredArray = new int[allSkills.size()];
 					
@@ -129,6 +132,16 @@ public class CsvFileGeneratorServiceImpl  extends RemoteEventServiceServlet impl
 					
 				}
 				
+				writer.write(null);
+				writer.write(null);
+				
+				for(Skill skill:allSkills){
+					writer.write(""+skill.getSkillLevel().getLevelNumber());
+				}
+				writer.endRecord();
+				
+				writer.close();
+				
 				if(isChangeFinalizeToExportdSelected){
 				//changeStudentStatusExported(allFinalizedStudent);
 				
@@ -137,9 +150,7 @@ public class CsvFileGeneratorServiceImpl  extends RemoteEventServiceServlet impl
 						student.persist();
 					}
 				}
-				
-				writer.close();
-				
+							
 			
 		}catch(Exception e){
 			Log.info("Error is : " + e.getMessage());
