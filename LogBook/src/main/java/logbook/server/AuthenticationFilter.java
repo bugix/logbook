@@ -294,6 +294,7 @@ public class AuthenticationFilter implements Filter {
 				Student student = new Student();
 				// student_id : unique student id
 				student.setShib_id(uniqueID);
+				student.setStudentId(uniqueID);
 				if (isNotBlank(request.getHeader(EMAIL))) {
 					student.setEmail(request.getHeader(EMAIL));
 				}
