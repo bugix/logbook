@@ -1,0 +1,7 @@
+bin
+target
+war
+.project
+.classpath
+.settings
+log.roo
