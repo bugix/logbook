@@ -1,6 +1,8 @@
 bin
 target
 war
+build
+gwt-unitCache
 .project
 .classpath
 .settings
