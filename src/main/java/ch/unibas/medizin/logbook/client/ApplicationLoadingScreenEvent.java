@@ -2,8 +2,8 @@ package ch.unibas.medizin.logbook.client;
 
 import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ApplicationLoadingPopupViewImpl;
 
-import com.google.web.bindery.event.shared.EventBus;
 import com.google.gwt.event.shared.GwtEvent;
+import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 
 /**

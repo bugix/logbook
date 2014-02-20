@@ -2,11 +2,10 @@
 
 package ch.unibas.medizin.logbook.client.managed.proxy;
 
+import java.util.Date;
+
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
-import java.util.Date;
-import java.util.Set;
-import org.springframework.roo.addon.gwt.RooGwtProxy;
 
 @ProxyForName(value = "logbook.server.domain.SkillAcquired", locator = "logbook.server.locator.SkillAcquiredLocator")
 public interface SkillAcquiredProxy extends EntityProxy {

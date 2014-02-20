@@ -15,23 +15,22 @@
  */
 package ch.unibas.medizin.logbook.client.a_nonroo.app.client;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.layout.client.Layout;
 import com.google.gwt.layout.client.Layout.Layer;
 import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Widget;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Shows one panel at a time, sliding them left or right based on the order they

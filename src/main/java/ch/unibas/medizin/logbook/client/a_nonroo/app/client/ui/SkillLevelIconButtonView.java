@@ -3,8 +3,6 @@ package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui;
 
 
 import com.google.gwt.place.shared.Place;
-import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 
 public interface SkillLevelIconButtonView extends IsWidget{

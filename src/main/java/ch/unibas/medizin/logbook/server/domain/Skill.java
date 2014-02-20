@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +22,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.Version;
@@ -43,20 +43,20 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import ch.unibas.medizin.logbook.shared.SkillFilteredResult;
-import ch.unibas.medizin.logbook.shared.SkillLevels;
-import ch.unibas.medizin.logbook.shared.StudentStatus;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
+
+import ch.unibas.medizin.logbook.shared.SkillFilteredResult;
+import ch.unibas.medizin.logbook.shared.SkillLevels;
+import ch.unibas.medizin.logbook.shared.StudentStatus;
+
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 

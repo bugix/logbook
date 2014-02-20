@@ -10,10 +10,8 @@ import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.ProgressPlace;
 import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.SkillPlace;
 import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 import ch.unibas.medizin.logbook.client.managed.proxy.MainClassificationProxy;
-import ch.unibas.medizin.logbook.server.domain.MainClassification;
 import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
 import ch.unibas.medizin.logbook.shared.scaffold.Locale;
-import ch.unibas.medizin.logbook.shared.scaffold.Operation;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
@@ -21,7 +19,6 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
-
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.Window.Location;
 import com.google.inject.Inject;

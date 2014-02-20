@@ -2,9 +2,9 @@ package ch.unibas.medizin.logbook.client.scaffold.place;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 /**
  * Extends {@link AbstractProxyEditActivity} to first create an instance to edit

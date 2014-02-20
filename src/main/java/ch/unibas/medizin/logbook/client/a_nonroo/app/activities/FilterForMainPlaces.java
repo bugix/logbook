@@ -2,6 +2,8 @@ package ch.unibas.medizin.logbook.client.a_nonroo.app.activities;
 
 
 
+import ch.unibas.medizin.logbook.client.scaffold.place.ProxyListPlace;
+
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.FilteredActivityMapper;
 import com.google.gwt.place.shared.Place;

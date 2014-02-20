@@ -9,7 +9,6 @@ import static org.apache.commons.lang3.math.NumberUtils.createInteger;
 import static org.apache.commons.lang3.math.NumberUtils.isDigits;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,18 +19,17 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 
 import ch.unibas.medizin.logbook.server.domain.Administrator;
 import ch.unibas.medizin.logbook.server.domain.Student;
 import ch.unibas.medizin.logbook.shared.Gender;
 import ch.unibas.medizin.logbook.shared.StudentStatus;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 
 public class AuthenticationFilter implements Filter {
 	

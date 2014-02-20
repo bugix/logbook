@@ -3,13 +3,11 @@ package ch.unibas.medizin.logbook.client.a_nonroo.app;
 
 
 import ch.unibas.medizin.logbook.client.a_nonroo.app.client.LogBookAdminNav;
-import ch.unibas.medizin.logbook.client.a_nonroo.app.client.LogBookNav;
 import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Node;
 import com.google.gwt.dom.client.StyleInjector;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.place.shared.PlaceController;

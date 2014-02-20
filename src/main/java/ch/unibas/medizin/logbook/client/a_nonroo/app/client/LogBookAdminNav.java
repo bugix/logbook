@@ -9,7 +9,6 @@ import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.AdminPlace;
 import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
 
-import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.activity.shared.CachingActivityMapper;

@@ -4,7 +4,6 @@ package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui;
 
 import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
 import ch.unibas.medizin.logbook.client.managed.proxy.SkillAcquiredProxy;
-import ch.unibas.medizin.logbook.client.managed.proxy.SkillProxy;
 import ch.unibas.medizin.logbook.client.managed.proxy.StudentProxy;
 
 import com.google.gwt.dom.client.DivElement;
@@ -12,10 +11,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ToggleButton;

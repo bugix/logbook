@@ -2,7 +2,6 @@ package ch.unibas.medizin.logbook.shared;
 
 import java.util.List;
 
-import ch.unibas.medizin.logbook.server.domain.Skill;
 import ch.unibas.medizin.logbook.server.domain.Topic;
 
 public class TopicFilteredResult {

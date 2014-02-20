@@ -5,7 +5,6 @@ package ch.unibas.medizin.logbook.client.a_nonroo.app;
 import ch.unibas.medizin.logbook.client.a_nonroo.app.client.LogBookNav;
 import ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity.LoginActivity;
 import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.SkillViewImpl;
-import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.StudentInformationViewImpl;
 import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
 

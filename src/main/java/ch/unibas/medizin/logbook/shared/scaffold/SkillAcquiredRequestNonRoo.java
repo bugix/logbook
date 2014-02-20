@@ -4,7 +4,6 @@ import java.util.List;
 
 import ch.unibas.medizin.logbook.client.managed.proxy.SkillAcquiredProxy;
 import ch.unibas.medizin.logbook.client.managed.proxy.SkillProxy;
-import ch.unibas.medizin.logbook.client.managed.proxy.StudentProxy;
 import ch.unibas.medizin.logbook.server.domain.SkillAcquired;
 
 import com.google.web.bindery.requestfactory.shared.Request;

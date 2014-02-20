@@ -3,13 +3,11 @@ package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.c
 
 import java.util.Map;
 
-import com.google.gwt.text.shared.Renderer;
-import com.google.gwt.user.client.Window;
-
 import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
 import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.ValueRendererFactory;
-
 import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.param.Option;
+
+import com.google.gwt.text.shared.Renderer;
 
 
 public class DefaultValueRendererFactory<T, W extends EventHandlingValueHolderItem<T>> implements ValueRendererFactory<T, W> {

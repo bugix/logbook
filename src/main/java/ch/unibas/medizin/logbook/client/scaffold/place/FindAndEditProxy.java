@@ -2,11 +2,11 @@ package ch.unibas.medizin.logbook.client.scaffold.place;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.RequestFactory;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 /**
  * Extends {@link AbstractProxyEditActivity} to work from a {@link EntityProxyId}

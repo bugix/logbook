@@ -4,9 +4,11 @@ import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.ADMIN;
 import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.CURRENT_USER;
 import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.STUDENT;
 import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,16 +29,16 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import ch.unibas.medizin.logbook.shared.Gender;
-import ch.unibas.medizin.logbook.shared.StudentStatus;
-import ch.unibas.medizin.logbook.shared.StudyYears;
+
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.transaction.annotation.Transactional;
+
+import ch.unibas.medizin.logbook.shared.Gender;
+import ch.unibas.medizin.logbook.shared.StudentStatus;
+import ch.unibas.medizin.logbook.shared.StudyYears;
+
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 

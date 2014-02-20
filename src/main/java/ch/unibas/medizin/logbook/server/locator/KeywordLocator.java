@@ -1,9 +1,10 @@
 package ch.unibas.medizin.logbook.server.locator;
 
-import com.google.web.bindery.requestfactory.shared.Locator;
-import ch.unibas.medizin.logbook.server.domain.Keyword;
-import org.springframework.roo.addon.gwt.RooGwtLocator;
 import org.springframework.stereotype.Component;
+
+import ch.unibas.medizin.logbook.server.domain.Keyword;
+
+import com.google.web.bindery.requestfactory.shared.Locator;
 
 @Component
 public class KeywordLocator extends Locator<Keyword, Long> {

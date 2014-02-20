@@ -1,8 +1,8 @@
 package ch.unibas.medizin.logbook.client.scaffold.place;
 
-import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.view.client.HasData;
+import com.google.web.bindery.requestfactory.shared.EntityProxy;
 
 /**
  * A view of a list of {@link EntityProxy}s, which declares which properties it

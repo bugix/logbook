@@ -2,8 +2,6 @@
 
 package ch.unibas.medizin.logbook.client.managed.request;
 
-import org.springframework.roo.addon.gwt.RooGwtRequest;
-
 import ch.unibas.medizin.logbook.client.managed.proxy.SkillAcquiredProxy;
 
 import com.google.web.bindery.requestfactory.shared.InstanceRequest;

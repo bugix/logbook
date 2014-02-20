@@ -1,9 +1,10 @@
 package ch.unibas.medizin.logbook.server.locator;
 
-import com.google.web.bindery.requestfactory.shared.Locator;
-import ch.unibas.medizin.logbook.server.domain.Student;
-import org.springframework.roo.addon.gwt.RooGwtLocator;
 import org.springframework.stereotype.Component;
+
+import ch.unibas.medizin.logbook.server.domain.Student;
+
+import com.google.web.bindery.requestfactory.shared.Locator;
 
 @Component
 public class StudentLocator extends Locator<Student, Long> {

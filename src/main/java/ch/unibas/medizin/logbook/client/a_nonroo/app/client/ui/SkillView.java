@@ -2,8 +2,6 @@ package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui;
 
 
 
-import java.util.List;
-
 import ch.unibas.medizin.logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
 import ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity.SkillActivity;
 import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager;
@@ -16,15 +14,11 @@ import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.cl
 import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.DefaultSuggestBox;
 
 import com.google.gwt.dom.client.DivElement;
-import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 

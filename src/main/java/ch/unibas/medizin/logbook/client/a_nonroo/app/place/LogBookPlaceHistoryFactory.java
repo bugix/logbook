@@ -1,12 +1,6 @@
 package ch.unibas.medizin.logbook.client.a_nonroo.app.place;
 
 
-import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
-
-import com.allen_sauer.gwt.log.client.Log;
-import com.google.gwt.place.shared.PlaceTokenizer;
-import com.google.gwt.place.shared.WithTokenizers;
-import com.google.inject.Inject;
 
 public class LogBookPlaceHistoryFactory {
 	

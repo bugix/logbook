@@ -1,9 +1,7 @@
 package ch.unibas.medizin.logbook.client.a_nonroo.app.place;
 
 
-import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.PlaceHistoryMapperWithFactory;
-import com.google.gwt.place.shared.WithTokenizers;
 
 /**
  * This interface is the hub of your application's navigation system. It links

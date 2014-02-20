@@ -1,35 +1,5 @@
 package ch.unibas.medizin.logbook.client.scaffold;
 
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import ch.unibas.medizin.logbook.client.managed.request.ApplicationRequestFactory;
-import ch.unibas.medizin.logbook.client.scaffold.gae.GaeHelper;
-import ch.unibas.medizin.logbook.client.scaffold.place.PlaceHistoryFactory;
-import ch.unibas.medizin.logbook.client.scaffold.place.ProxyListPlace;
-import ch.unibas.medizin.logbook.client.scaffold.place.ProxyListPlacePicker;
-import ch.unibas.medizin.logbook.client.scaffold.place.ProxyPlaceToListPlace;
-import ch.unibas.medizin.logbook.client.scaffold.place.ScaffoldPlaceHistoryMapper;
-import ch.unibas.medizin.logbook.client.scaffold.request.RequestEvent;
-
-import com.google.gwt.activity.shared.ActivityManager;
-import com.google.gwt.activity.shared.ActivityMapper;
-import com.google.gwt.activity.shared.CachingActivityMapper;
-import com.google.gwt.activity.shared.FilteredActivityMapper;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.logging.client.LogConfiguration;
-import com.google.gwt.place.shared.PlaceController;
-import com.google.gwt.place.shared.PlaceHistoryHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.HasConstrainedValue;
-import com.google.gwt.user.client.ui.RootLayoutPanel;
-import com.google.inject.Inject;
-import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryLogHandler;
-import com.google.web.bindery.requestfactory.shared.LoggingRequest;
 
 
 /**

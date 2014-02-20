@@ -2,16 +2,10 @@
 package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-
-import com.allen_sauer.gwt.log.client.Log;
-import com.google.gwt.user.client.Window;
-
 import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestOracle;
-
 import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.param.Option;
 
 

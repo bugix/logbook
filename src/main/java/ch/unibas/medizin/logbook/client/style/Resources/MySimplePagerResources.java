@@ -1,6 +1,5 @@
 package ch.unibas.medizin.logbook.client.style.Resources;
 import com.google.gwt.resources.client.ImageResource;
-import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.SimplePager;
 
 public interface MySimplePagerResources extends SimplePager.Resources {

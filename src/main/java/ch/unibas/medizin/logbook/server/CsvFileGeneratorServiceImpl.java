@@ -8,6 +8,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Transactional;
+
 import ch.unibas.medizin.logbook.client.CsvFileGeneratorService;
 import ch.unibas.medizin.logbook.server.domain.ClassificationTopic;
 import ch.unibas.medizin.logbook.server.domain.MainClassification;
@@ -17,10 +21,6 @@ import ch.unibas.medizin.logbook.server.domain.Student;
 import ch.unibas.medizin.logbook.server.domain.Topic;
 import ch.unibas.medizin.logbook.shared.CsvFileGeneratorEvent;
 import ch.unibas.medizin.logbook.shared.StudentStatus;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.csvreader.CsvWriter;
 

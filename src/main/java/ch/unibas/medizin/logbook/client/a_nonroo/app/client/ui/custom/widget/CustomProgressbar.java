@@ -1,10 +1,11 @@
 
 package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget;
 
+import static ch.unibas.medizin.logbook.shared.util.UtilityLogBook.DECIMAL_FORMAT;
+
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Widget;
-import static ch.unibas.medizin.logbook.shared.util.UtilityLogBook.DECIMAL_FORMAT;
 
 /**
  * A widget that displays progress on an arbitrary scale.

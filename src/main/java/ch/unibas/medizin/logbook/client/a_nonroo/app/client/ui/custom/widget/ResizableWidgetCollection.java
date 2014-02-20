@@ -1,15 +1,15 @@
 package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.WindowResizeListener;
-
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  * A collection of {@link ResizableWidget} that periodically checks the outer

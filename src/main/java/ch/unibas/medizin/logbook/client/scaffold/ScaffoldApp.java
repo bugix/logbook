@@ -1,12 +1,12 @@
 package ch.unibas.medizin.logbook.client.scaffold;
 
-import ch.unibas.medizin.logbook.client.managed.request.ApplicationEntityTypesProcessor;
-import ch.unibas.medizin.logbook.client.scaffold.place.ProxyListPlace;
-import ch.unibas.medizin.logbook.client.scaffold.gae.*;
-import com.google.web.bindery.requestfactory.shared.EntityProxy;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import ch.unibas.medizin.logbook.client.managed.request.ApplicationEntityTypesProcessor;
+import ch.unibas.medizin.logbook.client.scaffold.place.ProxyListPlace;
+
+import com.google.web.bindery.requestfactory.shared.EntityProxy;
 
 public class ScaffoldApp {
 

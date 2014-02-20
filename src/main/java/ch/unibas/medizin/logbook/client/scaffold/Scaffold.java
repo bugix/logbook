@@ -2,6 +2,7 @@ package ch.unibas.medizin.logbook.client.scaffold;
 
 import ch.unibas.medizin.logbook.client.scaffold.ioc.DesktopInjectorWrapper;
 import ch.unibas.medizin.logbook.client.scaffold.ioc.InjectorWrapper;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 

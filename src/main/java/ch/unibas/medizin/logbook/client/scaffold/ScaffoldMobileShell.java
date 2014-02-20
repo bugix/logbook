@@ -1,6 +1,7 @@
 package ch.unibas.medizin.logbook.client.scaffold;
 
 import ch.unibas.medizin.logbook.client.scaffold.ui.LoginWidget;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.uibinder.client.UiBinder;

@@ -4,14 +4,10 @@ package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.c
 import ch.unibas.medizin.logbook.client.style.widgets.IconButton;
 import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.AdvancedTextBox;
 
-
-
-
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.event.dom.client.BlurHandler;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.DoubleClickHandler;
 import com.google.gwt.event.dom.client.FocusHandler;

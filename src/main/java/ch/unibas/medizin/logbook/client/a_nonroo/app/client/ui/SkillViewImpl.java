@@ -44,7 +44,6 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -1037,51 +1036,4 @@ public class SkillViewImpl extends Composite implements SkillView {
 	{
 		delegate.exportPDF();
 	}
-	
-	// Detete button
-			/*addColumn(new ActionCell<SkillProxy>(
-					new SafeHtmlBuilder().appendHtmlConstant("<span class=\"ui-icon ui-icon-trash\"></span>").toSafeHtml()
-, new ActionCell.Delegate<SpecialisationProxy>() {
-						public void execute(final SpecialisationProxy specialization) {
-							//Window.alert("You clicked " + institution.getInstitutionName());
-							
-							if(Window.confirm("wirklich löschen?"))
-								delegate.deleteClicked(specialization);
-							
-							// Issue Role
-							 final MessageConfirmationDialogBox dialogBox=new MessageConfirmationDialogBox(constants.warning());
-							 dialogBox.showYesNoDialog(constants.reallyDelete());
-							 dialogBox.getYesBtn().addClickHandler(new ClickHandler() {
-									
-									@Override
-									public void onClick(ClickEvent event) {
-										dialogBox.hide();									
-										Log.info("yes click");
-										delegate.deleteClicked(specialization);
-										return;
-
-											}
-										});
-
-								dialogBox.getNoBtnl().addClickHandler(new ClickHandler() {
-									
-									@Override
-									public void onClick(ClickEvent event) {
-										dialogBox.hide();
-										Log.info("no click");
-										return;
-										
-									}
-								});
-							// E: Issue Role
-							
-						}
-					}), "", new GetValue<SkillProxy>() {
-				public SkillProxy getValue(SkillProxy specialization) {
-					return specialization;
-				}
-			}, null);
-*/
-	
-	
 }

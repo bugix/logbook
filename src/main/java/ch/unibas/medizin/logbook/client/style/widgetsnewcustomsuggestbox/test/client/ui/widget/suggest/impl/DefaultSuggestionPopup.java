@@ -3,7 +3,6 @@ package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.c
 
 import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestWidget;
 
-import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;

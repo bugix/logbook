@@ -5,7 +5,6 @@ package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui;
 import ch.unibas.medizin.logbook.client.managed.proxy.SkillProxy;
 
 import com.google.gwt.place.shared.Place;
-import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.IsWidget;
 
 public interface SkillLevelCheckboxView extends IsWidget{

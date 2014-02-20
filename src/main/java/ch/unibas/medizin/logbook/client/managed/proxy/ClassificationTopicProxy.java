@@ -4,8 +4,6 @@ package ch.unibas.medizin.logbook.client.managed.proxy;
 
 import java.util.List;
 
-import org.springframework.roo.addon.gwt.RooGwtProxy;
-
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
 

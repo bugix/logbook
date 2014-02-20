@@ -1,11 +1,10 @@
 package ch.unibas.medizin.logbook.client.scaffold.ui;
 
-import ch.unibas.medizin.logbook.client.scaffold.ScaffoldMobileApp;
 import ch.unibas.medizin.logbook.client.scaffold.place.AbstractProxyListView;
 import ch.unibas.medizin.logbook.client.scaffold.place.ProxyListView;
+
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.core.client.GWT;
-import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.text.shared.SafeHtmlRenderer;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -13,6 +12,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.web.bindery.requestfactory.shared.EntityProxy;
 
 /**
  * An implementation of {@link ProxyListView} used in mobile applications

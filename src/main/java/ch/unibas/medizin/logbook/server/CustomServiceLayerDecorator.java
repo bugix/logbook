@@ -1,9 +1,10 @@
 package ch.unibas.medizin.logbook.server;
 
-import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;
-import com.google.web.bindery.requestfactory.shared.Locator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;
+import com.google.web.bindery.requestfactory.shared.Locator;
 
 public class CustomServiceLayerDecorator extends ServiceLayerDecorator {
 

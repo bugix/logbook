@@ -2,7 +2,6 @@ package ch.unibas.medizin.logbook.client.a_nonroo.app.client;
 
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
-import com.google.gwt.user.cellview.client.Header;
 /**
  * Constants that can be used throughout the application.
  * @author masterthesis

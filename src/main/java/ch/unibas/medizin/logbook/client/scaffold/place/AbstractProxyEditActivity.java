@@ -1,16 +1,20 @@
 package ch.unibas.medizin.logbook.client.scaffold.place;
 
+import java.util.Set;
+
 import javax.validation.ConstraintViolation;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
-import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
-import com.google.web.bindery.requestfactory.shared.*;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-
-import java.util.Set;
+import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
+import com.google.web.bindery.requestfactory.shared.EntityProxy;
+import com.google.web.bindery.requestfactory.shared.EntityProxyId;
+import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.google.web.bindery.requestfactory.shared.RequestContext;
+import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 /**
  * Abstract activity for editing a record. Subclasses must provide access to the

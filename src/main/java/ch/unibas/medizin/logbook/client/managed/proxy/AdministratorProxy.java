@@ -4,7 +4,6 @@ package ch.unibas.medizin.logbook.client.managed.proxy;
 
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
-import org.springframework.roo.addon.gwt.RooGwtProxy;
 
 @ProxyForName(value = "logbook.server.domain.Administrator", locator = "logbook.server.locator.AdministratorLocator")
 public interface AdministratorProxy extends EntityProxy {

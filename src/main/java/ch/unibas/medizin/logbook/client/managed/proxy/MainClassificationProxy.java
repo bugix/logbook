@@ -2,11 +2,10 @@
 
 package ch.unibas.medizin.logbook.client.managed.proxy;
 
+import java.util.List;
+
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
-import java.util.List;
-import java.util.Set;
-import org.springframework.roo.addon.gwt.RooGwtProxy;
 
 @ProxyForName(value = "logbook.server.domain.MainClassification", locator = "logbook.server.locator.MainClassificationLocator")
 public interface MainClassificationProxy extends EntityProxy {

@@ -1,20 +1,30 @@
 package ch.unibas.medizin.logbook.client.scaffold.place;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
-import com.google.web.bindery.requestfactory.shared.*;
 import com.google.gwt.user.cellview.client.AbstractHasData;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.gwt.view.client.*;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.google.gwt.view.client.HasData;
+import com.google.gwt.view.client.ProvidesKey;
+import com.google.gwt.view.client.Range;
+import com.google.gwt.view.client.RangeChangeEvent;
+import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SingleSelectionModel;
+import com.google.web.bindery.requestfactory.shared.EntityProxy;
+import com.google.web.bindery.requestfactory.shared.EntityProxyChange;
+import com.google.web.bindery.requestfactory.shared.EntityProxyId;
+import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.google.web.bindery.requestfactory.shared.Request;
+import com.google.web.bindery.requestfactory.shared.WriteOperation;
 
 /**
  * Abstract activity for displaying a list of {@link EntityProxy}. These

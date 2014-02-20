@@ -1,9 +1,9 @@
 package ch.unibas.medizin.logbook.client.scaffold.place;
 
 import com.google.gwt.editor.client.HasEditorErrors;
+import com.google.gwt.user.client.ui.IsWidget;
 import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
-import com.google.gwt.user.client.ui.IsWidget;
 
 /**
  * Implemented by views that edit {@link EntityProxy}s.

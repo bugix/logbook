@@ -1,16 +1,16 @@
 package ch.unibas.medizin.logbook.client.a_nonroo.app.client.dnd3;
 
+import com.allen_sauer.gwt.dnd.client.DragContext;
+import com.allen_sauer.gwt.dnd.client.drop.AbstractInsertPanelDropController;
+import com.allen_sauer.gwt.dnd.client.drop.DropController;
+import com.allen_sauer.gwt.dnd.client.util.DOMUtil;
+import com.allen_sauer.gwt.dnd.client.util.DragClientBundle;
+import com.allen_sauer.gwt.dnd.client.util.LocationWidgetComparator;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-
-import com.allen_sauer.gwt.dnd.client.DragContext;
-import com.allen_sauer.gwt.dnd.client.drop.AbstractInsertPanelDropController;
-import com.allen_sauer.gwt.dnd.client.util.DOMUtil;
-import com.allen_sauer.gwt.dnd.client.util.DragClientBundle;
-import com.allen_sauer.gwt.dnd.client.util.LocationWidgetComparator;
 
 /**
  * A {@link DropController} for instances of {@link VerticalPanel}.
