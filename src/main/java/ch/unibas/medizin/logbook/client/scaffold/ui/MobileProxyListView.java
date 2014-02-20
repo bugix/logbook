@@ -1,8 +1,8 @@
-package logbook.client.scaffold.ui;
+package ch.unibas.medizin.logbook.client.scaffold.ui;
 
-import logbook.client.scaffold.ScaffoldMobileApp;
-import logbook.client.scaffold.place.AbstractProxyListView;
-import logbook.client.scaffold.place.ProxyListView;
+import ch.unibas.medizin.logbook.client.scaffold.ScaffoldMobileApp;
+import ch.unibas.medizin.logbook.client.scaffold.place.AbstractProxyListView;
+import ch.unibas.medizin.logbook.client.scaffold.place.ProxyListView;
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.core.client.GWT;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;

@@ -1,7 +1,7 @@
-package logbook.client.a_nonroo.app.ioc;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.ioc;
 
 
-import logbook.client.a_nonroo.app.LogBookApplication;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.LogBookApplication;
 
 import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;

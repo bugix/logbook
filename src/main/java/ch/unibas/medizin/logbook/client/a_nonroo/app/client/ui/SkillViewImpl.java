@@ -1,23 +1,23 @@
-package logbook.client.a_nonroo.app.client.ui;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
-import logbook.client.a_nonroo.app.client.activity.SkillActivity;
-import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager;
-import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager.RangeChangeListener;
-import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
-import logbook.client.managed.proxy.ClassificationTopicProxy;
-import logbook.client.managed.proxy.MainClassificationProxy;
-import logbook.client.managed.proxy.SkillProxy;
-import logbook.client.managed.proxy.StudentProxy;
-import logbook.client.managed.proxy.TopicProxy;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.DefaultSuggestBox;
-import logbook.shared.SkillLevels;
-import logbook.shared.i18n.LogBookConstants;
-import logbook.shared.util.UtilityLogBook;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity.SkillActivity;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager.RangeChangeListener;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
+import ch.unibas.medizin.logbook.client.managed.proxy.ClassificationTopicProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.MainClassificationProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.SkillProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.StudentProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.TopicProxy;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.DefaultSuggestBox;
+import ch.unibas.medizin.logbook.shared.SkillLevels;
+import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
+import ch.unibas.medizin.logbook.shared.util.UtilityLogBook;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;

@@ -1,4 +1,4 @@
-package logbook.client.scaffold.place;
+package ch.unibas.medizin.logbook.client.scaffold.place;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;

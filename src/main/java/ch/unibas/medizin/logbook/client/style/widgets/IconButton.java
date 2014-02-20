@@ -1,4 +1,4 @@
-package logbook.client.style.widgets;
+package ch.unibas.medizin.logbook.client.style.widgets;
 
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.resources.client.ImageResource;

@@ -1,7 +1,7 @@
-package logbook.client.a_nonroo.app.ioc;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.ioc;
 
 
-import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;

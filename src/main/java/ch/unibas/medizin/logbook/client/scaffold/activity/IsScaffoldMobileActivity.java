@@ -1,4 +1,4 @@
-package logbook.client.scaffold.activity;
+package ch.unibas.medizin.logbook.client.scaffold.activity;
 
 import com.google.gwt.place.shared.Place;
 

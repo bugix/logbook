@@ -1,11 +1,11 @@
-package logbook.shared.scaffold;
+package ch.unibas.medizin.logbook.shared.scaffold;
 
 import java.util.List;
 
-import logbook.client.a_nonroo.app.client.TopicFilteredResultProxy;
-import logbook.client.managed.proxy.StudentProxy;
-import logbook.client.managed.proxy.TopicProxy;
-import logbook.server.domain.Topic;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.TopicFilteredResultProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.StudentProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.TopicProxy;
+import ch.unibas.medizin.logbook.server.domain.Topic;
 
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;

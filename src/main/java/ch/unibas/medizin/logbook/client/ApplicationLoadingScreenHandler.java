@@ -1,4 +1,4 @@
-package logbook.client;
+package ch.unibas.medizin.logbook.client;
 
 import com.google.gwt.event.shared.EventHandler;
 

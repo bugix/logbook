@@ -1,4 +1,4 @@
-package logbook.client.scaffold.place;
+package ch.unibas.medizin.logbook.client.scaffold.place;
 
 import com.google.gwt.editor.client.HasEditorErrors;
 import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;

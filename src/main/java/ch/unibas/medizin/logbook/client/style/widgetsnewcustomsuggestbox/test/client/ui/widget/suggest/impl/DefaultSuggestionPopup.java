@@ -1,7 +1,7 @@
 
-package logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl;
+package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl;
 
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestWidget;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestWidget;
 
 import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.Position;

@@ -1,6 +1,6 @@
-package logbook.client.a_nonroo.app;
+package ch.unibas.medizin.logbook.client.a_nonroo.app;
 
-import logbook.client.a_nonroo.app.ioc.LogBookInjector;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.ioc.LogBookInjector;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.EntryPoint;

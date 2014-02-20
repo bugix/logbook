@@ -1,4 +1,4 @@
-package logbook.client.a_nonroo.app.client;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.resources.client.ImageResource.ImageOptions;
 import com.google.gwt.resources.client.ImageResource.RepeatStyle;

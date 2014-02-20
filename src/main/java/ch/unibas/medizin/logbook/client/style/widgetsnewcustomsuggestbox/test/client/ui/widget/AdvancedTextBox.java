@@ -1,5 +1,5 @@
 
-package logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget;
+package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget;
 
 
 

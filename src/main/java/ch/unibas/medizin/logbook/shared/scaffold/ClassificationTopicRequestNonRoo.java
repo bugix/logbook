@@ -1,9 +1,9 @@
-package logbook.shared.scaffold;
+package ch.unibas.medizin.logbook.shared.scaffold;
 
 import java.util.List;
 
-import logbook.client.managed.proxy.ClassificationTopicProxy;
-import logbook.server.domain.ClassificationTopic;
+import ch.unibas.medizin.logbook.client.managed.proxy.ClassificationTopicProxy;
+import ch.unibas.medizin.logbook.server.domain.ClassificationTopic;
 
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;

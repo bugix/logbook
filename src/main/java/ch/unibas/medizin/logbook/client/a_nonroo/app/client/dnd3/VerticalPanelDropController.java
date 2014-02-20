@@ -1,4 +1,4 @@
-package logbook.client.a_nonroo.app.client.dnd3;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.dnd3;
 
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;

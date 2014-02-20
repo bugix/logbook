@@ -1,8 +1,8 @@
-package logbook.shared;
+package ch.unibas.medizin.logbook.shared;
 
 import com.google.gwt.core.shared.GWT;
 
-import logbook.shared.i18n.LogBookConstants;
+import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
 
 
 public enum SkillLevels {

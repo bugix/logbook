@@ -1,14 +1,14 @@
-package logbook.client.a_nonroo.app.client.ui;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui;
 
 
 
 import java.util.List;
 
-import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager;
-import logbook.client.managed.proxy.ClassificationTopicProxy;
-import logbook.client.managed.proxy.MainClassificationProxy;
-import logbook.client.managed.proxy.StudentProxy;
-import logbook.client.managed.proxy.TopicProxy;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager;
+import ch.unibas.medizin.logbook.client.managed.proxy.ClassificationTopicProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.MainClassificationProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.StudentProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.TopicProxy;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.FlexTable;

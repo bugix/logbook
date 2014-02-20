@@ -1,8 +1,8 @@
-package logbook.client;
+package ch.unibas.medizin.logbook.client;
 
 
 
-import logbook.shared.scaffold.LogBookConstant;
+import ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.GwtEvent;

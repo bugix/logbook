@@ -1,7 +1,7 @@
-package logbook.client.a_nonroo.app.client.ui;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui;
 
-import logbook.shared.Comparison;
-import logbook.shared.i18n.LogBookConstantsWithLookup;
+import ch.unibas.medizin.logbook.shared.Comparison;
+import ch.unibas.medizin.logbook.shared.i18n.LogBookConstantsWithLookup;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.text.shared.AbstractRenderer;

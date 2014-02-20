@@ -1,18 +1,18 @@
-package logbook.client.a_nonroo.app;
+package ch.unibas.medizin.logbook.client.a_nonroo.app;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import logbook.client.a_nonroo.app.activities.LogBookActivityMapper;
-import logbook.client.a_nonroo.app.client.LogBookAdminNav;
-import logbook.client.a_nonroo.app.client.LogBookNav;
-import logbook.client.a_nonroo.app.client.place.AdminPlace;
-import logbook.client.a_nonroo.app.client.place.LogBookPlaceHistoryFactory;
-import logbook.client.a_nonroo.app.client.place.LogBookPlaceHistoryMapper;
-import logbook.client.a_nonroo.app.client.place.LoginPlace;
-import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
-import logbook.client.scaffold.request.RequestEvent;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.activities.LogBookActivityMapper;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.LogBookAdminNav;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.LogBookNav;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.AdminPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.LogBookPlaceHistoryFactory;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.LogBookPlaceHistoryMapper;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.LoginPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.scaffold.request.RequestEvent;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;

@@ -1,8 +1,8 @@
-package logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest;
+package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest;
 
 
-import logbook.client.style.widgets.IconButton;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.AdvancedTextBox;
+import ch.unibas.medizin.logbook.client.style.widgets.IconButton;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.AdvancedTextBox;
 
 
 

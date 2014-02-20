@@ -1,9 +1,9 @@
-package logbook.client.a_nonroo.app.client;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client;
 
 import java.util.List;
 
-import logbook.client.managed.proxy.TopicProxy;
-import logbook.shared.TopicFilteredResult;
+import ch.unibas.medizin.logbook.client.managed.proxy.TopicProxy;
+import ch.unibas.medizin.logbook.shared.TopicFilteredResult;
 
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 import com.google.web.bindery.requestfactory.shared.ValueProxy;

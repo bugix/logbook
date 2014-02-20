@@ -1,4 +1,4 @@
-package logbook.server;
+package ch.unibas.medizin.logbook.server;
 
 import static logbook.shared.scaffold.LogBookConstant.ADMIN;
 import static logbook.shared.scaffold.LogBookConstant.CURRENT_USER;
@@ -25,10 +25,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import logbook.server.domain.Administrator;
-import logbook.server.domain.Student;
-import logbook.shared.Gender;
-import logbook.shared.StudentStatus;
+import ch.unibas.medizin.logbook.server.domain.Administrator;
+import ch.unibas.medizin.logbook.server.domain.Student;
+import ch.unibas.medizin.logbook.shared.Gender;
+import ch.unibas.medizin.logbook.shared.StudentStatus;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;

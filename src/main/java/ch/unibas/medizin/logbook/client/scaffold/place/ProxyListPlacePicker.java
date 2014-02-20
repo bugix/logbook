@@ -1,4 +1,4 @@
-package logbook.client.scaffold.place;
+package ch.unibas.medizin.logbook.client.scaffold.place;
 
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;

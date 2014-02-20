@@ -1,7 +1,7 @@
-package logbook.client.a_nonroo.app.client.place;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.place;
 
-import logbook.client.a_nonroo.app.client.LogBookNav;
-import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.LogBookNav;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.place.shared.PlaceTokenizer;

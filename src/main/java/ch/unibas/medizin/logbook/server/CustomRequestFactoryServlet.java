@@ -1,4 +1,4 @@
-package logbook.server;
+package ch.unibas.medizin.logbook.server;
 
 import com.google.web.bindery.requestfactory.server.DefaultExceptionHandler;
 import com.google.web.bindery.requestfactory.server.ExceptionHandler;

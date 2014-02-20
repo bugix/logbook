@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package logbook.client.a_nonroo.app.client;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.dom.client.Style.Unit;

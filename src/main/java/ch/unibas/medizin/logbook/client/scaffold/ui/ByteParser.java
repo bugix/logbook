@@ -1,4 +1,4 @@
-package logbook.client.scaffold.ui;
+package ch.unibas.medizin.logbook.client.scaffold.ui;
 
 import com.google.gwt.text.shared.Parser;
 

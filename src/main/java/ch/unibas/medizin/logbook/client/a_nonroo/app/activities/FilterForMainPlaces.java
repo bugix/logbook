@@ -1,4 +1,4 @@
-package logbook.client.a_nonroo.app.activities;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.activities;
 
 
 

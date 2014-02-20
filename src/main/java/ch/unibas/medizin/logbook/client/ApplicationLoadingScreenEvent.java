@@ -1,6 +1,6 @@
-package logbook.client;
+package ch.unibas.medizin.logbook.client;
 
-import logbook.client.a_nonroo.app.client.ApplicationLoadingPopupViewImpl;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ApplicationLoadingPopupViewImpl;
 
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.gwt.event.shared.GwtEvent;

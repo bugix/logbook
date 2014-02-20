@@ -1,17 +1,17 @@
 
-package logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl;
+package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl;
 
 import java.util.ArrayList;
 
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.AbstractSuggestBox;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestOracle;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestOracle.Request;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestPossibilitiesCallBack;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestTextBoxWidget;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestTextBoxWidgetImpl;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultSuggestOracle;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultValueRenderer;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.AbstractSuggestBox;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestOracle;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestOracle.Request;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestPossibilitiesCallBack;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestTextBoxWidget;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestTextBoxWidgetImpl;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultSuggestOracle;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultValueRenderer;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;

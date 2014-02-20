@@ -1,6 +1,6 @@
-package logbook.client.a_nonroo.app.request;
-import logbook.client.managed.request.ApplicationRequestFactory;
-import logbook.client.managed.request.MainClassificationRequest;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.request;
+import ch.unibas.medizin.logbook.client.managed.request.ApplicationRequestFactory;
+import ch.unibas.medizin.logbook.client.managed.request.MainClassificationRequest;
 
 /**
  * "API generated" factory interface to build request objects for the methods of

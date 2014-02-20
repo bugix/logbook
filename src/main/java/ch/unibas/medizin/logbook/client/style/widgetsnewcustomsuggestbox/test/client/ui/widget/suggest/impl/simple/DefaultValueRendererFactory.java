@@ -1,15 +1,15 @@
 
-package logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple;
+package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple;
 
 import java.util.Map;
 
 import com.google.gwt.text.shared.Renderer;
 import com.google.gwt.user.client.Window;
 
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.ValueRendererFactory;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.ValueRendererFactory;
 
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.param.Option;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.param.Option;
 
 
 public class DefaultValueRendererFactory<T, W extends EventHandlingValueHolderItem<T>> implements ValueRendererFactory<T, W> {

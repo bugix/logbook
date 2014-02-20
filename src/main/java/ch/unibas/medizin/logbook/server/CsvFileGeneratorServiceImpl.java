@@ -1,4 +1,4 @@
-package logbook.server;
+package ch.unibas.medizin.logbook.server;
 /**
  * @author Manish
  */
@@ -8,15 +8,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
 
-import logbook.client.CsvFileGeneratorService;
-import logbook.server.domain.ClassificationTopic;
-import logbook.server.domain.MainClassification;
-import logbook.server.domain.Skill;
-import logbook.server.domain.SkillAcquired;
-import logbook.server.domain.Student;
-import logbook.server.domain.Topic;
-import logbook.shared.CsvFileGeneratorEvent;
-import logbook.shared.StudentStatus;
+import ch.unibas.medizin.logbook.client.CsvFileGeneratorService;
+import ch.unibas.medizin.logbook.server.domain.ClassificationTopic;
+import ch.unibas.medizin.logbook.server.domain.MainClassification;
+import ch.unibas.medizin.logbook.server.domain.Skill;
+import ch.unibas.medizin.logbook.server.domain.SkillAcquired;
+import ch.unibas.medizin.logbook.server.domain.Student;
+import ch.unibas.medizin.logbook.server.domain.Topic;
+import ch.unibas.medizin.logbook.shared.CsvFileGeneratorEvent;
+import ch.unibas.medizin.logbook.shared.StudentStatus;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;

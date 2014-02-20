@@ -1,6 +1,6 @@
-package logbook.client.a_nonroo.app.client.place;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.place;
 
-import logbook.client.a_nonroo.app.client.LogBookNav;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.LogBookNav;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.event.shared.HandlerManager;

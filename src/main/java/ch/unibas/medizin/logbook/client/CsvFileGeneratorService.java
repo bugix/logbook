@@ -1,4 +1,4 @@
-package logbook.client;
+package ch.unibas.medizin.logbook.client;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;

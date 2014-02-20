@@ -1,19 +1,19 @@
-package logbook.client.a_nonroo.app.client.ui;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui;
 
 
 
 import java.util.List;
 
-import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
-import logbook.client.a_nonroo.app.client.activity.SkillActivity;
-import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager;
-import logbook.client.managed.proxy.ClassificationTopicProxy;
-import logbook.client.managed.proxy.MainClassificationProxy;
-import logbook.client.managed.proxy.SkillProxy;
-import logbook.client.managed.proxy.StudentProxy;
-import logbook.client.managed.proxy.TopicProxy;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.DefaultSuggestBox;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity.SkillActivity;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget.CustomPager;
+import ch.unibas.medizin.logbook.client.managed.proxy.ClassificationTopicProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.MainClassificationProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.SkillProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.StudentProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.TopicProxy;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.DefaultSuggestBox;
 
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.SpanElement;

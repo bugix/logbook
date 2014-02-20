@@ -1,4 +1,4 @@
-package logbook.client.a_nonroo.app.client.activity;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity;
 
 
 import static logbook.shared.util.UtilityLogBook.DECIMAL_FORMAT;
@@ -10,20 +10,20 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
-import logbook.client.a_nonroo.app.client.LogBookNav;
-import logbook.client.a_nonroo.app.client.place.LoginPlace;
-import logbook.client.a_nonroo.app.client.ui.StudentEditPopupViewImpl;
-import logbook.client.a_nonroo.app.client.ui.StudentInformationView;
-import logbook.client.a_nonroo.app.client.ui.StudentInformationViewImpl;
-import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
-import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
-import logbook.client.managed.proxy.SkillAcquiredProxy;
-import logbook.client.managed.proxy.StudentProxy;
-import logbook.client.managed.request.StudentRequest;
-import logbook.shared.StudentStatus;
-import logbook.shared.StudyYears;
-import logbook.shared.i18n.LogBookConstants;
-import logbook.shared.scaffold.LogBookConstant;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.LogBookNav;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.LoginPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.StudentEditPopupViewImpl;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.StudentInformationView;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.StudentInformationViewImpl;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.managed.proxy.SkillAcquiredProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.StudentProxy;
+import ch.unibas.medizin.logbook.client.managed.request.StudentRequest;
+import ch.unibas.medizin.logbook.shared.StudentStatus;
+import ch.unibas.medizin.logbook.shared.StudyYears;
+import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
+import ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;

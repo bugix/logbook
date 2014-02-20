@@ -1,6 +1,6 @@
 // WARNING: THIS FILE IS MANAGED BY SPRING ROO.
 
-package logbook.client.managed.request;
+package ch.unibas.medizin.logbook.client.managed.request;
 
 import com.google.web.bindery.requestfactory.shared.InstanceRequest;
 import com.google.web.bindery.requestfactory.shared.Request;

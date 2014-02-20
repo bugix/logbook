@@ -1,13 +1,13 @@
 // WARNING: THIS FILE IS MANAGED BY SPRING ROO.
 
-package logbook.client.managed.proxy;
+package ch.unibas.medizin.logbook.client.managed.proxy;
 
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
 import java.util.Set;
-import logbook.shared.Gender;
-import logbook.shared.StudentStatus;
-import logbook.shared.StudyYears;
+import ch.unibas.medizin.logbook.shared.Gender;
+import ch.unibas.medizin.logbook.shared.StudentStatus;
+import ch.unibas.medizin.logbook.shared.StudyYears;
 import org.springframework.roo.addon.gwt.RooGwtProxy;
 
 @ProxyForName(value = "logbook.server.domain.Student", locator = "logbook.server.locator.StudentLocator")

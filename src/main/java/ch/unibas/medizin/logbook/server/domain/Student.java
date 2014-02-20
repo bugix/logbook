@@ -1,4 +1,4 @@
-package logbook.server.domain;
+package ch.unibas.medizin.logbook.server.domain;
 
 import static logbook.shared.scaffold.LogBookConstant.ADMIN;
 import static logbook.shared.scaffold.LogBookConstant.CURRENT_USER;
@@ -27,9 +27,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import logbook.shared.Gender;
-import logbook.shared.StudentStatus;
-import logbook.shared.StudyYears;
+import ch.unibas.medizin.logbook.shared.Gender;
+import ch.unibas.medizin.logbook.shared.StudentStatus;
+import ch.unibas.medizin.logbook.shared.StudyYears;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Configurable;

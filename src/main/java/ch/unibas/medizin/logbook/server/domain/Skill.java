@@ -1,4 +1,4 @@
-package logbook.server.domain;
+package ch.unibas.medizin.logbook.server.domain;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -43,9 +43,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import logbook.shared.SkillFilteredResult;
-import logbook.shared.SkillLevels;
-import logbook.shared.StudentStatus;
+import ch.unibas.medizin.logbook.shared.SkillFilteredResult;
+import ch.unibas.medizin.logbook.shared.SkillLevels;
+import ch.unibas.medizin.logbook.shared.StudentStatus;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

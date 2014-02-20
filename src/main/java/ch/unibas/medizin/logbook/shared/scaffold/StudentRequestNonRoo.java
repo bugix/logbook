@@ -1,7 +1,7 @@
-package logbook.shared.scaffold;
+package ch.unibas.medizin.logbook.shared.scaffold;
 
-import logbook.client.managed.proxy.StudentProxy;
-import logbook.server.domain.Student;
+import ch.unibas.medizin.logbook.client.managed.proxy.StudentProxy;
+import ch.unibas.medizin.logbook.server.domain.Student;
 
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;

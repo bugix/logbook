@@ -1,4 +1,4 @@
-package logbook.client.a_nonroo.app.client.activity;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity;
 
 
 import java.util.List;
@@ -6,17 +6,17 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
-import logbook.client.ApplicationLoadingScreenEvent;
-import logbook.client.ApplicationLoadingScreenHandler;
-import logbook.client.a_nonroo.app.client.TopicFilteredResultProxy;
-import logbook.client.a_nonroo.app.client.place.ProgressPlace;
-import logbook.client.a_nonroo.app.client.ui.ProgressView;
-import logbook.client.a_nonroo.app.client.ui.ProgressViewImpl;
-import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
-import logbook.client.managed.proxy.ClassificationTopicProxy;
-import logbook.client.managed.proxy.MainClassificationProxy;
-import logbook.client.managed.proxy.StudentProxy;
-import logbook.client.managed.proxy.TopicProxy;
+import ch.unibas.medizin.logbook.client.ApplicationLoadingScreenEvent;
+import ch.unibas.medizin.logbook.client.ApplicationLoadingScreenHandler;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.TopicFilteredResultProxy;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.ProgressPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.ProgressView;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.ProgressViewImpl;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.managed.proxy.ClassificationTopicProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.MainClassificationProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.StudentProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.TopicProxy;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;

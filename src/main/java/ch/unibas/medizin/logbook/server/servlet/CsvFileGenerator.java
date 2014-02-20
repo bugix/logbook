@@ -1,4 +1,4 @@
-package logbook.server.servlet;
+package ch.unibas.medizin.logbook.server.servlet;
 
 import java.io.File;
 import java.io.IOException;

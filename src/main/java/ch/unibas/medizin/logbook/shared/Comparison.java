@@ -1,4 +1,4 @@
-package logbook.shared;
+package ch.unibas.medizin.logbook.shared;
 
 import java.util.ArrayList;
 import java.util.List;

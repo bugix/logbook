@@ -1,4 +1,4 @@
-package logbook.shared.scaffold;
+package ch.unibas.medizin.logbook.shared.scaffold;
 
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;

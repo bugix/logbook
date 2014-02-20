@@ -1,4 +1,4 @@
-package logbook.server.locator;
+package ch.unibas.medizin.logbook.server.locator;
 
 import javax.servlet.http.HttpServletRequest;
 

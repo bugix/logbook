@@ -1,6 +1,6 @@
 // WARNING: THIS FILE IS MANAGED BY SPRING ROO.
 
-package logbook.client.managed.proxy;
+package ch.unibas.medizin.logbook.client.managed.proxy;
 
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;

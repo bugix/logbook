@@ -1,4 +1,4 @@
-package logbook.client.style;
+package ch.unibas.medizin.logbook.client.style;
 
 import com.google.gwt.resources.client.CssResource.NotStrict;
 import com.google.gwt.user.cellview.client.CellList;

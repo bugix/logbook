@@ -1,6 +1,6 @@
-package logbook.shared.scaffold;
+package ch.unibas.medizin.logbook.shared.scaffold;
 
-import logbook.server.domain.Administrator;
+import ch.unibas.medizin.logbook.server.domain.Administrator;
 
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;

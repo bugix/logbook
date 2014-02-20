@@ -1,4 +1,4 @@
-package logbook.client.scaffold.request;
+package ch.unibas.medizin.logbook.client.scaffold.request;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.EventHandler;

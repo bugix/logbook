@@ -1,14 +1,14 @@
-package logbook.client.a_nonroo.app.activities;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.activities;
 
 import java.util.Iterator;
 
 import java.util.Set;
 
-import logbook.client.a_nonroo.app.client.ErrorPanel;
-import logbook.client.a_nonroo.app.client.McAppConstant;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ErrorPanel;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.McAppConstant;
 
 
-import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 
 
 import com.allen_sauer.gwt.log.client.Log;

@@ -1,4 +1,4 @@
-package logbook.client.a_nonroo.app.place;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.place;
 
 
 import com.google.gwt.place.shared.PlaceHistoryMapper;

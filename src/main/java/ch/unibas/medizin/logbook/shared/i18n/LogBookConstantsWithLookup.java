@@ -1,4 +1,4 @@
-package logbook.shared.i18n;
+package ch.unibas.medizin.logbook.shared.i18n;
 
 import com.google.gwt.i18n.client.ConstantsWithLookup;
 

@@ -1,9 +1,9 @@
-package logbook.client.a_nonroo.app.client.ui.custom.widget;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import logbook.shared.i18n.LogBookConstants;
+import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;

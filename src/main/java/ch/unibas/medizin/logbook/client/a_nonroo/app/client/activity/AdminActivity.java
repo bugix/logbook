@@ -1,21 +1,21 @@
-package logbook.client.a_nonroo.app.client.activity;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity;
 
 
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
-import logbook.client.ApplicationLoadingScreenEvent;
-import logbook.client.CsvFileGeneratorService;
-import logbook.client.CsvFileGeneratorServiceAsync;
-import logbook.client.a_nonroo.app.client.place.LoginPlace;
-import logbook.client.a_nonroo.app.client.ui.AdminView;
-import logbook.client.a_nonroo.app.client.ui.AdminViewImpl;
-import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
-import logbook.client.managed.proxy.AdministratorProxy;
-import logbook.shared.CsvFileGeneratorEvent;
-import logbook.shared.CsvFileGeneratorListener;
-import logbook.shared.i18n.LogBookConstants;
+import ch.unibas.medizin.logbook.client.ApplicationLoadingScreenEvent;
+import ch.unibas.medizin.logbook.client.CsvFileGeneratorService;
+import ch.unibas.medizin.logbook.client.CsvFileGeneratorServiceAsync;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.LoginPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.AdminView;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.AdminViewImpl;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.managed.proxy.AdministratorProxy;
+import ch.unibas.medizin.logbook.shared.CsvFileGeneratorEvent;
+import ch.unibas.medizin.logbook.shared.CsvFileGeneratorListener;
+import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;

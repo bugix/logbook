@@ -1,10 +1,10 @@
-package logbook.client.a_nonroo.app.client.activity;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity;
 
 
-import logbook.client.a_nonroo.app.client.place.AdminPlace;
-import logbook.client.a_nonroo.app.client.place.LoginPlace;
-import logbook.client.a_nonroo.app.client.place.SkillPlace;
-import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.AdminPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.LoginPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.SkillPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.Activity;

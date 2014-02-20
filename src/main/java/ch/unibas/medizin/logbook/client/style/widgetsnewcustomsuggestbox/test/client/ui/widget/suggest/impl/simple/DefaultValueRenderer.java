@@ -1,11 +1,11 @@
 
-package logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple;
+package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.ValueRendererFactory;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.ValueRendererFactory;
 
 
 import com.allen_sauer.gwt.log.client.Log;

@@ -1,4 +1,4 @@
-package logbook.shared;
+package ch.unibas.medizin.logbook.shared;
 
 
 import de.novanic.eventservice.client.event.Event;

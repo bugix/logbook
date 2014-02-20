@@ -1,19 +1,19 @@
-package logbook.client;
+package ch.unibas.medizin.logbook.client;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import logbook.client.a_nonroo.app.client.place.AdminPlace;
-import logbook.client.a_nonroo.app.client.place.LogBookDetailsPlace;
-import logbook.client.a_nonroo.app.client.place.LoginPlace;
-import logbook.client.a_nonroo.app.client.place.ProgressPlace;
-import logbook.client.a_nonroo.app.client.place.SkillPlace;
-import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
-import logbook.client.managed.proxy.MainClassificationProxy;
-import logbook.server.domain.MainClassification;
-import logbook.shared.i18n.LogBookConstants;
-import logbook.shared.scaffold.Locale;
-import logbook.shared.scaffold.Operation;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.AdminPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.LogBookDetailsPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.LoginPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.ProgressPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.SkillPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.managed.proxy.MainClassificationProxy;
+import ch.unibas.medizin.logbook.server.domain.MainClassification;
+import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
+import ch.unibas.medizin.logbook.shared.scaffold.Locale;
+import ch.unibas.medizin.logbook.shared.scaffold.Operation;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;

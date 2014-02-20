@@ -1,4 +1,4 @@
-package logbook.server.servlet;
+package ch.unibas.medizin.logbook.server.servlet;
 
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
@@ -27,8 +27,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import logbook.server.domain.Skill;
-import logbook.shared.SkillFilteredResult;
+import ch.unibas.medizin.logbook.server.domain.Skill;
+import ch.unibas.medizin.logbook.shared.SkillFilteredResult;
 
 import org.apache.log4j.Logger;
 import org.w3c.dom.Element;

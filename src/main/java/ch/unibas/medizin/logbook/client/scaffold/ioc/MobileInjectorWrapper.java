@@ -1,4 +1,4 @@
-package logbook.client.scaffold.ioc;
+package ch.unibas.medizin.logbook.client.scaffold.ioc;
 
 import com.google.gwt.core.client.GWT;
 

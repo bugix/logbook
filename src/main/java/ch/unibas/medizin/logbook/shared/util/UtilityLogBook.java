@@ -1,4 +1,4 @@
-package logbook.shared.util;
+package ch.unibas.medizin.logbook.shared.util;
 
 import java.util.Collection;
 import java.util.Iterator;

@@ -1,8 +1,8 @@
-package logbook.client.a_nonroo.app.client.ui;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui;
 
 
 
-import logbook.client.managed.proxy.SkillProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.SkillProxy;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.CheckBox;

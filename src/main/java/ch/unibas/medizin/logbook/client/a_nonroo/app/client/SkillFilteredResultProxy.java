@@ -1,10 +1,10 @@
-package logbook.client.a_nonroo.app.client;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client;
 
 import java.util.List;
 
-import logbook.client.managed.proxy.SkillProxy;
-import logbook.shared.SkillFilteredResult;
-import logbook.shared.SkillLevels;
+import ch.unibas.medizin.logbook.client.managed.proxy.SkillProxy;
+import ch.unibas.medizin.logbook.shared.SkillFilteredResult;
+import ch.unibas.medizin.logbook.shared.SkillLevels;
 
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 import com.google.web.bindery.requestfactory.shared.ValueProxy;

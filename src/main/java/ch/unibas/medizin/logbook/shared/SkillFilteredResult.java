@@ -1,8 +1,8 @@
-package logbook.shared;
+package ch.unibas.medizin.logbook.shared;
 
 import java.util.List;
 
-import logbook.server.domain.Skill;
+import ch.unibas.medizin.logbook.server.domain.Skill;
 
 public class SkillFilteredResult {
 

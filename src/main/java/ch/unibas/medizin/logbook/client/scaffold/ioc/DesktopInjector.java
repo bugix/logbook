@@ -1,6 +1,6 @@
-package logbook.client.scaffold.ioc;
+package ch.unibas.medizin.logbook.client.scaffold.ioc;
 
-import logbook.client.scaffold.ScaffoldDesktopApp;
+import ch.unibas.medizin.logbook.client.scaffold.ScaffoldDesktopApp;
 import com.google.gwt.inject.client.GinModules;
 
 @GinModules(value = {ScaffoldModule.class})

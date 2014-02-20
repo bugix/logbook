@@ -1,4 +1,4 @@
-package logbook.server.domain;
+package ch.unibas.medizin.logbook.server.domain;
 
 import java.util.List;
 import javax.persistence.Column;

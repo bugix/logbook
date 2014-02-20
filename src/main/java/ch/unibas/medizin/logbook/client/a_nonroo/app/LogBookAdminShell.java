@@ -1,11 +1,11 @@
-package logbook.client.a_nonroo.app;
+package ch.unibas.medizin.logbook.client.a_nonroo.app;
 
 
 
-import logbook.client.a_nonroo.app.client.LogBookAdminNav;
-import logbook.client.a_nonroo.app.client.LogBookNav;
-import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
-import logbook.shared.i18n.LogBookConstants;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.LogBookAdminNav;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.LogBookNav;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;

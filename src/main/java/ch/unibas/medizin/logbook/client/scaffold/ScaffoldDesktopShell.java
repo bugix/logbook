@@ -1,4 +1,4 @@
-package logbook.client.scaffold;
+package ch.unibas.medizin.logbook.client.scaffold;
 
 import com.google.gwt.user.client.ui.Composite;
 

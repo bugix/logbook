@@ -4,15 +4,15 @@ package  logbook.client.a_nonroo.app.client.ui;
 import java.util.HashSet;
 import java.util.Set;
 
-import logbook.client.a_nonroo.app.client.MyCellTableResources;
-import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
-import logbook.client.managed.proxy.SkillAcquiredProxy;
-import logbook.client.managed.proxy.StudentProxy;
-import logbook.client.style.Resources.MySimplePagerResources;
-import logbook.shared.SkillLevels;
-import logbook.shared.StudentStatus;
-import logbook.shared.i18n.LogBookConstants;
-import logbook.shared.scaffold.LogBookConstant;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.MyCellTableResources;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
+import ch.unibas.medizin.logbook.client.managed.proxy.SkillAcquiredProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.StudentProxy;
+import ch.unibas.medizin.logbook.client.style.Resources.MySimplePagerResources;
+import ch.unibas.medizin.logbook.shared.SkillLevels;
+import ch.unibas.medizin.logbook.shared.StudentStatus;
+import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
+import ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;

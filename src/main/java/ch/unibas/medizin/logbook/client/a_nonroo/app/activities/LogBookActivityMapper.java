@@ -1,16 +1,16 @@
-package logbook.client.a_nonroo.app.activities;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.activities;
 
 
 
-import logbook.client.a_nonroo.app.client.activity.AdminActivity;
-import logbook.client.a_nonroo.app.client.activity.LoginActivity;
-import logbook.client.a_nonroo.app.client.activity.ProgressActivity;
-import logbook.client.a_nonroo.app.client.activity.SkillActivity;
-import logbook.client.a_nonroo.app.client.place.AdminPlace;
-import logbook.client.a_nonroo.app.client.place.LoginPlace;
-import logbook.client.a_nonroo.app.client.place.ProgressPlace;
-import logbook.client.a_nonroo.app.client.place.SkillPlace;
-import logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity.AdminActivity;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity.LoginActivity;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity.ProgressActivity;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity.SkillActivity;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.AdminPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.LoginPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.ProgressPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.SkillPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.Activity;

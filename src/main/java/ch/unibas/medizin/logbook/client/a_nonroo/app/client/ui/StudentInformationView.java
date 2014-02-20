@@ -1,11 +1,11 @@
-package logbook.client.a_nonroo.app.client.ui;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui;
 
 
 
-import logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
-import logbook.client.managed.proxy.SkillAcquiredProxy;
-import logbook.client.managed.proxy.SkillProxy;
-import logbook.client.managed.proxy.StudentProxy;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget.CustomProgressbar;
+import ch.unibas.medizin.logbook.client.managed.proxy.SkillAcquiredProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.SkillProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.StudentProxy;
 
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.event.dom.client.ClickEvent;

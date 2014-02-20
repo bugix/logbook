@@ -1,14 +1,14 @@
 /**
  * 
  */
-package logbook.client.a_nonroo.app.client;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client;
 
 
 
-import logbook.client.a_nonroo.app.client.place.AdminPlace;
-import logbook.client.a_nonroo.app.client.place.LoginPlace;
-import logbook.client.a_nonroo.app.client.place.ProgressPlace;
-import logbook.client.a_nonroo.app.client.place.SkillPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.AdminPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.LoginPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.ProgressPlace;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.SkillPlace;
 
 import com.google.gwt.activity.shared.FilteredActivityMapper;
 import com.google.gwt.place.shared.Place;

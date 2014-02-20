@@ -1,4 +1,4 @@
-package logbook.client.a_nonroo.app.client.ui.custom.widget;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget;
 
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;

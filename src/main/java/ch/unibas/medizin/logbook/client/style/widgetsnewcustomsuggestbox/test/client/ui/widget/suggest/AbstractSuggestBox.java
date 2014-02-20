@@ -1,15 +1,15 @@
 
-package logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest;
+package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.ValueRendererFactory.ListRenderer;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.DefaultSuggestionPopup;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultValueRenderer;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultValueRendererFactory;
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.param.Option;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.ValueRendererFactory.ListRenderer;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.DefaultSuggestionPopup;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultValueRenderer;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultValueRendererFactory;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.param.Option;
 
 
 import com.allen_sauer.gwt.log.client.Log;

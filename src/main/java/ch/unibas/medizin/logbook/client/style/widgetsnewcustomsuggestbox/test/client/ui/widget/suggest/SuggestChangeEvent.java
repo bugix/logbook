@@ -1,5 +1,5 @@
 
-package logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest;
+package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 

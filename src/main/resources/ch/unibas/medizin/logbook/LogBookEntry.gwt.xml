@@ -81,13 +81,13 @@
 
 	</property-provider>
 
-	<replace-with class="logbook.client.scaffold.ioc.MobileInjectorWrapper">
-		<when-type-is class="logbook.client.scaffold.ioc.DesktopInjectorWrapper"/>
+	<replace-with class="ch.unibas.medizin.logbook.client.scaffold.ioc.MobileInjectorWrapper">
+		<when-type-is class="ch.unibas.medizin.logbook.client.scaffold.ioc.DesktopInjectorWrapper"/>
 		<all>
 			<when-property-is name="mobile.user.agent" value="mobilesafari"/>
 		</all>
 	</replace-with>
 
-	<entry-point class="logbook.client.a_nonroo.app.ApplicationEntry"/>
+	<entry-point class="ch.unibas.medizin.logbook.client.a_nonroo.app.ApplicationEntry"/>
 
 </module>

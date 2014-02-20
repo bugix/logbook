@@ -1,4 +1,4 @@
-package logbook.shared.scaffold;
+package ch.unibas.medizin.logbook.shared.scaffold;
 
 public enum Locale {
 	de("Deutsch"), en("English"), cn("Constant names");

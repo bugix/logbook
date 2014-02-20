@@ -1,4 +1,4 @@
-package logbook.server.domain;
+package ch.unibas.medizin.logbook.server.domain;
 
 import static logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
 import java.util.List;

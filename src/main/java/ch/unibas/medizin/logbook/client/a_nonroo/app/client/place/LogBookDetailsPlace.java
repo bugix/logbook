@@ -1,8 +1,8 @@
-package logbook.client.a_nonroo.app.client.place;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.place;
 
 
 
-import logbook.shared.scaffold.Operation;
+import ch.unibas.medizin.logbook.shared.scaffold.Operation;
 
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 

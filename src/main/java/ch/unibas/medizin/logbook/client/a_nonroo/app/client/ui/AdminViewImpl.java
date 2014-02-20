@@ -1,7 +1,7 @@
 package  logbook.client.a_nonroo.app.client.ui;
 
  
-import logbook.shared.i18n.LogBookConstants;
+import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

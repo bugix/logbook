@@ -1,12 +1,12 @@
-package logbook.shared.scaffold;
+package ch.unibas.medizin.logbook.shared.scaffold;
 
-import logbook.client.managed.request.AdministratorRequest;
-import logbook.client.managed.request.ClassificationTopicRequest;
-import logbook.client.managed.request.MainClassificationRequest;
-import logbook.client.managed.request.SkillAcquiredRequest;
-import logbook.client.managed.request.SkillRequest;
-import logbook.client.managed.request.StudentRequest;
-import logbook.client.managed.request.TopicRequest;
+import ch.unibas.medizin.logbook.client.managed.request.AdministratorRequest;
+import ch.unibas.medizin.logbook.client.managed.request.ClassificationTopicRequest;
+import ch.unibas.medizin.logbook.client.managed.request.MainClassificationRequest;
+import ch.unibas.medizin.logbook.client.managed.request.SkillAcquiredRequest;
+import ch.unibas.medizin.logbook.client.managed.request.SkillRequest;
+import ch.unibas.medizin.logbook.client.managed.request.StudentRequest;
+import ch.unibas.medizin.logbook.client.managed.request.TopicRequest;
 
 import com.google.web.bindery.requestfactory.shared.LoggingRequest;
 import com.google.web.bindery.requestfactory.shared.RequestFactory;

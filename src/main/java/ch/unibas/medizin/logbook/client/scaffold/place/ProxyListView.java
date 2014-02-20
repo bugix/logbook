@@ -1,4 +1,4 @@
-package logbook.client.scaffold.place;
+package ch.unibas.medizin.logbook.client.scaffold.place;
 
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.gwt.user.client.ui.IsWidget;

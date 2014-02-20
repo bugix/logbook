@@ -1,7 +1,7 @@
-package logbook.client;
+package ch.unibas.medizin.logbook.client;
 
 
-import logbook.shared.scaffold.Locale;
+import ch.unibas.medizin.logbook.shared.scaffold.Locale;
 
 import com.google.gwt.user.client.ui.IsWidget;
 

@@ -1,4 +1,4 @@
-package logbook.client.a_nonroo.app.client.activity;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity;
 
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.UIObject;

@@ -1,7 +1,7 @@
-package logbook.server.locator;
+package ch.unibas.medizin.logbook.server.locator;
 
 import com.google.web.bindery.requestfactory.shared.Locator;
-import logbook.server.domain.MainClassification;
+import ch.unibas.medizin.logbook.server.domain.MainClassification;
 import org.springframework.roo.addon.gwt.RooGwtLocator;
 import org.springframework.stereotype.Component;
 

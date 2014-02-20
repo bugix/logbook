@@ -1,8 +1,8 @@
-package logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest;
+package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest;
 
 import java.util.Map;
 
-import logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.param.Option;
+import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.param.Option;
 
 import com.google.gwt.text.shared.Renderer;
 import com.google.gwt.user.client.ui.IsWidget;

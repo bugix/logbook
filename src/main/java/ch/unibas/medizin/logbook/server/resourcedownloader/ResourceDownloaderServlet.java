@@ -1,4 +1,4 @@
-package logbook.server.resourcedownloader;
+package ch.unibas.medizin.logbook.server.resourcedownloader;
 
 import java.io.File;
 import java.io.FileInputStream;

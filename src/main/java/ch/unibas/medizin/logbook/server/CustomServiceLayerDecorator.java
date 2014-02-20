@@ -1,4 +1,4 @@
-package logbook.server;
+package ch.unibas.medizin.logbook.server;
 
 import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;
 import com.google.web.bindery.requestfactory.shared.Locator;

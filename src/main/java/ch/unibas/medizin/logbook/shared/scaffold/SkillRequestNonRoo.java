@@ -1,15 +1,15 @@
-package logbook.shared.scaffold;
+package ch.unibas.medizin.logbook.shared.scaffold;
 
 import java.util.List;
 
-import logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
-import logbook.client.managed.proxy.ClassificationTopicProxy;
-import logbook.client.managed.proxy.MainClassificationProxy;
-import logbook.client.managed.proxy.SkillCommentProxy;
-import logbook.client.managed.proxy.SkillProxy;
-import logbook.client.managed.proxy.TopicProxy;
-import logbook.server.domain.Skill;
-import logbook.server.domain.SkillComment;
+import ch.unibas.medizin.logbook.client.a_nonroo.app.client.SkillFilteredResultProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.ClassificationTopicProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.MainClassificationProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.SkillCommentProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.SkillProxy;
+import ch.unibas.medizin.logbook.client.managed.proxy.TopicProxy;
+import ch.unibas.medizin.logbook.server.domain.Skill;
+import ch.unibas.medizin.logbook.server.domain.SkillComment;
 
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
