@@ -1,9 +1,0 @@
-<aspectj>
-<aspects>
-<aspect name="logbook.server.domain.MainClassificationIntegrationTest_Roo_IntegrationTest"/>
-<aspect name="logbook.server.domain.MainClassificationIntegrationTest_Roo_Configurable"/>
-<aspect name="logbook.server.domain.MainClassificationDataOnDemand_Roo_Configurable"/>
-<aspect name="logbook.server.domain.MainClassificationDataOnDemand_Roo_DataOnDemand"/>
-</aspects>
-</aspectj>
-
