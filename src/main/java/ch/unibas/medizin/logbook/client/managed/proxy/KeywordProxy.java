@@ -17,9 +17,9 @@ public interface KeywordProxy extends EntityProxy {
 
     abstract void setName(String name);
 
-    abstract Set<logbook.client.managed.proxy.SkillProxy> getSkill();
+    abstract Set<SkillProxy> getSkill();
 
-    abstract void setSkill(Set<logbook.client.managed.proxy.SkillProxy> skill);
+    abstract void setSkill(Set<SkillProxy> skill);
 
     abstract Integer getVersion();
 }

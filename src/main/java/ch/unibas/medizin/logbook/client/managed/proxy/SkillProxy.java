@@ -34,13 +34,13 @@ public interface SkillProxy extends EntityProxy {
 
     abstract void setGerman_text(String german_text);
 
-    abstract Set<logbook.client.managed.proxy.SkillAcquiredProxy> getSkillsAcquired();
+    abstract Set<SkillAcquiredProxy> getSkillsAcquired();
 
-    abstract void setSkillsAcquired(Set<logbook.client.managed.proxy.SkillAcquiredProxy> skillsAcquired);
+    abstract void setSkillsAcquired(Set<SkillAcquiredProxy> skillsAcquired);
 
-    abstract Set<logbook.client.managed.proxy.KeywordProxy> getKeywords();
+    abstract Set<KeywordProxy> getKeywords();
 
-    abstract void setKeywords(Set<logbook.client.managed.proxy.KeywordProxy> keywords);
+    abstract void setKeywords(Set<KeywordProxy> keywords);
 
     abstract Integer getVersion();
 }

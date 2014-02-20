@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class AdministratorLocator extends Locator<Administrator, Long> {
 
-    public Administrator create(Class<? extends logbook.server.domain.Administrator> clazz) {
+    public Administrator create(Class<? extends Administrator> clazz) {
         return new Administrator();
     }
 
-    public Administrator find(Class<? extends logbook.server.domain.Administrator> clazz, Long id) {
+    public Administrator find(Class<? extends Administrator> clazz, Long id) {
         return Administrator.findAdministrator(id);
     }
 
-    public Class<logbook.server.domain.Administrator> getDomainType() {
+    public Class<Administrator> getDomainType() {
         return Administrator.class;
     }
 

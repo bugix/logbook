@@ -28,12 +28,12 @@ public abstract class ApplicationEntityTypesProcessor<T> {
         return Collections.unmodifiableSet(rtn);
     }
 
-    private static void process(logbook.client.managed.request.ApplicationEntityTypesProcessor<?> processor, Class<?> clazz) {
+    private static void process(ApplicationEntityTypesProcessor<?> processor, Class<?> clazz) {
         
         processor.handleNonProxy(null);
     }
 
-    private static void process(logbook.client.managed.request.ApplicationEntityTypesProcessor<?> processor, Object proxy) {
+    private static void process(ApplicationEntityTypesProcessor<?> processor, Object proxy) {
         processor.handleNonProxy(proxy);
     }
 

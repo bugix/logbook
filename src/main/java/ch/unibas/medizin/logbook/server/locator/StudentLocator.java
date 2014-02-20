@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class StudentLocator extends Locator<Student, Long> {
 
-    public Student create(Class<? extends logbook.server.domain.Student> clazz) {
+    public Student create(Class<? extends Student> clazz) {
         return new Student();
     }
 
-    public Student find(Class<? extends logbook.server.domain.Student> clazz, Long id) {
+    public Student find(Class<? extends Student> clazz, Long id) {
         return Student.findStudent(id);
     }
 
-    public Class<logbook.server.domain.Student> getDomainType() {
+    public Class<Student> getDomainType() {
         return Student.class;
     }
 

@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class MainClassificationLocator extends Locator<MainClassification, Long> {
 
-    public MainClassification create(Class<? extends logbook.server.domain.MainClassification> clazz) {
+    public MainClassification create(Class<? extends MainClassification> clazz) {
         return new MainClassification();
     }
 
-    public MainClassification find(Class<? extends logbook.server.domain.MainClassification> clazz, Long id) {
+    public MainClassification find(Class<? extends MainClassification> clazz, Long id) {
         return MainClassification.findMainClassification(id);
     }
 
-    public Class<logbook.server.domain.MainClassification> getDomainType() {
+    public Class<MainClassification> getDomainType() {
         return MainClassification.class;
     }
 

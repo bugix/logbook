@@ -2,11 +2,14 @@
 
 package ch.unibas.medizin.logbook.client.managed.request;
 
+import org.springframework.roo.addon.gwt.RooGwtRequest;
+
+import ch.unibas.medizin.logbook.client.managed.proxy.AdministratorProxy;
+
 import com.google.web.bindery.requestfactory.shared.InstanceRequest;
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.ServiceName;
-import org.springframework.roo.addon.gwt.RooGwtRequest;
 
 @RooGwtRequest("logbook.server.domain.Administrator")
 @ServiceName("logbook.server.domain.Administrator")
@@ -14,13 +17,13 @@ public interface AdministratorRequest extends RequestContext {
 
     abstract Request<java.lang.Long> countAdministrators();
 
-    abstract Request<java.util.List<logbook.client.managed.proxy.AdministratorProxy>> findAllAdministrators();
+    abstract Request<java.util.List<AdministratorProxy>> findAllAdministrators();
 
-    abstract Request<java.util.List<logbook.client.managed.proxy.AdministratorProxy>> findAdministratorEntries(int firstResult, int maxResults);
+    abstract Request<java.util.List<AdministratorProxy>> findAdministratorEntries(int firstResult, int maxResults);
 
-    abstract Request<logbook.client.managed.proxy.AdministratorProxy> findAdministrator(Long id);
+    abstract Request<AdministratorProxy> findAdministrator(Long id);
 
-    abstract InstanceRequest<logbook.client.managed.proxy.AdministratorProxy, java.lang.Void> persist();
+    abstract InstanceRequest<AdministratorProxy, java.lang.Void> persist();
 
-    abstract InstanceRequest<logbook.client.managed.proxy.AdministratorProxy, java.lang.Void> remove();
+    abstract InstanceRequest<AdministratorProxy, java.lang.Void> remove();
 }

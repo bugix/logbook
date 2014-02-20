@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class TopicLocator extends Locator<Topic, Long> {
 
-    public Topic create(Class<? extends logbook.server.domain.Topic> clazz) {
+    public Topic create(Class<? extends Topic> clazz) {
         return new Topic();
     }
 
-    public Topic find(Class<? extends logbook.server.domain.Topic> clazz, Long id) {
+    public Topic find(Class<? extends Topic> clazz, Long id) {
         return Topic.findTopic(id);
     }
 
-    public Class<logbook.server.domain.Topic> getDomainType() {
+    public Class<Topic> getDomainType() {
         return Topic.class;
     }
 

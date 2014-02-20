@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class KeywordLocator extends Locator<Keyword, Long> {
 
-    public Keyword create(Class<? extends logbook.server.domain.Keyword> clazz) {
+    public Keyword create(Class<? extends Keyword> clazz) {
         return new Keyword();
     }
 
-    public Keyword find(Class<? extends logbook.server.domain.Keyword> clazz, Long id) {
+    public Keyword find(Class<? extends Keyword> clazz, Long id) {
         return Keyword.findKeyword(id);
     }
 
-    public Class<logbook.server.domain.Keyword> getDomainType() {
+    public Class<Keyword> getDomainType() {
         return Keyword.class;
     }
 

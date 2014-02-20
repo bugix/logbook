@@ -48,13 +48,13 @@ public interface StudentProxy extends EntityProxy {
 
     abstract void setStudyYear(StudyYears studyYear);
 
-    abstract Set<logbook.client.managed.proxy.SkillAcquiredProxy> getSkillAcquired();
+    abstract Set<SkillAcquiredProxy> getSkillAcquired();
 
-    abstract void setSkillAcquired(Set<logbook.client.managed.proxy.SkillAcquiredProxy> skillAcquired);
+    abstract void setSkillAcquired(Set<SkillAcquiredProxy> skillAcquired);
 
-    abstract Set<logbook.client.managed.proxy.SkillCommentProxy> getSkillComments();
+    abstract Set<SkillCommentProxy> getSkillComments();
 
-    abstract void setSkillComments(Set<logbook.client.managed.proxy.SkillCommentProxy> skillComments);
+    abstract void setSkillComments(Set<SkillCommentProxy> skillComments);
 
     abstract Integer getVersion();
 }

@@ -4,7 +4,7 @@
   xmlns:d='urn:import:com.google.gwt.user.datepicker.client'
 
   xmlns:b='urn:import:com.google.gwt.user.cellview.client'
- xmlns:s="urn:import:logbook.client.style.widgets">
+ xmlns:s="urn:import:ch.unibas.medizin.logbook.client.style.widgets">
 
 <ui:style src="../styles.css" >
 	.skillHPEleStyle{

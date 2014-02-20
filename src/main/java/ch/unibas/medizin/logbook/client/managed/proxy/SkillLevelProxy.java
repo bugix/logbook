@@ -17,13 +17,13 @@ public interface SkillLevelProxy extends EntityProxy {
 
     abstract void setLevelNumber(Integer levelNumber);
 
-    abstract Set<logbook.client.managed.proxy.SkillProxy> getSkills();
+    abstract Set<SkillProxy> getSkills();
 
-    abstract void setSkills(Set<logbook.client.managed.proxy.SkillProxy> skills);
+    abstract void setSkills(Set<SkillProxy> skills);
 
-    abstract Set<logbook.client.managed.proxy.SkillAcquiredProxy> getSkillAcquired();
+    abstract Set<SkillAcquiredProxy> getSkillAcquired();
 
-    abstract void setSkillAcquired(Set<logbook.client.managed.proxy.SkillAcquiredProxy> skillAcquired);
+    abstract void setSkillAcquired(Set<SkillAcquiredProxy> skillAcquired);
 
     abstract Integer getVersion();
 }

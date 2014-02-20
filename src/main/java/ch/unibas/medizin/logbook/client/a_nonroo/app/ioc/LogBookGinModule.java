@@ -2,6 +2,8 @@ package ch.unibas.medizin.logbook.client.a_nonroo.app.ioc;
 
 
 import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.scaffold.ioc.ScaffoldModule;
+import ch.unibas.medizin.logbook.client.scaffold.request.EventSourceRequestTransport;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
@@ -12,7 +14,7 @@ import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 
-public class LogBookGinModule extends logbook.client.scaffold.ioc.ScaffoldModule {
+public class LogBookGinModule extends ScaffoldModule {
 	
 	@Override
 	protected void configure() {
@@ -42,7 +44,7 @@ public class LogBookGinModule extends logbook.client.scaffold.ioc.ScaffoldModule
 		@Inject
 		public RequestFactoryProvider(EventBus eventBus) {
 			requestFactory = GWT.create(LogBookRequestFactory.class);
-			requestFactory.initialize(eventBus, new logbook.client.scaffold.request.EventSourceRequestTransport(
+			requestFactory.initialize(eventBus, new EventSourceRequestTransport(
 					eventBus));
 		}
 

@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class SkillCommentLocator extends Locator<SkillComment, Long> {
 
-    public SkillComment create(Class<? extends logbook.server.domain.SkillComment> clazz) {
+    public SkillComment create(Class<? extends SkillComment> clazz) {
         return new SkillComment();
     }
 
-    public SkillComment find(Class<? extends logbook.server.domain.SkillComment> clazz, Long id) {
+    public SkillComment find(Class<? extends SkillComment> clazz, Long id) {
         return SkillComment.findSkillComment(id);
     }
 
-    public Class<logbook.server.domain.SkillComment> getDomainType() {
+    public Class<SkillComment> getDomainType() {
         return SkillComment.class;
     }
 

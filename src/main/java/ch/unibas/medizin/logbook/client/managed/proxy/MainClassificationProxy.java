@@ -22,9 +22,9 @@ public interface MainClassificationProxy extends EntityProxy {
 
     abstract void setShortcut(String shortcut);
 
-    abstract List<logbook.client.managed.proxy.ClassificationTopicProxy> getClassificationTopics();
+    abstract List<ClassificationTopicProxy> getClassificationTopics();
 
-    abstract void setClassificationTopics(List<logbook.client.managed.proxy.ClassificationTopicProxy> classificationTopics);
+    abstract void setClassificationTopics(List<ClassificationTopicProxy> classificationTopics);
 
     abstract Integer getVersion();
 }

@@ -1,9 +1,9 @@
 package ch.unibas.medizin.logbook.server;
 
-import static logbook.shared.scaffold.LogBookConstant.ADMIN;
-import static logbook.shared.scaffold.LogBookConstant.CURRENT_USER;
-import static logbook.shared.scaffold.LogBookConstant.STUDENT;
-import static logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
+import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.ADMIN;
+import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.CURRENT_USER;
+import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.STUDENT;
+import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.commons.lang3.math.NumberUtils.createInteger;
 import static org.apache.commons.lang3.math.NumberUtils.isDigits;

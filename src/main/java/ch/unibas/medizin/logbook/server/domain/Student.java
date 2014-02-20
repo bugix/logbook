@@ -1,9 +1,9 @@
 package ch.unibas.medizin.logbook.server.domain;
 
-import static logbook.shared.scaffold.LogBookConstant.ADMIN;
-import static logbook.shared.scaffold.LogBookConstant.CURRENT_USER;
-import static logbook.shared.scaffold.LogBookConstant.STUDENT;
-import static logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
+import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.ADMIN;
+import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.CURRENT_USER;
+import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.STUDENT;
+import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -80,7 +80,7 @@ public class Student {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private Set<SkillComment> skillComments = new HashSet<SkillComment>();
     
-    public static logbook.server.domain.Student findStudentFromSession() 
+    public static Student findStudentFromSession() 
     {
         HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
         String shibId = (String) session.getAttribute(UNIQUE_ID);

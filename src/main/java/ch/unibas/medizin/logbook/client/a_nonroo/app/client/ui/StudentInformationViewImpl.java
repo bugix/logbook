@@ -1,4 +1,4 @@
-package  logbook.client.a_nonroo.app.client.ui;
+package ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui;
 
  
 import java.util.HashSet;

@@ -3,7 +3,7 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" 
 	xmlns:c="urn:import:com.google.gwt.user.cellview.client" 
 	xmlns:cell="urn:import:com.google.gwt.cell.client" 
-	xmlns:custom="urn:import:logbook.client.a_nonroo.app.client.ui.custom.widget">
+	xmlns:custom="urn:import:ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget">
 	<ui:style>
 .textBoxStyle
 {

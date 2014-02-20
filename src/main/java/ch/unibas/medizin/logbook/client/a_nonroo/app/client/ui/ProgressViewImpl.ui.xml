@@ -1,7 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.google.gwt.user.cellview.client"
-	xmlns:a="urn:import:logbook.client.a_nonroo.app.client.ui.custom.widget">
+	xmlns:a="urn:import:ch.unibas.medizin.logbook.client.a_nonroo.app.client.ui.custom.widget">
 	<ui:style>
 		.progressTablePanelStyle {
 			border-style: solid;

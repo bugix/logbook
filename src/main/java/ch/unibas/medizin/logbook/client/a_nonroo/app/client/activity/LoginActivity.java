@@ -1,9 +1,9 @@
 package ch.unibas.medizin.logbook.client.a_nonroo.app.client.activity;
 
 
-import static logbook.shared.util.UtilityLogBook.DECIMAL_FORMAT;
-import static logbook.shared.util.UtilityLogBook.getEmptyStringIfNull;
-import static logbook.shared.util.UtilityLogBook.join;
+import static ch.unibas.medizin.logbook.shared.util.UtilityLogBook.DECIMAL_FORMAT;
+import static ch.unibas.medizin.logbook.shared.util.UtilityLogBook.getEmptyStringIfNull;
+import static ch.unibas.medizin.logbook.shared.util.UtilityLogBook.join;
 
 import java.util.List;
 import java.util.Set;
