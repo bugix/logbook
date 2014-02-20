@@ -24,7 +24,7 @@ privileged aspect TopicIntegrationTest_Roo_IntegrationTest {
     declare @type: TopicIntegrationTest: @Transactional;
     
     @Autowired
-    private TopicDataOnDemand TopicIntegrationTest.dod;
+    TopicDataOnDemand TopicIntegrationTest.dod;
     
     @Test
     public void TopicIntegrationTest.testCountTopics() {

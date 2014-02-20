@@ -26,10 +26,10 @@ privileged aspect SkillDataOnDemand_Roo_DataOnDemand {
     private List<Skill> SkillDataOnDemand.data;
     
     @Autowired
-    private SkillLevelDataOnDemand SkillDataOnDemand.skillLevelDataOnDemand;
+    SkillLevelDataOnDemand SkillDataOnDemand.skillLevelDataOnDemand;
     
     @Autowired
-    private TopicDataOnDemand SkillDataOnDemand.topicDataOnDemand;
+    TopicDataOnDemand SkillDataOnDemand.topicDataOnDemand;
     
     public Skill SkillDataOnDemand.getNewTransientSkill(int index) {
         Skill obj = new Skill();

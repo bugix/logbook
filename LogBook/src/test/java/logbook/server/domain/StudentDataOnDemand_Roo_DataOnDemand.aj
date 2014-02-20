@@ -40,8 +40,8 @@ privileged aspect StudentDataOnDemand_Roo_DataOnDemand {
     
     public void StudentDataOnDemand.setEmail(Student obj, int index) {
         String email = "foo" + index + "@bar.com";
-        if (email.length() > 40) {
-            email = email.substring(0, 40);
+        if (email.length() > 255) {
+            email = email.substring(0, 255);
         }
         obj.setEmail(email);
     }
@@ -53,32 +53,32 @@ privileged aspect StudentDataOnDemand_Roo_DataOnDemand {
     
     public void StudentDataOnDemand.setName(Student obj, int index) {
         String name = "name_" + index;
-        if (name.length() > 40) {
-            name = name.substring(0, 40);
+        if (name.length() > 255) {
+            name = name.substring(0, 255);
         }
         obj.setName(name);
     }
     
     public void StudentDataOnDemand.setPreName(Student obj, int index) {
         String preName = "preName_" + index;
-        if (preName.length() > 40) {
-            preName = preName.substring(0, 40);
+        if (preName.length() > 255) {
+            preName = preName.substring(0, 255);
         }
         obj.setPreName(preName);
     }
     
     public void StudentDataOnDemand.setShib_id(Student obj, int index) {
         String shib_id = "shib_id_" + index;
-        if (shib_id.length() > 50) {
-            shib_id = shib_id.substring(0, 50);
+        if (shib_id.length() > 255) {
+            shib_id = shib_id.substring(0, 255);
         }
         obj.setShib_id(shib_id);
     }
     
     public void StudentDataOnDemand.setStudentId(Student obj, int index) {
         String studentId = "studentId_" + index;
-        if (studentId.length() > 45) {
-            studentId = studentId.substring(0, 45);
+        if (studentId.length() > 255) {
+            studentId = studentId.substring(0, 255);
         }
         obj.setStudentId(studentId);
     }

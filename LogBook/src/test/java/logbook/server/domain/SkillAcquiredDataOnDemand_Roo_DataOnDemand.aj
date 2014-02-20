@@ -30,13 +30,13 @@ privileged aspect SkillAcquiredDataOnDemand_Roo_DataOnDemand {
     private List<SkillAcquired> SkillAcquiredDataOnDemand.data;
     
     @Autowired
-    private SkillDataOnDemand SkillAcquiredDataOnDemand.skillDataOnDemand;
+    SkillDataOnDemand SkillAcquiredDataOnDemand.skillDataOnDemand;
     
     @Autowired
-    private SkillLevelDataOnDemand SkillAcquiredDataOnDemand.skillLevelDataOnDemand;
+    SkillLevelDataOnDemand SkillAcquiredDataOnDemand.skillLevelDataOnDemand;
     
     @Autowired
-    private StudentDataOnDemand SkillAcquiredDataOnDemand.studentDataOnDemand;
+    StudentDataOnDemand SkillAcquiredDataOnDemand.studentDataOnDemand;
     
     public SkillAcquired SkillAcquiredDataOnDemand.getNewTransientSkillAcquired(int index) {
         SkillAcquired obj = new SkillAcquired();

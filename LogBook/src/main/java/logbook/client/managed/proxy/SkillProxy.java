@@ -38,10 +38,6 @@ public interface SkillProxy extends EntityProxy {
 
     abstract void setSkillsAcquired(Set<logbook.client.managed.proxy.SkillAcquiredProxy> skillsAcquired);
 
-    abstract SkillCommentProxy getSkillComment();
-
-    abstract void setSkillComment(SkillCommentProxy skillComment);
-
     abstract Set<logbook.client.managed.proxy.KeywordProxy> getKeywords();
 
     abstract void setKeywords(Set<logbook.client.managed.proxy.KeywordProxy> keywords);

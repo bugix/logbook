@@ -25,7 +25,7 @@ privileged aspect TopicDataOnDemand_Roo_DataOnDemand {
     private List<Topic> TopicDataOnDemand.data;
     
     @Autowired
-    private ClassificationTopicDataOnDemand TopicDataOnDemand.classificationTopicDataOnDemand;
+    ClassificationTopicDataOnDemand TopicDataOnDemand.classificationTopicDataOnDemand;
     
     public Topic TopicDataOnDemand.getNewTransientTopic(int index) {
         Topic obj = new Topic();

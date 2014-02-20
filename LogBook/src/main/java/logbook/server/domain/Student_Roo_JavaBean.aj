@@ -5,6 +5,7 @@ package logbook.server.domain;
 
 import java.util.Set;
 import logbook.server.domain.SkillAcquired;
+import logbook.server.domain.SkillComment;
 import logbook.server.domain.Student;
 import logbook.shared.Gender;
 import logbook.shared.StudentStatus;
@@ -82,6 +83,14 @@ privileged aspect Student_Roo_JavaBean {
     
     public void Student.setSkillAcquired(Set<SkillAcquired> skillAcquired) {
         this.skillAcquired = skillAcquired;
+    }
+    
+    public Set<SkillComment> Student.getSkillComments() {
+        return this.skillComments;
+    }
+    
+    public void Student.setSkillComments(Set<SkillComment> skillComments) {
+        this.skillComments = skillComments;
     }
     
 }

@@ -24,7 +24,7 @@ privileged aspect KeywordIntegrationTest_Roo_IntegrationTest {
     declare @type: KeywordIntegrationTest: @Transactional;
     
     @Autowired
-    private KeywordDataOnDemand KeywordIntegrationTest.dod;
+    KeywordDataOnDemand KeywordIntegrationTest.dod;
     
     @Test
     public void KeywordIntegrationTest.testCountKeywords() {

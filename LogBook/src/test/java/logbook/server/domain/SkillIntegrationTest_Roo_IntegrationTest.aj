@@ -24,7 +24,7 @@ privileged aspect SkillIntegrationTest_Roo_IntegrationTest {
     declare @type: SkillIntegrationTest: @Transactional;
     
     @Autowired
-    private SkillDataOnDemand SkillIntegrationTest.dod;
+    SkillDataOnDemand SkillIntegrationTest.dod;
     
     @Test
     public void SkillIntegrationTest.testCountSkills() {

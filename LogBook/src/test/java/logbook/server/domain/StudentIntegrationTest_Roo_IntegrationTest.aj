@@ -24,7 +24,7 @@ privileged aspect StudentIntegrationTest_Roo_IntegrationTest {
     declare @type: StudentIntegrationTest: @Transactional;
     
     @Autowired
-    private StudentDataOnDemand StudentIntegrationTest.dod;
+    StudentDataOnDemand StudentIntegrationTest.dod;
     
     @Test
     public void StudentIntegrationTest.testCountStudents() {
