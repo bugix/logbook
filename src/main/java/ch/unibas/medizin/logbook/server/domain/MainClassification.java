@@ -25,9 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Configurable
-@RooJavaBean
-@RooToString
-@RooJpaActiveRecord
 public class MainClassification {
 
     private String description;

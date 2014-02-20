@@ -62,9 +62,6 @@ import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
 @Configurable
 @Entity
-@RooJavaBean
-@RooToString
-@RooJpaActiveRecord
 public class Skill {
 
     @Size(max = 1024)

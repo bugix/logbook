@@ -10,7 +10,6 @@ import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
 
 @ProxyForName(value = "logbook.server.domain.ClassificationTopic", locator = "logbook.server.locator.ClassificationTopicLocator")
-@RooGwtProxy(value = "logbook.server.domain.ClassificationTopic", readOnly = { "version", "id" })
 public interface ClassificationTopicProxy extends EntityProxy {
 
     abstract Long getId();

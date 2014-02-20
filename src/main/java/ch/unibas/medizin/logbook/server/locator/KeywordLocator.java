@@ -5,7 +5,6 @@ import ch.unibas.medizin.logbook.server.domain.Keyword;
 import org.springframework.roo.addon.gwt.RooGwtLocator;
 import org.springframework.stereotype.Component;
 
-@RooGwtLocator("logbook.server.domain.Keyword")
 @Component
 public class KeywordLocator extends Locator<Keyword, Long> {
 

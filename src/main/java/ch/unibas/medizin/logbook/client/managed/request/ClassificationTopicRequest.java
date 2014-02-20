@@ -11,7 +11,6 @@ import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.ServiceName;
 
-@RooGwtRequest("logbook.server.domain.ClassificationTopic")
 @ServiceName("logbook.server.domain.ClassificationTopic")
 public interface ClassificationTopicRequest extends RequestContext {
 

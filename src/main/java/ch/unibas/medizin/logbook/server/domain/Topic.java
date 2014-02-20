@@ -31,9 +31,6 @@ import com.allen_sauer.gwt.log.client.Log;
 
 @Configurable
 @Entity
-@RooJavaBean
-@RooToString
-@RooJpaActiveRecord
 public class Topic {
 
     @Size(max = 1024)

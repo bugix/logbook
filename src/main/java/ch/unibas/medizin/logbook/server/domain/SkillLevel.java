@@ -25,9 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Configurable
 @Entity
-@RooJavaBean
-@RooToString
-@RooJpaActiveRecord
 public class SkillLevel {
 
     private Integer levelNumber;

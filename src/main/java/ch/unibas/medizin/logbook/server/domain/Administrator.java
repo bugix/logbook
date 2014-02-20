@@ -31,9 +31,6 @@ import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
 @Configurable
 @Entity
-@RooJavaBean
-@RooToString
-@RooJpaActiveRecord
 public class Administrator {
 
 	@NotNull

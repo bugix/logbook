@@ -7,7 +7,6 @@ import com.google.web.bindery.requestfactory.shared.ProxyForName;
 import org.springframework.roo.addon.gwt.RooGwtProxy;
 
 @ProxyForName(value = "logbook.server.domain.SkillComment", locator = "logbook.server.locator.SkillCommentLocator")
-@RooGwtProxy(value = "logbook.server.domain.SkillComment", readOnly = { "version", "id" })
 public interface SkillCommentProxy extends EntityProxy {
 
     abstract Long getId();

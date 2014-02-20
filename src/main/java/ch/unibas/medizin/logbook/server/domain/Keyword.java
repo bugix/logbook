@@ -24,9 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Configurable
 @Entity
-@RooJavaBean
-@RooToString
-@RooJpaActiveRecord
 public class Keyword {
 
     @Size(max = 255)

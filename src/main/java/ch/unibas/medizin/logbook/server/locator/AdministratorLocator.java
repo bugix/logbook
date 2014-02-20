@@ -5,7 +5,6 @@ import ch.unibas.medizin.logbook.server.domain.Administrator;
 import org.springframework.roo.addon.gwt.RooGwtLocator;
 import org.springframework.stereotype.Component;
 
-@RooGwtLocator("logbook.server.domain.Administrator")
 @Component
 public class AdministratorLocator extends Locator<Administrator, Long> {
 

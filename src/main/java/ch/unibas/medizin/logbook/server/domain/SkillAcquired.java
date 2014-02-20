@@ -34,9 +34,6 @@ import com.allen_sauer.gwt.log.client.Log;
 
 @Entity
 @Configurable
-@RooJavaBean
-@RooToString
-@RooJpaActiveRecord
 public class SkillAcquired {
    
     @Column(updatable = false)

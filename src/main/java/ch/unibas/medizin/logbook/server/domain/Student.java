@@ -42,9 +42,6 @@ import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
 @Entity
 @Configurable
-@RooJavaBean
-@RooToString
-@RooJpaActiveRecord(finders = { "findStudentsByEmailEquals" })
 public class Student {
 
     @Size(max = 255)

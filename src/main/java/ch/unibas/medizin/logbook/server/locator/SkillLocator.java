@@ -5,7 +5,6 @@ import ch.unibas.medizin.logbook.server.domain.Skill;
 import org.springframework.roo.addon.gwt.RooGwtLocator;
 import org.springframework.stereotype.Component;
 
-@RooGwtLocator("logbook.server.domain.Skill")
 @Component
 public class SkillLocator extends Locator<Skill, Long> {
 

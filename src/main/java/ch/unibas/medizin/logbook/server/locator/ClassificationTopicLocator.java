@@ -5,7 +5,6 @@ import ch.unibas.medizin.logbook.server.domain.ClassificationTopic;
 import org.springframework.roo.addon.gwt.RooGwtLocator;
 import org.springframework.stereotype.Component;
 
-@RooGwtLocator("logbook.server.domain.ClassificationTopic")
 @Component
 public class ClassificationTopicLocator extends Locator<ClassificationTopic, Long> {
 

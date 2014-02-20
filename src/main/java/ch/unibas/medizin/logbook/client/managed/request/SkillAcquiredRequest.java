@@ -11,7 +11,6 @@ import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.ServiceName;
 
-@RooGwtRequest("logbook.server.domain.SkillAcquired")
 @ServiceName("logbook.server.domain.SkillAcquired")
 public interface SkillAcquiredRequest extends RequestContext {
 

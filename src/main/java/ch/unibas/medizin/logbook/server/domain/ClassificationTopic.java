@@ -28,9 +28,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Configurable
 @Entity
-@RooJavaBean
-@RooToString
-@RooJpaActiveRecord(finders = { "findClassificationTopicsByMainClassification" })
 public class ClassificationTopic {
 
     @Size(max = 255)

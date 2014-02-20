@@ -11,7 +11,6 @@ import ch.unibas.medizin.logbook.shared.StudyYears;
 import org.springframework.roo.addon.gwt.RooGwtProxy;
 
 @ProxyForName(value = "logbook.server.domain.Student", locator = "logbook.server.locator.StudentLocator")
-@RooGwtProxy(value = "logbook.server.domain.Student", readOnly = { "version", "id" })
 public interface StudentProxy extends EntityProxy {
 
     abstract Long getId();

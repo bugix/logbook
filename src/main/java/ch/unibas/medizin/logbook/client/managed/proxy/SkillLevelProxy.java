@@ -8,7 +8,6 @@ import java.util.Set;
 import org.springframework.roo.addon.gwt.RooGwtProxy;
 
 @ProxyForName(value = "logbook.server.domain.SkillLevel", locator = "logbook.server.locator.SkillLevelLocator")
-@RooGwtProxy(value = "logbook.server.domain.SkillLevel", readOnly = { "version", "id" })
 public interface SkillLevelProxy extends EntityProxy {
 
     abstract Long getId();
