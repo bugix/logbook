@@ -4,15 +4,21 @@ import static logbook.shared.scaffold.LogBookConstant.ADMIN;
 import static logbook.shared.scaffold.LogBookConstant.CURRENT_USER;
 import static logbook.shared.scaffold.LogBookConstant.STUDENT;
 import static logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.persistence.Version;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -21,18 +27,21 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
 import logbook.shared.Gender;
 import logbook.shared.StudentStatus;
 import logbook.shared.StudyYears;
-
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
+@Entity
+@Configurable
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(finders = { "findStudentsByEmailEquals" })
@@ -110,5 +119,185 @@ public class Student {
     	else {
     		return null;
     	}
+    }
+
+	@PersistenceContext
+    transient EntityManager entityManager;
+
+	public static final EntityManager entityManager() {
+        EntityManager em = new Student().entityManager;
+        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
+        return em;
+    }
+
+	public static long countStudents() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM Student o", Long.class).getSingleResult();
+    }
+
+	public static List<Student> findAllStudents() {
+        return entityManager().createQuery("SELECT o FROM Student o", Student.class).getResultList();
+    }
+
+	public static Student findStudent(Long id) {
+        if (id == null) return null;
+        return entityManager().find(Student.class, id);
+    }
+
+	public static List<Student> findStudentEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Student o", Student.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+
+	@Transactional
+    public void persist() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.persist(this);
+    }
+
+	@Transactional
+    public void remove() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager.contains(this)) {
+            this.entityManager.remove(this);
+        } else {
+            Student attached = Student.findStudent(this.id);
+            this.entityManager.remove(attached);
+        }
+    }
+
+	@Transactional
+    public void flush() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.flush();
+    }
+
+	@Transactional
+    public void clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
+    }
+
+	@Transactional
+    public Student merge() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        Student merged = this.entityManager.merge(this);
+        this.entityManager.flush();
+        return merged;
+    }
+
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+	@Version
+    @Column(name = "version")
+    private Integer version;
+
+	public Long getId() {
+        return this.id;
+    }
+
+	public void setId(Long id) {
+        this.id = id;
+    }
+
+	public Integer getVersion() {
+        return this.version;
+    }
+
+	public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+	public String getStudentId() {
+        return this.studentId;
+    }
+
+	public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+	public String getShib_id() {
+        return this.shib_id;
+    }
+
+	public void setShib_id(String shib_id) {
+        this.shib_id = shib_id;
+    }
+
+	public String getEmail() {
+        return this.email;
+    }
+
+	public void setEmail(String email) {
+        this.email = email;
+    }
+
+	public Gender getGender() {
+        return this.gender;
+    }
+
+	public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+	public String getName() {
+        return this.name;
+    }
+
+	public void setName(String name) {
+        this.name = name;
+    }
+
+	public String getPreName() {
+        return this.preName;
+    }
+
+	public void setPreName(String preName) {
+        this.preName = preName;
+    }
+
+	public StudentStatus getStudentStatus() {
+        return this.studentStatus;
+    }
+
+	public void setStudentStatus(StudentStatus studentStatus) {
+        this.studentStatus = studentStatus;
+    }
+
+	public StudyYears getStudyYear() {
+        return this.studyYear;
+    }
+
+	public void setStudyYear(StudyYears studyYear) {
+        this.studyYear = studyYear;
+    }
+
+	public Set<SkillAcquired> getSkillAcquired() {
+        return this.skillAcquired;
+    }
+
+	public void setSkillAcquired(Set<SkillAcquired> skillAcquired) {
+        this.skillAcquired = skillAcquired;
+    }
+
+	public Set<SkillComment> getSkillComments() {
+        return this.skillComments;
+    }
+
+	public void setSkillComments(Set<SkillComment> skillComments) {
+        this.skillComments = skillComments;
+    }
+
+	public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
+
+	public static TypedQuery<Student> findStudentsByEmailEquals(String email) {
+        if (email == null || email.length() == 0) throw new IllegalArgumentException("The email argument is required");
+        EntityManager em = Student.entityManager();
+        TypedQuery<Student> q = em.createQuery("SELECT o FROM Student AS o WHERE o.email = :email", Student.class);
+        q.setParameter("email", email);
+        return q;
     }
 }

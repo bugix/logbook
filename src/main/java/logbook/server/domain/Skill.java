@@ -11,14 +11,20 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.persistence.Version;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
@@ -37,22 +43,25 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-
 import logbook.shared.SkillFilteredResult;
 import logbook.shared.SkillLevels;
 import logbook.shared.StudentStatus;
-
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.Query;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
-
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 
+@Configurable
+@Entity
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
@@ -1268,5 +1277,153 @@ public static String getCommentOfStudentForSkill(Long skillId,Long studentId){
 	else
 	return "";
 }
+
+	public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
+
+	@PersistenceContext
+    transient EntityManager entityManager;
+
+	public static final EntityManager entityManager() {
+        EntityManager em = new Skill().entityManager;
+        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
+        return em;
+    }
+
+	public static long countSkills() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM Skill o", Long.class).getSingleResult();
+    }
+
+	public static List<Skill> findAllSkills() {
+        return entityManager().createQuery("SELECT o FROM Skill o", Skill.class).getResultList();
+    }
+
+	public static Skill findSkill(Long id) {
+        if (id == null) return null;
+        return entityManager().find(Skill.class, id);
+    }
+
+	public static List<Skill> findSkillEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Skill o", Skill.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+
+	@Transactional
+    public void persist() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.persist(this);
+    }
+
+	@Transactional
+    public void remove() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager.contains(this)) {
+            this.entityManager.remove(this);
+        } else {
+            Skill attached = Skill.findSkill(this.id);
+            this.entityManager.remove(attached);
+        }
+    }
+
+	@Transactional
+    public void flush() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.flush();
+    }
+
+	@Transactional
+    public void clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
+    }
+
+	@Transactional
+    public Skill merge() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        Skill merged = this.entityManager.merge(this);
+        this.entityManager.flush();
+        return merged;
+    }
+
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+	@Version
+    @Column(name = "version")
+    private Integer version;
+
+	public Long getId() {
+        return this.id;
+    }
+
+	public void setId(Long id) {
+        this.id = id;
+    }
+
+	public Integer getVersion() {
+        return this.version;
+    }
+
+	public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+	public String getDescription() {
+        return this.description;
+    }
+
+	public void setDescription(String description) {
+        this.description = description;
+    }
+
+	public Integer getShortcut() {
+        return this.shortcut;
+    }
+
+	public void setShortcut(Integer shortcut) {
+        this.shortcut = shortcut;
+    }
+
+	public Topic getTopic() {
+        return this.topic;
+    }
+
+	public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
+
+	public SkillLevel getSkillLevel() {
+        return this.skillLevel;
+    }
+
+	public void setSkillLevel(SkillLevel skillLevel) {
+        this.skillLevel = skillLevel;
+    }
+
+	public String getGerman_text() {
+        return this.german_text;
+    }
+
+	public void setGerman_text(String german_text) {
+        this.german_text = german_text;
+    }
+
+	public Set<SkillAcquired> getSkillsAcquired() {
+        return this.skillsAcquired;
+    }
+
+	public void setSkillsAcquired(Set<SkillAcquired> skillsAcquired) {
+        this.skillsAcquired = skillsAcquired;
+    }
+
+	public Set<Keyword> getKeywords() {
+        return this.keywords;
+    }
+
+	public void setKeywords(Set<Keyword> keywords) {
+        this.keywords = keywords;
+    }
 }
 
