@@ -1,9 +1,9 @@
 package ch.unibas.medizin.logbook.server.domain;
 
-import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.ADMIN;
-import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.CURRENT_USER;
-import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.STUDENT;
-import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
+import static ch.unibas.medizin.logbook.shared.constant.LogBookConstant.ADMIN;
+import static ch.unibas.medizin.logbook.shared.constant.LogBookConstant.CURRENT_USER;
+import static ch.unibas.medizin.logbook.shared.constant.LogBookConstant.STUDENT;
+import static ch.unibas.medizin.logbook.shared.constant.LogBookConstant.UNIQUE_ID;
 
 import java.util.HashSet;
 import java.util.List;
@@ -35,9 +35,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.transaction.annotation.Transactional;
 
-import ch.unibas.medizin.logbook.shared.Gender;
-import ch.unibas.medizin.logbook.shared.StudentStatus;
-import ch.unibas.medizin.logbook.shared.StudyYears;
+import ch.unibas.medizin.logbook.shared.enums.Gender;
+import ch.unibas.medizin.logbook.shared.enums.StudentStatus;
+import ch.unibas.medizin.logbook.shared.enums.StudyYears;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;

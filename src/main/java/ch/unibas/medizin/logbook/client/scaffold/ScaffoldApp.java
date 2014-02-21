@@ -3,7 +3,7 @@ package ch.unibas.medizin.logbook.client.scaffold;
 import java.util.HashSet;
 import java.util.Set;
 
-import ch.unibas.medizin.logbook.client.managed.request.ApplicationEntityTypesProcessor;
+import ch.unibas.medizin.logbook.client.request.ApplicationEntityTypesProcessor;
 import ch.unibas.medizin.logbook.client.scaffold.place.ProxyListPlace;
 
 import com.google.web.bindery.requestfactory.shared.EntityProxy;

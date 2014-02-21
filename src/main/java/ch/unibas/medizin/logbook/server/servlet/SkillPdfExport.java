@@ -291,7 +291,7 @@ public class SkillPdfExport   extends HttpServlet {
 	        String xmlString = sw.toString();
 
 	       // File file = new File("osMaEntry/gwt/unibas/"+System.currentTimeMillis()+".xml");
-	        String path=getServletConfig().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
+	        String path=getServletConfig().getServletContext().getRealPath("/logbook/gwt/logbook/");
 	        String fileName=path+"/"+System.currentTimeMillis()+".xml";
 	        Log.info("Path: " + fileName);
 	        
@@ -323,11 +323,11 @@ public class SkillPdfExport   extends HttpServlet {
 			 	
 			 	
 	            TransformerFactory tFactory = TransformerFactory.newInstance();
-	            String xslPath=getServletConfig().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/skill.xsl");
+	            String xslPath=getServletConfig().getServletContext().getRealPath("/logbook/gwt/logbook/skill.xsl");
 	            Source xslDoc = new StreamSource(xslPath);
 	            Source xmlDoc = new StreamSource(fileName);
 	            
-	            String path=getServletConfig().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
+	            String path=getServletConfig().getServletContext().getRealPath("/logbook/gwt/logbook/");
 	            String outputFileName =path +"/"+System.currentTimeMillis()+".html";
 	            Log.info("Path: " + outputFileName);    
 	            OutputStream htmlFile = new FileOutputStream(outputFileName);

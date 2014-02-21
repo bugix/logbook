@@ -2,10 +2,6 @@ package ch.unibas.medizin.logbook.shared.i18n;
 
 import com.google.gwt.i18n.client.ConstantsWithLookup;
 
-/**
- *
- */
-
 public interface LogBookConstantsWithLookup extends ConstantsWithLookup {
 	public String SJ1();
 

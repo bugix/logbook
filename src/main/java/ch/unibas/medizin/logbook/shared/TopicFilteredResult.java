@@ -6,8 +6,6 @@ import ch.unibas.medizin.logbook.server.domain.Topic;
 
 public class TopicFilteredResult {
 
-	//String key;
-	
 	List<Topic> topicList;
 	
 	List<Long> topicAcquiredList;

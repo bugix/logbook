@@ -1,6 +1,6 @@
 package ch.unibas.medizin.logbook.server.domain;
 
-import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
+import static ch.unibas.medizin.logbook.shared.constant.LogBookConstant.UNIQUE_ID;
 
 import java.util.List;
 

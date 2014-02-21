@@ -1,0 +1,51 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+			.copyrightStyle
+		{
+			color: #666666;
+    		float: right;
+    		font-family: arial,sans-serif;
+    		font-size: 80%;
+    		margin-top: 20px;
+    		margin-bottom: 20px;
+    		padding-right: 5px;
+		}
+		.copyrightWithUnderlineStyle
+		{
+			color: #666666  !important;
+    		float: right;
+    		font-family: arial,sans-serif;
+    		font-size: 80%;
+    		margin-top: 20px;
+    		margin-bottom: 20px;
+    		padding-right: 5px;
+			text-decoration: underline;
+		}
+		
+		.copyrightHPStyle
+		{
+			float: right;
+		}
+		
+		/*For footer link*/
+		.copyrightWithUnderlineStyle:link {
+		    color: #666 !important;
+		    text-decoration: underline;
+		}
+		.copyrightWithUnderlineStyle:hover {
+		    color: #666 !important;
+		    cursor: pointer;
+		    text-decoration: underline !important;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:HorizontalPanel addStyleNames="{style.copyrightHPStyle}" >						
+								<g:Label addStyleNames="{style.copyrightStyle}" ui:field="lblPoweredBy"></g:Label>
+								<g:Anchor ui:field="anchorPoweredByName"  addStyleNames="{style.copyrightWithUnderlineStyle}" target="_blank"></g:Anchor> 
+								<g:Label ui:field="lblLine" addStyleNames="{style.copyrightStyle}"></g:Label>
+								<g:Anchor ui:field="anchorContact" addStyleNames="{style.copyrightWithUnderlineStyle}"></g:Anchor>
+							</g:HorizontalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

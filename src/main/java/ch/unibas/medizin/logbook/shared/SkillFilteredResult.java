@@ -3,6 +3,7 @@ package ch.unibas.medizin.logbook.shared;
 import java.util.List;
 
 import ch.unibas.medizin.logbook.server.domain.Skill;
+import ch.unibas.medizin.logbook.shared.enums.SkillLevels;
 
 public class SkillFilteredResult {
 
@@ -53,38 +54,7 @@ public List<String> getMainClassificationkey() {
 		this.mainClassificationkey = mainClassificationkey;
 	}
 
-/*	List<Topic> topics;
-	
-	List<MainClassification> mainClassifications;
-	
-	List<ClassificationTopic> classificationTopics;
-	*/
-	/*public List<Topic> getTopics() {
-		return topics;
-	}
-
-	public void setTopics(List<Topic> topics) {
-		this.topics = topics;
-	}
-
-	public List<MainClassification> getMainClassifications() {
-		return mainClassifications;
-	}
-
-	public void setMainClassifications(List<MainClassification> mainClassifications) {
-		this.mainClassifications = mainClassifications;
-	}
-
-	public List<ClassificationTopic> getClassificationTopics() {
-		return classificationTopics;
-	}
-
-	public void setClassificationTopics(
-			List<ClassificationTopic> classificationTopics) {
-		this.classificationTopics = classificationTopics;
-	}
-
-*/	public List<SkillLevels> getSkilltLevelsAcquiredList() {
+	public List<SkillLevels> getSkilltLevelsAcquiredList() {
 		return skillLevelsAcquiredList;
 	}
 

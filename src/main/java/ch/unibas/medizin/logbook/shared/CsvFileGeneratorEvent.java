@@ -2,18 +2,14 @@ package ch.unibas.medizin.logbook.shared;
 
 import de.novanic.eventservice.client.event.Event;
 
-/**
- * 
- * @author Manish
- *
- */
+@SuppressWarnings("serial")
+public class CsvFileGeneratorEvent implements Event {
 
-public class CsvFileGeneratorEvent  implements Event{
+	public Boolean result;
 
-public Boolean result;
-	
-	public CsvFileGeneratorEvent(){}
-	
+	public CsvFileGeneratorEvent() {
+	}
+
 	public CsvFileGeneratorEvent(Boolean result) {
 		this.setResult(result);
 	}

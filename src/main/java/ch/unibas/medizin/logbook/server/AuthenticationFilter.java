@@ -1,9 +1,9 @@
 package ch.unibas.medizin.logbook.server;
 
-import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.ADMIN;
-import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.CURRENT_USER;
-import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.STUDENT;
-import static ch.unibas.medizin.logbook.shared.scaffold.LogBookConstant.UNIQUE_ID;
+import static ch.unibas.medizin.logbook.shared.constant.LogBookConstant.ADMIN;
+import static ch.unibas.medizin.logbook.shared.constant.LogBookConstant.CURRENT_USER;
+import static ch.unibas.medizin.logbook.shared.constant.LogBookConstant.STUDENT;
+import static ch.unibas.medizin.logbook.shared.constant.LogBookConstant.UNIQUE_ID;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.commons.lang3.math.NumberUtils.createInteger;
 import static org.apache.commons.lang3.math.NumberUtils.isDigits;
@@ -28,8 +28,8 @@ import org.apache.log4j.Logger;
 
 import ch.unibas.medizin.logbook.server.domain.Administrator;
 import ch.unibas.medizin.logbook.server.domain.Student;
-import ch.unibas.medizin.logbook.shared.Gender;
-import ch.unibas.medizin.logbook.shared.StudentStatus;
+import ch.unibas.medizin.logbook.shared.enums.Gender;
+import ch.unibas.medizin.logbook.shared.enums.StudentStatus;
 
 public class AuthenticationFilter implements Filter {
 	
@@ -57,8 +57,7 @@ public class AuthenticationFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
-			FilterChain filterChain) throws IOException, ServletException {
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 		log.info("Inside doFilter");
 		HttpServletRequest request = (HttpServletRequest)servletRequest;
 		HttpServletResponse response = (HttpServletResponse)servletResponse;
@@ -118,8 +117,7 @@ public class AuthenticationFilter implements Filter {
 			((HttpServletResponse) servletResponse).sendError(HttpServletResponse.SC_UNAUTHORIZED, uniqueID + " is not authorized to logbook.");
 	}
 
-	private final boolean productionMethod(HttpServletRequest request,
-			HttpServletResponse response, String uniqueID) {
+	private final boolean productionMethod(HttpServletRequest request, HttpServletResponse response, String uniqueID) {
 		
 		boolean flag = false;
 		
@@ -230,8 +228,7 @@ public class AuthenticationFilter implements Filter {
 		
 	}
 
-	private boolean authenticationAdminUsingDB(HttpServletRequest request,
-			HttpServletResponse response, String uniqueID) {
+	private boolean authenticationAdminUsingDB(HttpServletRequest request, HttpServletResponse response, String uniqueID) {
 		
 		boolean flag = false;
 
@@ -267,8 +264,7 @@ public class AuthenticationFilter implements Filter {
 		return flag;
 	}
 
-	private boolean authenticationStudentUsingDB(HttpServletRequest request,
-			HttpServletResponse response, String uniqueID) {
+	private boolean authenticationStudentUsingDB(HttpServletRequest request, HttpServletResponse response, String uniqueID) {
 		
 		boolean flag = false;
 		
@@ -325,8 +321,7 @@ public class AuthenticationFilter implements Filter {
 		return flag;
 	}
 
-	private final boolean localWork(HttpServletRequest request,
-			HttpServletResponse response, String uniqueID) {
+	private final boolean localWork(HttpServletRequest request, HttpServletResponse response, String uniqueID) {
 		boolean flag = false;
 		try{
 			String currentUser = getCurrentUser(request,response);
@@ -407,8 +402,7 @@ public class AuthenticationFilter implements Filter {
 	    return map;  
 	}  
 	
-	private String getUniqueId(HttpServletRequest request,
-			HttpServletResponse response) {
+	private String getUniqueId(HttpServletRequest request, HttpServletResponse response) {
 		
 		String referer =  request.getHeader("Referer");
 		log.info("referer : " + referer );
@@ -443,8 +437,7 @@ public class AuthenticationFilter implements Filter {
 		return currentUser;
 	}
 	
-	private String getParamValue(HttpServletRequest request,
-			HttpServletResponse response,String param) {
+	private String getParamValue(HttpServletRequest request, HttpServletResponse response,String param) {
 		
 		String referer =  request.getHeader("Referer");
 		/*log.info("referer : " + referer );
@@ -469,8 +462,7 @@ public class AuthenticationFilter implements Filter {
 		return null;
 	}
 
-	private boolean authenticationUsingDB(ServletResponse servletResponse,
-			long uniqueId,String currentUser) {
+	private boolean authenticationUsingDB(ServletResponse servletResponse, long uniqueId,String currentUser) {
 		
 		boolean flag = false;
 		

@@ -3,15 +3,16 @@ package ch.unibas.medizin.logbook.client;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.AdminPlace;
-import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.LogBookDetailsPlace;
-import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.LoginPlace;
-import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.ProgressPlace;
-import ch.unibas.medizin.logbook.client.a_nonroo.app.client.place.SkillPlace;
-import ch.unibas.medizin.logbook.client.a_nonroo.app.request.LogBookRequestFactory;
-import ch.unibas.medizin.logbook.client.managed.proxy.MainClassificationProxy;
+import ch.unibas.medizin.logbook.client.event.RecordChangeEvent;
+import ch.unibas.medizin.logbook.client.place.AdminPlace;
+import ch.unibas.medizin.logbook.client.place.LogBookDetailsPlace;
+import ch.unibas.medizin.logbook.client.place.LoginPlace;
+import ch.unibas.medizin.logbook.client.place.ProgressPlace;
+import ch.unibas.medizin.logbook.client.place.SkillPlace;
+import ch.unibas.medizin.logbook.client.proxy.MainClassificationProxy;
+import ch.unibas.medizin.logbook.shared.enums.Locale;
 import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
-import ch.unibas.medizin.logbook.shared.scaffold.Locale;
+import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
@@ -29,7 +30,6 @@ public class LogBookHeaderLogic implements LogBookHeader.Delegate {
 	private PlaceController placeController;
 	private LogBookConstants constants = GWT.create(LogBookConstants.class);
 	private List<BreadCrumb> breadCrumbs = new ArrayList<BreadCrumb>();
-//	private EnumRenderer<Operation> renderer = new EnumRenderer<Operation>();
 	private Place currentPlace;
 	
 	@Inject
@@ -39,7 +39,6 @@ public class LogBookHeaderLogic implements LogBookHeader.Delegate {
 		
 		PlaceChangeEventHandler eventHandler = new PlaceChangeEventHandler();
 		eventBus.addHandler(PlaceChangeEvent.TYPE, eventHandler);
-//		addNewPlace(placeController.getWhere());
 		Log.debug("new OsMaHeaderLogic()");
 	}
 	
@@ -112,31 +111,9 @@ public class LogBookHeaderLogic implements LogBookHeader.Delegate {
 		if (lastCrumb == null) {
 			return;
 		}
-		
-		/*if (newPlace instanceof OsMaDetailsPlace) {
-			if (lastCrumb.getPlace() instanceof OsMaDetailsPlace) {
-				breadCrumbs.remove(indexOfLastCrumb);
-			}
-		} else {
-			breadCrumbs.remove(indexOfLastCrumb--);
-			if (indexOfLastCrumb >= 0) {
-				breadCrumbs.remove(indexOfLastCrumb);
-			}
-		}*/
+
 		logBreadCrumbs();
 	}
-	
-	/*private void addDetailsPlace(LogBookDetailsPlace place) {
-		String placeDescription;
-		if (place.getOperation() == Operation.CREATE) {
-			placeDescription = renderer.render(place.getOperation());
-			breadCrumbs.add(new BreadCrumb((Place) place, placeDescription));
-			logBreadCrumbs();
-		} else {
-			placeDescription = renderer.render(place.getOperation()) + ": ";
-			requestFactory.find(place.getProxyId()).fire(new ObjectReceiver(new BreadCrumb((Place)place, placeDescription)));
-		}
-	}*/
 	
 	private void addRootPlace(Place place) {
 		String placeDescription;

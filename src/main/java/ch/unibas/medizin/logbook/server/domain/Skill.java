@@ -54,8 +54,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
 import ch.unibas.medizin.logbook.shared.SkillFilteredResult;
-import ch.unibas.medizin.logbook.shared.SkillLevels;
-import ch.unibas.medizin.logbook.shared.StudentStatus;
+import ch.unibas.medizin.logbook.shared.enums.SkillLevels;
+import ch.unibas.medizin.logbook.shared.enums.StudentStatus;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
@@ -1044,7 +1044,7 @@ public class Skill {
 	        String xmlString = sw.toString();
 
 	       // File file = new File("osMaEntry/gwt/unibas/"+System.currentTimeMillis()+".xml");
-	        String path=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
+	        String path=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/logbook/gwt/logbook/");
 	        String fileName=path+"/"+System.currentTimeMillis()+".xml";
 	        Log.info("Path: " + fileName);
 	        
@@ -1075,11 +1075,11 @@ public class Skill {
 			 	
 			 	
 	            TransformerFactory tFactory = TransformerFactory.newInstance();
-	            String xslPath=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/skill.xsl");
+	            String xslPath=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/logbook/gwt/logbook/skill.xsl");
 	            Source xslDoc = new StreamSource(xslPath);
 	            Source xmlDoc = new StreamSource(fileName);
 	            
-	            String path=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/applicationScaffold/gwt/logbook/");
+	            String path=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/logbook/gwt/logbook/");
 	            String outputFileName =path+"/" +System.currentTimeMillis()+".html";
 	            Log.info("Path: " + outputFileName);
 	            OutputStream htmlFile = new FileOutputStream(outputFileName);

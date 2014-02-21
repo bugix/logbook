@@ -1,0 +1,205 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" 
+	xmlns:c="urn:import:com.google.gwt.user.cellview.client" 
+	xmlns:cell="urn:import:com.google.gwt.cell.client" 
+	xmlns:custom="urn:import:ch.unibas.medizin.logbook.client.widget">
+	<ui:style>
+.textBoxStyle
+{
+	color: #888888;
+	margin: 0;
+	width: 180px;
+	height: 30px;
+	margin: 7px;
+}
+.buttonStyle
+{
+	margin: 0;
+	width: 185px;
+	margin: 7px;
+	height: 34px;
+	font-size: medium;
+}
+.buttonStyle:hover
+{
+	color: #1A68A0;
+}
+
+.mainVerticlePanelStyle
+{
+	 height:auto;
+	/*border-width:1px solid lightblue !important;*/
+	border: 1px solid lightblue!important; 
+	border-radius:4px;	 
+	padding: 20px;
+}
+.studentLoginPanelStyle
+{
+	border: 1px solid lightblue!important; 
+	border-radius:4px;	 
+	height: 60px;
+	text-indent: 10px;
+	color:#222222;
+	width: 100%;
+	text-align: left;
+	margin-top: 30px;
+}
+.linkStyle
+{
+	color: #222222;
+	margin-left: 8px;
+	font-size: 11px;
+}
+.linkStyle:hover
+{
+	color: #222222;
+	margin-left: 8px;
+	text-decoration:underline;
+	font-size: 11px;
+	 
+}
+	.finalizeButtonStyle {
+			  border-radius: 5px 5px 5px 5px;
+    		  margin-left: 10px;
+    		  padding: 2px 14px;	
+    		  height: 30px;
+		}
+.changeBtnTrStyle {
+			float: right;
+		}
+		
+		.informationHPStyle {
+			height: 30%;
+			width: 100%;
+			padding-bottom: 10px;
+			padding-left: 2px;
+			vertical-align: inherit;
+		}
+		
+		.personnelInforamationSPStyle {
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 5px;
+			border-color: lightblue;
+			padding: 15px;
+			width: 95%;
+			height: 90%;
+		}
+		.headingLabelStyle 
+		{
+			font-style: normal;
+			color: #888888;
+			font-size: 124%;
+			line-height: 32px;
+			padding-bottom: 1px;			
+			text-transform: uppercase;
+		}
+	
+		.valueLabelStyle {
+			font-size: 97%;
+			font-style: normal;
+			color: #333333;
+			display: block;
+			float: left;
+			padding-top: 5px;
+			padding-left: 10px;
+			margin-right: 60px;
+		}
+	.infoLabelStyle {
+			font-style: normal;
+			font-size: 98%;
+			color: #888888;
+			display: block;
+			padding-top: 5px;			
+			float: left;
+		}
+		.trStyle 
+		{
+			height: 20px;
+			float: left;
+		}
+</ui:style>
+	<g:HTMLPanel>
+		<!-- <g:Label>Admin View aaa</g:Label> -->
+		<g:VerticalPanel addStyleNames="{style.informationHPStyle}">
+								<g:HTMLPanel addStyleNames="{style.personnelInforamationSPStyle}">
+								
+								<g:Label ui:field="lblPersonnelInformation" addStyleNames="{style.headingLabelStyle}"></g:Label>
+									<table>
+										<tbody>
+											<!-- <tr addStyleNames="{style.trStyle}">
+												<td>
+													
+												</td>
+											</tr> -->
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblName" addStyleNames="{style.infoLabelStyle}"></g:Label>
+												</td>
+												<td>
+													<g:Label ui:field="lblNameVal" addStyleNames="{style.valueLabelStyle}"></g:Label>
+												</td>
+											</tr>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblPrename" addStyleNames="{style.infoLabelStyle}"></g:Label>
+												</td>
+												<td>
+													<g:Label ui:field="lblPrenameVal" addStyleNames="{style.valueLabelStyle}"></g:Label>
+												</td>
+											</tr>
+											<!-- <tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblStudyYear" addStyleNames="{style.infoLabelStyle}">
+													</g:Label>
+												</td>
+												<td>
+													<g:Label ui:field="lblStudeyYearvalue" addStyleNames="{style.valueLabelStyle}"></g:Label>
+												</td>
+											</tr> -->
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblEmail" addStyleNames="{style.infoLabelStyle}">
+													</g:Label>
+												</td>
+												<td>
+													<g:Label ui:field="lblEmailVal" addStyleNames="{style.valueLabelStyle}"></g:Label>
+												</td>
+											</tr>
+											<!-- <tr addStyleNames="{style.trStyle}">
+												<td>
+												</td>
+												<td>
+													<g:Anchor ui:field="btnChange" addStyleNames="{style.changeBtnTrStyle}"></g:Anchor>
+												</td>
+											</tr> -->
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label ui:field="lblExport" addStyleNames="{style.infoLabelStyle}"></g:Label>
+												</td>
+												<td>
+													<g:CheckBox ui:field="exportCheckbox"
+														addStyleNames="{style.finalizeButtonStyle}"></g:CheckBox>
+												</td>
+											</tr>
+											<tr addStyleNames="{style.trStyle}">
+												<td>
+													<g:Label addStyleNames="{style.infoLabelStyle}">&nbsp;</g:Label>
+												</td>
+												<td>
+													<g:Button ui:field="btnExportLogBook"
+														addStyleNames="{style.finalizeButtonStyle}"></g:Button>
+												</td>
+											</tr>
+											
+										</tbody>
+									</table>
+								</g:HTMLPanel>
+								
+								<custom:CustomCopyrightWidget></custom:CustomCopyrightWidget>
+							</g:VerticalPanel>
+								
+		
+	</g:HTMLPanel>
+</ui:UiBinder> 
