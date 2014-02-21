@@ -9,7 +9,7 @@ import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.ServiceName;
 
-@ServiceName("logbook.server.domain.MainClassification")
+@ServiceName("ch.unibas.medizin.logbook.server.domain.MainClassification")
 public interface MainClassificationRequest extends RequestContext {
 
     abstract Request<java.lang.Long> countMainClassifications();

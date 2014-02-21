@@ -9,7 +9,7 @@ import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.ServiceName;
 
-@ServiceName("logbook.server.domain.SkillLevel")
+@ServiceName("ch.unibas.medizin.logbook.server.domain.SkillLevel")
 public interface SkillLevelRequest extends RequestContext {
 
     abstract Request<java.lang.Long> countSkillLevels();

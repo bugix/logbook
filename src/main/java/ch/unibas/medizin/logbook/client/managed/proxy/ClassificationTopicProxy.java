@@ -7,7 +7,7 @@ import java.util.List;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
 
-@ProxyForName(value = "logbook.server.domain.ClassificationTopic", locator = "logbook.server.locator.ClassificationTopicLocator")
+@ProxyForName(value = "ch.unibas.medizin.logbook.server.domain.ClassificationTopic", locator = "ch.unibas.medizin.logbook.server.locator.ClassificationTopicLocator")
 public interface ClassificationTopicProxy extends EntityProxy {
 
     abstract Long getId();

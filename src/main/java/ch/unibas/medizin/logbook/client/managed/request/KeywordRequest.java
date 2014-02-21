@@ -9,7 +9,7 @@ import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.ServiceName;
 
-@ServiceName("logbook.server.domain.Keyword")
+@ServiceName("ch.unibas.medizin.logbook.server.domain.Keyword")
 public interface KeywordRequest extends RequestContext {
 
     abstract Request<java.lang.Long> countKeywords();

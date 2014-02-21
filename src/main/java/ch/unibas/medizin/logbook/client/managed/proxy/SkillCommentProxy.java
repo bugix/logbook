@@ -5,7 +5,7 @@ package ch.unibas.medizin.logbook.client.managed.proxy;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
 
-@ProxyForName(value = "logbook.server.domain.SkillComment", locator = "logbook.server.locator.SkillCommentLocator")
+@ProxyForName(value = "ch.unibas.medizin.logbook.server.domain.SkillComment", locator = "ch.unibas.medizin.logbook.server.locator.SkillCommentLocator")
 public interface SkillCommentProxy extends EntityProxy {
 
     abstract Long getId();

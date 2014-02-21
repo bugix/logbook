@@ -9,7 +9,7 @@
 	<inherits name="com.google.gwt.logging.Logging"/>
 	<inherits name="com.google.gwt.inject.Inject"/>
 	<inherits name="com.google.gwt.text.Text"/>
-	<inherits name="logbook.client.style.LogBookStyle"/>
+	<inherits name="ch.unibas.medizin.logbook.client.style.LogBookStyle"/>
 	 <!-- For development a default of `DEBUG` is recommended -->
     <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />	
 	<set-property name="log_DivLogger" value="DISABLED" />
@@ -18,8 +18,8 @@
 	 
 	<inherits name="de.novanic.eventservice.GWTEventService"/>
 	
-	<source path="logbook/client/managed/request"/>
-    <source path="logbook/client/managed/proxy"/>
+	<!--  <source path="logbook/client/managed/request"/>
+    <source path="logbook/client/managed/proxy"/> -->
     <source path="client"/>
 	<source path="shared"/>
 	<public path="public"/>

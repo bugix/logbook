@@ -7,7 +7,7 @@ import java.util.Set;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
 
-@ProxyForName(value = "logbook.server.domain.Keyword", locator = "logbook.server.locator.KeywordLocator")
+@ProxyForName(value = "ch.unibas.medizin.logbook.server.domain.Keyword", locator = "ch.unibas.medizin.logbook.server.locator.KeywordLocator")
 public interface KeywordProxy extends EntityProxy {
 
     abstract Long getId();

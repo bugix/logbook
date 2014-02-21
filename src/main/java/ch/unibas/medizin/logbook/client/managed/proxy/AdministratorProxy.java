@@ -5,7 +5,7 @@ package ch.unibas.medizin.logbook.client.managed.proxy;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
 
-@ProxyForName(value = "logbook.server.domain.Administrator", locator = "logbook.server.locator.AdministratorLocator")
+@ProxyForName(value = "ch.unibas.medizin.logbook.server.domain.Administrator", locator = "ch.unibas.medizin.logbook.server.locator.AdministratorLocator")
 public interface AdministratorProxy extends EntityProxy {
 
     abstract Long getId();

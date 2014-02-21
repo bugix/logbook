@@ -9,7 +9,7 @@ import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.ServiceName;
 
-@ServiceName("logbook.server.domain.Topic")
+@ServiceName("ch.unibas.medizin.logbook.server.domain.Topic")
 public interface TopicRequest extends RequestContext {
 
     abstract Request<java.lang.Long> countTopics();

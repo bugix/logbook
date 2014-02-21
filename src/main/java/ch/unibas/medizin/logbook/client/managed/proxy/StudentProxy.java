@@ -11,7 +11,7 @@ import ch.unibas.medizin.logbook.shared.StudyYears;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyForName;
 
-@ProxyForName(value = "logbook.server.domain.Student", locator = "logbook.server.locator.StudentLocator")
+@ProxyForName(value = "ch.unibas.medizin.logbook.server.domain.Student", locator = "ch.unibas.medizin.logbook.server.locator.StudentLocator")
 public interface StudentProxy extends EntityProxy {
 
     abstract Long getId();
