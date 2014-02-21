@@ -1,4 +1,4 @@
-package ch.unibas.medizin.logbook.client.style.Resources;
+package ch.unibas.medizin.logbook.client.style.resources;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.cellview.client.SimplePager;
 
