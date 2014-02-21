@@ -1,14 +1,10 @@
+package ch.unibas.medizin.logbook.client.suggest.simple;
 
-package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple;
-
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.ValueRendererFactory.ListRenderer;
+import ch.unibas.medizin.logbook.client.suggest.EventHandlingValueHolderItem;
+import ch.unibas.medizin.logbook.client.suggest.ValueRendererFactory.ListRenderer;
 
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-
-
-
 
 public class DefaultListRenderer<T, W extends EventHandlingValueHolderItem<T>> extends
 		VerticalPanel implements ListRenderer<T, W> {

@@ -6,7 +6,7 @@ import java.util.Set;
 
 import ch.unibas.medizin.logbook.client.proxy.SkillAcquiredProxy;
 import ch.unibas.medizin.logbook.client.proxy.StudentProxy;
-import ch.unibas.medizin.logbook.client.style.Resources.MySimplePagerResources;
+import ch.unibas.medizin.logbook.client.style.resources.MySimplePagerResources;
 import ch.unibas.medizin.logbook.client.widget.CustomProgressbar;
 import ch.unibas.medizin.logbook.shared.constant.LogBookConstant;
 import ch.unibas.medizin.logbook.shared.enums.SkillLevels;

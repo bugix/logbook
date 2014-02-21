@@ -1,17 +1,10 @@
 
-package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl;
+package ch.unibas.medizin.logbook.client.suggest;
 
 import java.util.ArrayList;
 
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.AbstractSuggestBox;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestOracle;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestOracle.Request;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestPossibilitiesCallBack;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestTextBoxWidget;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.SuggestTextBoxWidgetImpl;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultSuggestOracle;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultValueRenderer;
+import ch.unibas.medizin.logbook.client.suggest.simple.DefaultSuggestOracle;
+import ch.unibas.medizin.logbook.client.suggest.simple.DefaultValueRenderer;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
@@ -22,7 +15,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
-
+import ch.unibas.medizin.logbook.client.suggest.SuggestOracle.Request;
 
 public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> extends AbstractSuggestBox<T, W> {
 
@@ -47,13 +40,6 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 		@SuppressWarnings("unchecked")
 		public void onSuggestionsReady(SuggestOracle.Request request, SuggestOracle.Response response) {
 			innerCallBack.setPossibilities(new ArrayList<T>(response.getSuggestions()));
-			// display.setMoreSuggestions(response.hasMoreSuggestions(),
-			// response.getMoreSuggestionsCount());
-			// display.showSuggestions(SuggestBox.this,
-			// response.getSuggestions(),
-			// oracle.isDisplayStringHTML(),
-			// isAutoSelectEnabled(),
-			// suggestionCallback);
 		}
 
 		public SuggestPossibilitiesCallBack<T> getInnerCallBack() {
@@ -175,8 +161,6 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 		Log.info("Offset Width: " + this.scrollPanel.getOffsetWidth());
 		DefaultValueRenderer.widthValue=s2;
 		this.setRendererWidth(s2);
-		//this.textField.setWidth(i);	
-		
 	}
 
 }

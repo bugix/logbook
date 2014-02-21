@@ -7,3 +7,5 @@ gwt-unitCache
 .classpath
 .settings
 log.roo
+.apt_generated
+.gradle

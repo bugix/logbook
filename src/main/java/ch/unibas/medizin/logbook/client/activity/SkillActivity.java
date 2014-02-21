@@ -11,7 +11,7 @@ import ch.unibas.medizin.logbook.client.proxy.SkillFilteredResultProxy;
 import ch.unibas.medizin.logbook.client.proxy.SkillProxy;
 import ch.unibas.medizin.logbook.client.proxy.StudentProxy;
 import ch.unibas.medizin.logbook.client.proxy.TopicProxy;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple.DefaultSuggestOracle;
+import ch.unibas.medizin.logbook.client.suggest.simple.DefaultSuggestOracle;
 import ch.unibas.medizin.logbook.client.ui.SkillLevelCheckboxView;
 import ch.unibas.medizin.logbook.client.ui.SkillLevelCheckboxViewImpl;
 import ch.unibas.medizin.logbook.client.ui.SkillLevelIconButtonView;

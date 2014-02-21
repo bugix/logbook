@@ -1,11 +1,10 @@
 
-package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest;
+package ch.unibas.medizin.logbook.client.suggest;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 
 
-public class SuggestChangeEvent<T, W extends EventHandlingValueHolderItem<T>> extends
-		ChangeEvent {
+public class SuggestChangeEvent<T, W extends EventHandlingValueHolderItem<T>> extends ChangeEvent {
 	protected AbstractSuggestBox<T, W> source;
 	protected T selection;
 	protected boolean selected;

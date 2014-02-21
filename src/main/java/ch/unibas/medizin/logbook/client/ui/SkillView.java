@@ -9,8 +9,8 @@ import ch.unibas.medizin.logbook.client.proxy.SkillFilteredResultProxy;
 import ch.unibas.medizin.logbook.client.proxy.SkillProxy;
 import ch.unibas.medizin.logbook.client.proxy.StudentProxy;
 import ch.unibas.medizin.logbook.client.proxy.TopicProxy;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.DefaultSuggestBox;
+import ch.unibas.medizin.logbook.client.suggest.DefaultSuggestBox;
+import ch.unibas.medizin.logbook.client.suggest.EventHandlingValueHolderItem;
 import ch.unibas.medizin.logbook.client.widget.CustomPager;
 
 import com.google.gwt.dom.client.DivElement;

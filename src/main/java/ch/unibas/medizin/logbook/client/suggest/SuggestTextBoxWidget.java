@@ -1,6 +1,4 @@
-package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest;
-
-
+package ch.unibas.medizin.logbook.client.suggest;
 
 import com.google.gwt.event.dom.client.HasBlurHandlers;
 import com.google.gwt.event.dom.client.HasDoubleClickHandlers;
@@ -11,7 +9,6 @@ import com.google.gwt.event.dom.client.MouseMoveHandler;
 import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.user.client.ui.IsWidget;
 
-
 public interface SuggestTextBoxWidget<T, W extends EventHandlingValueHolderItem<T>> extends
 		IsWidget, MouseDownHandler, MouseMoveHandler, MouseOutHandler,
 		HasKeyUpHandlers, HasKeyDownHandlers, HasDoubleClickHandlers,
@@ -19,15 +16,7 @@ public interface SuggestTextBoxWidget<T, W extends EventHandlingValueHolderItem<
 
 	public abstract String getText();
 
-	
-/*
-	public abstract void setValidator(Validator<String> validator);
-
-	public abstract Validator<String> getValidator();*/
-
 	public abstract void setSelectionRange(int i, int length);
-
-
 
 	public abstract void setEnabled(boolean enabled);
 
@@ -60,8 +49,4 @@ public interface SuggestTextBoxWidget<T, W extends EventHandlingValueHolderItem<
 	public abstract void addStyleName(String suggestFieldHover);
 
 	public abstract void removeStyleName(String suggestFieldHover);
-
-
-
-
 }

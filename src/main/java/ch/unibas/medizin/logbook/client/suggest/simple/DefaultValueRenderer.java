@@ -1,8 +1,8 @@
 
-package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple;
+package ch.unibas.medizin.logbook.client.suggest.simple;
 
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.ValueRendererFactory;
+import ch.unibas.medizin.logbook.client.suggest.EventHandlingValueHolderItem;
+import ch.unibas.medizin.logbook.client.suggest.ValueRendererFactory;
 
 import com.google.gwt.text.shared.Renderer;
 import com.google.gwt.user.client.ui.HTML;

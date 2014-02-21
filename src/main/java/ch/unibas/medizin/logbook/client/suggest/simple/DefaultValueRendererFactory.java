@@ -1,11 +1,11 @@
 
-package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl.simple;
+package ch.unibas.medizin.logbook.client.suggest.simple;
 
 import java.util.Map;
 
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.EventHandlingValueHolderItem;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.ValueRendererFactory;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.param.Option;
+import ch.unibas.medizin.logbook.client.suggest.EventHandlingValueHolderItem;
+import ch.unibas.medizin.logbook.client.suggest.ValueRendererFactory;
+import ch.unibas.medizin.logbook.client.util.Option;
 
 import com.google.gwt.text.shared.Renderer;
 

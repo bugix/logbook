@@ -103,13 +103,7 @@
 					   							</td>
 					   							<td  valign="bottom" class="skillTableRow"><b> Acquired Level</b>
 					   							</td> 
-					   							
-					   							<!-- <div class="skillTableRow" width="595px">
-									   								<span width="60px" class="td1"><b>Shortcut</b></span>
-									   								<span width="475px" class="td2"><b>description</b></span>
-									   								<span width="30px" class="td3"><b>Skill Level</b></span>
-									   								<span width="30px" class="td4"><b>Skill Acquired Level</b></span>
-									   							</div> -->
+
 					   						</tr>
 									   			<xsl:for-each select="skills/skill">
 									   				
@@ -128,12 +122,6 @@
 									   							<td valign="top" width="10%" class="skillTableRow" style="text-align:center">
 									   								<xsl:value-of select="skillLevelAcquired" />
 									   							</td> 
-									   							<!-- <div class="skillTableRow" width="595px">
-									   								<span width="60px" class="td1"><xsl:value-of select="shortcut" /></span>
-									   								<span width="475px" class="td2"><xsl:value-of select="description" /></span>
-									   								<span width="30px" class="td3"><xsl:value-of select="skillLevel" /></span>
-									   								<span width="30px" class="td4"><xsl:value-of select="skillLevelAcquired" /></span>
-									   							</div> -->
 									   						</tr>
 									   				
 									   			</xsl:for-each>

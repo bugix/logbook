@@ -1,8 +1,7 @@
-package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest;
+package ch.unibas.medizin.logbook.client.suggest;
 
-
-import ch.unibas.medizin.logbook.client.style.widgets.IconButton;
-import ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.AdvancedTextBox;
+import ch.unibas.medizin.logbook.client.widget.AdvancedTextBox;
+import ch.unibas.medizin.logbook.client.widget.IconButton;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.event.dom.client.BlurHandler;
@@ -35,8 +34,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.SimplePanel;
-
-
 
 public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<T>>
 		extends Composite implements SuggestTextBoxWidget<T, W> {
@@ -96,29 +93,14 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 		addMouseMoveHandler(this);
 		addMouseOutHandler(this);		
 		arrowButton.setVisible(false);
-		/*arrowButton.addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
-				Log.info("arrow click");
-				
-			}
-		});*/
-		
 	}
 
-
-
-
-	
 	@Override
 	public void setValue(T value) {
 		advancedTextBox.setText(representer.toString(value));
 		valueChangeEventHandlerHolder.fireChangeOccured(value);
 	}
 
-	
 	@Override
 	public void setText(String value) {
 		advancedTextBox.setText(value);
@@ -132,7 +114,6 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 		panel.add(bottom, DockPanel.SOUTH);
 		bottom.setStyleName(SUGGEST_FIELD_BOTTOM);
 		advancedTextBox.setStyleName(SUGGEST_FIELD);
-		//advancedTextBox.setWidth("10px");
 		left.setStyleName(SUGGEST_FIELD_LEFT);
 		panel.add(left, DockPanel.WEST);
 		right.setStyleName(SUGGEST_FIELD_RIGHT);
@@ -141,32 +122,22 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 		panel.add(arrowButton,DockPanel.EAST);
 	}
 
-	
-	
-	
 	public void setLeftWidget(IsWidget left) {
 		this.left.setWidget(left);
 	}
 
-	
-	
 	public void setRightWidget(IsWidget right) {
 		this.right.setWidget(right);
 	}
 
-	
 	public void setTopWidget(IsWidget top) {
 		this.top.setWidget(top);
 	}
-	
 
-	
 	public void setBottomWidget(IsWidget bottom) {
 		this.bottom.setWidget(bottom);
 	}
 
-	
-	
 	@Override
 	public AbstractSuggestBox<T, W> getRepresenter() {
 		return representer;
@@ -201,31 +172,11 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 		advancedTextBox.setEnabled(enabled);
 	}
 
-	/** returns the default text */
-	
-	/*
-	@Override
-	public String getDefaultText() {
-		return advancedTextBox.getDefaultText();
-	}
-*/
 	/** delegates to the text box */
 	@Override
 	public void setSelectionRange(int i, int length) {
 		advancedTextBox.setSelectionRange(i, length);
 	}
-
-	/*@Override
-	public Validator<String> getValidator() {
-		return advancedTextBox.getValidator();
-	}
-
-	@Override
-	public void setValidator(Validator<String> validator) {
-		advancedTextBox.setValidator(validator);
-	}*/
-
-	
 
 	@Override
 	public String getText() {
@@ -259,10 +210,6 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 	public HandlerRegistration addClickHandler(ClickHandler handler) {
 		return advancedTextBox.addClickHandler(handler);
 	}
-	
-	/*public HandlerRegistration addClickHandler(ClickHandler handler) {
-		return arrowButton.addClickHandler(handler);
-	}*/
 
 	public HandlerRegistration addFocusHandler(FocusHandler handler) {
 		return advancedTextBox.addFocusHandler(handler);
@@ -297,10 +244,6 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 		return advancedTextBox.addMouseDownHandler(handler);
 	}
 
-/*	public HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
-		return arrowButton.addMouseDownHandler(handler);
-	}
-*/
 	public HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler) {
 		return advancedTextBox.addMouseMoveHandler(handler);
 	}
@@ -320,8 +263,6 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 	public HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler) {
 		return advancedTextBox.addMouseWheelHandler(handler);
 	}
-
-	
 	
 	// --------------------- other features ----------------------
 
@@ -333,15 +274,9 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 		this.buttonWidth = buttonWidth;
 	}
 
-	
-	
 	@UiHandler("textField")
 	public void onMouseDown(MouseDownEvent event) {
 			Log.info("click");
-			
-			
-			//chane for click
-	//	Window.alert("onclick");
 			
 		int interval = advancedTextBox.getAbsoluteLeft()
 				+ advancedTextBox.getOffsetWidth() - event.getClientX();
@@ -352,41 +287,14 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 				representer.hideSuggestList(false);
 				
 				
-			} else {
-				
-				//representer.recomputePopupContent(KeyCodes.KEY_DOWN);
-				
+			} else {				
 				representer.recomputeAllPopupContent(KeyCodes.KEY_DOWN,null);
 				representer.highlightSelectedValue();
 			}
 			
 		}
-			
-			/*if (representer.isShowingSuggestList()) {
-				representer.hideSuggestList(false);
-				
-			} else {
-				//representer.recomputePopupContent(KeyCodes.KEY_DOWN);
-				representer.recomputeAllPopupContent(KeyCodes.KEY_DOWN,null);
-				representer.highlightSelectedValue();
-				
-			}*/
-			
-			
 	}
-		
-		
-		/*@UiHandler("arrowButton")
-		 public void onClick(ClickEvent event) {
-        	Log.info("button click");
-        	
-        	
-          
-         }*/
 
-	
-
-		
 	@UiHandler("textField")
 	public void onMouseMove(MouseMoveEvent event) {
 		int mousePosition = event.getX();
@@ -446,28 +354,4 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 	public void setBottom(SimplePanel bottom) {
 		this.bottom = bottom;
 	}
-
-
-
-
-/*
-	@Override
-	public void setValidator(Validator<String> validator) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-
-	@Override
-	public Validator<String> getValidator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-*/
-	
-
-	// ------------------------------------------------------- end.
 }

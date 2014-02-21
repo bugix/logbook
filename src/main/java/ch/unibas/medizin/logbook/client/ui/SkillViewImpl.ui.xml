@@ -2,7 +2,7 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:c="urn:import:com.google.gwt.user.cellview.client"
 	xmlns:cell="urn:import:com.google.gwt.cell.client"
-	xmlns:i="urn:import:ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget.suggest.impl" xmlns:a="urn:import:ch.unibas.medizin.logbook.client.widget">
+	xmlns:i="urn:import:ch.unibas.medizin.logbook.client.suggest" xmlns:a="urn:import:ch.unibas.medizin.logbook.client.widget">
 	<ui:style>
 		.mainVerticlePanelStyle {
 			width: 800px;

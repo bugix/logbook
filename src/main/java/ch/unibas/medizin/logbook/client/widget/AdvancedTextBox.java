@@ -1,10 +1,4 @@
-
-package ch.unibas.medizin.logbook.client.style.widgetsnewcustomsuggestbox.test.client.ui.widget;
-
-
-
-
-
+package ch.unibas.medizin.logbook.client.widget;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.event.dom.client.DoubleClickEvent;
@@ -20,14 +14,11 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-
-
 public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 	private static final String DEFAULT_TEXT_STYLE = "eu-nextstreet-AdvancedTextBoxDefaultText";
 	private static final String MANDATORY_TEXT_STYLE = "eu-nextstreet-AdvancedTextBoxMandatoryText"; // Button Click
 	private static final String ERROR_TEXT_STYLE = "eu-nextstreet-AdvancedTextBoxErrorText";
 	private static final String READ_ONLY_TEXT_STYLE = "eu-nextstreet-AdvancedTextBoxReadOnlyText";
-	//protected Validator<String> validator;
 	protected String defaultText;
 	protected String defaultTextStyle;
 	protected String errorTextStyle;
@@ -35,39 +26,6 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 	protected String readOnlyTextStyle;
 	protected boolean mandatory;
 	protected Widget representer;
-	/*
-	protected UIHandler uiHandler = new UIHandler() {
-
-		@Override
-		public void removeStyleName(String style) {
-		}
-
-		@Override
-		public void removeError() {
-			setTitle("");
-		}
-
-		@Override
-		public void handleTextStyles() {
-		}
-
-		@Override
-		public void handleError(ValidationException error) {
-			setTitle(error.getMessage());
-		}
-
-		@Override
-		public void handleDefaultText() {
-		}
-
-		@Override
-		public void addStyleName(String style) {
-		}
-
-		
-	};
-	
-	*/
 
 	public AdvancedTextBox() {		
 		this(null);
@@ -120,8 +78,6 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 	public void setText(String text) {
 		super.setText(text);
 		handleDefaultText();
-		//this.setFocus(true);
-		//this.setSelectionRange(0,0);
 		this.setCursorPos(0);
 	}
 
@@ -136,13 +92,8 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 				super.setText(defaultText);
 			}
 		}
-		/*if (uiHandler != null)
-			uiHandler.handleDefaultText();
-*/
-	//	handleTextStyles();
 	}
 
-	
 	protected boolean isEmptyTextField() {
 		String text = getText();
 		return text == null || text.trim().length() == 0;
@@ -154,55 +105,6 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 				|| (defaultText == null ? true : defaultText.equals(getText()));
 	}
 
-	
-	/*protected void handleTextStyles() {
-		if (isReadOnly()) {
-			addStyleName(getReadOnlyTextStyle());
-		} else {
-			String text = getTextValue();
-			ValidationException error = null;
-			if (validator != null) {
-				try {
-					validator.validate(text);
-				} catch (ValidationException ex) {
-					error = ex;
-				}
-			}
-			if (error == null) {
-				if (isEmptyTextField() || text.trim().length() == 0) {
-				//	addStyleName(getTextStyle());
-				} else {
-				//	removeStyleName(getTextStyle());
-				}
-			//	removeStyleName(getErrorTextStyle());
-			//	removeError();
-			} else {
-				//removeStyleName(getTextStyle());
-			//	addStyleName(getErrorTextStyle());
-			//	handleError(error);
-			}
-		}
-		if (uiHandler != null)
-			uiHandler.handleTextStyles();
-
-	}*/
-
-	
-	/*
-	protected void handleError(ValidationException error) {
-		if (uiHandler != null)
-			uiHandler.handleError(error);
-	}
-
-	
-	protected void removeError() {
-		if (uiHandler != null)
-			uiHandler.removeError();
-	}
-*/
-	
-
-	
 	public String getTextValue() {
 		String text = super.getText();
 		if (text.trim().equals(defaultText))
@@ -222,16 +124,6 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 		}
 	}
 
-	
-	/*public Validator<String> getValidator() {
-		return validator;
-	}
-
-	public void setValidator(Validator<String> validator) {
-		this.validator = validator;
-		handleTextStyles();
-	}*/
-
 	public String getReadOnlyTextStyle() {
 		if (readOnlyTextStyle == null)
 			return READ_ONLY_TEXT_STYLE;
@@ -246,7 +138,6 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 	public void setReadOnly(boolean readOnly) {
 		removeStyleName(getReadOnlyTextStyle());
 		super.setReadOnly(readOnly);
-	//	handleTextStyles();
 		if (readOnly) {
 			String text = getText();
 			if (defaultText != null && text != null && defaultText.equals(text))
@@ -259,27 +150,13 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 	@Override
 	public void removeStyleName(String style) {
 		super.removeStyleName(style);
-		/*if (uiHandler != null)
-			uiHandler.removeStyleName(style);*/
 	}
 
 	@Override
 	public void addStyleName(String style) {
 		super.addStyleName(style);
-		/*if (uiHandler != null)
-			uiHandler.addStyleName(style);*/
 	}
 
-	/*
-	public UIHandler getUiHandler() {
-		return uiHandler;
-	}
-
-	public void setUiHandler(UIHandler uiHandler) {
-		this.uiHandler = uiHandler;
-	}
-
-*/	
 	public Widget getRepresenter() {
 		return representer;
 	}
@@ -287,5 +164,4 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 	public void setRepresenter(Widget representer) {
 		this.representer = representer;
 	}
-
 }
