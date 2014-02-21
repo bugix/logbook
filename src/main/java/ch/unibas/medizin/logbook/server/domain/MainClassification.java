@@ -24,13 +24,22 @@ import org.springframework.transaction.annotation.Transactional;
 @Configurable
 public class MainClassification {
 
+	@PersistenceContext
+    transient EntityManager entityManager;
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+	@Version
+    @Column(name = "version")
+    private Integer version;
+
     private String description;
 
     @Size(max = 2)
     private String shortcut;
-
-    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "mainClassification")
-    private Set<ClassificationTopic> classificationTopics = new HashSet<ClassificationTopic>();*/
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "mainClassification")
     private List<ClassificationTopic> classificationTopics = new ArrayList<ClassificationTopic>();
@@ -64,15 +73,6 @@ public class MainClassification {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-	@Version
-    @Column(name = "version")
-    private Integer version;
-
 	public Long getId() {
         return this.id;
     }
@@ -88,9 +88,6 @@ public class MainClassification {
 	public void setVersion(Integer version) {
         this.version = version;
     }
-
-	@PersistenceContext
-    transient EntityManager entityManager;
 
 	public static final EntityManager entityManager() {
         EntityManager em = new MainClassification().entityManager;

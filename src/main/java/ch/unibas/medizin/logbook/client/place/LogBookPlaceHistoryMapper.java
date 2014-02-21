@@ -1,6 +1,5 @@
 package ch.unibas.medizin.logbook.client.place;
 
-
 import com.google.gwt.place.shared.PlaceHistoryMapperWithFactory;
 
 /**
@@ -26,26 +25,6 @@ import com.google.gwt.place.shared.PlaceHistoryMapperWithFactory;
  * all entities of a particular type) and
  * {@link logbook.client.scaffold.place.ProxyPlace ProxyPlace}s (which give access to
  * an individual entity).
- */
-// @WithTokenizers({PlaceSystemOverview.Tokenizer.class, 
-//	 PlaceAcceptPerson.Tokenizer.class,
-//	 PlaceAcceptAnswer.Tokenizer.class,
-//	 PlaceAcceptAssQuestion.Tokenizer.class,
-//	 PlaceAcceptQuestion.Tokenizer.class,
-//	 PlaceAsignAssQuestion.Tokenizer.class,
-//	 PlaceAssesment.Tokenizer.class,
-//	 PlaceBookAssesment.Tokenizer.class,
-//	 PlaceOpenDemand.Tokenizer.class,
-//	 PlaceQuestion.Tokenizer.class,
-//	 PlaceQuestiontypes.Tokenizer.class,
-//	 PlaceQuestiontypesDetails.Tokenizer.class,
-//	 PlaceStaticContent.Tokenizer.class,
-//	 PlaceUser.Tokenizer.class,
-//	 PlaceUserDetails.Tokenizer.class,
-//	 PlaceInstitution.Tokenizer.class,
-//	 PlaceQuestionEdit.Tokenizer.class,
-//	 PlaceInstitutionEvent.Tokenizer.class,
-//	 PlaceBookAssesmentDetails.Tokenizer.class})
-	 
+ */	 
 public interface LogBookPlaceHistoryMapper  extends PlaceHistoryMapperWithFactory<LogBookPlaceHistoryFactory>{
 }

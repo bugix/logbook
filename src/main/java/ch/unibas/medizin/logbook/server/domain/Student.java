@@ -45,6 +45,15 @@ import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 @Entity
 @Configurable
 public class Student {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+	@Version
+    @Column(name = "version")
+    private Integer version;
 
     @Size(max = 255)
     private String studentId;
@@ -79,119 +88,6 @@ public class Student {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private Set<SkillComment> skillComments = new HashSet<SkillComment>();
     
-    public static Student findStudentFromSession() 
-    {
-        HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
-        String shibId = (String) session.getAttribute(UNIQUE_ID);
-        Log.info("shib id: " + shibId);
-        Student student=Student.findStudentUsingShibId(shibId);
-        return student;
-    }
-    
-    public static Student findStudentUsingShibId(String shibId) {
-    	
-    	CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
-		CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
-		Root<Student> from = criteriaQuery.from(Student.class);
-					
-		Predicate shibIdPredicate = criteriaBuilder.equal(from.get("shib_id"), shibId);
-		criteriaQuery.where(shibIdPredicate);
-		
-		TypedQuery<Student> q = entityManager().createQuery(criteriaQuery);
-		
-		//Log.info("Query : " + q.unwrap(Query.class).getQueryString());
-		List<Student> students = q.getResultList();
-		if(students.size() > 0) {
-			return students.get(0); 
-		}else {
-			return null;	
-		}   
-	}
-
-	public static Boolean isCurrentUserStudent() {
-    	HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
-    	if(STUDENT.equals(session.getAttribute(CURRENT_USER))) {
-    		return true;
-    	}else if(ADMIN.equals(session.getAttribute(CURRENT_USER))) {
-    		return false;
-    	}
-    	else {
-    		return null;
-    	}
-    }
-
-	@PersistenceContext
-    transient EntityManager entityManager;
-
-	public static final EntityManager entityManager() {
-        EntityManager em = new Student().entityManager;
-        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
-        return em;
-    }
-
-	public static long countStudents() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Student o", Long.class).getSingleResult();
-    }
-
-	public static List<Student> findAllStudents() {
-        return entityManager().createQuery("SELECT o FROM Student o", Student.class).getResultList();
-    }
-
-	public static Student findStudent(Long id) {
-        if (id == null) return null;
-        return entityManager().find(Student.class, id);
-    }
-
-	public static List<Student> findStudentEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Student o", Student.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-
-	@Transactional
-    public void persist() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(this);
-    }
-
-	@Transactional
-    public void remove() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        if (this.entityManager.contains(this)) {
-            this.entityManager.remove(this);
-        } else {
-            Student attached = Student.findStudent(this.id);
-            this.entityManager.remove(attached);
-        }
-    }
-
-	@Transactional
-    public void flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.flush();
-    }
-
-	@Transactional
-    public void clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.clear();
-    }
-
-	@Transactional
-    public Student merge() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        Student merged = this.entityManager.merge(this);
-        this.entityManager.flush();
-        return merged;
-    }
-
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-	@Version
-    @Column(name = "version")
-    private Integer version;
-
 	public Long getId() {
         return this.id;
     }
@@ -287,9 +183,108 @@ public class Student {
 	public void setSkillComments(Set<SkillComment> skillComments) {
         this.skillComments = skillComments;
     }
+    
+    public static Student findStudentFromSession() 
+    {
+        HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
+        String shibId = (String) session.getAttribute(UNIQUE_ID);
+        Log.info("shib id: " + shibId);
+        Student student=Student.findStudentUsingShibId(shibId);
+        return student;
+    }
+    
+    public static Student findStudentUsingShibId(String shibId) {
+    	
+    	CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+		CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
+		Root<Student> from = criteriaQuery.from(Student.class);
+					
+		Predicate shibIdPredicate = criteriaBuilder.equal(from.get("shib_id"), shibId);
+		criteriaQuery.where(shibIdPredicate);
+		
+		TypedQuery<Student> q = entityManager().createQuery(criteriaQuery);
 
-	public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		List<Student> students = q.getResultList();
+		if(students.size() > 0) {
+			return students.get(0); 
+		}else {
+			return null;	
+		}   
+	}
+
+	public static Boolean isCurrentUserStudent() {
+    	HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
+    	if(STUDENT.equals(session.getAttribute(CURRENT_USER))) {
+    		return true;
+    	}else if(ADMIN.equals(session.getAttribute(CURRENT_USER))) {
+    		return false;
+    	}
+    	else {
+    		return null;
+    	}
+    }
+
+	@PersistenceContext
+    transient EntityManager entityManager;
+
+	public static final EntityManager entityManager() {
+        EntityManager em = new Student().entityManager;
+        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
+        return em;
+    }
+
+	public static long countStudents() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM Student o", Long.class).getSingleResult();
+    }
+
+	public static List<Student> findAllStudents() {
+        return entityManager().createQuery("SELECT o FROM Student o", Student.class).getResultList();
+    }
+
+	public static Student findStudent(Long id) {
+        if (id == null) return null;
+        return entityManager().find(Student.class, id);
+    }
+
+	public static List<Student> findStudentEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Student o", Student.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+
+	@Transactional
+    public void persist() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.persist(this);
+    }
+
+	@Transactional
+    public void remove() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager.contains(this)) {
+            this.entityManager.remove(this);
+        } else {
+            Student attached = Student.findStudent(this.id);
+            this.entityManager.remove(attached);
+        }
+    }
+
+	@Transactional
+    public void flush() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.flush();
+    }
+
+	@Transactional
+    public void clear() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        this.entityManager.clear();
+    }
+
+	@Transactional
+    public Student merge() {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        Student merged = this.entityManager.merge(this);
+        this.entityManager.flush();
+        return merged;
     }
 
 	public static TypedQuery<Student> findStudentsByEmailEquals(String email) {
@@ -298,5 +293,9 @@ public class Student {
         TypedQuery<Student> q = em.createQuery("SELECT o FROM Student AS o WHERE o.email = :email", Student.class);
         q.setParameter("email", email);
         return q;
+    }
+	
+	public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }

@@ -11,8 +11,7 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
  * ApplicationLoadingScreenEvent. This event extends the GwtEvent from the
  * com.google.gwt.event.shared package.
  */
-public class ApplicationLoadingScreenEvent extends
-		GwtEvent<ApplicationLoadingScreenHandler> {
+public class ApplicationLoadingScreenEvent extends GwtEvent<ApplicationLoadingScreenHandler> {
 
 	private static final Type<ApplicationLoadingScreenHandler> TYPE = new Type<ApplicationLoadingScreenHandler>();
 
@@ -23,14 +22,11 @@ public class ApplicationLoadingScreenEvent extends
 	 * Register a handler for ApplicationLoadingScreenEvent events on the
 	 * eventbus.
 	 * 
-	 * @param eventBus
-	 *            the {@link EventBus}
-	 * @param handler
-	 *            an {@link ApplicationLoadingScreenHandler} instance
+	 * @param eventBus the {@link EventBus}
+	 * @param handler an {@link ApplicationLoadingScreenHandler} instance
 	 * @return an {@link HandlerRegistration} instance
 	 */
-	public static HandlerRegistration register(EventBus eventBus,
-			ApplicationLoadingScreenHandler handler) {
+	public static HandlerRegistration register(EventBus eventBus, ApplicationLoadingScreenHandler handler) {
 		return eventBus.addHandler(TYPE, handler);
 	}
 
@@ -41,15 +37,13 @@ public class ApplicationLoadingScreenEvent extends
 	public void display() {
 
 		if (show) {
-			// eventCounuter += ((show) ? 1 : -1);
 			eventCounter++;
 			ApplicationLoadingPopupViewImpl.showApplicationLoadingPopup(show);
 		} else {
 			eventCounter--;
 			if (eventCounter <= 0) {
 				eventCounter = 0;
-				ApplicationLoadingPopupViewImpl
-						.showApplicationLoadingPopup(false);
+				ApplicationLoadingPopupViewImpl.showApplicationLoadingPopup(false);
 			}
 		}
 	}

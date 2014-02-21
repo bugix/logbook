@@ -40,124 +40,125 @@ import com.google.gwt.user.client.ui.Widget;
  * Note that we implement HasWidgets so that SlidingPanel will work nicely in
  * ui.xml files.
  */
-public class SlidingPanel extends ResizeComposite implements HasWidgets,
-    HasOneWidget {
+public class SlidingPanel extends ResizeComposite implements HasWidgets, HasOneWidget {
 
-  private final List<Widget> widgets = new ArrayList<Widget>();
-  private final LayoutPanel layoutPanel = new LayoutPanel();
-  private int currentIndex = -1;
+	private final List<Widget> widgets = new ArrayList<Widget>();
+	private final LayoutPanel layoutPanel = new LayoutPanel();
+	private int currentIndex = -1;
 
-  public SlidingPanel() {
-    initWidget(layoutPanel);
-//    layoutPanel.setWidth("99%");
-//    layoutPanel.setHeight("99%");
-//    layoutPanel.setStyleName("allesAusfuellen");
-      DOM.setElementAttribute(layoutPanel.getElement(), "style", "position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;");
-  }
+	public SlidingPanel() {
+		initWidget(layoutPanel);
+		DOM.setElementAttribute(layoutPanel.getElement(), "style", "position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;");
+	}
 
+	public void add(IsWidget w) {
+		add(asWidgetOrNull(w.asWidget()));
+	}
 
-  public void add(IsWidget w) {
-    add(asWidgetOrNull(w.asWidget()));
-  }
+	@Override
+	public void add(Widget w) {
+		widgets.remove(w);
+		widgets.add(w);
 
-  public void add(Widget w) {
-	  //Log.error("Add: "+w.toString());
-    widgets.remove(w);
-    widgets.add(w);
+		// Display the first widget added by default
+		if (currentIndex < 0) {
+			layoutPanel.add(w);
+			currentIndex = 0;
+		}
+	}
 
-    // Display the first widget added by default
-    if (currentIndex < 0) {
-      layoutPanel.add(w);
-      currentIndex = 0;
-    }
-  }
+	@Override
+	public void clear() {
+		setWidget(null);
+		widgets.clear();
+		currentIndex = 0;
+	}
 
-  public void clear() {
-    setWidget(null);
-    widgets.clear();
-    currentIndex = 0;
-  }
-  public void destroyWidgets() {
-	    widgets.clear();
-	    currentIndex = 0;
-	  }
+	public void destroyWidgets() {
+		widgets.clear();
+		currentIndex = 0;
+	}
 
-  public Widget getWidget() {
-    return widgets.get(currentIndex);
-  }
+	@Override
+	public Widget getWidget() {
+		return widgets.get(currentIndex);
+	}
 
-  public Iterator<Widget> iterator() {
-    return Collections.unmodifiableList(widgets).iterator();
-  }
+	@Override
+	public Iterator<Widget> iterator() {
+		return Collections.unmodifiableList(widgets).iterator();
+	}
 
-  public boolean remove(Widget w) {
-    return widgets.remove(w);
-  }
+	@Override
+	public boolean remove(Widget w) {
+		return widgets.remove(w);
+	}
 
-  public void setWidget(IsWidget w) {
-	//  Log.error("Set: "+w.toString());
-    setWidget(asWidgetOrNull(w));
-  }
+	@Override
+	public void setWidget(IsWidget w) {
+		setWidget(asWidgetOrNull(w));
+	}
 
-  /**
-   * Set the widget to show, adding it to the end of our sliding set if we
-   * haven't seen it before. Nulls are ignored.
-   */
-  // Conflict btw deprecated Composite#setWidget and HasOneWidget#setWidget
-  @SuppressWarnings("deprecation")
-  public void setWidget(Widget widget) {
-    if (widget == null) {
-      return;
-    }
-    
-    int newIndex = widgets.indexOf(widget);
+	/**
+	 * Set the widget to show, adding it to the end of our sliding set if we
+	 * haven't seen it before. Nulls are ignored.
+	 */
+	@Override
+	public void setWidget(Widget widget) {
+		if (widget == null) {
+			return;
+		}
 
-    if (newIndex < 0) {
-      newIndex = widgets.size();
-      add(widget);
-    }
+		int newIndex = widgets.indexOf(widget);
 
-    show(newIndex);
-  }
+		if (newIndex < 0) {
+			newIndex = widgets.size();
+			add(widget);
+		}
 
-  private void show(int newIndex) {
-	 // Log.error("Show: "+newIndex);
-    if (newIndex == currentIndex) {
-      return;
-    }
-    Log.debug(Integer.toString(newIndex));
+		show(newIndex);
+	}
 
-    boolean fromLeft = newIndex < currentIndex;
-    currentIndex = newIndex;
+	private void show(int newIndex) {
 
-    Widget widget = widgets.get(newIndex);
-    final Widget current = layoutPanel.getWidget(0);
+		if (newIndex == currentIndex) {
+			return;
+		}
+		Log.debug(Integer.toString(newIndex));
 
-    // Initialize the layout.
-    layoutPanel.add(widget);
-    layoutPanel.setWidgetLeftWidth(current, 0, Unit.PCT, 100, Unit.PCT);
-    if (fromLeft) {
-      layoutPanel.setWidgetLeftWidth(widget, -100, Unit.PCT, 100, Unit.PCT);
-    } else {
-      layoutPanel.setWidgetLeftWidth(widget, 100, Unit.PCT, 100, Unit.PCT);
-    }
-    layoutPanel.forceLayout();
+		boolean fromLeft = newIndex < currentIndex;
+		currentIndex = newIndex;
 
-    // Slide into view.
-    if (fromLeft) {
-      layoutPanel.setWidgetLeftWidth(current, 100, Unit.PCT, 100, Unit.PCT);
-    } else {
-      layoutPanel.setWidgetLeftWidth(current, -100, Unit.PCT, 100, Unit.PCT);
-    }
-    layoutPanel.setWidgetLeftWidth(widget, 0, Unit.PCT, 100, Unit.PCT);
-    layoutPanel.animate(500, new Layout.AnimationCallback() {
-      public void onAnimationComplete() {
-        // Remove the old widget when the animation completes.
-        layoutPanel.remove(current);
-      }
+		Widget widget = widgets.get(newIndex);
+		final Widget current = layoutPanel.getWidget(0);
 
-      public void onLayout(Layer layer, double progress) {
-      }
-    });
-  }
+		// Initialize the layout.
+		layoutPanel.add(widget);
+		layoutPanel.setWidgetLeftWidth(current, 0, Unit.PCT, 100, Unit.PCT);
+		if (fromLeft) {
+			layoutPanel.setWidgetLeftWidth(widget, -100, Unit.PCT, 100, Unit.PCT);
+		} else {
+			layoutPanel.setWidgetLeftWidth(widget, 100, Unit.PCT, 100, Unit.PCT);
+		}
+		layoutPanel.forceLayout();
+
+		// Slide into view.
+		if (fromLeft) {
+			layoutPanel.setWidgetLeftWidth(current, 100, Unit.PCT, 100, Unit.PCT);
+		} else {
+			layoutPanel.setWidgetLeftWidth(current, -100, Unit.PCT, 100, Unit.PCT);
+		}
+		layoutPanel.setWidgetLeftWidth(widget, 0, Unit.PCT, 100, Unit.PCT);
+		layoutPanel.animate(500, new Layout.AnimationCallback() {
+			@Override
+			public void onAnimationComplete() {
+				// Remove the old widget when the animation completes.
+				layoutPanel.remove(current);
+			}
+
+			@Override
+			public void onLayout(Layer layer, double progress) {
+			}
+		});
+	}
 }

@@ -14,10 +14,8 @@ public interface LogBookConstantsWithLookup extends ConstantsWithLookup {
 	public String SJ5();
 
 	public String SJ6();
-	
+
 	public String SOME_PRACTICLE_EXPERIENCE();
-	
+
 	public String ROUTINE();
-
 }
-

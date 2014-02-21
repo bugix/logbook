@@ -1,6 +1,6 @@
-// WARNING: THIS FILE IS MANAGED BY SPRING ROO.
-
 package ch.unibas.medizin.logbook.client.request;
+
+import java.util.List;
 
 import ch.unibas.medizin.logbook.client.proxy.MainClassificationProxy;
 
@@ -12,15 +12,15 @@ import com.google.web.bindery.requestfactory.shared.ServiceName;
 @ServiceName("ch.unibas.medizin.logbook.server.domain.MainClassification")
 public interface MainClassificationRequest extends RequestContext {
 
-    abstract Request<java.lang.Long> countMainClassifications();
+	abstract Request<java.lang.Long> countMainClassifications();
 
-    abstract Request<java.util.List<MainClassificationProxy>> findAllMainClassifications();
+	abstract Request<List<MainClassificationProxy>> findAllMainClassifications();
 
-    abstract Request<java.util.List<MainClassificationProxy>> findMainClassificationEntries(int firstResult, int maxResults);
+	abstract Request<List<MainClassificationProxy>> findMainClassificationEntries(int firstResult, int maxResults);
 
-    abstract Request<MainClassificationProxy> findMainClassification(Long id);
+	abstract Request<MainClassificationProxy> findMainClassification(Long id);
 
-    abstract InstanceRequest<MainClassificationProxy, Void> persist();
+	abstract InstanceRequest<MainClassificationProxy, Void> persist();
 
-    abstract InstanceRequest<MainClassificationProxy, Void> remove();
+	abstract InstanceRequest<MainClassificationProxy, Void> remove();
 }

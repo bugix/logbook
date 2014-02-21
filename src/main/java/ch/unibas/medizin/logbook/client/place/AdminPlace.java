@@ -5,35 +5,32 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.web.bindery.requestfactory.shared.RequestFactory;
 
-
-/**
- * @author Darshan
- *
- */
 public class AdminPlace extends LogBookPlace {
-	
+
 	private String token;
 
-	public AdminPlace(){
+	public AdminPlace() {
 		Log.debug("AdminPlace");
-		this.token = "AdminPlace";
+		token = "AdminPlace";
 	}
-	
-	public AdminPlace(String token){
+
+	public AdminPlace(String token) {
 		this.token = token;
 	}
 
+	@Override
 	public String getToken() {
 		return token;
 	}
-	
+
 	public HandlerManager handler;
-	
-	public AdminPlace(String token,HandlerManager handler){
-		this.handler=handler;
-		this.token = token;	
+
+	public AdminPlace(String token, HandlerManager handler) {
+		this.handler = handler;
+		this.token = token;
 	}
 
+	@Override
 	public void setToken(String token) {
 		this.token = token;
 	}
@@ -41,20 +38,18 @@ public class AdminPlace extends LogBookPlace {
 	/**
 	 * Tokenizer.
 	 */
-
 	public static class Tokenizer implements PlaceTokenizer<AdminPlace> {
-		private final RequestFactory requests;
-
 		public Tokenizer(RequestFactory requests) {
 			Log.debug("LoginPlace.Tokenizer");
-			this.requests = requests;
 		}
 
+		@Override
 		public AdminPlace getPlace(String token) {
 			Log.debug("LoginPlace.Tokenizer.getPlace");
 			return new AdminPlace(token);
 		}
 
+		@Override
 		public String getToken(AdminPlace place) {
 			Log.debug("LoginPlace.Tokenizer.getToken");
 			return place.getToken();

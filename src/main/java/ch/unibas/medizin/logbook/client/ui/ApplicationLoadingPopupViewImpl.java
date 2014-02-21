@@ -7,14 +7,11 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ApplicationLoadingPopupViewImpl extends DialogBox implements
-		ApplicationLoadingPopupView {
+public class ApplicationLoadingPopupViewImpl extends DialogBox implements ApplicationLoadingPopupView {
 
-	private static ApplicationLoadingPopupViewImplUiBinder uiBinder = GWT
-			.create(ApplicationLoadingPopupViewImplUiBinder.class);
+	private static ApplicationLoadingPopupViewImplUiBinder uiBinder = GWT.create(ApplicationLoadingPopupViewImplUiBinder.class);
 
-	interface ApplicationLoadingPopupViewImplUiBinder extends
-			UiBinder<Widget, ApplicationLoadingPopupViewImpl> {
+	interface ApplicationLoadingPopupViewImplUiBinder extends UiBinder<Widget, ApplicationLoadingPopupViewImpl> {
 	}
 
 	@UiField
@@ -33,11 +30,10 @@ public class ApplicationLoadingPopupViewImpl extends DialogBox implements
 
 		loading.setWidth("70px");
 		loading.setHeight("70px");
-		
-		//setPopupPosition(getAbsoluteLeft() / 2, getAbsoluteTop() / 2);
-		 center();
-		this.getElement().removeClassName("gwt-DialogBox");
-		 this.getElement().getStyle().setZIndex(1);
+
+		center();
+		getElement().removeClassName("gwt-DialogBox");
+		getElement().getStyle().setZIndex(1);
 
 	}
 

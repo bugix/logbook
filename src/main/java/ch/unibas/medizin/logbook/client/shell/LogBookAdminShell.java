@@ -1,7 +1,5 @@
 package ch.unibas.medizin.logbook.client.shell;
 
-
-
 import ch.unibas.medizin.logbook.client.navigation.LogBookAdminNav;
 import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
 import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
@@ -17,10 +15,9 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+
 /**
  * The applications basic layout.
- * @author milan
- *
  */
 public class LogBookAdminShell extends Composite {
 
@@ -46,16 +43,10 @@ public class LogBookAdminShell extends Composite {
 	}
 
 	public LogBookAdminShell() {
-
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		init();
-
 	}
-
-	private LogBookRequestFactory requests;
-
-	private PlaceController placeController;
 	
 	final private HandlerManager handlerManager = new HandlerManager(this);
 	

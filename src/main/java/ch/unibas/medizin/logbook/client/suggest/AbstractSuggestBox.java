@@ -1,4 +1,3 @@
-
 package ch.unibas.medizin.logbook.client.suggest;
 
 import java.util.HashMap;
@@ -27,63 +26,43 @@ import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
+public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderItem<T>> extends ChangeEventHandlerHolder<Boolean, SuggestChangeEvent<T, W>> {
 
+	private static final String SUGGEST_FIELD_COMP = "eu-nextstreet-SuggestFieldComp";
+	private static final String SUGGEST_FIELD_HOVER = "eu-nextstreet-SuggestFieldHover";
+	private static final String SUGGEST_BOX_LOADING = "eu-nextstreet-AdvancedTextBoxDefaultText-loading";
 
-public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderItem<T>> extends
-		ChangeEventHandlerHolder<Boolean, SuggestChangeEvent<T, W>>  {
+	protected T selected;
+	protected String typed;
+	protected Map<String, Option<?>> options = new HashMap<String, Option<?>>();
+	public SuggestWidget<T> suggestWidget = new DefaultSuggestionPopup<T>();
+	public ScrollPanel scrollPanel = new ScrollPanel();
+	protected ListRenderer<T, W> listRenderer;
+	protected boolean strictMode;
+	protected DefaultStringFormulator<T> stringFormulator = new DefaultStringFormulator<T>();
+	protected int selectedIndex = -1;
 
-	private static final String						SUGGEST_FIELD_COMP		= "eu-nextstreet-SuggestFieldComp";
-	private static final String						SUGGEST_FIELD					= "eu-nextstreet-SuggestFieldDetail";
-	
-	private static final String						SUGGEST_FIELD_HOVER		= "eu-nextstreet-SuggestFieldHover";
-	private static final String						SUGGEST_BOX_LOADING		= "eu-nextstreet-AdvancedTextBoxDefaultText-loading";
-
-
-	// private static SuggestBoxUiBinder uiBinder = GWT
-	// .create(SuggestBoxUiBinder.class);
-	protected T	selected;
-	protected String			typed;
-	protected Map<String, Option<?>>			options								= new HashMap<String, Option<?>>();
-	public SuggestWidget<T>						suggestWidget					= new DefaultSuggestionPopup<T>();
-	public ScrollPanel									scrollPanel						= new ScrollPanel();
-	protected ListRenderer<T, W>					listRenderer;
-	protected boolean											strictMode;
-	//protected StringFormulator<T>					stringFormulator			= new DefaultStringFormulator<T>();
-	protected DefaultStringFormulator<T>					stringFormulator			= new DefaultStringFormulator<T>();
-	protected int													selectedIndex					= -1;
-
-	private boolean												recomputePopupContent	= true;
+	private boolean recomputePopupContent = true;
 	/**
 	 * Specifies if enter is hit multiple times with same value, whether it
 	 * generates a change event for each
 	 */
-	private boolean												multipleChangeEvent;
-	private boolean												fireChangeOnBlur;
+	private boolean multipleChangeEvent;
+	private boolean fireChangeOnBlur;
 
-	protected ValueRendererFactory<T, W>	valueRendererFactory;
-	protected List<T>											currentPossibilities;
+	protected ValueRendererFactory<T, W> valueRendererFactory;
+	protected List<T> currentPossibilities;
 
-	// @SuppressWarnings("rawtypes")
-	// interface SuggestBoxUiBinder extends UiBinder<Widget, AbstractSuggestBox> {
-	// }
-	
-	
 	public class DefaultStringFormulator<T> {
-		
-		
+
 		public String toString(T t) {
 			return t.toString();
 		}
-		
-		
-
 	}
-	
-	
+
 	private Renderer<T> renderer;
-	
-	public void setRenderer(Renderer<T> renderer)
-	{
+
+	public void setRenderer(Renderer<T> renderer) {
 		this.renderer = renderer;
 	}
 
@@ -92,34 +71,26 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 	}
 
 	public AbstractSuggestBox(String defaultText) {
-		
+
 	}
 
 	/**
 	 * This method must be called in the implementation's constructor
 	 * 
 	 * @param defaultText
-	 *          the defalt text. Can be null
+	 *            the defalt text. Can be null
 	 */
 	protected void init(String defaultText) {
-		//setStyleName(SUGGEST_FIELD_COMP);
 		Log.info("Call Set Style");
 		addStyleName(SUGGEST_FIELD_COMP);
 		getTextField().setRepresenter(this);
-		//getTextField().setStyleName(SUGGEST_FIELD);
 		getTextField().setDefaultText(defaultText);
-		 scrollPanel.setSize("125px", "150px"); 
+		scrollPanel.setSize("125px", "150px");
 		suggestWidget.setWidget(scrollPanel);
-		
-		//suggestWidget.addStyleName("style.standardTable");
-		
+
 		setValueRendererFactory(new DefaultValueRendererFactory<T, W>());
 	}
 
-	
-
-	
-	// @UiHandler("textField")
 	public void onDoubleClick(DoubleClickEvent event) {
 		doubleClicked(event);
 	}
@@ -129,7 +100,6 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 	 * 
 	 * @param event
 	 */
-	// @UiHandler("textField")
 	public void onBlur(BlurEvent event) {
 		new Timer() {
 			@Override
@@ -146,8 +116,6 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 					valueSelected(selected);
 					fireChangeOnBlur = false;
 				}
-				/*if (currentText.trim().length() == 0)
-					setText("");*/
 			}
 		}.schedule(200);
 		if (isShowingSuggestList()) {
@@ -165,12 +133,10 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 	 * 
 	 * @param keyUpEvent
 	 */
-	// @UiHandler("textField")
 	public void onKeyUp(KeyUpEvent keyUpEvent) {
 		final int keyCode = keyUpEvent.getNativeKeyCode();
 
-		if (keyCode == KeyCodes.KEY_TAB || keyCode == KeyCodes.KEY_ALT || keyCode == KeyCodes.KEY_CTRL || keyCode == KeyCodes.KEY_SHIFT
-				|| keyCode == KeyCodes.KEY_HOME || keyCode == KeyCodes.KEY_END) {
+		if (keyCode == KeyCodes.KEY_TAB || keyCode == KeyCodes.KEY_ALT || keyCode == KeyCodes.KEY_CTRL || keyCode == KeyCodes.KEY_SHIFT || keyCode == KeyCodes.KEY_HOME || keyCode == KeyCodes.KEY_END) {
 			return;
 		} else if (keyCode == KeyCodes.KEY_UP || keyCode == KeyCodes.KEY_DOWN || keyCode == KeyCodes.KEY_LEFT || keyCode == KeyCodes.KEY_RIGHT) {
 			// don't recompute if only navigating
@@ -190,16 +156,19 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 				@Override
 				public void setPossibilities(List<T> possibilities) {
 					// the value was already set by the previous handler
-					if (possibilities.size() == 1)
+					if (possibilities.size() == 1) {
 						return;
+					}
 
 					EventHandlingValueHolderItem<T> popupWidget = getItemAt(selectedIndex);
-					if (popupWidget != null && selectedIndex != -1)
+					if (popupWidget != null && selectedIndex != -1) {
 						popupWidget.setSelected(false);
+					}
 					int widgetCount = listRenderer.getWidgetCount();
 
-					if (widgetCount == 0)
+					if (widgetCount == 0) {
 						return;
+					}
 
 					if (keyCode == KeyCodes.KEY_ENTER) {
 						if (isShowingSuggestList()) {
@@ -213,12 +182,13 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 							hideSuggestList();
 						} else {
 							if (multipleChangeEvent) {
-								// popup is not visible, this enter means OK (check if the
-								// value was entered from the list or from text).
-								if (selected == null)
+								// popup is not visible, this enter means OK
+								// (check if the value was entered from the list or from text).
+								if (selected == null) {
 									valueTyped(getText());
-								else
+								} else {
 									fillValue(selected, multipleChangeEvent);
+								}
 							}
 						}
 					} else if (keyCode == KeyCodes.KEY_ESCAPE) {
@@ -234,7 +204,8 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 								@Override
 								public void setPossibilities(List<T> possibilities) {
 									if (reducingText.length() > 1 && possibilities.size() < 1) {
-										// FIXME should optimize by remembering the last valid entry
+										// FIXME should optimize by remembering
+										// the last valid entry
 										// (that has at least one possibility)
 										reducingText.setLength(reducingText.length() - 1);
 										setText(reducingText.toString());
@@ -251,34 +222,33 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 
 	}
 
-	
 	protected void handleKeyNavigation(int keyCode) {
 		if (currentPossibilities == null || !isShowingSuggestList()) {
 			recomputePopupContent(keyCode);
 		} else {
 			int widgetCount = currentPossibilities.size();
-			if (widgetCount == 0)
+			if (widgetCount == 0) {
 				return;
+			}
 			int newSelectedIndex;
 			if (keyCode == KeyCodes.KEY_DOWN) {
 				newSelectedIndex = (selectedIndex + 1) % widgetCount;
 				highlightSelectedValue(selectedIndex, newSelectedIndex);
 			} else if (keyCode == KeyCodes.KEY_UP) {
 				newSelectedIndex = (selectedIndex - 1) % widgetCount;
-				if (newSelectedIndex < 0)
+				if (newSelectedIndex < 0) {
 					newSelectedIndex += widgetCount;
+				}
 
 				highlightSelectedValue(selectedIndex, newSelectedIndex);
 			}
 		}
 	}
 
-	
 	protected boolean isShowingSuggestList() {
 		return suggestWidget.isShowing();
 	}
 
-	
 	protected void highlightSelectedValue(int oldSelectedIndex, int newSelectedIndex) {
 		if (oldSelectedIndex != -1) {
 			EventHandlingValueHolderItem<T> oldPopupWidget = getItemAt(oldSelectedIndex);
@@ -295,26 +265,22 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 		selectedIndex = newSelectedIndex;
 	}
 
-	
 	protected void hideSuggestList(boolean resteSelectedIndex) {
 		suggestWidget.hide();
-		if (resteSelectedIndex)
+		if (resteSelectedIndex) {
 			selectedIndex = -1;
+		}
 	}
 
 	private void hideSuggestList() {
 		hideSuggestList(true);
 	}
 
-	
 	protected void recomputePopupContent(final int keyCode) {
 		recomputePopupContent(keyCode, null);
 	}
 
 	protected void recomputePopupContent(final int keyCode, final SuggestPossibilitiesCallBack<T> callBack) {
-		
-		//if (isReadOnly())
-		//	return;
 
 		String textValue = getText();
 		SuggestPossibilitiesCallBack<T> suggestPossibilitiesCallBack = new SuggestPossibilitiesCallBack<T>() {
@@ -324,20 +290,17 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 				getTextField().removeStyleName(SUGGEST_BOX_LOADING);
 
 				AbstractSuggestBox.this.setPossibilities(keyCode, possibilities);
-				if (callBack != null)
+				if (callBack != null) {
 					callBack.setPossibilities(possibilities);
+				}
 			}
 		};
 		getTextField().addStyleName(SUGGEST_BOX_LOADING);
 
 		computeFiltredPossibilities(textValue, suggestPossibilitiesCallBack);
 	}
-	
-	
-	protected void recomputeAllPopupContent(final int keyCode,  final SuggestPossibilitiesCallBack<T> callBack) {
-		
-		//if (isReadOnly())
-		//	return;
+
+	protected void recomputeAllPopupContent(final int keyCode, final SuggestPossibilitiesCallBack<T> callBack) {
 
 		String textValue = "";
 		SuggestPossibilitiesCallBack<T> suggestPossibilitiesCallBack = new SuggestPossibilitiesCallBack<T>() {
@@ -347,14 +310,15 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 				getTextField().removeStyleName(SUGGEST_BOX_LOADING);
 
 				AbstractSuggestBox.this.setPossibilities(keyCode, possibilities);
-				if (callBack != null)
+				if (callBack != null) {
 					callBack.setPossibilities(possibilities);
+				}
 			}
 		};
 		getTextField().addStyleName(SUGGEST_BOX_LOADING);
 
 		computeFiltredPossibilities(textValue, suggestPossibilitiesCallBack);
-		
+
 	}
 
 	protected void setPossibilities(int keyCode, List<T> possibilities) {
@@ -387,12 +351,13 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 		for (int i = 0; i < size; i++) {
 			final T t = possibilities.get(i);
 			String currentText = getText();
-			if (checkSelected(t, currentText))
+			if (checkSelected(t, currentText)) {
 				selectedIndex = i;
+			}
 
 			final W currentLabel = createValueRenderer(t, currentText);
-			((DefaultValueRenderer<T>)currentLabel).setWidth(rendererWidth);			
-			
+			((DefaultValueRenderer<T>) currentLabel).setWidth(rendererWidth);
+
 			listRenderer.add(currentLabel);
 			currentLabel.addClickHandler(new ClickHandler() {
 				@Override
@@ -418,26 +383,12 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 			currentLabel.addMouseOverHandler(hoverhandler);
 			currentLabel.addMouseOutHandler(hoverhandler);
 		}
-		//System.out.println("Assigning width " );
-		//setRendererWidth("250px");
 	}
 
 	String rendererWidth = "200px";
-	public void setRendererWidth(String width)
-	{
+
+	public void setRendererWidth(String width) {
 		rendererWidth = width;
-		/*System.out.println("setRendererWidth : " + width);
-		if(listRenderer != null)
-		{
-			System.out.println("Renderer is not null : " + listRenderer.getWidgetCount() );
-			int count = listRenderer.getWidgetCount();
-			for(int index=0;index<count;index++)
-			{
-				W w = listRenderer.getAt(index);
-				((DefaultValueRenderer<T>)w).setWidth(width);
-			}
-		}*/
-		
 	}
 
 	protected boolean checkSelected(final T item, String currentText) {
@@ -447,11 +398,9 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 	}
 
 	private W createValueRenderer(final T t, String value) {
-	//	System.out.println("sankit : " + value);
-		//final W currentLabel = valueRendererFactory.createValueRenderer(t, value, getOptions());
-		final W currentLabel = valueRendererFactory.createValueRenderer(t, value, getOptions(),renderer);
-		
-		return currentLabel;				
+		final W currentLabel = valueRendererFactory.createValueRenderer(t, value, getOptions(), renderer);
+
+		return currentLabel;
 	}
 
 	/**
@@ -463,23 +412,20 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 		return options;
 	}
 
-	
 	public String toString(final T t) {
-		//return stringFormulator.toString(t);
 		return renderer.render(t);
 	}
 
 	private EventHandlingValueHolderItem<T> getItemAt(int index) {
-		if (index != -1 && listRenderer.getWidgetCount() > index)
-			return (EventHandlingValueHolderItem<T>) listRenderer.getAt(index);
+		if (index != -1 && listRenderer.getWidgetCount() > index) {
+			return listRenderer.getAt(index);
+		}
 		return null;
 	}
 
-	
 	protected boolean fillValue(final T t, boolean commit) {
 		getTextField().setText(toString(t));
 		hideSuggestList();
-		//getTextField().setFocus(true);
 		selected = t;
 		typed = toString(t);
 		if (commit) {
@@ -492,12 +438,10 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 		return true;
 	}
 
-	
 	public void valueSelected(T value) {
 		fireChangeOccured(true);
 	}
 
-	
 	public void valueTyped(String value) {
 		selected = null;
 		// if (defautText != null && defautText.equals(value))
@@ -506,24 +450,22 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 		fireChangeOccured(false);
 	}
 
-	
 	public T getSelected() {
 		return selected;
 	}
 
-	
 	public String getTyped() {
 		return typed;
 	}
 
 	@Override
 	protected SuggestChangeEvent<T, W> changedValue(Boolean selected) {
-		if (selected)
+		if (selected) {
 			return new SuggestChangeEvent<T, W>(this, getSelected());
+		}
 		return new SuggestChangeEvent<T, W>(this, getText());
 	}
 
-	
 	public String getText() {
 		return getTextField().getTextValue();
 	}
@@ -533,7 +475,6 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 		typed = str;
 	}
 
-	
 	public void computeSelected(String text) {
 		computeFiltredPossibilities(text, new SuggestPossibilitiesCallBack<T>() {
 
@@ -566,12 +507,10 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 
 	protected abstract void computeFiltredPossibilities(String text, SuggestPossibilitiesCallBack<T> suggestPossibilitiesCallBack);
 
-	
 	public ValueRendererFactory<T, ? extends EventHandlingValueHolderItem<T>> getValueRendererFactory() {
 		return valueRendererFactory;
 	}
 
-	
 	public void setValueRendererFactory(ValueRendererFactory<T, W> valueRendererFactory) {
 		this.valueRendererFactory = valueRendererFactory;
 		if (listRenderer != null) {
@@ -579,15 +518,13 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 			scrollPanel.clear();
 		}
 		listRenderer = valueRendererFactory.createListRenderer();
-		scrollPanel.add((Widget) listRenderer);		
-		System.out.println();
+		scrollPanel.add((Widget) listRenderer);
 	}
 
 	public SuggestWidget<T> getSuggestWidget() {
 		return suggestWidget;
 	}
 
-	
 	public void setSuggestWidget(SuggestWidget<T> suggestWidget) {
 		this.suggestWidget = suggestWidget;
 	}
@@ -608,7 +545,6 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 		return removeOption(option.getKey());
 	}
 
-	
 	public boolean isMultipleChangeEvent() {
 		return multipleChangeEvent;
 	}
@@ -626,43 +562,30 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 	}
 
 	/*
-	public String getDefaultText() {
-		return getTextField().getDefaultText();
-	}
-*/
+	 * public String getDefaultText() { return getTextField().getDefaultText();
+	 * }
+	 */
 	public void setDefaultText(String text) {
 		this.getTextField().setDefaultText(text);
 	}
 
-	
-	
 	protected void mouseOnButton(boolean onButton) {
-		if (onButton /*&& !isReadOnly()*/)
+		if (onButton /* && !isReadOnly() */) {
 			getTextField().addStyleName(SUGGEST_FIELD_HOVER);
-		else
+		} else {
 			getTextField().removeStyleName(SUGGEST_FIELD_HOVER);
+		}
 	}
 
-	
 	protected void doubleClicked(DoubleClickEvent event) {
 		this.getTextField().setSelectionRange(0, getText().length());
 		recomputePopupContent(KeyCodes.KEY_RIGHT);
 	}
 
-	
 	protected void itemClicked(T t) {
 		fillValue(t, true);
 	}
 
-	/*public Validator<String> getValidator() {
-		return getTextField().getValidator();
-	}
-
-	public void setValidator(Validator<String> validator) {
-		getTextField().setValidator(validator);
-	}
-*/
-	
 	public void setSelected(T selected) {
 		this.selected = selected;
 		setText(toString(selected));
@@ -674,17 +597,9 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 		highlightSelectedValue(-1, selectedIndex);
 	}
 
-	/*public StringFormulator<T> getStringFormulator() {
-		return stringFormulator;
-	}
-*/
 	public DefaultStringFormulator<T> getStringFormulator() {
 		return stringFormulator;
 	}
-	
-	/*public void setStringFormulator(StringFormulator<T> stringFormulator) {
-		this.stringFormulator = stringFormulator;
-	}*/
 
 	public void setStringFormulator(DefaultStringFormulator<T> stringFormulator) {
 		this.stringFormulator = stringFormulator;

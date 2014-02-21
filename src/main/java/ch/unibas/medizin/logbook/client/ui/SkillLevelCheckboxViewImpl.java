@@ -11,52 +11,56 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-public class SkillLevelCheckboxViewImpl extends Composite implements SkillLevelCheckboxView{
+public class SkillLevelCheckboxViewImpl extends Composite implements SkillLevelCheckboxView {
 
 	private static final SkillLevelCheckboxViewImpllUiBinder uiBinder = GWT.create(SkillLevelCheckboxViewImpllUiBinder.class);
-	
+
 	interface SkillLevelCheckboxViewImpllUiBinder extends UiBinder<Widget, SkillLevelCheckboxViewImpl> {
 	}
-	
+
 	private Delegate delegate;
 
-	private presenter presenter;
-	
 	private SkillLevelCheckboxViewImpl skillLevelCheckboxViewImpl;
-	
-	private int classificationTopicRow=0;
-	
+
+	private int classificationTopicRow = 0;
+
+	@Override
 	public int getClassificationTopicRow() {
 		return classificationTopicRow;
 	}
 
+	@Override
 	public void setClassificationTopicRow(int classificationTopicRow) {
 		this.classificationTopicRow = classificationTopicRow;
 	}
 
+	@Override
 	public int getTopicRow() {
 		return topicRow;
 	}
 
+	@Override
 	public void setTopicRow(int topicRow) {
 		this.topicRow = topicRow;
 	}
 
+	@Override
 	public int getMainClassificationRow() {
 		return mainClassificationRow;
 	}
 
+	@Override
 	public void setMainClassificationRow(int mainClassificationRow) {
 		this.mainClassificationRow = mainClassificationRow;
 	}
 
-	private int topicRow=0;
-	
-	private int mainClassificationRow=0;
-	
+	private int topicRow = 0;
+
+	private int mainClassificationRow = 0;
+
 	@UiField
 	CheckBox checkbox;
-	
+
 	public CheckBox getCheckbox() {
 		return checkbox;
 	}
@@ -66,19 +70,21 @@ public class SkillLevelCheckboxViewImpl extends Composite implements SkillLevelC
 	}
 
 	@UiHandler("checkbox")
-	public void checkboxSelected(ValueChangeEvent<Boolean> event){
-		//Window.alert("" +event.getValue() + "gwt skill :" + skillProxy.getId());
-		delegate.chekBoxSelected(skillProxy,isLevel1,skillLevelCheckboxViewImpl);
-		
+	public void checkboxSelected(ValueChangeEvent<Boolean> event) {
+		// Window.alert("" +event.getValue() + "gwt skill :" +
+		// skillProxy.getId());
+		delegate.chekBoxSelected(skillProxy, isLevel1, skillLevelCheckboxViewImpl);
+
 	}
-	
+
 	private SkillProxy skillProxy;
-	
+
 	public SkillProxy getSkillProxy() {
 		return skillProxy;
 	}
-	
-	public boolean isLevel1=false;
+
+	public boolean isLevel1 = false;
+
 	public boolean isLevel1() {
 		return isLevel1;
 	}
@@ -91,8 +97,8 @@ public class SkillLevelCheckboxViewImpl extends Composite implements SkillLevelC
 		this.skillProxy = skillProxy;
 	}
 
-	public int row; 
-	
+	public int row;
+
 	public int getRow() {
 		return row;
 	}
@@ -102,7 +108,7 @@ public class SkillLevelCheckboxViewImpl extends Composite implements SkillLevelC
 	}
 
 	public int column;
-	
+
 	public int getColumn() {
 		return column;
 	}
@@ -111,25 +117,21 @@ public class SkillLevelCheckboxViewImpl extends Composite implements SkillLevelC
 		this.column = column;
 	}
 
-	public SkillLevelCheckboxViewImpl()
-	{
-		skillLevelCheckboxViewImpl=this;
+	public SkillLevelCheckboxViewImpl() {
+		skillLevelCheckboxViewImpl = this;
 		initWidget(uiBinder.createAndBindUi(this));
-		
-		
+
 	}
 
 	@Override
 	public void setPresenter(presenter presenter) {
-		this.presenter = presenter;
-		
+
 	}
 
 	@Override
 	public void setDelegate(Delegate delegate) {
 		this.delegate = delegate;
-		
+
 	}
-	
-	
+
 }

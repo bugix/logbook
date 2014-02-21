@@ -11,11 +11,11 @@ public class CsvFileGeneratorEvent implements Event {
 	}
 
 	public CsvFileGeneratorEvent(Boolean result) {
-		this.setResult(result);
+		setResult(result);
 	}
 
 	public Boolean getResult() {
-		return this.result;
+		return result;
 	}
 
 	public void setResult(Boolean result) {

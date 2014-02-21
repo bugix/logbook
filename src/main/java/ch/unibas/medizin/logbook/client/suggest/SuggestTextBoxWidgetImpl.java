@@ -35,26 +35,24 @@ import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.SimplePanel;
 
-public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<T>>
-		extends Composite implements SuggestTextBoxWidget<T, W> {
+public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<T>> extends Composite implements SuggestTextBoxWidget<T, W> {
 	/** the text field style name */
 	private static final String SUGGEST_FIELD = "eu-nextstreet-SuggestField";
 	private static final String SUGGEST_FIELD_TOP = "eu-nextstreet-SuggestField-top";
 	private static final String SUGGEST_FIELD_BOTTOM = "eu-nextstreet-SuggestField-bottom";
 	private static final String SUGGEST_FIELD_LEFT = "eu-nextstreet-SuggestField-left";
 	private static final String SUGGEST_FIELD_RIGHT = "eu-nextstreet-SuggestField-right";
-	public static int widthValue1=0;
-	
+	public static int widthValue1 = 0;
+
 	/** the main panel */
 	protected DockPanel panel = new DockPanel();
 	/** the main component */
 	public AdvancedTextBox advancedTextBox = new AdvancedTextBox();
-	public IconButton arrowButton =new IconButton();
-	
+	public IconButton arrowButton = new IconButton();
+
 	/** the suggest box that contains this widget */
 	public AbstractSuggestBox<T, W> representer;
 
-	
 	protected int buttonWidth = 16;
 
 	/** any value change is notified to this list of listeners */
@@ -91,7 +89,7 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 		initPanels();
 		addMouseDownHandler(this);
 		addMouseMoveHandler(this);
-		addMouseOutHandler(this);		
+		addMouseOutHandler(this);
 		arrowButton.setVisible(false);
 	}
 
@@ -119,7 +117,7 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 		right.setStyleName(SUGGEST_FIELD_RIGHT);
 		panel.add(right, DockPanel.EAST);
 		arrowButton.setIcon("triangle-1-s");
-		panel.add(arrowButton,DockPanel.EAST);
+		panel.add(arrowButton, DockPanel.EAST);
 	}
 
 	public void setLeftWidget(IsWidget left) {
@@ -184,6 +182,7 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 	}
 
 	// -------------------------- delegate events -----------------------
+	@Override
 	public HandlerRegistration addAttachHandler(Handler handler) {
 		return advancedTextBox.addAttachHandler(handler);
 	}
@@ -192,20 +191,19 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 		return advancedTextBox.addChangeHandler(handler);
 	}
 
-	public HandlerRegistration addValueChangeHandler(
-			ValueChangeHandler<String> handler) {
+	public HandlerRegistration addValueChangeHandler(ValueChangeHandler<String> handler) {
 		return advancedTextBox.addValueChangeHandler(handler);
 	}
 
+	@Override
 	public HandlerRegistration addDoubleClickHandler(DoubleClickHandler handler) {
 		return advancedTextBox.addDoubleClickHandler(handler);
 	}
 
-	
+	@Override
 	public HandlerRegistration addBlurHandler(BlurHandler handler) {
 		return advancedTextBox.addBlurHandler(handler);
 	}
-	
 
 	public HandlerRegistration addClickHandler(ClickHandler handler) {
 		return advancedTextBox.addClickHandler(handler);
@@ -215,8 +213,7 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 		return advancedTextBox.addFocusHandler(handler);
 	}
 
-	public HandlerRegistration addGestureChangeHandler(
-			GestureChangeHandler handler) {
+	public HandlerRegistration addGestureChangeHandler(GestureChangeHandler handler) {
 		return advancedTextBox.addGestureChangeHandler(handler);
 	}
 
@@ -228,6 +225,7 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 		return advancedTextBox.addGestureStartHandler(handler);
 	}
 
+	@Override
 	public HandlerRegistration addKeyDownHandler(KeyDownHandler handler) {
 		return advancedTextBox.addKeyDownHandler(handler);
 	}
@@ -236,6 +234,7 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 		return advancedTextBox.addKeyPressHandler(handler);
 	}
 
+	@Override
 	public HandlerRegistration addKeyUpHandler(KeyUpHandler handler) {
 		return advancedTextBox.addKeyUpHandler(handler);
 	}
@@ -263,7 +262,7 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 	public HandlerRegistration addMouseWheelHandler(MouseWheelHandler handler) {
 		return advancedTextBox.addMouseWheelHandler(handler);
 	}
-	
+
 	// --------------------- other features ----------------------
 
 	public int getButtonWidth() {
@@ -274,27 +273,27 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 		this.buttonWidth = buttonWidth;
 	}
 
+	@Override
 	@UiHandler("textField")
 	public void onMouseDown(MouseDownEvent event) {
-			Log.info("click");
-			
-		int interval = advancedTextBox.getAbsoluteLeft()
-				+ advancedTextBox.getOffsetWidth() - event.getClientX();
-		
+		Log.info("click");
+
+		int interval = advancedTextBox.getAbsoluteLeft() + advancedTextBox.getOffsetWidth() - event.getClientX();
+
 		if (interval < buttonWidth) {
 			if (representer.isShowingSuggestList()) {
-				
+
 				representer.hideSuggestList(false);
-				
-				
-			} else {				
-				representer.recomputeAllPopupContent(KeyCodes.KEY_DOWN,null);
+
+			} else {
+				representer.recomputeAllPopupContent(KeyCodes.KEY_DOWN, null);
 				representer.highlightSelectedValue();
 			}
-			
+
 		}
 	}
 
+	@Override
 	@UiHandler("textField")
 	public void onMouseMove(MouseMoveEvent event) {
 		int mousePosition = event.getX();

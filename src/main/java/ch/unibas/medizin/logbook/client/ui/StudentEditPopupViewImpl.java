@@ -1,6 +1,5 @@
 package ch.unibas.medizin.logbook.client.ui;
 
- 
 import java.util.Arrays;
 
 import ch.unibas.medizin.logbook.client.renderer.EnumRenderer;
@@ -19,107 +18,104 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.ValueListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class StudentEditPopupViewImpl extends PopupPanel implements StudentEditPopupView{
-	
-	private static StudentEditPopupViewImplUiBinder uiBinder = GWT
-			.create(StudentEditPopupViewImplUiBinder.class);
+public class StudentEditPopupViewImpl extends PopupPanel implements StudentEditPopupView {
 
 	interface StudentEditPopupViewImplUiBinder extends UiBinder<Widget, StudentEditPopupViewImpl> {
 	}
 
 	private static final Binder BINDER = GWT.create(Binder.class);
-	
-	private Delegate delegate;
-		
+
 	LogBookConstants constants = GWT.create(LogBookConstants.class);
-	
+
 	@UiField
 	Label lblStudyYear;
-	
+
 	@UiField
 	Label lblEmail;
-	
+
 	@UiField
 	Button btnSave;
-	
+
 	@UiField
 	TextBox txtEmailValue;
-	
+
 	@UiField
 	Button btnClose;
-	
+
 	@UiField(provided = true)
 	public ValueListBox<StudyYears> lstBoxStudyYear = new ValueListBox<StudyYears>(new EnumRenderer<StudyYears>());
-	
+
 	@UiHandler("btnClose")
-	public void btnCloseClicked(ClickEvent event)
-	{		
-		//this.hide();		
+	public void btnCloseClicked(ClickEvent event) {
 	}
-	
-	
+
 	public TextBox getTxtEmailValue() {
 		return txtEmailValue;
 	}
+
 	public void setTxtEmailValue(String txtEmailValue) {
 		this.txtEmailValue.setText(txtEmailValue);
 	}
+
 	public Label getLblStudyYear() {
 		return lblStudyYear;
 	}
+
 	public void setLblStudyYear(Label lblStudyYear) {
 		this.lblStudyYear = lblStudyYear;
 	}
+
 	public Label getLblEmail() {
 		return lblEmail;
 	}
+
 	public void setLblEmail(Label lblEmail) {
 		this.lblEmail = lblEmail;
 	}
+
 	public Button getBtnSave() {
 		return btnSave;
 	}
+
 	public void setBtnSave(Button btnSave) {
 		this.btnSave = btnSave;
 	}
+
 	public Button getBtnClose() {
 		return btnClose;
 	}
+
 	public void setBtnClose(Button btnClose) {
 		this.btnClose = btnClose;
 	}
+
 	public ValueListBox<StudyYears> getLstBoxStudyYear() {
 		return lstBoxStudyYear;
 	}
+
 	public void setLstBoxStudyYear(StudyYears studyYear) {
-		this.lstBoxStudyYear.setValue(studyYear);
+		lstBoxStudyYear.setValue(studyYear);
 	}
-	
-	
-	
-	public StudentEditPopupViewImpl() 
-	{
+
+	public StudentEditPopupViewImpl() {
 		add(BINDER.createAndBindUi(this));
-		this.setAnimationEnabled(true);
-		//this.setSize("290px", "130px");
-		this.center();
-		this.setAutoHideEnabled(true);
-		
+		setAnimationEnabled(true);
+		center();
+		setAutoHideEnabled(true);
+
 		init();
-		
 	}
-	private void init() 
-	{
+
+	private void init() {
 		lstBoxStudyYear.setAcceptableValues(Arrays.asList(StudyYears.values()));
 		lstBoxStudyYear.setValue(StudyYears.values()[0]);
-		
-		lblStudyYear.setText(constants.studyYear()+" : ");
-		lblEmail.setText(constants.email()+" : ");
+
+		lblStudyYear.setText(constants.studyYear() + " : ");
+		lblEmail.setText(constants.email() + " : ");
 		btnSave.setText(constants.save());
 		btnClose.setText(constants.close());
 	}
+
 	interface Binder extends UiBinder<Widget, StudentEditPopupViewImpl> {
 	}
-	
-	
 }

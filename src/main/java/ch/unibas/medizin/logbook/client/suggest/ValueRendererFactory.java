@@ -7,7 +7,6 @@ import ch.unibas.medizin.logbook.client.util.Option;
 import com.google.gwt.text.shared.Renderer;
 import com.google.gwt.user.client.ui.IsWidget;
 
-
 public interface ValueRendererFactory<T, W extends ValueHolderItem<T>> {
 	public static interface ListRenderer<T, W> extends IsWidget {
 
@@ -22,8 +21,8 @@ public interface ValueRendererFactory<T, W extends ValueHolderItem<T>> {
 	}
 
 	W createValueRenderer(T value, String filterText, Map<String, Option<?>> options);
-	
-	W createValueRenderer(T value, String filterText, Map<String, Option<?>> options,Renderer<T> renderer);
+
+	W createValueRenderer(T value, String filterText, Map<String, Option<?>> options, Renderer<T> renderer);
 
 	ListRenderer<T, W> createListRenderer();
 

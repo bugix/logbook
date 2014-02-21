@@ -1,4 +1,4 @@
-package ch.unibas.medizin.logbook.client.scaffold.request;
+package ch.unibas.medizin.logbook.client.request;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.web.bindery.requestfactory.gwt.client.DefaultRequestTransport;

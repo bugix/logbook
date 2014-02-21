@@ -18,7 +18,7 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.inject.Inject;
 
 /**
- * ActivityMapper for all main places. 
+ * ActivityMapper for all main places.
  */
 public class LogBookActivityMapper implements ActivityMapper {
 
@@ -27,9 +27,9 @@ public class LogBookActivityMapper implements ActivityMapper {
 
 	@Inject
 	public LogBookActivityMapper(LogBookRequestFactory requests, PlaceController placeController) {
-        this.requests = requests;
-        this.placeController = placeController;
-    }
+		this.requests = requests;
+		this.placeController = placeController;
+	}
 
 	@Override
 	public Activity getActivity(Place place) {
@@ -39,14 +39,17 @@ public class LogBookActivityMapper implements ActivityMapper {
 			Log.debug("is LoginPlace");
 			return new LoginActivity(requests, placeController);
 		}
+
 		if (place instanceof SkillPlace) {
 			Log.debug("is SkillPlace");
 			return new SkillActivity(requests, placeController);
 		}
+
 		if (place instanceof ProgressPlace) {
 			Log.debug("is ProgressPlace");
 			return new ProgressActivity(requests, placeController);
 		}
+
 		if (place instanceof AdminPlace) {
 			Log.debug("is AdminPlace");
 			return new AdminActivity(requests, placeController);

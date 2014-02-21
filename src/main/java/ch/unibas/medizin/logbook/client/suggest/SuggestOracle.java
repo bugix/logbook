@@ -6,16 +6,17 @@ import java.util.Collection;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 public abstract class SuggestOracle<T> {
-	private Response<T>	emptyResponse	= new Response<T>(new ArrayList<T>());
-	protected AbstractSuggestBox<T, EventHandlingValueHolderItem<T>>	suggestBox;
+	private Response<T> emptyResponse = new Response<T>(new ArrayList<T>());
+	protected AbstractSuggestBox<T, EventHandlingValueHolderItem<T>> suggestBox;
 
 	public interface Callback<T> {
 		void onSuggestionsReady(Request request, Response<T> response);
 	}
 
 	public static class Request implements IsSerializable {
-		private int			limit	= 20;
-		private String	query;
+		private int limit = 20;
+		private String query;
+
 		public Request() {
 		}
 
@@ -46,11 +47,11 @@ public abstract class SuggestOracle<T> {
 	}
 
 	public static class Response<T> implements IsSerializable {
-		private Collection<T>	suggestions;
+		private Collection<T> suggestions;
 
-		private boolean				moreSuggestions			= false;
+		private boolean moreSuggestions = false;
 
-		private int						numMoreSuggestions	= 0;
+		private int numMoreSuggestions = 0;
 
 		public Response() {
 		}
@@ -86,8 +87,7 @@ public abstract class SuggestOracle<T> {
 	}
 
 	public SuggestOracle() {
-		
-		
+
 	}
 
 	public boolean isDisplayStringHTML() {

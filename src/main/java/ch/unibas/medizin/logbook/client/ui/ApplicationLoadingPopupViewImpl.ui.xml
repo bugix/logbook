@@ -4,30 +4,26 @@
 	xmlns:b='urn:import:com.google.gwt.user.cellview.client'>
 
 	<ui:style>
-		.topPadding {
-			padding-top: 8px;
-		}
-		
-		.panelPadding {
-			padding-top: 8px;
-			padding-left: 15px;
-		}
-		
-		.textBoxPadding {
-			padding-top: 8px;
-			padding-left: 40px;
-		}
-		
-		.buttonPadding {
-			padding-top: 8px;
-			padding-left: 5px;
-		}
-		
-		<!--  .arrowUp {
-			background-image: url(images/loading.gif);
-		} --> 
-	</ui:style>
+	.topPadding {
+		padding-top: 8px;
+	}
 	
+	.panelPadding {
+		padding-top: 8px;
+		padding-left: 15px;
+	}
+	
+	.textBoxPadding {
+		padding-top: 8px;
+		padding-left: 40px;
+	}
+	
+	.buttonPadding {
+		padding-top: 8px;
+		padding-left: 5px;
+	}
+	</ui:style>
+
 	<g:HTMLPanel>
 		<g:Image ui:field="loading"></g:Image>
 	</g:HTMLPanel>

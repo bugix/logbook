@@ -3,6 +3,7 @@ package ch.unibas.medizin.logbook.server;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;
 import com.google.web.bindery.requestfactory.shared.Locator;
 
@@ -10,7 +11,7 @@ public class CustomServiceLayerDecorator extends ServiceLayerDecorator {
 
 	@Override
 	public <T extends Locator<?, ?>> T createLocator(Class<T> clazz) {
-		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(CustomRequestFactoryServlet.getThreadLocalServletContext());
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(RequestFactoryServlet.getThreadLocalServletContext());
 		return context.getBean(clazz);
 	}
 }

@@ -1,4 +1,3 @@
-
 package ch.unibas.medizin.logbook.client.suggest;
 
 import java.util.ArrayList;
@@ -25,12 +24,10 @@ public abstract class ChangeEventHandlerHolder<P, E extends ChangeEvent> extends
 		}
 	}
 
-	
 	protected void fireChangeOccured(P param) {
 		E changeEvent = changedValue(param);
 		changeOccured(changeEvent);
 	}
 
-	
 	protected abstract E changedValue(P param);
 }

@@ -133,7 +133,7 @@ public abstract class AbstractProxyEditActivity<P extends EntityProxy> implement
 	 *
 	 * @param saved true if changes were comitted, false if user canceled
 	 */
-	protected void exit(@SuppressWarnings("unused") boolean saved) {
+	protected void exit(boolean saved) {
 		placeController.goTo(new ProxyPlace(getProxyId(), ProxyPlace.Operation.DETAILS));
 	}
 

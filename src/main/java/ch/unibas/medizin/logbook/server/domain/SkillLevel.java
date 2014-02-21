@@ -25,15 +25,68 @@ import org.springframework.transaction.annotation.Transactional;
 @Configurable
 @Entity
 public class SkillLevel {
+	
+    private final static Logger log = Logger.getLogger(SkillLevel.class);
+
+	@PersistenceContext
+    transient EntityManager entityManager;
+ 
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+	@Version
+    @Column(name = "version")
+    private Integer version;
 
     private Integer levelNumber;
-    private final static Logger log = Logger.getLogger(SkillLevel.class);
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "skillLevel")
     private Set<Skill> skills = new HashSet<Skill>();
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "skillLevel")
     private Set<SkillAcquired> skillAcquired = new HashSet<SkillAcquired>();
+    
+	public Integer getLevelNumber() {
+        return this.levelNumber;
+    }
+
+	public void setLevelNumber(Integer levelNumber) {
+        this.levelNumber = levelNumber;
+    }
+
+	public Set<Skill> getSkills() {
+        return this.skills;
+    }
+
+	public void setSkills(Set<Skill> skills) {
+        this.skills = skills;
+    }
+
+	public Set<SkillAcquired> getSkillAcquired() {
+        return this.skillAcquired;
+    }
+
+	public void setSkillAcquired(Set<SkillAcquired> skillAcquired) {
+        this.skillAcquired = skillAcquired;
+    }
+
+	public Long getId() {
+        return this.id;
+    }
+
+	public void setId(Long id) {
+        this.id = id;
+    }
+
+	public Integer getVersion() {
+        return this.version;
+    }
+
+	public void setVersion(Integer version) {
+        this.version = version;
+    }
     
     public static SkillLevel findSkillByLevelNumber(Integer levelNumber)
     {
@@ -46,13 +99,6 @@ public class SkillLevel {
     	
     	return result.getSingleResult();
     }
-
-	public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
-
-	@PersistenceContext
-    transient EntityManager entityManager;
 
 	public static final EntityManager entityManager() {
         EntityManager em = new SkillLevel().entityManager;
@@ -113,53 +159,8 @@ public class SkillLevel {
         this.entityManager.flush();
         return merged;
     }
-
-	public Integer getLevelNumber() {
-        return this.levelNumber;
-    }
-
-	public void setLevelNumber(Integer levelNumber) {
-        this.levelNumber = levelNumber;
-    }
-
-	public Set<Skill> getSkills() {
-        return this.skills;
-    }
-
-	public void setSkills(Set<Skill> skills) {
-        this.skills = skills;
-    }
-
-	public Set<SkillAcquired> getSkillAcquired() {
-        return this.skillAcquired;
-    }
-
-	public void setSkillAcquired(Set<SkillAcquired> skillAcquired) {
-        this.skillAcquired = skillAcquired;
-    }
-
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-	@Version
-    @Column(name = "version")
-    private Integer version;
-
-	public Long getId() {
-        return this.id;
-    }
-
-	public void setId(Long id) {
-        this.id = id;
-    }
-
-	public Integer getVersion() {
-        return this.version;
-    }
-
-	public void setVersion(Integer version) {
-        this.version = version;
+	
+	public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }

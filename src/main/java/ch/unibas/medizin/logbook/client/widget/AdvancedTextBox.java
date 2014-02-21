@@ -15,9 +15,6 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
-	private static final String DEFAULT_TEXT_STYLE = "eu-nextstreet-AdvancedTextBoxDefaultText";
-	private static final String MANDATORY_TEXT_STYLE = "eu-nextstreet-AdvancedTextBoxMandatoryText"; // Button Click
-	private static final String ERROR_TEXT_STYLE = "eu-nextstreet-AdvancedTextBoxErrorText";
 	private static final String READ_ONLY_TEXT_STYLE = "eu-nextstreet-AdvancedTextBoxReadOnlyText";
 	protected String defaultText;
 	protected String defaultTextStyle;
@@ -27,23 +24,22 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 	protected boolean mandatory;
 	protected Widget representer;
 
-	public AdvancedTextBox() {		
+	public AdvancedTextBox() {
 		this(null);
-		this.setVisibleLength(10);
+		setVisibleLength(10);
 		Log.info("Constructor1");
 	}
 
 	public AdvancedTextBox(final String defautText) {
 		Log.info("Constructor2");
-		this.setVisibleLength(10);
-		this.defaultText = defautText;
+		setVisibleLength(10);
+		defaultText = defautText;
 		addFocusHandler(new FocusHandler() {
 
 			@Override
 			public void onFocus(FocusEvent event) {
 				String text = AdvancedTextBox.this.getText();
-				if (AdvancedTextBox.this.defaultText == null
-						|| !AdvancedTextBox.this.defaultText.equals(text)) {
+				if (defaultText == null || !defaultText.equals(text)) {
 					setSelectionRange(0, text.length());
 				} else {
 					AdvancedTextBox.super.setText("");
@@ -63,14 +59,12 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
-				//handleTextStyles();
 			}
 		});
 	}
 
 	@Override
-	public HandlerRegistration addDoubleClickHandler(
-			final DoubleClickHandler handler) {
+	public HandlerRegistration addDoubleClickHandler(final DoubleClickHandler handler) {
 		return addDomHandler(handler, DoubleClickEvent.getType());
 	}
 
@@ -78,7 +72,7 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 	public void setText(String text) {
 		super.setText(text);
 		handleDefaultText();
-		this.setCursorPos(0);
+		setCursorPos(0);
 	}
 
 	/**
@@ -99,16 +93,15 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 		return text == null || text.trim().length() == 0;
 	}
 
-	
 	public boolean isEmpty() {
-		return isEmptyTextField()
-				|| (defaultText == null ? true : defaultText.equals(getText()));
+		return isEmptyTextField() || (defaultText == null ? true : defaultText.equals(getText()));
 	}
 
 	public String getTextValue() {
 		String text = super.getText();
-		if (text.trim().equals(defaultText))
+		if (text.trim().equals(defaultText)) {
 			return "";
+		}
 		return text;
 	}
 
@@ -125,8 +118,9 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 	}
 
 	public String getReadOnlyTextStyle() {
-		if (readOnlyTextStyle == null)
+		if (readOnlyTextStyle == null) {
 			return READ_ONLY_TEXT_STYLE;
+		}
 		return readOnlyTextStyle;
 	}
 
@@ -140,8 +134,9 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 		super.setReadOnly(readOnly);
 		if (readOnly) {
 			String text = getText();
-			if (defaultText != null && text != null && defaultText.equals(text))
+			if (defaultText != null && text != null && defaultText.equals(text)) {
 				setText("");
+			}
 		} else {
 			handleDefaultText();
 		}

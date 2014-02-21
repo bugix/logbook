@@ -1,8 +1,6 @@
-
 package ch.unibas.medizin.logbook.client.suggest;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
-
 
 public class SuggestChangeEvent<T, W extends EventHandlingValueHolderItem<T>> extends ChangeEvent {
 	protected AbstractSuggestBox<T, W> source;
@@ -30,6 +28,7 @@ public class SuggestChangeEvent<T, W extends EventHandlingValueHolderItem<T>> ex
 		this.selection = selection;
 	}
 
+	@Override
 	public AbstractSuggestBox<T, W> getSource() {
 		return source;
 	}
@@ -38,7 +37,6 @@ public class SuggestChangeEvent<T, W extends EventHandlingValueHolderItem<T>> ex
 		this.source = source;
 	}
 
-	
 	public boolean isSelected() {
 		return selected;
 	}

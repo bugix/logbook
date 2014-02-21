@@ -3,67 +3,66 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.google.gwt.user.cellview.client"
 	xmlns:a="urn:import:ch.unibas.medizin.logbook.client.widget">
 	<ui:style>
-		.progressTablePanelStyle {
-			border-style: solid;
-			border-width: 1px;
-			border-radius: 5px;
-			border-color: lightblue;
-			width: 810px;
-		}
-		
-		.progresstable-style {
-			border: 1px solid black;
-		}
-		.progressTablePagerStyle
-		{
-			float: right;
-		}
-				.copyrightStyle
-		{
-			color: #666666;
-    		float: right;
-    		font-family: arial,sans-serif;
-    		font-size: 80%;
-    		margin-top: 20px;
-    		margin-bottom: 20px;
-    		padding-right: 5px;
-		}
-		.copyrightWithUnderlineStyle
-		{
+	.progressTablePanelStyle {
+		border-style: solid;
+		border-width: 1px;
+		border-radius: 5px;
+		border-color: lightblue;
+		width: 810px;
+	}
 	
-			color: #666666;
-    		float: right;
-    		font-family: arial,sans-serif;
-    		font-size: 80%;
-    		margin-top: 20px;
-    		margin-bottom: 20px;
-    		padding-right: 5px;
-			text-decoration: underline;
-		}
-		
-		.copyrightHPStyle
-		{
-			float: right;
-		}
-		
+	.progresstable-style {
+		border: 1px solid black;
+	}
+	
+	.progressTablePagerStyle {
+		float: right;
+	}
+	
+	.copyrightStyle {
+		color: #666666;
+		float: right;
+		font-family: arial, sans-serif;
+		font-size: 80%;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		padding-right: 5px;
+	}
+	
+	.copyrightWithUnderlineStyle {
+		color: #666666;
+		float: right;
+		font-family: arial, sans-serif;
+		font-size: 80%;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		padding-right: 5px;
+		text-decoration: underline;
+	}
+	
+	.copyrightHPStyle {
+		float: right;
+	}
 	</ui:style>
-		
-		<g:HTMLPanel addStyleNames="{style.progressTablePanelStyle}">
-			<table>
-				<tbody>
-					<tr>
-						<g:ScrollPanel width="810px" height="100%">
-						<g:VerticalPanel width="810px" height="100%"> 
-							<g:FlexTable ui:field="progressFlexTable" addStyleNames="style.progresstable-style" width="810px"></g:FlexTable>
-							<a:CustomPager ui:field="pager" addStyleNames="{style.progressTablePagerStyle}"></a:CustomPager>
+
+	<g:HTMLPanel addStyleNames="{style.progressTablePanelStyle}">
+		<table>
+			<tbody>
+				<tr>
+					<g:ScrollPanel width="810px" height="100%">
+						<g:VerticalPanel width="810px" height="100%">
+							<g:FlexTable ui:field="progressFlexTable"
+								addStyleNames="style.progresstable-style" width="810px"></g:FlexTable>
+							<a:CustomPager ui:field="pager"
+								addStyleNames="{style.progressTablePagerStyle}"></a:CustomPager>
 						</g:VerticalPanel>
-						</g:ScrollPanel>
-					</tr>
-						<tr>
-							<a:CustomCopyrightWidget></a:CustomCopyrightWidget>
-						</tr>
-				</tbody>
-			</table>
-		</g:HTMLPanel>
+					</g:ScrollPanel>
+				</tr>
+				<tr>
+					<a:CustomCopyrightWidget></a:CustomCopyrightWidget>
+				</tr>
+			</tbody>
+		</table>
+	</g:HTMLPanel>
 
 </ui:UiBinder> 

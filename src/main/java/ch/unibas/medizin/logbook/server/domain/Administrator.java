@@ -34,6 +34,18 @@ import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 @Entity
 public class Administrator {
 
+	@PersistenceContext
+    transient EntityManager entityManager;
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+	@Version
+    @Column(name = "version")
+    private Integer version;
+
 	@NotNull
 	@Size(max = 40)   
     private String email;
@@ -45,6 +57,46 @@ public class Administrator {
     @NotNull
     @Size(max = 40)
     private String preName;
+
+ 	public Long getId() {
+         return this.id;
+     }
+
+ 	public void setId(Long id) {
+         this.id = id;
+     }
+
+ 	public Integer getVersion() {
+         return this.version;
+     }
+
+ 	public void setVersion(Integer version) {
+         this.version = version;
+     }
+
+ 	public String getEmail() {
+         return this.email;
+     }
+
+ 	public void setEmail(String email) {
+         this.email = email;
+     }
+
+ 	public String getName() {
+         return this.name;
+     }
+
+ 	public void setName(String name) {
+         this.name = name;
+     }
+
+ 	public String getPreName() {
+         return this.preName;
+     }
+
+ 	public void setPreName(String preName) {
+         this.preName = preName;
+     }
     
     public static Administrator findAdministratorFromSession()
     {
@@ -52,8 +104,8 @@ public class Administrator {
         String mailId = (String) session.getAttribute(UNIQUE_ID);
         Log.info("mail id: " + mailId); 
         Administrator administrator = Administrator.findAdministratorUsingEmail(mailId);
+        
         return administrator;
- 	
     }
 
 	public static Administrator findAdministratorUsingEmail(String mailId) 
@@ -71,59 +123,6 @@ public class Administrator {
 		
         return q.getSingleResult();	
 	}
-    
-
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-	@Version
-    @Column(name = "version")
-    private Integer version;
-
-	public Long getId() {
-        return this.id;
-    }
-
-	public void setId(Long id) {
-        this.id = id;
-    }
-
-	public Integer getVersion() {
-        return this.version;
-    }
-
-	public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-	public String getEmail() {
-        return this.email;
-    }
-
-	public void setEmail(String email) {
-        this.email = email;
-    }
-
-	public String getName() {
-        return this.name;
-    }
-
-	public void setName(String name) {
-        this.name = name;
-    }
-
-	public String getPreName() {
-        return this.preName;
-    }
-
-	public void setPreName(String preName) {
-        this.preName = preName;
-    }
-
-	@PersistenceContext
-    transient EntityManager entityManager;
 
 	public static final EntityManager entityManager() {
         EntityManager em = new Administrator().entityManager;

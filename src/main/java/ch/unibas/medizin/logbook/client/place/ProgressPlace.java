@@ -5,11 +5,6 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.web.bindery.requestfactory.shared.RequestFactory;
 
-
-/**
- * @author Manish
- *
- */
 public class ProgressPlace extends LogBookPlace {
 	
 	private String token;
@@ -43,7 +38,6 @@ public class ProgressPlace extends LogBookPlace {
 	/**
 	 * Tokenizer.
 	 */
-
 	public static class Tokenizer implements PlaceTokenizer<ProgressPlace> {
 		private final RequestFactory requests;
 

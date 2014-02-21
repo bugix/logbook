@@ -29,6 +29,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Entity
 public class ClassificationTopic {
 
+	@PersistenceContext
+    transient EntityManager entityManager;
+
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+	@Version
+    @Column(name = "version")
+    private Integer version;
+
     @Size(max = 255)
     private String description;
 
@@ -41,69 +53,6 @@ public class ClassificationTopic {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "classificationTopic")
     private List<Topic> topics = new ArrayList<Topic>();
     
-    public static List<ClassificationTopic> findClassiTopicByMainClassfication(Long value)
-	{
-		/*EntityManager em = entityManager();
-		
-		String sql = "";
-		
-		if (value != null)
-			sql = "SELECT c FROM ClassificationTopic c WHERE c.mainClassification.id = " + value;
-		else
-			sql = "SELECT c FROM ClassificationTopic c";
-			
-		TypedQuery<ClassificationTopic> q = em.createQuery(sql, ClassificationTopic.class);
-		return q.getResultList();*/
-		
-		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
-		CriteriaQuery<ClassificationTopic> criteriaQuery = criteriaBuilder.createQuery(ClassificationTopic.class);
-		Root<ClassificationTopic> from = criteriaQuery.from(ClassificationTopic.class);
-		CriteriaQuery<ClassificationTopic> select = criteriaQuery.select(from);
-		
-		if (value != null)
-			criteriaQuery.where(criteriaBuilder.equal(from.get("mainClassification"), value));
-		
-		TypedQuery<ClassificationTopic> q = entityManager().createQuery(criteriaQuery);
-		return q.getResultList();
-	}
-
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-	@Version
-    @Column(name = "version")
-    private Integer version;
-
-	public Long getId() {
-        return this.id;
-    }
-
-	public void setId(Long id) {
-        this.id = id;
-    }
-
-	public Integer getVersion() {
-        return this.version;
-    }
-
-	public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-	public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
-
-	public static TypedQuery<ClassificationTopic> findClassificationTopicsByMainClassification(MainClassification mainClassification) {
-        if (mainClassification == null) throw new IllegalArgumentException("The mainClassification argument is required");
-        EntityManager em = ClassificationTopic.entityManager();
-        TypedQuery<ClassificationTopic> q = em.createQuery("SELECT o FROM ClassificationTopic AS o WHERE o.mainClassification = :mainClassification", ClassificationTopic.class);
-        q.setParameter("mainClassification", mainClassification);
-        return q;
-    }
-
 	public String getDescription() {
         return this.description;
     }
@@ -135,9 +84,44 @@ public class ClassificationTopic {
 	public void setTopics(List<Topic> topics) {
         this.topics = topics;
     }
+	
+	public Long getId() {
+        return this.id;
+    }
 
-	@PersistenceContext
-    transient EntityManager entityManager;
+	public void setId(Long id) {
+        this.id = id;
+    }
+
+	public Integer getVersion() {
+        return this.version;
+    }
+
+	public void setVersion(Integer version) {
+        this.version = version;
+    }
+    
+    public static List<ClassificationTopic> findClassiTopicByMainClassfication(Long value)
+	{
+		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+		CriteriaQuery<ClassificationTopic> criteriaQuery = criteriaBuilder.createQuery(ClassificationTopic.class);
+		Root<ClassificationTopic> from = criteriaQuery.from(ClassificationTopic.class);
+		CriteriaQuery<ClassificationTopic> select = criteriaQuery.select(from);
+		
+		if (value != null)
+			criteriaQuery.where(criteriaBuilder.equal(from.get("mainClassification"), value));
+		
+		TypedQuery<ClassificationTopic> q = entityManager().createQuery(criteriaQuery);
+		return q.getResultList();
+	}
+
+	public static TypedQuery<ClassificationTopic> findClassificationTopicsByMainClassification(MainClassification mainClassification) {
+        if (mainClassification == null) throw new IllegalArgumentException("The mainClassification argument is required");
+        EntityManager em = ClassificationTopic.entityManager();
+        TypedQuery<ClassificationTopic> q = em.createQuery("SELECT o FROM ClassificationTopic AS o WHERE o.mainClassification = :mainClassification", ClassificationTopic.class);
+        q.setParameter("mainClassification", mainClassification);
+        return q;
+    }
 
 	public static final EntityManager entityManager() {
         EntityManager em = new ClassificationTopic().entityManager;
@@ -197,5 +181,9 @@ public class ClassificationTopic {
         ClassificationTopic merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
+    }
+	
+	public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }

@@ -15,18 +15,22 @@ public class FilterForMainPlaces implements FilteredActivityMapper.Filter {
 		/**
 		 * Login
 		 */
-		if (place instanceof LoginPlace)
-			return (LoginPlace) place;
-		
-			if (place instanceof AdminPlace)
-			return (AdminPlace) place;
-		
-		if (place instanceof SkillPlace)
-			return (SkillPlace) place;
+		if (place instanceof LoginPlace) {
+			return place;
+		}
 
-		if (place instanceof ProgressPlace)
-			return (ProgressPlace) place;
-		
+		if (place instanceof AdminPlace) {
+			return place;
+		}
+
+		if (place instanceof SkillPlace) {
+			return place;
+		}
+
+		if (place instanceof ProgressPlace) {
+			return place;
+		}
+
 		return null;
 	}
 

@@ -11,7 +11,7 @@ import ch.unibas.medizin.logbook.client.place.AdminPlace;
 import ch.unibas.medizin.logbook.client.place.LogBookPlaceHistoryFactory;
 import ch.unibas.medizin.logbook.client.place.LogBookPlaceHistoryMapper;
 import ch.unibas.medizin.logbook.client.place.LoginPlace;
-import ch.unibas.medizin.logbook.client.scaffold.request.RequestEvent;
+import ch.unibas.medizin.logbook.client.request.RequestEvent;
 import ch.unibas.medizin.logbook.client.shell.LogBookAdminShell;
 import ch.unibas.medizin.logbook.client.shell.LogBookShell;
 import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
@@ -103,9 +103,6 @@ public class LogBookApplication {
 		}
 
 		RequestEvent.register(eventBus, new RequestEvent.Handler() {
-			// Only show loading status if a request isn't serviced in 250ms.
-			private static final int LOADING_TIMEOUT = 250;
-
 			public void onRequestEvent(RequestEvent requestEvent) {
 				if (requestEvent.getState() == RequestEvent.State.SENT) {
 					// shell.getMole().showDelayed(LOADING_TIMEOUT);

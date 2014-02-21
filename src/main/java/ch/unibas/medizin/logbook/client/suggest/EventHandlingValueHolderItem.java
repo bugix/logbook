@@ -8,17 +8,24 @@ public interface EventHandlingValueHolderItem<T> extends ValueHolderItem<T>, Has
 
 	public static final String ITEM_DEFAULT_STYLE = "eu-nextstreet-SuggestItem";
 
+	@Override
 	public T getValue();
 
+	@Override
 	public void setValue(T value);
 
+	@Override
 	public void setSelected(boolean selected);
 
+	@Override
 	public void hover(boolean hover);
 
+	@Override
 	public void setStyleName(String item);
 
+	@Override
 	public UIObject getUiObject();
 
+	@Override
 	ValueRendererFactory<T, ?> getValueRendererFactory();
 }

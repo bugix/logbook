@@ -32,6 +32,18 @@ import com.allen_sauer.gwt.log.client.Log;
 @Configurable
 @Entity
 public class Topic {
+	
+	@PersistenceContext
+    transient EntityManager entityManager;
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+	@Version
+    @Column(name = "version")
+    private Integer version;
 
     @Size(max = 1024)
     private String topicDescription;
@@ -42,91 +54,7 @@ public class Topic {
     @ManyToOne
     private ClassificationTopic classificationTopic;
     
-    public static List<Topic> findTopicByClassficationId(Long value)
-	{
-		/*EntityManager em = entityManager();
-		String sql = "";
-		
-		if (value != null)
-			sql = "SELECT t FROM Topic t WHERE t.classificationTopic.id = " + value;
-		else
-			sql = "SELECT t FROM Topic t";
-		
-		TypedQuery<Topic> q = em.createQuery(sql, Topic.class);
-		return q.getResultList();*/
-		
-		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
-		CriteriaQuery<Topic> criteriaQuery = criteriaBuilder.createQuery(Topic.class);
-		Root<Topic> from = criteriaQuery.from(Topic.class);
-		CriteriaQuery<Topic> select = criteriaQuery.select(from);
-		
-		if (value != null)
-			criteriaQuery.where(criteriaBuilder.equal(from.get("classificationTopic"), value));
-		
-		TypedQuery<Topic> q = entityManager().createQuery(criteriaQuery);
-		return q.getResultList();
-		
-	}
- public static TopicFilteredResult findTopicOrderByClassification(int start,int max,Student student)
-    {    	
-    	Log.info("findTopicOrderByClassification call");
-    	 if(start!=0)
-    		  start--;
-    	TopicFilteredResult finalresult = new TopicFilteredResult();   	    	
-    	List<Topic> resultList =new ArrayList<Topic>();
-    	//resultList.clear();
-    	
-		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
-		CriteriaQuery<Topic> criteriaQuery = criteriaBuilder.createQuery(Topic.class);
-		Root<Topic> from = criteriaQuery.from(Topic.class);
-		CriteriaQuery<Topic> select = criteriaQuery.select(from);				
-		
-		//select.orderBy(criteriaBuilder.asc(from.get("classificationTopic").get("mainClassification").get("id")), criteriaBuilder.asc(from.get("classificationTopic").get("id")));
-		select.orderBy(criteriaBuilder.asc(from.get("id")), criteriaBuilder.asc(from.get("classificationTopic").get("mainClassification").get("id")), criteriaBuilder.asc(from.get("classificationTopic").get("id")));
-		//from.join("classificationTopic");
-		TypedQuery<Topic> result = entityManager().createQuery(criteriaQuery);
-		//System.out.println("DB Second: " + result.getResultList().get(0).getId());
-		int totalSize=result.getResultList().size();
-		result.setFirstResult(start);
-		result.setMaxResults(max);
-						
-		Log.info("Query String: " + result.unwrap(org.hibernate.Query.class).getQueryString());
-		//Log.info("Result Size : Start: " +start + " Max: " + max );
-		//Log.info("Total Size : " + totalSize);
-		
-		resultList  = result.getResultList();		
-		List<Long> totalTopicBySkill=new ArrayList<Long>();
-		List<Long> totalAcquiredTopicBySkill=new ArrayList<Long>();
-		
-		for (Topic topic : resultList) 
-		{
-			Long totalTopicCount=Skill.findTotalSkillByTopic(topic.getId());
-			totalTopicBySkill.add(totalTopicCount);
-			//Log.info("TotalTopicCount : " + totalTopicCount);
-			Long totalAcquiredTopicCount=SkillAcquired.findTotalSkillAcquiredByTopicAndStudent(topic.getId(),student.getId());
-			totalAcquiredTopicBySkill.add(totalAcquiredTopicCount);
-
-		}
-		
-		//Log.info("Topic Result Size: " + resultList.size());
-		//Log.info("Total Topic Size: " + totalTopicBySkill.size());
-		//Log.info("Total Acquired Topic Size: " + totalAcquiredTopicBySkill.size());
-		
-		
-		//Log.info("Topic Result: " + StringUtils.join(resultList,","));
-		//Log.info("Total Topic: " + StringUtils.join(totalTopicBySkill,","));
-		//Log.info("Total Acquired: " + StringUtils.join(totalAcquiredTopicBySkill,","));
-		
-		finalresult.setTotalTopic(totalSize);
-		finalresult.setTopicList(resultList);
-		//System.out.println("DB First: " + resultList.get(0).getId());
-		finalresult.setTotalTopicList(totalTopicBySkill);
-		finalresult.setTopicAcquiredList(totalAcquiredTopicBySkill);
-		
-		return finalresult;
-    }
-
-	public String getTopicDescription() {
+    public String getTopicDescription() {
         return this.topicDescription;
     }
 
@@ -150,19 +78,6 @@ public class Topic {
         this.classificationTopic = classificationTopic;
     }
 
-	public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
-
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-	@Version
-    @Column(name = "version")
-    private Integer version;
-
 	public Long getId() {
         return this.id;
     }
@@ -178,9 +93,64 @@ public class Topic {
 	public void setVersion(Integer version) {
         this.version = version;
     }
+    
+    public static List<Topic> findTopicByClassficationId(Long value)
+	{		
+		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+		CriteriaQuery<Topic> criteriaQuery = criteriaBuilder.createQuery(Topic.class);
+		Root<Topic> from = criteriaQuery.from(Topic.class);
+		CriteriaQuery<Topic> select = criteriaQuery.select(from);
+		
+		if (value != null)
+			criteriaQuery.where(criteriaBuilder.equal(from.get("classificationTopic"), value));
+		
+		TypedQuery<Topic> q = entityManager().createQuery(criteriaQuery);
+		return q.getResultList();
+		
+	}
+ public static TopicFilteredResult findTopicOrderByClassification(int start,int max,Student student)
+    {    	
+    	Log.info("findTopicOrderByClassification call");
+    	 if(start!=0)
+    		  start--;
+    	TopicFilteredResult finalresult = new TopicFilteredResult();   	    	
+    	List<Topic> resultList =new ArrayList<Topic>();
+    	
+		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
+		CriteriaQuery<Topic> criteriaQuery = criteriaBuilder.createQuery(Topic.class);
+		Root<Topic> from = criteriaQuery.from(Topic.class);
+		CriteriaQuery<Topic> select = criteriaQuery.select(from);				
 
-	@PersistenceContext
-    transient EntityManager entityManager;
+		select.orderBy(criteriaBuilder.asc(from.get("id")), criteriaBuilder.asc(from.get("classificationTopic").get("mainClassification").get("id")), criteriaBuilder.asc(from.get("classificationTopic").get("id")));
+
+		TypedQuery<Topic> result = entityManager().createQuery(criteriaQuery);
+
+		int totalSize=result.getResultList().size();
+		result.setFirstResult(start);
+		result.setMaxResults(max);
+						
+		Log.info("Query String: " + result.unwrap(org.hibernate.Query.class).getQueryString());
+		
+		resultList  = result.getResultList();		
+		List<Long> totalTopicBySkill=new ArrayList<Long>();
+		List<Long> totalAcquiredTopicBySkill=new ArrayList<Long>();
+		
+		for (Topic topic : resultList) 
+		{
+			Long totalTopicCount=Skill.findTotalSkillByTopic(topic.getId());
+			totalTopicBySkill.add(totalTopicCount);
+			Long totalAcquiredTopicCount=SkillAcquired.findTotalSkillAcquiredByTopicAndStudent(topic.getId(),student.getId());
+			totalAcquiredTopicBySkill.add(totalAcquiredTopicCount);
+
+		}
+		
+		finalresult.setTotalTopic(totalSize);
+		finalresult.setTopicList(resultList);
+		finalresult.setTotalTopicList(totalTopicBySkill);
+		finalresult.setTopicAcquiredList(totalAcquiredTopicBySkill);
+		
+		return finalresult;
+    }
 
 	public static final EntityManager entityManager() {
         EntityManager em = new Topic().entityManager;
@@ -240,5 +210,9 @@ public class Topic {
         Topic merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
+    }
+	
+	public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }

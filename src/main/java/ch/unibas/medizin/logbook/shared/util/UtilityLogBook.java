@@ -6,7 +6,7 @@ import java.util.Iterator;
 import com.google.gwt.i18n.client.NumberFormat;
 
 public class UtilityLogBook {
-	
+
 	public static final NumberFormat DECIMAL_FORMAT = NumberFormat.getFormat("#0.00%");
 
 	/* text : The text to be printed. */
@@ -20,10 +20,11 @@ public class UtilityLogBook {
 	}
 
 	public static String getEmptyStringIfNull(Object str) {
-		if (str == null)
+		if (str == null) {
 			return "";
-		else
+		} else {
 			return str.toString();
+		}
 	}
 
 	// Join Collection Using Seperator and Return seperator seperated String
@@ -33,12 +34,12 @@ public class UtilityLogBook {
 		for (Iterator<T> iterator = collection.iterator(); iterator.hasNext();) {
 
 			buffer.append(iterator.next().toString());
-			if (iterator.hasNext())
+			if (iterator.hasNext()) {
 				buffer.append(seperator);
+			}
 		}
 
 		return buffer.toString();
 
 	}
-
 }

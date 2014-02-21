@@ -24,16 +24,56 @@ import org.springframework.transaction.annotation.Transactional;
 @Configurable
 @Entity
 public class Keyword {
+	
+	@PersistenceContext
+    transient EntityManager entityManager;
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+	@Version
+    @Column(name = "version")
+    private Integer version;
 
     @Size(max = 255)
     private String name;
         
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Skill> skill = new HashSet<Skill>();
+    
+	public Long getId() {
+        return this.id;
+    }
 
+	public void setId(Long id) {
+        this.id = id;
+    }
 
-	@PersistenceContext
-    transient EntityManager entityManager;
+	public Integer getVersion() {
+        return this.version;
+    }
+
+	public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+	public String getName() {
+        return this.name;
+    }
+
+	public void setName(String name) {
+        this.name = name;
+    }
+
+	public Set<Skill> getSkill() {
+        return this.skill;
+    }
+
+	public void setSkill(Set<Skill> skill) {
+        this.skill = skill;
+    }
 
 	public static final EntityManager entityManager() {
         EntityManager em = new Keyword().entityManager;
@@ -97,46 +137,5 @@ public class Keyword {
 
 	public String toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
-
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-	@Version
-    @Column(name = "version")
-    private Integer version;
-
-	public Long getId() {
-        return this.id;
-    }
-
-	public void setId(Long id) {
-        this.id = id;
-    }
-
-	public Integer getVersion() {
-        return this.version;
-    }
-
-	public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-	public String getName() {
-        return this.name;
-    }
-
-	public void setName(String name) {
-        this.name = name;
-    }
-
-	public Set<Skill> getSkill() {
-        return this.skill;
-    }
-
-	public void setSkill(Set<Skill> skill) {
-        this.skill = skill;
     }
 }

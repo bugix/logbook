@@ -3,26 +3,24 @@
 	xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:d='urn:import:com.google.gwt.user.datepicker.client'
 	xmlns:b='urn:import:com.google.gwt.user.cellview.client'>
 	<ui:style>
-		.mainPanelStyle {
-			spacing: 10;
-		}
-		.paddingTop5
-		{
-			margin-top: 10px;
-			margin-left: 5px;
-			
-		}
+	.mainPanelStyle {
+		spacing: 10;
+	}
+	
+	.paddingTop5 {
+		margin-top: 10px;
+		margin-left: 5px;
+	}
 	</ui:style>
 
 	<g:VerticalPanel addStyleNames="{style.mainPanelStyle}">
-	
-	<g:HTML>
-		<div class="arrow-popup-border" ></div>
-		<div class="arrow-popup" ></div>
-	</g:HTML>
-	
-		<g:HTMLPanel >
-			
+
+		<g:HTML>
+			<div class="arrow-popup-border"></div>
+			<div class="arrow-popup"></div>
+		</g:HTML>
+
+		<g:HTMLPanel>
 			<table>
 				<tbody>
 					<tr>
@@ -30,7 +28,8 @@
 							<g:Label ui:field="lblStudyYear" addStyleNames="{style.paddingTop5}"></g:Label>
 						</td>
 						<td>
-							<g:ValueListBox ui:field="lstBoxStudyYear" width="80px" addStyleNames="{style.paddingTop5}"></g:ValueListBox>
+							<g:ValueListBox ui:field="lstBoxStudyYear" width="80px"
+								addStyleNames="{style.paddingTop5}"></g:ValueListBox>
 						</td>
 					</tr>
 					<tr>
@@ -38,11 +37,13 @@
 							<g:Label ui:field="lblEmail" addStyleNames="{style.paddingTop5}"></g:Label>
 						</td>
 						<td>
-							<g:TextBox ui:field="txtEmailValue" width="155px" addStyleNames="{style.paddingTop5}"></g:TextBox>
+							<g:TextBox ui:field="txtEmailValue" width="155px"
+								addStyleNames="{style.paddingTop5}"></g:TextBox>
 						</td>
 					</tr>
 					<tr>
-						<td>&nbsp;</td>
+						<td>&nbsp;
+						</td>
 						<td>
 							<g:Button ui:field="btnSave" addStyleNames="{style.paddingTop5}"></g:Button>&nbsp;&nbsp;&nbsp;&nbsp;
 							<g:Button ui:field="btnClose" addStyleNames="{style.paddingTop5}"></g:Button>
@@ -52,6 +53,4 @@
 			</table>
 		</g:HTMLPanel>
 	</g:VerticalPanel>
-
-
 </ui:UiBinder>

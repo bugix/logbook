@@ -1,6 +1,5 @@
 package ch.unibas.medizin.logbook.client.activity;
 
-
 import ch.unibas.medizin.logbook.client.place.AdminPlace;
 import ch.unibas.medizin.logbook.client.place.LoginPlace;
 import ch.unibas.medizin.logbook.client.place.SkillPlace;
@@ -17,34 +16,36 @@ import com.google.inject.Inject;
 public class ApplicationMainActivitiesMapper implements ActivityMapper {
 
 	public static HandlerManager handler;
+
 	private LogBookRequestFactory requests;
+
 	private PlaceController placeController;
-	
 
 	@Inject
-	public ApplicationMainActivitiesMapper(LogBookRequestFactory requests,
-			PlaceController placeController) {
+	public ApplicationMainActivitiesMapper(LogBookRequestFactory requests, PlaceController placeController) {
 		this.requests = requests;
 		this.placeController = placeController;
 	}
 
 	@Override
 	public Activity getActivity(Place place) {
-		Log.debug("ApplicationMainActivitiesMapper.getActivity"
-				+ placeController.getWhere());
+		Log.debug("ApplicationMainActivitiesMapper.getActivity" + placeController.getWhere());
 
 		if (place instanceof LoginPlace) {
 			Log.debug("is LoginPlace");
 			return new LoginActivity(requests, placeController);
 		}
+
 		if (place instanceof SkillPlace) {
 			Log.debug("is SkillPlace");
 			return new SkillActivity(requests, placeController);
 		}
+
 		if (place instanceof AdminPlace) {
 			Log.debug("is AdminPlace");
 			return new AdminActivity(requests, placeController);
 		}
+
 		return null;
 	}
 

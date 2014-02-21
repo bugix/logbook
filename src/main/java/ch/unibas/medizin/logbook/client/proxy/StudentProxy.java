@@ -1,5 +1,3 @@
-// WARNING: THIS FILE IS MANAGED BY SPRING ROO.
-
 package ch.unibas.medizin.logbook.client.proxy;
 
 import java.util.Set;
@@ -14,47 +12,47 @@ import com.google.web.bindery.requestfactory.shared.ProxyForName;
 @ProxyForName(value = "ch.unibas.medizin.logbook.server.domain.Student", locator = "ch.unibas.medizin.logbook.server.locator.StudentLocator")
 public interface StudentProxy extends EntityProxy {
 
-    abstract Long getId();
+	abstract Long getId();
 
-    abstract String getStudentId();
+	abstract String getStudentId();
 
-    abstract void setStudentId(String studentId);
+	abstract void setStudentId(String studentId);
 
-    abstract String getShib_id();
+	abstract String getShib_id();
 
-    abstract void setShib_id(String shib_id);
+	abstract void setShib_id(String shib_id);
 
-    abstract String getEmail();
+	abstract String getEmail();
 
-    abstract void setEmail(String email);
+	abstract void setEmail(String email);
 
-    abstract Gender getGender();
+	abstract Gender getGender();
 
-    abstract void setGender(Gender gender);
+	abstract void setGender(Gender gender);
 
-    abstract String getName();
+	abstract String getName();
 
-    abstract void setName(String name);
+	abstract void setName(String name);
 
-    abstract String getPreName();
+	abstract String getPreName();
 
-    abstract void setPreName(String preName);
+	abstract void setPreName(String preName);
 
-    abstract StudentStatus getStudentStatus();
+	abstract StudentStatus getStudentStatus();
 
-    abstract void setStudentStatus(StudentStatus studentStatus);
+	abstract void setStudentStatus(StudentStatus studentStatus);
 
-    abstract StudyYears getStudyYear();
+	abstract StudyYears getStudyYear();
 
-    abstract void setStudyYear(StudyYears studyYear);
+	abstract void setStudyYear(StudyYears studyYear);
 
-    abstract Set<SkillAcquiredProxy> getSkillAcquired();
+	abstract Set<SkillAcquiredProxy> getSkillAcquired();
 
-    abstract void setSkillAcquired(Set<SkillAcquiredProxy> skillAcquired);
+	abstract void setSkillAcquired(Set<SkillAcquiredProxy> skillAcquired);
 
-    abstract Set<SkillCommentProxy> getSkillComments();
+	abstract Set<SkillCommentProxy> getSkillComments();
 
-    abstract void setSkillComments(Set<SkillCommentProxy> skillComments);
+	abstract void setSkillComments(Set<SkillCommentProxy> skillComments);
 
-    abstract Integer getVersion();
+	abstract Integer getVersion();
 }

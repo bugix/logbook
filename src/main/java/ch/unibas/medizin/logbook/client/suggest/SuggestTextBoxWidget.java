@@ -9,10 +9,7 @@ import com.google.gwt.event.dom.client.MouseMoveHandler;
 import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.user.client.ui.IsWidget;
 
-public interface SuggestTextBoxWidget<T, W extends EventHandlingValueHolderItem<T>> extends
-		IsWidget, MouseDownHandler, MouseMoveHandler, MouseOutHandler,
-		HasKeyUpHandlers, HasKeyDownHandlers, HasDoubleClickHandlers,
-		HasBlurHandlers {
+public interface SuggestTextBoxWidget<T, W extends EventHandlingValueHolderItem<T>> extends IsWidget, MouseDownHandler, MouseMoveHandler, MouseOutHandler, HasKeyUpHandlers, HasKeyDownHandlers, HasDoubleClickHandlers, HasBlurHandlers {
 
 	public abstract String getText();
 
@@ -26,8 +23,7 @@ public interface SuggestTextBoxWidget<T, W extends EventHandlingValueHolderItem<
 
 	public abstract void setDefaultText(String defaultText);
 
-	public abstract void setRepresenter(
-			AbstractSuggestBox<T, W> abstractSuggestBox);
+	public abstract void setRepresenter(AbstractSuggestBox<T, W> abstractSuggestBox);
 
 	public abstract AbstractSuggestBox<T, W> getRepresenter();
 

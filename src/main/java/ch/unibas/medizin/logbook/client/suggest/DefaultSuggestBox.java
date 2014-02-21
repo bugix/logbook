@@ -1,8 +1,8 @@
-
 package ch.unibas.medizin.logbook.client.suggest;
 
 import java.util.ArrayList;
 
+import ch.unibas.medizin.logbook.client.suggest.SuggestOracle.Request;
 import ch.unibas.medizin.logbook.client.suggest.simple.DefaultSuggestOracle;
 import ch.unibas.medizin.logbook.client.suggest.simple.DefaultValueRenderer;
 
@@ -15,7 +15,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
-import ch.unibas.medizin.logbook.client.suggest.SuggestOracle.Request;
 
 public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> extends AbstractSuggestBox<T, W> {
 
@@ -23,27 +22,22 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 	interface SuggestBoxUiBinder extends UiBinder<Widget, DefaultSuggestBox> {
 	}
 
-	private static SuggestBoxUiBinder	uiBinder = GWT.create(SuggestBoxUiBinder.class);
+	private static SuggestBoxUiBinder uiBinder = GWT.create(SuggestBoxUiBinder.class);
 
 	protected @UiField
 	SuggestTextBoxWidgetImpl<T, W> textField;
 
-	protected int	suggestionMaxCount	= 10;
-	protected SuggestOracle<T>				suggestOracle;
+	protected int suggestionMaxCount = 10;
+	protected SuggestOracle<T> suggestOracle;
 
-	
-	
-	@SuppressWarnings({ "unused", "rawtypes" })
+	@SuppressWarnings("rawtypes")
 	private final class CallBackHandler implements SuggestOracle.Callback {
-		private SuggestPossibilitiesCallBack<T>	innerCallBack;
+		private SuggestPossibilitiesCallBack<T> innerCallBack;
 
+		@Override
 		@SuppressWarnings("unchecked")
 		public void onSuggestionsReady(SuggestOracle.Request request, SuggestOracle.Response response) {
 			innerCallBack.setPossibilities(new ArrayList<T>(response.getSuggestions()));
-		}
-
-		public SuggestPossibilitiesCallBack<T> getInnerCallBack() {
-			return innerCallBack;
 		}
 
 		public void setInnerCallBack(SuggestPossibilitiesCallBack<T> innerCallBack) {
@@ -52,14 +46,13 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 
 	};
 
-	private CallBackHandler	callback	= new CallBackHandler();
+	private CallBackHandler callback = new CallBackHandler();
 
 	public DefaultSuggestBox() {
 		this(null);
 		Log.info("Call Constructor1");
 		this.setWidth(200);
 		textField.setFocus(true);
-		//textField.addStyleName("addBorder");
 	}
 
 	public DefaultSuggestBox(String defaultText) {
@@ -73,7 +66,7 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 	@SuppressWarnings("unchecked")
 	public DefaultSuggestBox(String defaultText, SuggestOracle<T> suggestOracle) {
 		initWidget(uiBinder.createAndBindUi(this));
-		init(defaultText);		
+		init(defaultText);
 		this.suggestOracle = suggestOracle;
 		suggestOracle.setSuggestBox((AbstractSuggestBox<T, EventHandlingValueHolderItem<T>>) this);
 		Log.info("Call Constructor3");
@@ -81,16 +74,19 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 	}
 
 	// ------------------ default event handling -----------------------
+	@Override
 	@UiHandler("textField")
 	public void onKeyUp(KeyUpEvent keyUpEvent) {
 		super.onKeyUp(keyUpEvent);
 	}
 
+	@Override
 	@UiHandler("textField")
 	public void onBlur(BlurEvent event) {
 		super.onBlur(event);
 	}
 
+	@Override
 	@UiHandler("textField")
 	public void onDoubleClick(DoubleClickEvent event) {
 		super.onDoubleClick(event);
@@ -119,7 +115,6 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 			}
 			return true;
 		} else {
-			// text.setSelectionRange(0, text.getText().length());
 			return false;
 		}
 	}
@@ -148,19 +143,18 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 	public void setPropositionsMaxCount(int propositionsMaxCount) {
 		this.suggestionMaxCount = propositionsMaxCount;
 	}
-	
-	public void setWidth(int i)
-	{
-		String s =(i+5)+"px";
-		String s1 =i+"px";
-		String s2 =(i-2)+"px";
-		
+
+	public void setWidth(int i) {
+		String s = (i + 5) + "px";
+		String s1 = i + "px";
+		String s2 = (i - 2) + "px";
+
 		this.getTextField().advancedTextBox.setWidth(s1);
-		Log.info("Offset Width1: " + this.scrollPanel.getOffsetWidth());
-		this.scrollPanel.setWidth(s);
-		Log.info("Offset Width: " + this.scrollPanel.getOffsetWidth());
-		DefaultValueRenderer.widthValue=s2;
-		this.setRendererWidth(s2);
+		Log.info("Offset Width1: " + scrollPanel.getOffsetWidth());
+		scrollPanel.setWidth(s);
+		Log.info("Offset Width: " + scrollPanel.getOffsetWidth());
+		DefaultValueRenderer.widthValue = s2;
+		setRendererWidth(s2);
 	}
 
 }

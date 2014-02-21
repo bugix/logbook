@@ -1,42 +1,35 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:b="urn:import:com.google.gwt.user.cellview.client"
-	>
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.google.gwt.user.cellview.client">
 
-	
-		 <g:TabLayoutPanel ui:field="mainLoogBookTabpanel" barUnit='PX' barHeight='51' height="100%">
-						<g:tab>
-							<g:customHeader><g:Label ui:field="login"></g:Label></g:customHeader>
-							<g:SimplePanel>
-								<!-- <g:HorizontalPanel spacing="20" height="100%" width="100%">
-								<g:Label>loginData</g:Label>
-								</g:HorizontalPanel> -->
-							</g:SimplePanel>
-						</g:tab>
-						<g:tab>
-							<g:customHeader><g:Label ui:field="skill"></g:Label></g:customHeader>
-							<g:SimplePanel>
-							<!-- <g:Label>Skills Acquired</g:Label> -->
-							</g:SimplePanel>
-						</g:tab>
-						<g:tab>
-							<g:customHeader><g:Label ui:field="progress"></g:Label></g:customHeader>
-							<g:SimplePanel>
-							<!-- <g:Label>Progress of Skill Acquired</g:Label> -->
-							</g:SimplePanel>
-						</g:tab>
-					<!-- 	<g:tab>
-						
-							<g:customHeader><g:Label ui:field="logout"></g:Label></g:customHeader>
-							<g:SimplePanel>
-							<g:Label>logout</g:Label>
-							</g:SimplePanel>
-						</g:tab> -->
+	<g:TabLayoutPanel ui:field="mainLoogBookTabpanel"
+		barUnit='PX' barHeight='51' height="100%">
+		<g:tab>
+			<g:customHeader>
+				<g:Label ui:field="login"></g:Label>
+			</g:customHeader>
+			<g:SimplePanel>
+				<!-- <g:HorizontalPanel spacing="20" height="100%" width="100%"> <g:Label>loginData</g:Label> 
+					</g:HorizontalPanel> -->
+			</g:SimplePanel>
+		</g:tab>
+		<g:tab>
+			<g:customHeader>
+				<g:Label ui:field="skill"></g:Label>
+			</g:customHeader>
+			<g:SimplePanel>
+				<!-- <g:Label>Skills Acquired</g:Label> -->
+			</g:SimplePanel>
+		</g:tab>
+		<g:tab>
+			<g:customHeader>
+				<g:Label ui:field="progress"></g:Label>
+			</g:customHeader>
+			<g:SimplePanel>
+				<!-- <g:Label>Progress of Skill Acquired</g:Label> -->
+			</g:SimplePanel>
+		</g:tab>
 
-					</g:TabLayoutPanel> 
-	
-	
-	
-	
+	</g:TabLayoutPanel>
+
 </ui:UiBinder> 

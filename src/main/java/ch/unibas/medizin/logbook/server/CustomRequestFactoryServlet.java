@@ -5,6 +5,7 @@ import com.google.web.bindery.requestfactory.server.ExceptionHandler;
 import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;
 
+@SuppressWarnings("serial")
 public class CustomRequestFactoryServlet extends RequestFactoryServlet {
 
 	public CustomRequestFactoryServlet() {

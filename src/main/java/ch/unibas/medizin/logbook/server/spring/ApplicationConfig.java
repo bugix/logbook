@@ -28,50 +28,50 @@ import ch.unibas.medizin.logbook.server.domain.Administrator;
 @ComponentScan(basePackages = "ch.unibas.medizin.logbook.server")
 @EnableSpringConfigured
 public class ApplicationConfig {
-	
+
 	@Bean
-    public DataSource dataSource() {
-            DriverManagerDataSource dataSource = new DriverManagerDataSource();
-            dataSource.setDriverClassName("org.h2.Driver");
-            dataSource.setUrl("jdbc:h2:~/tmp/logbook");
-            dataSource.setUsername("sa");
-            dataSource.setPassword("");
+	public DataSource dataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("org.h2.Driver");
+		dataSource.setUrl("jdbc:h2:~/tmp/logbook");
+		dataSource.setUsername("sa");
+		dataSource.setPassword("");
 
-            return dataSource;
-    }
+		return dataSource;
+	}
 
-    @Bean(name = "entityManagerFactory")
-    public EntityManagerFactory entityManagerFactory() {
-            HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-            vendorAdapter.setDatabase(Database.H2);
+	@Bean(name = "entityManagerFactory")
+	public EntityManagerFactory entityManagerFactory() {
+		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		vendorAdapter.setDatabase(Database.H2);
 
-            LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 
-            Map<String, String> jpaPropertyMap = new HashMap<String, String>();
-            jpaPropertyMap.put("hibernate.hbm2ddl.auto", "create");
-            jpaPropertyMap.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-            jpaPropertyMap.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
-            jpaPropertyMap.put("hibernate.connection.charSet", "UTF-8");
+		Map<String, String> jpaPropertyMap = new HashMap<String, String>();
+		jpaPropertyMap.put("hibernate.hbm2ddl.auto", "create");
+		jpaPropertyMap.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		jpaPropertyMap.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
+		jpaPropertyMap.put("hibernate.connection.charSet", "UTF-8");
 
-            factory.setJpaPropertyMap(jpaPropertyMap);
-            factory.setJpaVendorAdapter(vendorAdapter);
-            factory.setPackagesToScan(Administrator.class.getPackage().getName());
-            factory.setDataSource(dataSource());
+		factory.setJpaPropertyMap(jpaPropertyMap);
+		factory.setJpaVendorAdapter(vendorAdapter);
+		factory.setPackagesToScan(Administrator.class.getPackage().getName());
+		factory.setDataSource(dataSource());
 
-            factory.afterPropertiesSet();
+		factory.afterPropertiesSet();
 
-            return factory.getObject();
-    }
+		return factory.getObject();
+	}
 
-    @Bean
-    public JpaDialect jpaDialect() {
-            return new HibernateJpaDialect();
-    }
+	@Bean
+	public JpaDialect jpaDialect() {
+		return new HibernateJpaDialect();
+	}
 
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-            JpaTransactionManager txManager = new JpaTransactionManager();
-            txManager.setEntityManagerFactory(entityManagerFactory());
-            return txManager;
-    }
+	@Bean
+	public PlatformTransactionManager transactionManager() {
+		JpaTransactionManager txManager = new JpaTransactionManager();
+		txManager.setEntityManagerFactory(entityManagerFactory());
+		return txManager;
+	}
 }

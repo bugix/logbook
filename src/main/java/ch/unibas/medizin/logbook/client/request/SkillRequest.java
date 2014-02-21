@@ -1,6 +1,6 @@
-// WARNING: THIS FILE IS MANAGED BY SPRING ROO.
-
 package ch.unibas.medizin.logbook.client.request;
+
+import java.util.List;
 
 import ch.unibas.medizin.logbook.client.proxy.SkillProxy;
 
@@ -12,15 +12,15 @@ import com.google.web.bindery.requestfactory.shared.ServiceName;
 @ServiceName("ch.unibas.medizin.logbook.server.domain.Skill")
 public interface SkillRequest extends RequestContext {
 
-    abstract Request<java.lang.Long> countSkills();
+	abstract Request<Long> countSkills();
 
-    abstract Request<java.util.List<SkillProxy>> findAllSkills();
+	abstract Request<List<SkillProxy>> findAllSkills();
 
-    abstract Request<java.util.List<SkillProxy>> findSkillEntries(int firstResult, int maxResults);
+	abstract Request<List<SkillProxy>> findSkillEntries(int firstResult, int maxResults);
 
-    abstract Request<SkillProxy> findSkill(Long id);
+	abstract Request<SkillProxy> findSkill(Long id);
 
-    abstract InstanceRequest<SkillProxy, java.lang.Void> persist();
+	abstract InstanceRequest<SkillProxy, Void> persist();
 
-    abstract InstanceRequest<SkillProxy, java.lang.Void> remove();
+	abstract InstanceRequest<SkillProxy, Void> remove();
 }

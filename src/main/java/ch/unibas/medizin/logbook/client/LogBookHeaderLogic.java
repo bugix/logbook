@@ -9,7 +9,6 @@ import ch.unibas.medizin.logbook.client.place.LogBookDetailsPlace;
 import ch.unibas.medizin.logbook.client.place.LoginPlace;
 import ch.unibas.medizin.logbook.client.place.ProgressPlace;
 import ch.unibas.medizin.logbook.client.place.SkillPlace;
-import ch.unibas.medizin.logbook.client.proxy.MainClassificationProxy;
 import ch.unibas.medizin.logbook.shared.enums.Locale;
 import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
 import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
@@ -23,90 +22,48 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.Window.Location;
 import com.google.inject.Inject;
-import com.google.web.bindery.requestfactory.shared.Receiver;
 
 public class LogBookHeaderLogic implements LogBookHeader.Delegate {
 	private LogBookRequestFactory requestFactory;
-	private PlaceController placeController;
 	private LogBookConstants constants = GWT.create(LogBookConstants.class);
 	private List<BreadCrumb> breadCrumbs = new ArrayList<BreadCrumb>();
-	private Place currentPlace;
-	
+
 	@Inject
 	public LogBookHeaderLogic(LogBookRequestFactory requestFactory, PlaceController placeController, EventBus eventBus) {
 		this.requestFactory = requestFactory;
-		this.placeController = placeController;
-		
 		PlaceChangeEventHandler eventHandler = new PlaceChangeEventHandler();
 		eventBus.addHandler(PlaceChangeEvent.TYPE, eventHandler);
 		Log.debug("new OsMaHeaderLogic()");
 	}
-	
+
 	private class BreadCrumb {
-		private Place place;
 		private String description;
-		
-		public BreadCrumb(Place place, String desc) {
-			this.place = place;
-			this.description = desc;
+
+		public BreadCrumb(String desc) {
+			description = desc;
 		}
-		
-		public Place getPlace() {
-			return place;
-		}
-		
+
 		public String getDescription() {
 			return description;
 		}
-		
-		public void setDescription(String desc) {
-			this.description = desc;
-		}
 	}
-	
+
 	private class PlaceChangeEventHandler implements PlaceChangeEvent.Handler {
 		@Override
 		public void onPlaceChange(PlaceChangeEvent event) {
 			Log.debug("onPlaceChange()");
 			Place newPlace = event.getNewPlace();
-			currentPlace = newPlace;
 			removeOldPlace(newPlace);
 			addNewPlace(newPlace);
 		}
 	}
-	
-	private class ObjectReceiver extends Receiver<Object> {
-		private BreadCrumb crumb;
-		
-		public ObjectReceiver(BreadCrumb crumb) {
-			this.crumb = crumb;
-		}
-		
-		@Override
-		public void onSuccess(Object response) {
-			String desc = crumb.getDescription();
-			if (response instanceof MainClassificationProxy) {
-				MainClassificationProxy proxy = (MainClassificationProxy) response;
-				if (proxy.getId() != null) {
-					desc += proxy.getId() + " " + proxy.getId();
-				}
-			} 
-			
-			else {
-				Log.warn("unknown proxy: " + response.toString());
-			}
-			crumb.setDescription(desc);
-			breadCrumbs.add(crumb);
-			logBreadCrumbs();
-		}
-	}
-	
+
 	private void removeOldPlace(Place newPlace) {
 		int indexOfLastCrumb = breadCrumbs.size() - 1;
 		if (indexOfLastCrumb < 0) {
 			return;
 		}
-		
+
 		BreadCrumb lastCrumb = breadCrumbs.get(indexOfLastCrumb);
 		if (lastCrumb == null) {
 			return;
@@ -114,36 +71,32 @@ public class LogBookHeaderLogic implements LogBookHeader.Delegate {
 
 		logBreadCrumbs();
 	}
-	
+
 	private void addRootPlace(Place place) {
 		String placeDescription;
 		if (place instanceof LoginPlace) {
 			placeDescription = constants.login();
-		}
-		else if (place instanceof AdminPlace) {
+		} else if (place instanceof AdminPlace) {
 			placeDescription = constants.adminLogin();
-		}
-		else if (place instanceof SkillPlace) {
+		} else if (place instanceof SkillPlace) {
 			placeDescription = constants.skill();
-		}
-		else if (place instanceof ProgressPlace) {
+		} else if (place instanceof ProgressPlace) {
 			placeDescription = constants.progress();
-		}else {
+		} else {
 			Log.warn("Unknown instance of place");
 			placeDescription = "?";
 		}
-		breadCrumbs.add(new BreadCrumb(place, placeDescription));
+		breadCrumbs.add(new BreadCrumb(placeDescription));
 		logBreadCrumbs();
 	}
 
 	private void addNewPlace(Place place) {
 		if (place instanceof LogBookDetailsPlace) {
-			//addDetailsPlace((LogBookDetailsPlace) place);
 		} else {
 			addRootPlace(place);
 		}
 	}
-	
+
 	private void logBreadCrumbs() {
 		if (Log.isDebugEnabled()) {
 			StringBuilder sb = new StringBuilder("BreadCrumbs: ");
@@ -154,12 +107,13 @@ public class LogBookHeaderLogic implements LogBookHeader.Delegate {
 			Log.debug(sb.toString());
 		}
 	}
-	
+
+	@Override
 	public void changeLocale(Locale locale) {
 		int indexOfHash;
 		String newLocaleString;
 		String url = Location.getHref();
-		
+
 		url = url.replaceAll("locale=[a-z]{2,2}", "locale=" + locale.toString());
 		if (url.indexOf("locale") < 0) {
 			if (url.indexOf("?") > -1) {
@@ -167,7 +121,7 @@ public class LogBookHeaderLogic implements LogBookHeader.Delegate {
 			} else {
 				newLocaleString = "?locale=" + locale.toString();
 			}
-			
+
 			if ((indexOfHash = url.indexOf("#")) > -1) {
 				url = url.substring(0, indexOfHash) + newLocaleString + url.substring(indexOfHash);
 			} else {
@@ -179,10 +133,7 @@ public class LogBookHeaderLogic implements LogBookHeader.Delegate {
 
 	@Override
 	public void changeRecordValue(String val) {
-	
 		Log.info("~~Selected Record Value : " + val);
-		//handlerManager.fireEvent(new RecordChangeEvent(val));
 		requestFactory.getEventBus().fireEvent(new RecordChangeEvent(val));
-		
 	}
 }

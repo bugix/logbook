@@ -1,6 +1,5 @@
 package ch.unibas.medizin.logbook.client.ui;
 
- 
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,120 +32,109 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ToggleButton;
 import com.google.gwt.user.client.ui.Widget;
 
+public class StudentInformationViewImpl extends Composite implements StudentInformationView {
 
-public class StudentInformationViewImpl extends Composite implements StudentInformationView{
-	
-	private static StudentInformationViewImpllUiBinder uiBinder = GWT
-			.create(StudentInformationViewImpllUiBinder.class);
+	private static StudentInformationViewImpllUiBinder uiBinder = GWT.create(StudentInformationViewImpllUiBinder.class);
 
 	interface StudentInformationViewImpllUiBinder extends UiBinder<Widget, StudentInformationViewImpl> {
 	}
 
 	private Delegate delegate;
-	
-	private presenter presenter;
-	
+
 	StudentProxy studentProxy;
 
-
-	/**
-	 * 
-	 */
 	@UiField
 	Label lblPersonnelInformation;
-	
+
 	@UiField
 	Label lblName;
-	
+
 	@UiField
 	Label lblNameVal;
-	
+
 	@UiField
 	Label lblStudentId;
-	
+
 	@UiField
 	Label lblStudentIdVal;
-	
+
 	@UiField
 	Label lblStudyYear;
-	
+
 	@UiField
 	Label lblStudeyYearvalue;
-	
+
 	@UiField
 	Label lblEmail;
-	
+
 	@UiField
 	Label lblEmailVal;
-	
+
 	@UiField
 	Label lblCurrentProgress;
-	
+
 	@UiField
 	Label lblTotalProgress;
-	
+
 	@UiField
 	Label lblLevel1Progress;
-	
+
 	@UiField
 	Label lblLevel2Progress;
-	
+
 	@UiField
 	ToggleButton btnFinalizeLogBook;
-	
+
 	@UiField
 	Anchor btnChange;
-	
+
 	@UiField
 	Label lblLatestAcquiredSkill;
-	
+
 	@UiField
 	CustomProgressbar prgBarLevel1;
-	
+
 	@UiField
 	CustomProgressbar prgBarLevel2;
-	
+
 	@UiField
 	CustomProgressbar prgBarTotal;
-	
-	@UiField(provided=true)
+
+	@UiField(provided = true)
 	CellTable<SkillAcquiredProxy> table;
-	
+
 	@UiField(provided = true)
 	public SimplePager pager;
-	
+
 	@UiField
 	DivElement lblErrorMessage;
-	
+
 	@UiField
 	HTMLPanel hpErrorMessage;
-	
+
 	@UiField
 	FocusPanel studentFocusPanel;
 
 	@UiHandler("btnFinalizeLogBook")
-	public void btnFinalizeLogBookClicked(ClickEvent event)
-	{
+	public void btnFinalizeLogBookClicked(ClickEvent event) {
 		Log.info("Finalize Student Clicked.");
 		delegate.finalizeLogBookClick(studentProxy);
 	}
-	
+
 	@UiHandler("btnChange")
-	public void btnChangeClicked(ClickEvent event)
-	{
+	public void btnChangeClicked(ClickEvent event) {
 		delegate.changeStudentInformationClicked(event);
 	}
-	
-	
+
 	protected Set<String> paths = new HashSet<String>();
-	
+
 	LogBookConstants constants = GWT.create(LogBookConstants.class);
-	
+
 	@Override
 	public Label getLblPersonnelInformation() {
 		return lblPersonnelInformation;
 	}
-	
+
 	@Override
 	public void setLblPersonnelInformation(Label lblPersonnelInformation) {
 		this.lblPersonnelInformation = lblPersonnelInformation;
@@ -171,7 +159,7 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	public void setLblNameVal(Label lblNameVal) {
 		this.lblNameVal = lblNameVal;
 	}
-	
+
 	@Override
 	public Label getLblStudentId() {
 		return lblStudentId;
@@ -181,7 +169,7 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	public void setLblStudentId(Label lblStudentId) {
 		this.lblStudentId = lblStudentId;
 	}
-	
+
 	@Override
 	public Label getLblStudentIdVal() {
 		return lblStudentIdVal;
@@ -263,7 +251,7 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	}
 
 	@Override
-	public Anchor  getBtnChange() {
+	public Anchor getBtnChange() {
 		return btnChange;
 	}
 
@@ -281,7 +269,7 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	public void setLblLatestAcquiredSkill(Label lblLatestAcquiredSkill) {
 		this.lblLatestAcquiredSkill = lblLatestAcquiredSkill;
 	}
-	
+
 	@Override
 	public Label getLblLevel1Progress() {
 		return lblLevel1Progress;
@@ -301,12 +289,12 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	public void setLblLevel2Progress(Label lblLevel2Progress) {
 		this.lblLevel2Progress = lblLevel2Progress;
 	}
-	
+
 	@Override
 	public void setTable(CellTable<SkillAcquiredProxy> table) {
 		this.table = table;
 	}
-	
+
 	@Override
 	public StudentProxy getStudentProxy() {
 		return studentProxy;
@@ -316,7 +304,7 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	public void setStudentProxy(StudentProxy studentProxy) {
 		this.studentProxy = studentProxy;
 	}
-	
+
 	@Override
 	public CustomProgressbar getPrgBarLevel1() {
 		return prgBarLevel1;
@@ -345,6 +333,8 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	public void setPrgBarTotal(CustomProgressbar prgBarTotal) {
 		this.prgBarTotal = prgBarTotal;
 	}
+
+	@Override
 	public HTMLPanel getHpErrorMessage() {
 		return hpErrorMessage;
 	}
@@ -353,6 +343,7 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 		this.hpErrorMessage = hpErrorMessage;
 	}
 
+	@Override
 	public DivElement getLblErrorMessage() {
 		return lblErrorMessage;
 	}
@@ -361,175 +352,163 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 		this.lblErrorMessage = lblErrorMessage;
 	}
 
-
-
-	
 	public StudentInformationViewImpl() {
-	
+
 		CellTable.Resources tableResources = GWT.create(MyCellTableResources.class);
 		SimplePager.Resources pagerResources = GWT.create(MySimplePagerResources.class);
 		table = new CellTable<SkillAcquiredProxy>(LogBookConstant.TABLE_PAGE_SIZE, tableResources);
 		pager = new SimplePager(SimplePager.TextLocation.RIGHT, pagerResources, true, LogBookConstant.TABLE_JUMP_SIZE, true);
-		
-		 final NodeList<com.google.gwt.dom.client.Element> tdElems = pager.getElement().getElementsByTagName("td");
-			for (int i = 0; i < tdElems.getLength(); i++) {
 
-	  final String toolTipText;
+		final NodeList<com.google.gwt.dom.client.Element> tdElems = pager.getElement().getElementsByTagName("td");
+		for (int i = 0; i < tdElems.getLength(); i++) {
 
-	  if (i == 0)
-	    toolTipText = constants.first();
-	  else if (i == 1)
-	    toolTipText = constants.previous();
-	  else if (i == 2)
-		  toolTipText = constants.next();
-	  else if (i == 3)
-		  toolTipText = constants.fastForward();
-	  else if (i == 4)
-	    toolTipText = constants.last();
-	  else
-	    continue;
+			final String toolTipText;
 
-	  tdElems.getItem(i).setTitle(toolTipText);
-	}
+			if (i == 0) {
+				toolTipText = constants.first();
+			} else if (i == 1) {
+				toolTipText = constants.previous();
+			} else if (i == 2) {
+				toolTipText = constants.next();
+			} else if (i == 3) {
+				toolTipText = constants.fastForward();
+			} else if (i == 4) {
+				toolTipText = constants.last();
+			} else {
+				continue;
+			}
 
-		
+			tdElems.getItem(i).setTitle(toolTipText);
+		}
+
 		initWidget(uiBinder.createAndBindUi(this));
-		
-		init();	// Initialize Personnel and Current Progress Data
+
+		init(); // Initialize Personnel and Current Progress Data
 		initTable(); // Initialize Table View
 
 	}
 
-	private void init() 
-	{
+	private void init() {
 		lblPersonnelInformation.setText(constants.personnelInformation());
 		lblLatestAcquiredSkill.setText(constants.recentlyAcquiredSkill());
-		lblName.setText(constants.name()+": ");
-		lblStudentId.setText(constants.studentId()+":");
-		lblStudyYear.setText(constants.studyYear()+": ");
-		lblEmail.setText(constants.email()+": ");
+		lblName.setText(constants.name() + ": ");
+		lblStudentId.setText(constants.studentId() + ":");
+		lblStudyYear.setText(constants.studyYear() + ": ");
+		lblEmail.setText(constants.email() + ": ");
 		lblCurrentProgress.setText(constants.currentProgress());
-		
+
 		btnChange.setText(constants.change());
-		btnFinalizeLogBook.setText(constants.finalizeLogBook());		
-					
+		btnFinalizeLogBook.setText(constants.finalizeLogBook());
+
 		intiProgressBar(prgBarLevel1);
 		intiProgressBar(prgBarLevel2);
 		intiProgressBar(prgBarTotal);
-		
+
 		hpErrorMessage.setVisible(false);
-			
-			
 	}
-	
-	private void intiProgressBar(CustomProgressbar progressBar) 
-	{
+
+	private void intiProgressBar(CustomProgressbar progressBar) {
 		progressBar.setHeight("13px");
 		progressBar.setWidth("180px");
 		progressBar.setMinProgress(0);
 		progressBar.setMaxProgress(100);
-		progressBar.setProgress(0);	
+		progressBar.setProgress(0);
 	}
 
-	private void initTable() 
-	{
-		 	paths.add("description");
-	        table.addColumn(new TextColumn<SkillAcquiredProxy>() {
+	private void initTable() {
+		paths.add("description");
+		table.addColumn(new TextColumn<SkillAcquiredProxy>() {
 
-	            Renderer<java.lang.String> renderer = new AbstractRenderer<java.lang.String>() {
+			Renderer<java.lang.String> renderer = new AbstractRenderer<java.lang.String>() {
 
-	                public String render(java.lang.String obj) {
-	                    return obj == null ? "" : String.valueOf(obj);
-	                }
-	            };
+				@Override
+				public String render(java.lang.String obj) {
+					return obj == null ? "" : String.valueOf(obj);
+				}
+			};
 
-	            @Override
-	            public String getValue(SkillAcquiredProxy object) {
-	                if(object.getSkill()!=null && object.getSkill().getDescription()!=null)
-	                	return renderer.render(object.getSkill().getDescription());
-	                else
-	                	return renderer.render("");
-	            }
-	        }, constants.name());
-	        paths.add("skillLevel");
-	        table.addColumn(new TextColumn<SkillAcquiredProxy>() {
+			@Override
+			public String getValue(SkillAcquiredProxy object) {
+				if (object.getSkill() != null && object.getSkill().getDescription() != null) {
+					return renderer.render(object.getSkill().getDescription());
+				} else {
+					return renderer.render("");
+				}
+			}
+		}, constants.name());
+		paths.add("skillLevel");
+		table.addColumn(new TextColumn<SkillAcquiredProxy>() {
 
-	            Renderer<java.lang.String> renderer = new AbstractRenderer<java.lang.String>() {
+			Renderer<java.lang.String> renderer = new AbstractRenderer<java.lang.String>() {
 
-	                public String render(java.lang.String obj) {
-	                    return obj == null ? "" : String.valueOf(obj);
-	                }
-	            };
+				@Override
+				public String render(java.lang.String obj) {
+					return obj == null ? "" : String.valueOf(obj);
+				}
+			};
 
-	            @Override
-	            public String getValue(SkillAcquiredProxy object) {
-	            	String category="";
-	            	
-	            	if(object.getSkill()!=null && object.getSkill().getTopic()!=null && object.getSkill().getTopic().getClassificationTopic()!=null && object.getSkill().getTopic().getClassificationTopic().getMainClassification()!=null && object.getSkill().getTopic().getClassificationTopic().getMainClassification().getDescription()!=null)
-	            	{
-	            		category=" " + object.getSkill().getTopic().getClassificationTopic().getMainClassification().getDescription();
-	            		if(object.getSkill().getTopic().getClassificationTopic().getMainClassification().getShortcut()!=null)
-	            		{
-	            			category+=" (" +object.getSkill().getTopic().getClassificationTopic().getMainClassification().getShortcut()+ ") ";
-	            		}
-	            	}
-	            	if(object.getSkill()!=null && object.getSkill().getTopic()!=null && object.getSkill().getTopic().getTopicDescription()!=null)
-	            	{
-	            		category+=" - "+object.getSkill().getTopic().getTopicDescription() + " ";
-	            	}
-	            	if(object.getSkillLevel()!=null && object.getSkillLevel().getLevelNumber()!=null)
-	            	{
-	            		  //return renderer.render(object.getSkill().getTopic().getClassificationTopic().getMainClassification().getDescription());
-	            		  category+=constants.level()+" "+ object.getSkillLevel().getLevelNumber() + " - " + SkillLevels.getSkillLevels(SkillLevels.values()[object.getSkillLevel().getLevelNumber()-1]);
-	            	}
-	            	return renderer.render(category);	            	 	            	
-	            }
-	        }, constants.category());
-	        paths.add("shortcut");
-	        table.addColumn(new TextColumn<SkillAcquiredProxy>() {
-	        	/*{
-	        		this.setSortable(true);
-	        	}*/
-	            Renderer<java.lang.String> renderer = new AbstractRenderer<java.lang.String>() {
+			@Override
+			public String getValue(SkillAcquiredProxy object) {
+				String category = "";
 
-	                public String render(java.lang.String obj) {
-	                    return obj == null ? "" : String.valueOf(obj);
-	                }
-	            };
+				if (object.getSkill() != null && object.getSkill().getTopic() != null && object.getSkill().getTopic().getClassificationTopic() != null && object.getSkill().getTopic().getClassificationTopic().getMainClassification() != null
+						&& object.getSkill().getTopic().getClassificationTopic().getMainClassification().getDescription() != null) {
+					category = " " + object.getSkill().getTopic().getClassificationTopic().getMainClassification().getDescription();
+					if (object.getSkill().getTopic().getClassificationTopic().getMainClassification().getShortcut() != null) {
+						category += " (" + object.getSkill().getTopic().getClassificationTopic().getMainClassification().getShortcut() + ") ";
+					}
+				}
+				if (object.getSkill() != null && object.getSkill().getTopic() != null && object.getSkill().getTopic().getTopicDescription() != null) {
+					category += " - " + object.getSkill().getTopic().getTopicDescription() + " ";
+				}
+				if (object.getSkillLevel() != null && object.getSkillLevel().getLevelNumber() != null) {
+					category += constants.level() + " " + object.getSkillLevel().getLevelNumber() + " - " + SkillLevels.getSkillLevels(SkillLevels.values()[object.getSkillLevel().getLevelNumber() - 1]);
+				}
+				return renderer.render(category);
+			}
+		}, constants.category());
+		paths.add("shortcut");
+		table.addColumn(new TextColumn<SkillAcquiredProxy>() {
+			Renderer<java.lang.String> renderer = new AbstractRenderer<java.lang.String>() {
 
-	            @Override
-	            public String getValue(SkillAcquiredProxy object) {
-	            	 if(object.getSkill()!=null && object.getSkill().getShortcut()!=null)
-	            		 return renderer.render("S "+object.getSkill().getShortcut());
-	            	 else
-	            		 return renderer.render("");
-	            }
-	        }, constants.shortcut());
+				@Override
+				public String render(java.lang.String obj) {
+					return obj == null ? "" : String.valueOf(obj);
+				}
+			};
+
+			@Override
+			public String getValue(SkillAcquiredProxy object) {
+				if (object.getSkill() != null && object.getSkill().getShortcut() != null) {
+					return renderer.render("S " + object.getSkill().getShortcut());
+				} else {
+					return renderer.render("");
+				}
+			}
+		}, constants.shortcut());
 	}
-	
+
 	@Override
-	public CellTable<SkillAcquiredProxy> getTable() 
-	{
+	public CellTable<SkillAcquiredProxy> getTable() {
 		return table;
-	}		
+	}
 
 	public String[] getPaths() {
-		
-		 return paths.toArray(new String[paths.size()]);
+
+		return paths.toArray(new String[paths.size()]);
 	}
 
 	@Override
 	public void setPresenter(presenter presenter) {
-		this.presenter=presenter;
-		
+
 	}
 
 	@Override
 	public void setDelegate(Delegate delegate) {
-		this.delegate=delegate;
-		
+		this.delegate = delegate;
+
 	}
-	
+
 	@Override
 	public FocusPanel getStudentFocusPanel() {
 		return studentFocusPanel;

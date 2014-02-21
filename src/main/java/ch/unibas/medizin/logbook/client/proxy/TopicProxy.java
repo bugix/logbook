@@ -1,5 +1,3 @@
-// WARNING: THIS FILE IS MANAGED BY SPRING ROO.
-
 package ch.unibas.medizin.logbook.client.proxy;
 
 import java.util.List;
@@ -10,19 +8,19 @@ import com.google.web.bindery.requestfactory.shared.ProxyForName;
 @ProxyForName(value = "ch.unibas.medizin.logbook.server.domain.Topic", locator = "ch.unibas.medizin.logbook.server.locator.TopicLocator")
 public interface TopicProxy extends EntityProxy {
 
-    abstract Long getId();
+	abstract Long getId();
 
-    abstract String getTopicDescription();
+	abstract String getTopicDescription();
 
-    abstract void setTopicDescription(String topicDescription);
+	abstract void setTopicDescription(String topicDescription);
 
-    abstract List<SkillProxy> getSkills();
+	abstract List<SkillProxy> getSkills();
 
-    abstract void setSkills(List<SkillProxy> skills);
+	abstract void setSkills(List<SkillProxy> skills);
 
-    abstract ClassificationTopicProxy getClassificationTopic();
+	abstract ClassificationTopicProxy getClassificationTopic();
 
-    abstract void setClassificationTopic(ClassificationTopicProxy classificationTopic);
+	abstract void setClassificationTopic(ClassificationTopicProxy classificationTopic);
 
-    abstract Integer getVersion();
+	abstract Integer getVersion();
 }

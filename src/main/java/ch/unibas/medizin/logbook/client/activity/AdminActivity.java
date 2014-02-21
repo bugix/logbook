@@ -1,6 +1,5 @@
 package ch.unibas.medizin.logbook.client.activity;
 
-
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -19,7 +18,6 @@ import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;
-import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.event.shared.EventBus;
@@ -37,172 +35,145 @@ import de.novanic.eventservice.client.event.RemoteEventServiceFactory;
 import de.novanic.eventservice.client.event.domain.Domain;
 import de.novanic.eventservice.client.event.domain.DomainFactory;
 
-/**
- * @author Darshan
- *
- */
-public class AdminActivity extends AbstractActivity implements AdminView.presenter, AdminView.Delegate{
-	
-	
+public class AdminActivity extends AbstractActivity implements AdminView.presenter, AdminView.Delegate {
+
 	private LogBookRequestFactory requests;
-	private PlaceController placeController;
+
 	private AcceptsOneWidget widget;
+
 	private AdminView view;
-	private AdminActivity adminActivity;
-	private LoginPlace place;
-	private int tabIndex=0; 
-	
-	private ActivityManager activityManager;
-	
-	public HandlerManager handlerManager;// = new HandlerManager(this);
-	
+
+	public HandlerManager handlerManager;
+
 	private static final Domain DOMAIN = DomainFactory.getDomain("localhost");
+
 	private CsvFileGeneratorServiceAsync csvFileGeneratorServiceService = GWT.create(CsvFileGeneratorService.class);
-	
+
 	LogBookConstants constants = GWT.create(LogBookConstants.class);
-	
-	
-	
-	public AdminActivity(LogBookRequestFactory requests, PlaceController placeController,LoginPlace loginPlace) 
-	{
+
+	public AdminActivity(LogBookRequestFactory requests, PlaceController placeController, LoginPlace loginPlace) {
 		Log.info("Call Activity Login");
-		
-    	this.requests = requests;
-    	this.placeController = placeController;
-    	this.place = loginPlace;
-    	this.handlerManager = loginPlace.handler;
 
-    	adminActivity = this;
+		this.requests = requests;
+		handlerManager = loginPlace.handler;
 
-	}	
-	
-	
-	/*public void addSelectChangeHandler(SelectChangeHandler handler) {
-		handlerManager.addHandler(SelectChangeEvent.getType(), handler);
-		
-	}*/
-	
-	public AdminActivity(LogBookRequestFactory requests , PlaceController placeController) {
+	}
+
+	public AdminActivity(LogBookRequestFactory requests, PlaceController placeController) {
 		Log.info("Call Admin Activity");
 		this.requests = requests;
-    	this.placeController = placeController;
 	}
 
-	
-	public void onStop(){
+	@Override
+	public void onStop() {
 		widget.setWidget(null);
 	}
-	
+
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		Log.info("SystemStartActivity.start()");
-		this.widget = panel;
+		widget = panel;
 		init();
-		
 
 	}
-	
 
-	private void init(){
+	private void init() {
 		AdminView systemStartView = new AdminViewImpl();
 		systemStartView.setPresenter(this);
-		this.view = systemStartView;
-		
+		view = systemStartView;
+
 		widget.setWidget(systemStartView.asWidget());
-		
-		//Fix in default style( without it tab content will not show properly)
-		Log.info("HTML :" +systemStartView.asWidget().getElement().getParentElement().getParentElement());		
+
+		// Fix in default style( without it tab content will not show properly)
+		Log.info("HTML :" + systemStartView.asWidget().getElement().getParentElement().getParentElement());
 		systemStartView.asWidget().getElement().getParentElement().getParentElement().getStyle().setPosition(Position.RELATIVE);
-		
-		view.setDelegate(this);	
-		
+
+		view.setDelegate(this);
+
 		initAdminDetails();
 
 	}
 
-
 	private void initAdminDetails() {
-		
+
 		requests.administratorRequestNonRoo().findAdministratorFromSession().fire(new Receiver<AdministratorProxy>() {
 
 			@Override
 			public void onSuccess(AdministratorProxy response) {
-				if(response !=null){
-					view.getLblNameVal().setText(response.getName()!=null ?response.getName():"");
-					view.getLblPrenameVal().setText(response.getPreName()!=null ?response.getPreName() :"");
-					view.getLblEmailVal().setText(response.getEmail()!=null ? response.getEmail():"");
+				if (response != null) {
+					view.getLblNameVal().setText(response.getName() != null ? response.getName() : "");
+					view.getLblPrenameVal().setText(response.getPreName() != null ? response.getPreName() : "");
+					view.getLblEmailVal().setText(response.getEmail() != null ? response.getEmail() : "");
 				}
-				
+
 			}
+
 			@Override
 			public void onFailure(ServerFailure error) {
 				Log.info("~~~~Error");
 			}
+
 			@Override
-			public void onConstraintViolation(
-					Set<ConstraintViolation<?>> violations) {
+			public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
 				Log.info("~~~~Error~~~~");
 			}
 		});
-		
-	}
 
+	}
 
 	@Override
 	public void goTo(Place place) {
-		
-	}
 
+	}
 
 	@Override
 	public void exportStudentClicked(boolean checkboxSelected) {
-		
+
 		showApplicationLoading(true);
-		//Window.alert("clicked :"  + checkboxSelected);
 		RemoteEventServiceFactory theEventServiceFactory = RemoteEventServiceFactory.getInstance();
 		final RemoteEventService theEventService = theEventServiceFactory.getRemoteEventService();
-		
-		theEventService.addListener(DOMAIN, new CsvFileGeneratorListener(){
-			public void csvFileGeneratorEvent(CsvFileGeneratorEvent event){
-				if(event.getResult()==true){
-					
+
+		theEventService.addListener(DOMAIN, new CsvFileGeneratorListener() {
+			@Override
+			public void csvFileGeneratorEvent(CsvFileGeneratorEvent event) {
+				if (event.getResult() == true) {
+
 					showApplicationLoading(false);
 					theEventService.removeListeners();
 					String url = GWT.getHostPageBaseURL() + "exportCSV";
 					Log.info("URL :" + url);
 					Window.open(url, "", "");
-					
-				}
-				else{
+
+				} else {
 					showApplicationLoading(false);
 					Log.info("Error during file generation");
 				}
-			
+
 			}
 		});
-		
+
 		csvFileGeneratorServiceService.csvFileGeneratorClicked(checkboxSelected, new AsyncCallback<Void>() {
-			
+
 			@Override
 			public void onSuccess(Void result) {
-				Log.info("Returened Response still file generation process is in execution");	
-				
+				Log.info("Returened Response still file generation process is in execution");
+
 			}
-			
+
 			@Override
 			public void onFailure(Throwable caught) {
 				showApplicationLoading(false);
 				theEventService.removeListeners();
 				Log.info("CsvFile generator  Request Failed Due to" + caught.getMessage());
 				caught.printStackTrace();
-				
+
 			}
 		});
-		
-		
+
 	}
+
 	public void showApplicationLoading(Boolean show) {
 		requests.getEventBus().fireEvent(new ApplicationLoadingScreenEvent(show));
-	
+
 	}
-}	
+}

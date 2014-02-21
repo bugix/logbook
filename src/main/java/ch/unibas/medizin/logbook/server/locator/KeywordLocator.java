@@ -9,27 +9,33 @@ import com.google.web.bindery.requestfactory.shared.Locator;
 @Component
 public class KeywordLocator extends Locator<Keyword, Long> {
 
-    public Keyword create(Class<? extends Keyword> clazz) {
-        return new Keyword();
-    }
+	@Override
+	public Keyword create(Class<? extends Keyword> clazz) {
+		return new Keyword();
+	}
 
-    public Keyword find(Class<? extends Keyword> clazz, Long id) {
-        return Keyword.findKeyword(id);
-    }
+	@Override
+	public Keyword find(Class<? extends Keyword> clazz, Long id) {
+		return Keyword.findKeyword(id);
+	}
 
-    public Class<Keyword> getDomainType() {
-        return Keyword.class;
-    }
+	@Override
+	public Class<Keyword> getDomainType() {
+		return Keyword.class;
+	}
 
-    public Long getId(Keyword keyword) {
-        return keyword.getId();
-    }
+	@Override
+	public Long getId(Keyword keyword) {
+		return keyword.getId();
+	}
 
-    public Class<java.lang.Long> getIdType() {
-        return Long.class;
-    }
+	@Override
+	public Class<Long> getIdType() {
+		return Long.class;
+	}
 
-    public Object getVersion(Keyword keyword) {
-        return keyword.getVersion();
-    }
+	@Override
+	public Object getVersion(Keyword keyword) {
+		return keyword.getVersion();
+	}
 }

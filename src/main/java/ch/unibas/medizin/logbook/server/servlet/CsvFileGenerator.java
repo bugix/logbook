@@ -15,66 +15,45 @@ import org.apache.commons.io.FileUtils;
 /**
  * Servlet implementation class CsvFileCreator
  */
-public class CsvFileGenerator extends HttpServlet implements SingleThreadModel{
+@SuppressWarnings("deprecation")
+public class CsvFileGenerator extends HttpServlet implements SingleThreadModel {
 	private static final long serialVersionUID = 1L;
-       
-    public CsvFileGenerator() {
-        super();
-    }
 
+	public CsvFileGenerator() {
+		super();
+	}
+
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		try
-		{
-					
-			//System.out.println("At doGet()");
+
+		try {
 			String fileSeparator = System.getProperty("file.separator");
-			String fileName = getServletContext().getRealPath(fileSeparator) +  "public/test.csv";
-			
+			String fileName = getServletContext().getRealPath(fileSeparator) + "public/test.csv";
+
 			File csvFile = new File(fileName);
-			
+
 			FileUtils.touch(csvFile);
-			
-			sendFile(response,csvFile ,fileName);
-			
-		}
-		catch(Exception e)
-		{
+
+			sendFile(response, csvFile, fileName);
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
-	private static void sendFile(HttpServletResponse response,File header,String fileName) throws IOException {
-/*		
+
+	private static void sendFile(HttpServletResponse response, File header, String fileName) throws IOException {
 		ServletOutputStream stream = null;
 		stream = response.getOutputStream();
-		response.setContentType("application/x-download");
-		response.addHeader("Content-Disposition", "inline; filename=\""
-				+ fileName + "\"");
-		
-		response.setContentLength((int) header.length());
-		if(header.length() > 0) {
-			stream.write(new String(FileUtils.readFileToByteArray(header)).getBytes("UTF-16"));
-		}
-		stream.close();
-		
-	}*/
+		byte[] csv = FileUtils.readFileToByteArray(header);
 
+		response.setContentType("text/csv");
 
-		ServletOutputStream stream = null;
-		stream = response.getOutputStream();
-		byte [] csv = FileUtils.readFileToByteArray(header);
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + "student_list.csv" + "\"");
 
-		response.setContentType("text/csv"); 
-		    
-		response.setHeader("Content-Disposition", "attachment; filename=\""
-				+ "student_list.csv" + "\"");
-		
 		response.setContentLength(csv.length);
-		if(csv.length > 0) {
+		if (csv.length > 0) {
 			stream.write(csv);
 		}
-		stream.close(); 
+		stream.close();
 	}
 }

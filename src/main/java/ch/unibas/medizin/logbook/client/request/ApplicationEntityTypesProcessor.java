@@ -8,49 +8,49 @@ import com.google.web.bindery.requestfactory.shared.EntityProxy;
 
 public abstract class ApplicationEntityTypesProcessor<T> {
 
-    private final T defaultValue;
+	private final T defaultValue;
 
-    private T result;
+	private T result;
 
-    public ApplicationEntityTypesProcessor() {
-        defaultValue = null;
-    }
+	public ApplicationEntityTypesProcessor() {
+		defaultValue = null;
+	}
 
-    public ApplicationEntityTypesProcessor(T defaultValue) {
-        this.defaultValue = defaultValue;
-    }
+	public ApplicationEntityTypesProcessor(T defaultValue) {
+		this.defaultValue = defaultValue;
+	}
 
-    public static Set<Class<? extends EntityProxy>> getAll() {
-        Set<Class<? extends EntityProxy>> rtn = new HashSet<Class<? extends EntityProxy>>();
+	public static Set<Class<? extends EntityProxy>> getAll() {
+		Set<Class<? extends EntityProxy>> rtn = new HashSet<Class<? extends EntityProxy>>();
 
-        return Collections.unmodifiableSet(rtn);
-    }
+		return Collections.unmodifiableSet(rtn);
+	}
 
-    private static void process(ApplicationEntityTypesProcessor<?> processor, Class<?> clazz) {
-        
-        processor.handleNonProxy(null);
-    }
+	private static void process(ApplicationEntityTypesProcessor<?> processor, Class<?> clazz) {
 
-    private static void process(ApplicationEntityTypesProcessor<?> processor, Object proxy) {
-        processor.handleNonProxy(proxy);
-    }
+		processor.handleNonProxy(null);
+	}
 
-    public void handleNonProxy(Object object) {
-    }
+	private static void process(ApplicationEntityTypesProcessor<?> processor, Object proxy) {
+		processor.handleNonProxy(proxy);
+	}
 
-    public T process(Class<?> clazz) {
-        setResult(defaultValue);
-        ApplicationEntityTypesProcessor.process(this, clazz);
-        return result;
-    }
+	public void handleNonProxy(Object object) {
+	}
 
-    public T process(Object proxy) {
-        setResult(defaultValue);
-        ApplicationEntityTypesProcessor.process(this, proxy);
-        return result;
-    }
+	public T process(Class<?> clazz) {
+		setResult(defaultValue);
+		ApplicationEntityTypesProcessor.process(this, clazz);
+		return result;
+	}
 
-    protected void setResult(T result) {
-        this.result = result;
-    }
+	public T process(Object proxy) {
+		setResult(defaultValue);
+		ApplicationEntityTypesProcessor.process(this, proxy);
+		return result;
+	}
+
+	protected void setResult(T result) {
+		this.result = result;
+	}
 }

@@ -1,6 +1,6 @@
-// WARNING: THIS FILE IS MANAGED BY SPRING ROO.
-
 package ch.unibas.medizin.logbook.client.request;
+
+import java.util.List;
 
 import ch.unibas.medizin.logbook.client.proxy.StudentProxy;
 
@@ -12,15 +12,15 @@ import com.google.web.bindery.requestfactory.shared.ServiceName;
 @ServiceName("ch.unibas.medizin.logbook.server.domain.Student")
 public interface StudentRequest extends RequestContext {
 
-    abstract Request<java.lang.Long> countStudents();
+	abstract Request<Long> countStudents();
 
-    abstract Request<java.util.List<StudentProxy>> findAllStudents();
+	abstract Request<List<StudentProxy>> findAllStudents();
 
-    abstract Request<java.util.List<StudentProxy>> findStudentEntries(int firstResult, int maxResults);
+	abstract Request<List<StudentProxy>> findStudentEntries(int firstResult, int maxResults);
 
-    abstract Request<StudentProxy> findStudent(Long id);
+	abstract Request<StudentProxy> findStudent(Long id);
 
-    abstract InstanceRequest<StudentProxy, Void> persist();
+	abstract InstanceRequest<StudentProxy, Void> persist();
 
-    abstract InstanceRequest<StudentProxy, Void> remove();
+	abstract InstanceRequest<StudentProxy, Void> remove();
 }

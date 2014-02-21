@@ -10,7 +10,7 @@ public enum SkillLevels {
 	static LogBookConstants constants;
 
 	static {
-		if(GWT.isClient()) {
+		if (GWT.isClient()) {
 			constants = com.google.gwt.core.client.GWT.create(LogBookConstants.class);
 		}
 	}

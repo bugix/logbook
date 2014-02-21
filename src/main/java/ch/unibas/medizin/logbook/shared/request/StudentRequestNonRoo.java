@@ -10,5 +10,6 @@ import com.google.web.bindery.requestfactory.shared.Service;
 @Service(Student.class)
 public interface StudentRequestNonRoo extends RequestContext {
 	abstract Request<StudentProxy> findStudentFromSession();
+
 	abstract Request<Boolean> isCurrentUserStudent();
 }

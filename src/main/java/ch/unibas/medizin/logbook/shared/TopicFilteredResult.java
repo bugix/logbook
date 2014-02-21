@@ -7,14 +7,13 @@ import ch.unibas.medizin.logbook.server.domain.Topic;
 public class TopicFilteredResult {
 
 	List<Topic> topicList;
-	
+
 	List<Long> topicAcquiredList;
-	
+
 	List<Long> totalTopicList;
-	
+
 	Integer totalTopics;
-	
-	
+
 	public List<Topic> getTopicList() {
 		return topicList;
 	}
@@ -28,7 +27,7 @@ public class TopicFilteredResult {
 	}
 
 	public void setTopicAcquiredList(List<Long> totalAcquiredTopicBySkill) {
-		this.topicAcquiredList = totalAcquiredTopicBySkill;
+		topicAcquiredList = totalAcquiredTopicBySkill;
 	}
 
 	public List<Long> getTotalTopicList() {
@@ -40,7 +39,7 @@ public class TopicFilteredResult {
 	}
 
 	public void setTotalTopic(int size) {
-		this.totalTopics=size;
+		totalTopics = size;
 	}
 
 	public Integer getTotalTopics() {

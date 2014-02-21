@@ -22,6 +22,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Entity
 public class SkillComment 
 {
+	@PersistenceContext
+    transient EntityManager entityManager;
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+	@Version
+    @Column(name = "version")
+    private Integer version;
     
     private String comment;
     
@@ -30,11 +41,21 @@ public class SkillComment
     
     @OneToOne
     private Skill skill;
-    
-  
 
-	public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	public Long getId() {
+        return this.id;
+    }
+
+	public void setId(Long id) {
+        this.id = id;
+    }
+
+	public Integer getVersion() {
+        return this.version;
+    }
+
+	public void setVersion(Integer version) {
+        this.version = version;
     }
 
 	public String getComment() {
@@ -60,9 +81,6 @@ public class SkillComment
 	public void setSkill(Skill skill) {
         this.skill = skill;
     }
-
-	@PersistenceContext
-    transient EntityManager entityManager;
 
 	public static final EntityManager entityManager() {
         EntityManager em = new SkillComment().entityManager;
@@ -123,29 +141,8 @@ public class SkillComment
         this.entityManager.flush();
         return merged;
     }
-
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-	@Version
-    @Column(name = "version")
-    private Integer version;
-
-	public Long getId() {
-        return this.id;
-    }
-
-	public void setId(Long id) {
-        this.id = id;
-    }
-
-	public Integer getVersion() {
-        return this.version;
-    }
-
-	public void setVersion(Integer version) {
-        this.version = version;
+	
+	public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }

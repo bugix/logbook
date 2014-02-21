@@ -9,27 +9,33 @@ import com.google.web.bindery.requestfactory.shared.Locator;
 @Component
 public class SkillAcquiredLocator extends Locator<SkillAcquired, Long> {
 
-    public SkillAcquired create(Class<? extends SkillAcquired> clazz) {
-        return new SkillAcquired();
-    }
+	@Override
+	public SkillAcquired create(Class<? extends SkillAcquired> clazz) {
+		return new SkillAcquired();
+	}
 
-    public SkillAcquired find(Class<? extends SkillAcquired> clazz, Long id) {
-        return SkillAcquired.findSkillAcquired(id);
-    }
+	@Override
+	public SkillAcquired find(Class<? extends SkillAcquired> clazz, Long id) {
+		return SkillAcquired.findSkillAcquired(id);
+	}
 
-    public Class<SkillAcquired> getDomainType() {
-        return SkillAcquired.class;
-    }
+	@Override
+	public Class<SkillAcquired> getDomainType() {
+		return SkillAcquired.class;
+	}
 
-    public Long getId(SkillAcquired skillAcquired) {
-        return skillAcquired.getId();
-    }
+	@Override
+	public Long getId(SkillAcquired skillAcquired) {
+		return skillAcquired.getId();
+	}
 
-    public Class<java.lang.Long> getIdType() {
-        return Long.class;
-    }
+	@Override
+	public Class<Long> getIdType() {
+		return Long.class;
+	}
 
-    public Object getVersion(SkillAcquired skillAcquired) {
-        return skillAcquired.getVersion();
-    }
+	@Override
+	public Object getVersion(SkillAcquired skillAcquired) {
+		return skillAcquired.getVersion();
+	}
 }

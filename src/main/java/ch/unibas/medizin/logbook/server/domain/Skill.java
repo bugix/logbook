@@ -8,7 +8,6 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -50,6 +49,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.transaction.annotation.Transactional;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
@@ -63,6 +63,18 @@ import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 @Configurable
 @Entity
 public class Skill {
+
+	@PersistenceContext
+    transient EntityManager entityManager;
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
+	@Version
+    @Column(name = "version")
+    private Integer version;
 
     @Size(max = 1024)
     private String description;
@@ -84,6 +96,78 @@ public class Skill {
     @ManyToMany(mappedBy = "skill")
     private Set<Keyword> keywords = new HashSet<Keyword>();
     
+    public Long getId() {
+        return this.id;
+    }
+
+	public void setId(Long id) {
+        this.id = id;
+    }
+
+	public Integer getVersion() {
+        return this.version;
+    }
+
+	public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+	public String getDescription() {
+        return this.description;
+    }
+
+	public void setDescription(String description) {
+        this.description = description;
+    }
+
+	public Integer getShortcut() {
+        return this.shortcut;
+    }
+
+	public void setShortcut(Integer shortcut) {
+        this.shortcut = shortcut;
+    }
+
+	public Topic getTopic() {
+        return this.topic;
+    }
+
+	public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
+
+	public SkillLevel getSkillLevel() {
+        return this.skillLevel;
+    }
+
+	public void setSkillLevel(SkillLevel skillLevel) {
+        this.skillLevel = skillLevel;
+    }
+
+	public String getGerman_text() {
+        return this.german_text;
+    }
+
+	public void setGerman_text(String german_text) {
+        this.german_text = german_text;
+    }
+
+	public Set<SkillAcquired> getSkillsAcquired() {
+        return this.skillsAcquired;
+    }
+
+	public void setSkillsAcquired(Set<SkillAcquired> skillsAcquired) {
+        this.skillsAcquired = skillsAcquired;
+    }
+
+	public Set<Keyword> getKeywords() {
+        return this.keywords;
+    }
+
+	public void setKeywords(Set<Keyword> keywords) {
+        this.keywords = keywords;
+    }
+    
     public static List<Long> findCountOfSkillBySkillLevel() 
     {
     	List<Long> listOfSkillBySkillLevel=new ArrayList<Long>();
@@ -92,6 +176,7 @@ public class Skill {
     	return listOfSkillBySkillLevel;
          
     }
+
     public static Long findTotalSkillByLevel(long skillLevel)
     {
     	CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
@@ -140,8 +225,6 @@ public class Skill {
 		Predicate predicate1 = null;
 		Predicate predicate2 = null;
 		Predicate predicate3 = null;
-		Predicate andPredicate = null;
-		
 		
 		if(topicId != null) //Topic
 		{
@@ -247,9 +330,7 @@ public class Skill {
 		
 		Predicate predicate1 = null;
 		Predicate predicate2 = null;
-		Predicate predicate3 = null;
-		Predicate andPredicate = null;
-		
+		Predicate predicate3 = null;		
 		
 		if(topicId != null) //Topic
 		{
@@ -429,13 +510,8 @@ public class Skill {
     			Log.info("Error" + e.getStackTrace());
     		}
     	}
-    	
-    	
-    	
-    	
+
     	return result;
-    	
-	
 }
 	public static String retrieveHtmlFile(Long studentId,Long mainClassificationId, Long classificationTopicId, Long topicId,String fulltextSearch,int chkAsc) {
     	
@@ -450,12 +526,12 @@ public class Skill {
     }
     
 	
-	public static org.w3c.dom.Document createDocument()
+	public static Document createDocument()
 	{
 		try{
 		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
-        org.w3c.dom.Document doc = docBuilder.newDocument();
+        Document doc = docBuilder.newDocument();
         return doc;
 		}
 		catch (Exception e) {
@@ -465,7 +541,7 @@ public class Skill {
         
 	}
 	
-	public static Element createChildNode(String nodeName,String nodeValue,org.w3c.dom.Document doc,Element parent)
+	public static Element createChildNode(String nodeName,String nodeValue,Document doc,Element parent)
 	{
 		 Element element = doc.createElement(nodeName);//create  node
 		 parent.appendChild(element);	//append to its parent
@@ -473,7 +549,8 @@ public class Skill {
 	        element.appendChild(text2); 
 	        return element;
 	}
-	public static Element createEmptyChildNode(String nodeName,org.w3c.dom.Document doc,Element parent)
+
+	public static Element createEmptyChildNode(String nodeName,Document doc,Element parent)
 	{
 		 Element element = doc.createElement(nodeName);//create  node
 		 parent.appendChild(element);	//append to its parent
@@ -482,7 +559,7 @@ public class Skill {
 	
 	public static String  createHtml(SkillFilteredResult result,Long studentId)
 	{
-		org.w3c.dom.Document doc=createDocument();
+		Document doc=createDocument();
 		
 		Element root = doc.createElement("mainClassifications");
 		
@@ -590,7 +667,7 @@ public class Skill {
 		
 	}
 
-	public static String saveXML(org.w3c.dom.Document doc)
+	public static String saveXML(Document doc)
 	{
 		try{
 			TransformerFactory factory = TransformerFactory.newInstance();
@@ -687,8 +764,7 @@ public class Skill {
 		Root<Skill> from = criteriaQuery.from(Skill.class);
 		criteriaQuery.select(criteriaBuilder.count(from));				
 		criteriaQuery.where(criteriaBuilder.equal(from.get("topic"), topicId));
-		TypedQuery<Long> result = entityManager().createQuery(criteriaQuery);
-		//System.out.println("~~QUERY +++ : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
+		TypedQuery<Long> result = entityManager().createQuery(criteriaQuery);		
         return result.getSingleResult();
     }
 
@@ -722,11 +798,10 @@ public static List<Student> findAllFinalizedStudent(){
 	
 	criteriaQuery.where(criteriaBuilder.equal(from.get("studentStatus"),StudentStatus.Fianllized));
 	TypedQuery<Student> result = entityManager().createQuery(criteriaQuery);
-	//System.out.println("~~QUERY +++ : " + result.unwrap(org.hibernate.Query.class).getQueryString());		
+	
     return result.getResultList();
-	
-	
 }
+
 public static String addCommnets(Long skillId,Long studentId,String comment){
 	
 	String result;
@@ -742,8 +817,7 @@ public static String addCommnets(Long skillId,Long studentId,String comment){
 			skillComment.setStudent(Student.findStudent(studentId));
 			skillComment.setComment(comment);
 			skillComment.persist();
-			
-			//skill.setSkillComment(skillComment);
+
 			skill.persist();
 			
 			result="INSERT";
@@ -779,8 +853,6 @@ public static List<SkillComment> getTotalComment(Long skillId,Long studentId){
 	Log.info("Query is :" + result.unwrap(Query.class).getQueryString());
 	
 	return result.getResultList();
-	
-	
 }
 
 public static String getCommentOfStudentForSkill(Long skillId,Long studentId){
@@ -804,13 +876,6 @@ public static String getCommentOfStudentForSkill(Long skillId,Long studentId){
 	else
 	return "";
 }
-
-	public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
-
-	@PersistenceContext
-    transient EntityManager entityManager;
 
 	public static final EntityManager entityManager() {
         EntityManager em = new Skill().entityManager;
@@ -872,85 +937,8 @@ public static String getCommentOfStudentForSkill(Long skillId,Long studentId){
         return merged;
     }
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-	@Version
-    @Column(name = "version")
-    private Integer version;
-
-	public Long getId() {
-        return this.id;
-    }
-
-	public void setId(Long id) {
-        this.id = id;
-    }
-
-	public Integer getVersion() {
-        return this.version;
-    }
-
-	public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-	public String getDescription() {
-        return this.description;
-    }
-
-	public void setDescription(String description) {
-        this.description = description;
-    }
-
-	public Integer getShortcut() {
-        return this.shortcut;
-    }
-
-	public void setShortcut(Integer shortcut) {
-        this.shortcut = shortcut;
-    }
-
-	public Topic getTopic() {
-        return this.topic;
-    }
-
-	public void setTopic(Topic topic) {
-        this.topic = topic;
-    }
-
-	public SkillLevel getSkillLevel() {
-        return this.skillLevel;
-    }
-
-	public void setSkillLevel(SkillLevel skillLevel) {
-        this.skillLevel = skillLevel;
-    }
-
-	public String getGerman_text() {
-        return this.german_text;
-    }
-
-	public void setGerman_text(String german_text) {
-        this.german_text = german_text;
-    }
-
-	public Set<SkillAcquired> getSkillsAcquired() {
-        return this.skillsAcquired;
-    }
-
-	public void setSkillsAcquired(Set<SkillAcquired> skillsAcquired) {
-        this.skillsAcquired = skillsAcquired;
-    }
-
-	public Set<Keyword> getKeywords() {
-        return this.keywords;
-    }
-
-	public void setKeywords(Set<Keyword> keywords) {
-        this.keywords = keywords;
+	public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }
 
