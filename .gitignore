@@ -9,3 +9,5 @@ gwt-unitCache
 log.roo
 .apt_generated
 .gradle
+.DS_store
+src/main/generated

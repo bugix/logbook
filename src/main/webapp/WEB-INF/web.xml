@@ -62,14 +62,30 @@
 
 	<servlet>
 		<servlet-name>CsvFileGenerator</servlet-name>
-		<servlet-class>ch.unibas.medizin.logbook.server.CsvFileGeneratorServiceImpl
-		</servlet-class>
+		<servlet-class>ch.unibas.medizin.logbook.server.CsvFileGeneratorServiceImpl</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>CsvFileGenerator</servlet-name>
 		<url-pattern>/logbook/CsvFileGenerator</url-pattern>
 	</servlet-mapping>
+
+	<!-- For Authorization -->
+	<!-- Uncomment for production mode -->
+	<filter>
+		<filter-name>AuthenticationFilter</filter-name>
+		<filter-class>ch.unibas.medizin.logbook.server.filter.AuthenticationFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>AuthenticationFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>AuthenticationFilter</filter-name>
+		<url-pattern>/gwtRequest</url-pattern>
+	</filter-mapping>
 
 	<welcome-file-list>
 		<welcome-file>LogBookEntry.html</welcome-file>

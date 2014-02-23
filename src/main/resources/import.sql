@@ -1,0 +1,1 @@
+INSERT INTO administrator (email, name, pre_name, version) VALUES ('m.imobersteg@unibas.ch', 'Imobersteg', 'Martin', 1);

@@ -1,4 +1,4 @@
-package ch.unibas.medizin.logbook.server;
+package ch.unibas.medizin.logbook.server.filter;
 
 import static ch.unibas.medizin.logbook.shared.constant.LogBookConstant.ADMIN;
 import static ch.unibas.medizin.logbook.shared.constant.LogBookConstant.CURRENT_USER;
@@ -42,6 +42,10 @@ public class AuthenticationFilter implements Filter {
 	private static final String NAME = "givenName";
 	private static final String PRENAME = "surname";
 	private static final String MATRICULATION_NUMBER = "matriculationNumber";
+	
+	// for local use
+	private static final String STUDENT_ID = "id";
+	private static final String CURRENT_USER_PARAM = "currentUser";
 
 	@Override
 	public void destroy() {
@@ -57,6 +61,14 @@ public class AuthenticationFilter implements Filter {
 		boolean flag = false;
 		String uniqueID;
 		String matriculationNumber;
+		
+		/* local development environment Session Management */ 
+		uniqueID = getUniqueId(request,response);
+		log.info("UNIQUE_ID : " + uniqueID);
+		flag = localWork(request, response, uniqueID);
+
+		/* production environment session management */
+		/* for production uniqueID and for testing uid */
 		uniqueID = request.getHeader("uniqueID");
 		matriculationNumber = request.getHeader(MATRICULATION_NUMBER);
 
@@ -89,6 +101,7 @@ public class AuthenticationFilter implements Filter {
 		log.info("StudyBranch : " + studyBranch);
 
 		boolean hasAllowedStudyBranch = false;
+
 		if (allStudyBranch != null) {
 			for (String sb : allStudyBranch) {
 				log.info("sb : " + sb);
@@ -98,6 +111,7 @@ public class AuthenticationFilter implements Filter {
 				}
 			}
 		}
+
 		if (hasAllowedStudyBranch == true) {
 
 			// Session Management
@@ -259,6 +273,126 @@ public class AuthenticationFilter implements Filter {
 		} catch (Exception e) {
 			flag = false;
 			log.error("Error in authenticationStudentUsingDB Method.", e);
+		}
+
+		return flag;
+	}
+	
+	private String getUniqueId(HttpServletRequest request, HttpServletResponse response) {
+
+		String referer =  request.getHeader("Referer");
+		log.info("referer : " + referer );
+		log.info("studentid : " + request.getParameter(STUDENT_ID));
+
+		String uniqueID; 
+
+		if(referer != null) {
+			uniqueID = getQueryMap(referer).get(STUDENT_ID);
+		}else {
+			uniqueID = request.getParameter(STUDENT_ID);
+		}
+
+		return uniqueID;
+	}
+	
+	private String getCurrentUser(HttpServletRequest request, HttpServletResponse response) {
+
+		String referer = request.getHeader("Referer");
+
+		String currentUser;
+
+		if (referer != null) {
+			currentUser = getQueryMap(referer).get(CURRENT_USER_PARAM);
+		} else {
+			currentUser = request.getParameter(CURRENT_USER_PARAM);
+		}
+
+		return currentUser;
+	}
+
+	private final boolean localWork(HttpServletRequest request, HttpServletResponse response, String uniqueID) {
+		boolean flag = false;
+		try {
+			String currentUser = getCurrentUser(request, response);
+
+			log.info("currentUser : " + currentUser);
+
+			// Session Management
+			HttpSession session = request.getSession(false);
+
+			if (session != null) {
+				String sessionUserId = (String) session.getAttribute(UNIQUE_ID);
+				String currentUserId = (String) session.getAttribute(CURRENT_USER);
+
+				if (uniqueID.equals(sessionUserId) && currentUser.equals(currentUserId)) {
+					log.info("----> Authenticated using session");
+					flag = true;
+				} else {
+					flag = authenticationUsingDB(response, Long.parseLong(uniqueID), currentUser);
+
+					if (flag == true) {
+						if (currentUser.equals(ADMIN)) {
+							Administrator administrator = Administrator.findAdministrator(Long.parseLong(uniqueID, 10));
+							// change to email Address
+							session.setAttribute(UNIQUE_ID, administrator.getEmail());
+						} else {
+							Student student = Student.findStudent(Long.parseLong(uniqueID, 10));
+							// change to shib_id
+							session.setAttribute(UNIQUE_ID, student.getShib_id());
+						}
+						session.setAttribute(CURRENT_USER, currentUser);
+						log.info("----> Authenticated using DB");
+					}
+				}
+			} else {
+				log.info("----> Authenticated using New Session");
+				flag = authenticationUsingDB(response, Long.parseLong(uniqueID), currentUser);
+				if (flag == true) {
+					session = request.getSession();
+					if (currentUser.equals(ADMIN)) {
+						Administrator administrator = Administrator.findAdministrator(Long.parseLong(uniqueID, 10));
+						// change to email Address
+						session.setAttribute(UNIQUE_ID, administrator.getEmail());
+					} else {
+						Student student = Student.findStudent(Long.parseLong(uniqueID, 10));
+						// change to shib_id
+						session.setAttribute(UNIQUE_ID, student.getShib_id());
+					}
+					session.setAttribute(CURRENT_USER, currentUser);
+				}
+			}
+
+		} catch (Exception e) {
+			flag = false;
+			log.error("localWork", e);
+		}
+		return flag;
+	}
+	
+	private boolean authenticationUsingDB(ServletResponse servletResponse, long uniqueId, String currentUser) {
+
+		boolean flag = false;
+
+		if (ADMIN.equals(currentUser)) {
+			List<Administrator> adminList = Administrator
+					.findAllAdministrators();
+			for (Administrator administrator : adminList) {
+				if ((long) administrator.getId() == uniqueId) {
+					flag = true;
+					break;
+				}
+			}
+		} else if (STUDENT.equals(currentUser)) {
+			List<Student> studList = Student.findAllStudents();
+
+			for (Student student : studList) {
+				if ((long) student.getId() == uniqueId) {
+					flag = true;
+					break;
+				}
+			}
+		} else {
+			flag = false;
 		}
 
 		return flag;
