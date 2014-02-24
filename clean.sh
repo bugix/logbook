@@ -1,2 +1,2 @@
-rm -rf .gradle build target war bin .project .settings .classpath gwt-unitCache
+rm -rf .gradle build target war bin .project .settings .classpath gwt-unitCache src/main/generated warpublic
 mkdir war
