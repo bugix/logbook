@@ -84,6 +84,7 @@ dependencies {
 		exclude(module: "jaxb-impl")
 	}
 	runtime "com.h2database:h2:1.3.175"
+	runtime "mysql:mysql-connector-java:5.1.29"
 	
 	// Apache Commons
 	compile "org.apache.commons:commons-lang3:3.1"
@@ -106,7 +107,7 @@ dependencies {
 	// Rendering
 	compile "net.sourceforge.javacsv:javacsv:2.0"
 	compile "org.xhtmlrenderer:core-renderer:R8pre2"
-	compile "com.lowagie:itext:4.2.1"
+	compile "com.lowagie:itext:2.0.8"
 	compile "com.itextpdf:itextpdf:5.5.0"
  
 	providedCompile "javax.servlet:javax.servlet-api:3.0.1"

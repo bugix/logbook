@@ -32,9 +32,17 @@ public class ApplicationConfig {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		
+		/*
 		dataSource.setDriverClassName("org.h2.Driver");
 		dataSource.setUrl("jdbc:h2:~/tmp/logbook");
 		dataSource.setUsername("sa");
+		dataSource.setPassword("");
+		*/
+		
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/logBook");
+		dataSource.setUsername("root");
 		dataSource.setPassword("");
 
 		return dataSource;
@@ -49,7 +57,8 @@ public class ApplicationConfig {
 
 		Map<String, String> jpaPropertyMap = new HashMap<String, String>();
 		jpaPropertyMap.put("hibernate.hbm2ddl.auto", "create");
-		jpaPropertyMap.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		//jpaPropertyMap.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		jpaPropertyMap.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
 		jpaPropertyMap.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
 		jpaPropertyMap.put("hibernate.connection.charSet", "UTF-8");
 
