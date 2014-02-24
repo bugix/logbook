@@ -19,6 +19,44 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<filter>
+        <filter-name>openEntityManagerInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+    </filter>
+    
+    <filter>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    
+    <filter>
+        <filter-name>characterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>openEntityManagerInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 	<servlet>
 		<servlet-name>requestFactory</servlet-name>
@@ -51,39 +89,39 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>EventService</servlet-name>
+		<servlet-name>eventService</servlet-name>
 		<servlet-class>de.novanic.eventservice.service.EventServiceImpl</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>EventService</servlet-name>
+		<servlet-name>eventService</servlet-name>
 		<url-pattern>/logbook/gwteventservice</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>CsvFileGenerator</servlet-name>
+		<servlet-name>csvFileGenerator</servlet-name>
 		<servlet-class>ch.unibas.medizin.logbook.server.CsvFileGeneratorServiceImpl</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>CsvFileGenerator</servlet-name>
+		<servlet-name>csvFileGenerator</servlet-name>
 		<url-pattern>/logbook/CsvFileGenerator</url-pattern>
 	</servlet-mapping>
 
 	<!-- For Authorization -->
 	<!-- Uncomment for production mode -->
 	<filter>
-		<filter-name>AuthenticationFilter</filter-name>
+		<filter-name>authenticationFilter</filter-name>
 		<filter-class>ch.unibas.medizin.logbook.server.filter.AuthenticationFilter</filter-class>
 	</filter>
 
 	<filter-mapping>
-		<filter-name>AuthenticationFilter</filter-name>
+		<filter-name>authenticationFilter</filter-name>
 		<url-pattern>*.html</url-pattern>
 	</filter-mapping>
 
 	<filter-mapping>
-		<filter-name>AuthenticationFilter</filter-name>
+		<filter-name>authenticationFilter</filter-name>
 		<url-pattern>/gwtRequest</url-pattern>
 	</filter-mapping>
 
