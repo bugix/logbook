@@ -126,3 +126,5 @@ task generateRequetfacoryValidation(type: JavaCompile, group: "build", descripti
 	]
 	destinationDir = sourceSets.generated.java.srcDirs.iterator().next()
 }
+
+compileAspect.dependsOn generateRequetfacoryValidation
