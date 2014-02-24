@@ -68,7 +68,7 @@ public class AuthenticationFilter implements Filter {
 		flag = localWork(request, response, uniqueID);
 
 		/* production environment session management */
-		/* for production uniqueID and for testing uid */
+		/* for production uniqueID and for testing uid 
 		uniqueID = request.getHeader("uniqueID");
 		matriculationNumber = request.getHeader(MATRICULATION_NUMBER);
 
@@ -80,7 +80,10 @@ public class AuthenticationFilter implements Filter {
 		log.info("matriculationNumber : " + matriculationNumber);
 
 		flag = productionMethod(request, response, uniqueID);
+		*/
 
+		log.info("flag: " + flag);
+		
 		if (flag) {
 			filterChain.doFilter(servletRequest, servletResponse);
 		} else {
@@ -372,11 +375,15 @@ public class AuthenticationFilter implements Filter {
 	private boolean authenticationUsingDB(ServletResponse servletResponse, long uniqueId, String currentUser) {
 
 		boolean flag = false;
+		
+		log.info("currentUser : " + currentUser);
 
 		if (ADMIN.equals(currentUser)) {
-			List<Administrator> adminList = Administrator
-					.findAllAdministrators();
+			List<Administrator> adminList = Administrator.findAllAdministrators();
 			for (Administrator administrator : adminList) {
+				
+				log.info("administrator : " + administrator);
+				
 				if ((long) administrator.getId() == uniqueId) {
 					flag = true;
 					break;
