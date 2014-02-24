@@ -42,7 +42,7 @@ public class SkillPdfExport extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Log.info("SkillPdfExport");
+		Log.debug("SkillPdfExport");
 
 		response.setContentType("application/pdf");
 
@@ -242,7 +242,7 @@ public class SkillPdfExport extends HttpServlet {
 
 			String path = getServletConfig().getServletContext().getRealPath("/logbook/gwt/logbook/");
 			String fileName = path + "/" + System.currentTimeMillis() + ".xml";
-			Log.info("Path: " + fileName);
+			Log.debug("Path: " + fileName);
 
 			File file = new File(fileName);
 			file.createNewFile();
@@ -270,7 +270,7 @@ public class SkillPdfExport extends HttpServlet {
 
 			String path = getServletConfig().getServletContext().getRealPath("/logbook/gwt/logbook/");
 			String outputFileName = path + "/" + System.currentTimeMillis() + ".html";
-			Log.info("Path: " + outputFileName);
+			Log.debug("Path: " + outputFileName);
 			OutputStream htmlFile = new FileOutputStream(outputFileName);
 
 			Transformer transformer = tFactory.newTransformer(xslDoc);
@@ -278,20 +278,20 @@ public class SkillPdfExport extends HttpServlet {
 
 				@Override
 				public void warning(TransformerException exception) throws TransformerException {
-					Log.info("Warning.");
+					Log.debug("Warning.");
 
 					Log.error("Warning", exception);
 				}
 
 				@Override
 				public void fatalError(TransformerException exception) throws TransformerException {
-					Log.info("fatal Error.");
+					Log.debug("fatal Error.");
 					Log.error("fatal Error.", exception);
 				}
 
 				@Override
 				public void error(TransformerException exception) throws TransformerException {
-					Log.info("Error.");
+					Log.debug("Error.");
 					Log.error("Error", exception);
 				}
 			});
@@ -307,11 +307,11 @@ public class SkillPdfExport extends HttpServlet {
 	}
 
 	private void createPDF(OutputStream os, String htmlFileName) {
-		Log.info("url : " + htmlFileName);
+		Log.debug("url : " + htmlFileName);
 
 		try {
 			ITextRenderer renderer = new ITextRenderer();
-			Log.info("Skill PDF Export->Create PDF->File name: " + htmlFileName);
+			Log.debug("Skill PDF Export->Create PDF->File name: " + htmlFileName);
 			renderer.setDocument(new File(htmlFileName));
 			renderer.layout();
 			renderer.createPDF(os);

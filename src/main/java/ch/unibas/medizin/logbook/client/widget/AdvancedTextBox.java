@@ -27,11 +27,11 @@ public class AdvancedTextBox extends TextBox implements HasDoubleClickHandlers {
 	public AdvancedTextBox() {
 		this(null);
 		setVisibleLength(10);
-		Log.info("Constructor1");
+		Log.debug("Constructor1");
 	}
 
 	public AdvancedTextBox(final String defautText) {
-		Log.info("Constructor2");
+		Log.debug("Constructor2");
 		setVisibleLength(10);
 		defaultText = defautText;
 		addFocusHandler(new FocusHandler() {

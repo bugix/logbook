@@ -77,11 +77,10 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 	/**
 	 * This method must be called in the implementation's constructor
 	 * 
-	 * @param defaultText
-	 *            the defalt text. Can be null
+	 * @param defaultText the defalt text. Can be null
 	 */
 	protected void init(String defaultText) {
-		Log.info("Call Set Style");
+		Log.debug("Call Set Style");
 		addStyleName(SUGGEST_FIELD_COMP);
 		getTextField().setRepresenter(this);
 		getTextField().setDefaultText(defaultText);

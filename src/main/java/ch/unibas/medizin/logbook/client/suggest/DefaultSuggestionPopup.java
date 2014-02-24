@@ -5,9 +5,7 @@ import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 
 public class DefaultSuggestionPopup<T> extends PopupPanel implements SuggestWidget<T> {
-	private static final String POPUP_STYLE = "eu-nextstreet-SuggestPopup"; // Border
-																			// and
-																			// Transparent
+	private static final String POPUP_STYLE = "eu-nextstreet-SuggestPopup"; // Border and Transparent
 
 	public DefaultSuggestionPopup() {
 		this(true, false);

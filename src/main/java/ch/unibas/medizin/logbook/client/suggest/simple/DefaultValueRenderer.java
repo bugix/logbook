@@ -1,4 +1,3 @@
-
 package ch.unibas.medizin.logbook.client.suggest.simple;
 
 import ch.unibas.medizin.logbook.client.suggest.EventHandlingValueHolderItem;
@@ -8,92 +7,50 @@ import com.google.gwt.text.shared.Renderer;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.UIObject;
 
-
-public class DefaultValueRenderer<T> extends HTML implements
-		EventHandlingValueHolderItem<T> {
+public class DefaultValueRenderer<T> extends HTML implements EventHandlingValueHolderItem<T> {
 	private static final String ITEM_HOVER = "eu-nextstreet-SuggestItemHover";
 	private static final String MATCHING_STRING = "eu-nextstreet-SuggestMatchingString";
 	public static final String SELECTED = "eu-nextstreet-SuggestItemSelected";
 	protected T value;
 	protected boolean caseSensitive;
 	protected ValueRendererFactory<T, ?> valueRendererFactory;
-	public static String widthValue="130px"; 
-	
-	//int i=0;
-private Renderer<T> renderer;
-	
-	public void setRenderer(Renderer<T> renderer)
-	{
+	public static String widthValue = "130px";
+
+	private Renderer<T> renderer;
+
+	public void setRenderer(Renderer<T> renderer) {
 		this.renderer = renderer;
 	}
-	
-	
-	
-	public DefaultValueRenderer(T value, String filterText,
-			boolean caseSensitive, ValueRendererFactory<T, ?> valueRendererFactory) {
-		
-		this.value = value;
-		this.caseSensitive = caseSensitive;
-		fillHtml(value, filterText, caseSensitive);
-		this.valueRendererFactory = valueRendererFactory;	
-		//i=0;
-	}
-	
-	public DefaultValueRenderer(T value, String filterText,
-			boolean caseSensitive, ValueRendererFactory<T, ?> valueRendererFactory,Renderer<T> renderer) {
 
+	public DefaultValueRenderer(T value, String filterText,	boolean caseSensitive, ValueRendererFactory<T, ?> valueRendererFactory) {
 		this.value = value;
 		this.caseSensitive = caseSensitive;
-		this.renderer=renderer;
 		fillHtml(value, filterText, caseSensitive);
-		this.valueRendererFactory = valueRendererFactory;			
+		this.valueRendererFactory = valueRendererFactory;
 	}
-	//int[] tempLength;
-	
-	//int cnt=-1;
-	protected void fillHtml(T value, String filterText, boolean caseSensitive) 
-	{		
-		String html = toString(value);		
-		html = highlightMatchingSequence(html, filterText, caseSensitive);		
-		setHTML(html);		
+
+	public DefaultValueRenderer(T value, String filterText, boolean caseSensitive, ValueRendererFactory<T, ?> valueRendererFactory, Renderer<T> renderer) {
+		this.value = value;
+		this.caseSensitive = caseSensitive;
+		this.renderer = renderer;
+		fillHtml(value, filterText, caseSensitive);
+		this.valueRendererFactory = valueRendererFactory;
+	}
+
+	protected void fillHtml(T value, String filterText, boolean caseSensitive) {
+		String html = toString(value);
+		html = highlightMatchingSequence(html, filterText, caseSensitive);
+		setHTML(html);
 
 		setWidth(widthValue);
-		//Log.info("Before I Is: " + i);
-
-		/*if(i<html.length())
-		{
-			i=html.length();
-			Log.info("I Is: " + i);
-			Log.info("HTML.Length Is: " + html.length());
-		}
-		Log.info("Maximum I Is: " + i);*/
-		String s=(html.length()+20)+"px";
-		
-		//Log.info("Max Length Set Popup:" + s);
-		//setWidth(s);
-		
-		//cnt++;		
-		//tempLength[cnt]=html.length();
-		//Log.info("tempLength " + tempLength[cnt]);
-		/*setWidth("auto");*/		
-		/*setWidth("130px");*/
 	}
-	
 
-	
-	public String toString(T value) 
-	{
-		//return value.toString();
+	public String toString(T value) {
 		return renderer.render(value);
-		
 	}
 
-	protected String highlightMatchingSequence(String html, String filterText,
-			boolean caseSensitive) {
-		/*return HtmlUtil.highlightMatchingSequence(html, filterText, caseSensitive,
-				MATCHING_STRING);*/
-		return highlightMatchingSequence(html, filterText, caseSensitive,
-		MATCHING_STRING);
+	protected String highlightMatchingSequence(String html, String filterText, boolean caseSensitive) {
+		return highlightMatchingSequence(html, filterText, caseSensitive, MATCHING_STRING);
 	}
 
 	public T getValue() {
@@ -137,28 +94,28 @@ private Renderer<T> renderer;
 	public ValueRendererFactory<T, ?> getValueRendererFactory() {
 		return valueRendererFactory;
 	}
-	
-	//test 
-	public  String highlightMatchingSequence(String html, String filterText, boolean caseSensitive,
-			String matchingStringStyle) {
+
+	public String highlightMatchingSequence(String html, String filterText, boolean caseSensitive, String matchingStringStyle) {
 		if (caseSensitive) {
-			html = html.replace(filterText, "<span class='" + matchingStringStyle + "'>" + filterText + "</span>");
+			html = html.replace(filterText, "<span class='"
+					+ matchingStringStyle + "'>" + filterText + "</span>");
 
 		} else {
 			String startSequence = "###start###";
 			String endSequence = "###end###";
-			String temp = html.toLowerCase()
-				.replace(filterText.toLowerCase(), startSequence + filterText + endSequence);
+			String temp = html.toLowerCase().replace(filterText.toLowerCase(),
+					startSequence + filterText + endSequence);
 			int firstIndex = temp.indexOf(startSequence);
 			int lastIndex = temp.indexOf(endSequence) - startSequence.length();
 			if (firstIndex > -1) {
-				html = html.substring(0, firstIndex) + "<span class='" + matchingStringStyle + "'>"
-					+ html.substring(firstIndex, lastIndex) + "</span>"
-					+ html.substring(firstIndex + filterText.length());
+				html = html.substring(0, firstIndex) + "<span class='"
+						+ matchingStringStyle + "'>"
+						+ html.substring(firstIndex, lastIndex) + "</span>"
+						+ html.substring(firstIndex + filterText.length());
 			}
 
 		}
 		return html;
 	}
-	//test
+
 }

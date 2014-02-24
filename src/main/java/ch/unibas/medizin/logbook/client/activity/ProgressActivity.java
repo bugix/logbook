@@ -42,7 +42,7 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 	public FlexTable progressFlexTable;
 
 	public ProgressActivity(LogBookRequestFactory requests, PlaceController placeController, ProgressPlace progressPlace) {
-		Log.info("Call Activity Login");
+		Log.debug("Call Activity Login");
 		this.requests = requests;
 		handlerManager = progressPlace.handler;
 
@@ -60,7 +60,7 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		Log.info("SystemStartActivity.start()");
+		Log.debug("SystemStartActivity.start()");
 
 		widget = panel;
 		init();
@@ -147,7 +147,7 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 		view = systemStartView;
 
 		widget.setWidget(systemStartView.asWidget());
-		Log.info("HTML :" + systemStartView.asWidget().getElement().getParentElement().getParentElement());
+		Log.debug("HTML :" + systemStartView.asWidget().getElement().getParentElement().getParentElement());
 
 		// Fix in default style( without it tab content will not show properly)
 		systemStartView.asWidget().getElement().getParentElement().getParentElement().getStyle().setPosition(Position.RELATIVE);
@@ -156,7 +156,7 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 
 			@Override
 			public void onSuccess(StudentProxy response) {
-				Log.info("Success");
+				Log.debug("Success");
 				studentProxy = response;
 				view.setStudent(response);
 			}

@@ -102,7 +102,7 @@ public class Administrator {
     {
         HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
         String mailId = (String) session.getAttribute(UNIQUE_ID);
-        Log.info("mail id: " + mailId); 
+        Log.debug("mail id: " + mailId); 
         Administrator administrator = Administrator.findAdministratorUsingEmail(mailId);
         
         return administrator;
@@ -119,7 +119,7 @@ public class Administrator {
 		
 		TypedQuery<Administrator> q = entityManager().createQuery(criteriaQuery);
 		
-		Log.info("Query : " + q.unwrap(Query.class).getQueryString());
+		Log.debug("Query : " + q.unwrap(Query.class).getQueryString());
 		
         return q.getSingleResult();	
 	}

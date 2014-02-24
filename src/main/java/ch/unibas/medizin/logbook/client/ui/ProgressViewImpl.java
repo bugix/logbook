@@ -55,8 +55,8 @@ public class ProgressViewImpl extends Composite implements ProgressView {
 
 			@Override
 			public void onRangeChange() {
-				Log.info("pager start :" + pager.getStart());
-				Log.info("pager Length :" + pager.getLength());
+				Log.debug("pager start :" + pager.getStart());
+				Log.debug("pager Length :" + pager.getLength());
 				delegate.refreshProgresstable(progressFlexTable, pager.getStart(), pager.getLength());
 			}
 		});
@@ -125,10 +125,10 @@ public class ProgressViewImpl extends Composite implements ProgressView {
 				progressFlexTable.setWidget(row, 1, createProgressBar(totalProgress, currentProgress));
 				progressFlexTable.getFlexCellFormatter().setColSpan(row, 1, 2);
 				progressFlexTable.getFlexCellFormatter().addStyleName(row, 1, "topicBG");
-				Log.info("Topic: " + topicProxy.getId());
+				Log.debug("Topic: " + topicProxy.getId());
 
 			} else {
-				Log.info("topicProxy.getClassificationTopic().getMainClassification() found Null");
+				Log.debug("topicProxy.getClassificationTopic().getMainClassification() found Null");
 			}
 		}
 	}

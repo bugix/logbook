@@ -240,7 +240,7 @@ public static Integer countSkillAcquiredByStudentandSkill(Long studentId,List<Sk
 
 	    }
     public static String acquireORDeleteSkill(Long studentId,Long skillId,Boolean isFirstSelected,Boolean isDeleteOperation){
-    	Log.info("Inside  acquireORDeleteSkill with student :" + studentId + " and Skill " +skillId);
+    	Log.debug("Inside  acquireORDeleteSkill with student :" + studentId + " and Skill " +skillId);
     	
     	try{
 	    	String result="";

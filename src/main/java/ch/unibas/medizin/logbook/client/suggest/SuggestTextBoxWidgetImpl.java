@@ -276,7 +276,7 @@ public class SuggestTextBoxWidgetImpl<T, W extends EventHandlingValueHolderItem<
 	@Override
 	@UiHandler("textField")
 	public void onMouseDown(MouseDownEvent event) {
-		Log.info("click");
+		Log.debug("click");
 
 		int interval = advancedTextBox.getAbsoluteLeft() + advancedTextBox.getOffsetWidth() - event.getClientX();
 

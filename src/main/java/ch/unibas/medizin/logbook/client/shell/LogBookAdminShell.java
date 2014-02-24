@@ -227,7 +227,7 @@ public class LogBookAdminShell extends Composite {
 
 	public void setNavigation(LogBookAdminNav nav) {
 		getLogBookNavSimplePanel().add(nav);
-		Log.info("node value :" +masterDockPanel.getWidget(2).getElement().getParentElement());
+		Log.debug("node value :" +masterDockPanel.getWidget(2).getElement().getParentElement());
 		masterDockPanel.getWidget(2).getElement().getParentElement().addClassName("top76");
 		
 	}

@@ -55,7 +55,7 @@ public class LogBookShell extends Composite {
 
 	public LogBookShell() {
 
-		Log.info("in LogBookShell");
+		Log.debug("in LogBookShell");
 
 		initWidget(uiBinder.createAndBindUi(this));
 		
@@ -257,7 +257,7 @@ public class LogBookShell extends Composite {
 
 	public void setNavigation(LogBookNav nav) {
 		getLogBookNavSimplePanel().add(nav);
-		Log.info("node value :" +masterDockPanel.getWidget(2).getElement().getParentElement());
+		Log.debug("node value :" +masterDockPanel.getWidget(2).getElement().getParentElement());
 		masterDockPanel.getWidget(2).getElement().getParentElement().addClassName("top76");
 		
 	}

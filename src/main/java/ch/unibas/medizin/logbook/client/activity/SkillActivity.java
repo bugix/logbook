@@ -61,7 +61,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 	public int currenttab = 0;
 
 	public SkillActivity(LogBookRequestFactory requests, PlaceController placeController, SkillPlace skillPlace) {
-		Log.info("Call Activity Login");
+		Log.debug("Call Activity Login");
 		this.requests = requests;
 		handlerManager = skillPlace.handler;
 	}
@@ -98,7 +98,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		Log.info("SystemStartActivity.start()");
+		Log.debug("SystemStartActivity.start()");
 
 		widget = panel;
 		systemStartView = new SkillViewImpl();
@@ -165,11 +165,11 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		showApplicationLoading(true);
 		skillFlexTable.removeAllRows();
 
-		Log.info("student is :" + student.getId());
+		Log.debug("student is :" + student.getId());
 
 		String fullTextSearchString = view.getFullTextSearchBox().getValue();
 
-		Log.info("full text : " + fullTextSearchString);
+		Log.debug("full text : " + fullTextSearchString);
 
 		requests.skillRequestNonRoo().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(), student.getId(), mainClassificationId, classificaitonTopicId, topicId, fullTextSearchString, chkAsc)
 				.with("skillList.topic", "skillList.skillComment", "skillList.topic.classificationTopic", "skillList.topic.classificationTopic.mainClassification", "skillList.skillLevel").fire(new Receiver<SkillFilteredResultProxy>() {
@@ -195,11 +195,11 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 		skillFlexTable.removeAllRows();
 
-		Log.info("student is :" + student.getId());
+		Log.debug("student is :" + student.getId());
 
 		String fullTextSearchString = view.getFullTextSearchBox().getValue();
 
-		Log.info("full text : " + fullTextSearchString);
+		Log.debug("full text : " + fullTextSearchString);
 
 		requests.skillRequestNonRoo().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(), student.getId(), mainClassificationId, classificaitonTopicId, topicId, fullTextSearchString, chkAsc)
 				.with("skillList.topic", "skillList.topic.classificationTopic", "skillList.topic.classificationTopic.mainClassification", "skillList.skillLevel").fire(new Receiver<SkillFilteredResultProxy>() {
@@ -424,7 +424,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 	@Override
 	public void generatePdfClicked() {
 		String url = GWT.getHostPageBaseURL() + "downloadFile";
-		Log.info("URL :" + url);
+		Log.debug("URL :" + url);
 		Window.open(url, "", "");
 
 	}
@@ -452,9 +452,9 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 			topicId = tProxy.getId();
 		}
 
-		Log.info("MainClassification :" + mainClassifcationId);
-		Log.info("Classification Topic Id :" + classifcationTopicId);
-		Log.info("Topic Id :" + topicId);
+		Log.debug("MainClassification :" + mainClassifcationId);
+		Log.debug("Classification Topic Id :" + classifcationTopicId);
+		Log.debug("Topic Id :" + topicId);
 		requests.skillRequestNonRoo().retrieveHtmlFile(view.getStudent().getId(), mainClassifcationId, classifcationTopicId, topicId, fullTextSearch, new Integer(ShowCriteria.chkAsc).intValue()).fire(new Receiver<String>() {
 
 			@Override
@@ -496,7 +496,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 			@Override
 			public void onSuccess(String response) {
-				Log.info("Operation is :" + response);
+				Log.debug("Operation is :" + response);
 				if (response.equalsIgnoreCase("INSERT")) {
 					skillLevelCheckboxViewImpl.getCheckbox().setValue(true);
 
@@ -600,7 +600,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 					s.getCheckbox().setValue(false);
 					s1.getCheckbox().setValue(false);
 
-					Log.info("Style name :" + view.getSkillFlexTable().getRowFormatter().getStyleName(row));
+					Log.debug("Style name :" + view.getSkillFlexTable().getRowFormatter().getStyleName(row));
 
 					// decrement topic acquired skill
 					if (!view.getSkillFlexTable().getRowFormatter().getStyleName(row).equalsIgnoreCase("yellowBG")) {
@@ -703,7 +703,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 	@Override
 	public void exportPDF() {
-		Log.info("exportPDF");
+		Log.debug("exportPDF");
 
 		String fullTextSearch = ShowCriteria.fullTextSearch;
 
@@ -716,7 +716,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		String chkAsc = ShowCriteria.chkAsc;
 		String url = GWT.getHostPageBaseURL() + "SkillPdfExport?studentId=" + view.getStudent().getId() + "&mainClassifcationId=" + mainClassifcationId + "&classifcationId=" + classifcationTopicId + "&topicId=" + topicId + "&chkAsc=" + chkAsc + "&fullTextSearch="
 				+ fullTextSearch;
-		Log.info("url :" + url);
+		Log.debug("url :" + url);
 		Window.open(url, "skill" + view.getStudent().getName() + ".pdf", "enabled");
 	}
 
@@ -726,7 +726,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 	@Override
 	public void iconButtonClicked(final SkillProxy skillProxy, final SkillLevelIconButtonViewImpl skillLevelIconButtonViewImpl) {
-		Log.info("Skill Proxy is :" + skillProxy.getId());
+		Log.debug("Skill Proxy is :" + skillProxy.getId());
 
 		view.getHpErrorMessage().setVisible(false);
 
@@ -739,7 +739,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 				@Override
 				public void onSuccess(String response) {
 
-					Log.info("Operation Was :" + response);
+					Log.debug("Operation Was :" + response);
 
 					if (response.compareToIgnoreCase("FAILURE") == 0)
 					{

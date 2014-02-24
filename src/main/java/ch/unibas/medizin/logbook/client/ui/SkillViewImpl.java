@@ -382,8 +382,8 @@ public class SkillViewImpl extends Composite implements SkillView {
 
 			@Override
 			public void onRangeChange() {
-				Log.info("pager start :" + pager.getStart());
-				Log.info("pager Length :" + pager.getLength());
+				Log.debug("pager start :" + pager.getStart());
+				Log.debug("pager Length :" + pager.getLength());
 				delegate.refreshFlextable(skillFlexTable, pager.getStart(), pager.getLength());
 			}
 		});
@@ -799,7 +799,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 				@Override
 				public void onClick(ClickEvent event) {
 
-					Log.info("is Save1" + editButton.isSave());
+					Log.debug("is Save1" + editButton.isSave());
 
 					if (editButton.isSave() == false) {
 						editButton.setSave(true);

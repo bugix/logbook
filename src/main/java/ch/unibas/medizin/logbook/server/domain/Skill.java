@@ -198,9 +198,9 @@ public class Skill {
 	 if(start!=0)
 	  start--;
 		
-	  Log.info("Asc :" + chkAsc);
-	  Log.info("Start :" + start);
-	  Log.info("Max :" + max);
+	  Log.debug("Asc :" + chkAsc);
+	  Log.debug("Start :" + start);
+	  Log.debug("Max :" + max);
 	  
 		
 		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
@@ -269,7 +269,7 @@ public class Skill {
 		
 		TypedQuery<Skill> result = entityManager().createQuery(criteriaQuery);
 		
-		Log.info("Critera query is :" + result.unwrap(Query.class).getQueryString());
+		Log.debug("Critera query is :" + result.unwrap(Query.class).getQueryString());
 		
 		List<Skill> skillresultList  = new ArrayList<Skill>();
 		
@@ -284,7 +284,7 @@ public class Skill {
 			
 			skillresultList  = result.getResultList();
 			
-			Log.info("RESULTLISTSIZE : " + skillresultList.size());
+			Log.debug("RESULTLISTSIZE : " + skillresultList.size());
 		}
 		
 		List<SkillLevels> skillAcquiredList =findSkillAcquiredByStudents(skillresultList,studentId);
@@ -305,7 +305,7 @@ public class Skill {
 	{
 	  
 	  
-	  Log.info("Asc :" + chkAsc);
+	  Log.debug("Asc :" + chkAsc);
 	
 	  
 		
@@ -374,7 +374,7 @@ public class Skill {
 		
 		TypedQuery<Skill> result = entityManager().createQuery(criteriaQuery);
 		
-		Log.info("Critera query is :" + result.unwrap(Query.class).getQueryString());
+		Log.debug("Critera query is :" + result.unwrap(Query.class).getQueryString());
 		
 		List<Skill> skillresultList  = new ArrayList<Skill>();
 		
@@ -384,7 +384,7 @@ public class Skill {
 	
 		skillresultList  = result.getResultList();
 		
-		Log.info("RESULTLISTSIZE : " + skillresultList.size());
+		Log.debug("RESULTLISTSIZE : " + skillresultList.size());
 		
 		SkillFilteredResult finalresult = new SkillFilteredResult();
 
@@ -487,7 +487,7 @@ public class Skill {
   	    			result.add(getCommentOfStudentForSkill(skill.getId(),studentId));
   	    			
   	    		}catch(Exception e){
-  	    			Log.info("Error" + e.getStackTrace());
+  	    			Log.debug("Error" + e.getStackTrace());
   	    		}
   	    	}
 
@@ -507,7 +507,7 @@ public class Skill {
     			result.add(getSkillAcquiredbyStudentAtThisLevel(studentId, skill.getId()));
     			
     		}catch(Exception e){
-    			Log.info("Error" + e.getStackTrace());
+    			Log.debug("Error" + e.getStackTrace());
     		}
     	}
 
@@ -682,7 +682,7 @@ public class Skill {
 
 	        String path=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/logbook/gwt/logbook/");
 	        String fileName=path+"/"+System.currentTimeMillis()+".xml";
-	        Log.info("Path: " + fileName);
+	        Log.debug("Path: " + fileName);
 	        
 	        File file = new File(fileName);
 	        file.createNewFile();
@@ -712,7 +712,7 @@ public class Skill {
 	            
 	            String path=RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/logbook/gwt/logbook/");
 	            String outputFileName =path+"/" +System.currentTimeMillis()+".html";
-	            Log.info("Path: " + outputFileName);
+	            Log.debug("Path: " + outputFileName);
 	            OutputStream htmlFile = new FileOutputStream(outputFileName);
 
 	            Transformer transformer = tFactory.newTransformer(xslDoc);
@@ -732,11 +732,11 @@ public class Skill {
 	
     public static SkillLevels getSkillAcquiredbyStudentAtThisLevel(Long studentID,Long skillID){
     	
-    	Log.info("Inside isSkillAcquiredbyStudentAtFirstLevel with student " + studentID + " skill : " +skillID );
+    	Log.debug("Inside isSkillAcquiredbyStudentAtFirstLevel with student " + studentID + " skill : " +skillID );
     	EntityManager em = entityManager();
     	
     	String query = "SELECT sa.skillLevel from SkillAcquired as sa where sa.student="+studentID + " and sa.skill="+skillID ;
-    	Log.info("Query is :" + query);
+    	Log.debug("Query is :" + query);
     	TypedQuery<SkillLevel> result = em.createQuery(query, SkillLevel.class);
     	if(result.getResultList().size()==0)
     	{
@@ -783,7 +783,7 @@ public static List<Skill> findAllSkillforCsvexport(){
 	
 	TypedQuery<Skill> result = entityManager().createQuery(criteriaQuery);
 	
-	Log.info("Critera query is :" + result.unwrap(Query.class).getQueryString());
+	Log.debug("Critera query is :" + result.unwrap(Query.class).getQueryString());
 	
 	
 	return result.getResultList();
@@ -830,7 +830,7 @@ public static String addCommnets(Long skillId,Long studentId,String comment){
 			result="EDIT";
 		}
 	}catch(Exception e){
-		Log.info("asdkh " + e.getStackTrace());
+		Log.debug("asdkh " + e.getStackTrace());
 		result="FAILURE";
 	}
 	return result;
@@ -850,7 +850,7 @@ public static List<SkillComment> getTotalComment(Long skillId,Long studentId){
 	
 	TypedQuery<SkillComment> result=entityManager().createQuery(criteriaQuery);
 	
-	Log.info("Query is :" + result.unwrap(Query.class).getQueryString());
+	Log.debug("Query is :" + result.unwrap(Query.class).getQueryString());
 	
 	return result.getResultList();
 }
@@ -869,7 +869,7 @@ public static String getCommentOfStudentForSkill(Long skillId,Long studentId){
 	
 	TypedQuery<SkillComment> result=entityManager().createQuery(criteriaQuery);
 	
-	Log.info("Query is :" + result.unwrap(Query.class).getQueryString());
+	Log.debug("Query is :" + result.unwrap(Query.class).getQueryString());
 	
 	if(result.getResultList().size() > 0 && result.getResultList().get(0).getComment()!=null)
 	return result.getResultList().get(0).getComment();

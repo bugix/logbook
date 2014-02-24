@@ -6,8 +6,7 @@ import ch.unibas.medizin.logbook.client.suggest.ValueRendererFactory.ListRendere
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DefaultListRenderer<T, W extends EventHandlingValueHolderItem<T>> extends
-		VerticalPanel implements ListRenderer<T, W> {
+public class DefaultListRenderer<T, W extends EventHandlingValueHolderItem<T>> extends VerticalPanel implements ListRenderer<T, W> {
 
 	@Override
 	public void add(W item) {

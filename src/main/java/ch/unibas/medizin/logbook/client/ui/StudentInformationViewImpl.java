@@ -117,7 +117,7 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 
 	@UiHandler("btnFinalizeLogBook")
 	public void btnFinalizeLogBookClicked(ClickEvent event) {
-		Log.info("Finalize Student Clicked.");
+		Log.debug("Finalize Student Clicked.");
 		delegate.finalizeLogBookClick(studentProxy);
 	}
 

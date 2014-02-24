@@ -52,7 +52,7 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 	LogBookConstants constants = GWT.create(LogBookConstants.class);
 
 	public AdminActivity(LogBookRequestFactory requests, PlaceController placeController, LoginPlace loginPlace) {
-		Log.info("Call Activity Login");
+		Log.debug("Call Activity Login");
 
 		this.requests = requests;
 		handlerManager = loginPlace.handler;
@@ -60,7 +60,7 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 	}
 
 	public AdminActivity(LogBookRequestFactory requests, PlaceController placeController) {
-		Log.info("Call Admin Activity");
+		Log.debug("Call Admin Activity");
 		this.requests = requests;
 	}
 
@@ -71,7 +71,7 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		Log.info("SystemStartActivity.start()");
+		Log.debug("SystemStartActivity.start()");
 		widget = panel;
 		init();
 
@@ -85,7 +85,7 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 		widget.setWidget(systemStartView.asWidget());
 
 		// Fix in default style( without it tab content will not show properly)
-		Log.info("HTML :" + systemStartView.asWidget().getElement().getParentElement().getParentElement());
+		Log.debug("HTML :" + systemStartView.asWidget().getElement().getParentElement().getParentElement());
 		systemStartView.asWidget().getElement().getParentElement().getParentElement().getStyle().setPosition(Position.RELATIVE);
 
 		view.setDelegate(this);
@@ -110,12 +110,12 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 
 			@Override
 			public void onFailure(ServerFailure error) {
-				Log.info("~~~~Error");
+				Log.debug("~~~~Error");
 			}
 
 			@Override
 			public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
-				Log.info("~~~~Error~~~~");
+				Log.debug("~~~~Error~~~~");
 			}
 		});
 
@@ -141,12 +141,12 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 					showApplicationLoading(false);
 					theEventService.removeListeners();
 					String url = GWT.getHostPageBaseURL() + "exportCSV";
-					Log.info("URL :" + url);
+					Log.debug("URL :" + url);
 					Window.open(url, "", "");
 
 				} else {
 					showApplicationLoading(false);
-					Log.info("Error during file generation");
+					Log.debug("Error during file generation");
 				}
 
 			}
@@ -156,7 +156,7 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 
 			@Override
 			public void onSuccess(Void result) {
-				Log.info("Returened Response still file generation process is in execution");
+				Log.debug("Returened Response still file generation process is in execution");
 
 			}
 
@@ -164,7 +164,7 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 			public void onFailure(Throwable caught) {
 				showApplicationLoading(false);
 				theEventService.removeListeners();
-				Log.info("CsvFile generator  Request Failed Due to" + caught.getMessage());
+				Log.debug("CsvFile generator  Request Failed Due to" + caught.getMessage());
 				caught.printStackTrace();
 
 			}

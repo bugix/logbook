@@ -50,14 +50,14 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 
 	public DefaultSuggestBox() {
 		this(null);
-		Log.info("Call Constructor1");
+		Log.debug("Call Constructor1");
 		this.setWidth(200);
 		textField.setFocus(true);
 	}
 
 	public DefaultSuggestBox(String defaultText) {
 		this(defaultText, new DefaultSuggestOracle<T>());
-		Log.info("Call Constructor2");
+		Log.debug("Call Constructor2");
 		textField.setFocus(true);
 		textField.addStyleName("customControls");
 		this.setWidth(200);
@@ -69,7 +69,7 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 		init(defaultText);
 		this.suggestOracle = suggestOracle;
 		suggestOracle.setSuggestBox((AbstractSuggestBox<T, EventHandlingValueHolderItem<T>>) this);
-		Log.info("Call Constructor3");
+		Log.debug("Call Constructor3");
 		this.setWidth(130);
 	}
 
@@ -150,9 +150,9 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 		String s2 = (i - 2) + "px";
 
 		this.getTextField().advancedTextBox.setWidth(s1);
-		Log.info("Offset Width1: " + scrollPanel.getOffsetWidth());
+		Log.debug("Offset Width1: " + scrollPanel.getOffsetWidth());
 		scrollPanel.setWidth(s);
-		Log.info("Offset Width: " + scrollPanel.getOffsetWidth());
+		Log.debug("Offset Width: " + scrollPanel.getOffsetWidth());
 		DefaultValueRenderer.widthValue = s2;
 		setRendererWidth(s2);
 	}

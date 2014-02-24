@@ -40,5 +40,4 @@ public class SuggestChangeEvent<T, W extends EventHandlingValueHolderItem<T>> ex
 	public boolean isSelected() {
 		return selected;
 	}
-
 }

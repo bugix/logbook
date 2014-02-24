@@ -37,7 +37,7 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 	public void csvFileGeneratorClicked(boolean isChangeFinalizeToExportdSelected) {
 		this.isChangeFinalizeToExportdSelected = isChangeFinalizeToExportdSelected;
 
-		Log.info("Inside csvFileGeneratorClicked ");
+		Log.debug("Inside csvFileGeneratorClicked ");
 
 		csvFileGenerator2();
 		return;
@@ -45,7 +45,7 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 
 	public void csvFileGenerator2() {
 
-		Log.info("Inside csvFileGenerator2 To execute file generation in seprate thread");
+		Log.debug("Inside csvFileGenerator2 To execute file generation in seprate thread");
 		Thread t = new Thread(this);
 		t.start();
 	}
@@ -53,12 +53,12 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 	@Override
 	public void run() {
 
-		Log.info("Inside run()");
+		Log.debug("Inside run()");
 		boolean isException = false;
 
 		try {
 
-			Log.info("Inside Student");
+			Log.debug("Inside Student");
 			List<Skill> allSkills = Skill.findAllSkillforCsvexport();
 
 			String fileSeparator = System.getProperty("file.separator");
@@ -75,7 +75,7 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 
 			writer.write("Email");
 
-			Log.info("Skills " + allSkills.size());
+			Log.debug("Skills " + allSkills.size());
 
 			for (Skill skill : allSkills) {
 				Topic t = skill.getTopic();
@@ -89,7 +89,7 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 
 			List<Student> allFinalizedStudent = Skill.findAllFinalizedStudent();
 
-			Log.info("All finalized student  " + allFinalizedStudent.size());
+			Log.debug("All finalized student  " + allFinalizedStudent.size());
 
 			for (Student student : allFinalizedStudent) {
 
@@ -100,14 +100,14 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 
 				List<SkillAcquired> skillAcquiredByStudent = SkillAcquired.findSkillAcquiredByStudent(student.getId());
 
-				Log.info("skillAcquiredByStudent Length : " + skillAcquiredByStudent.size());
+				Log.debug("skillAcquiredByStudent Length : " + skillAcquiredByStudent.size());
 
 				for (SkillAcquired skillacquired : skillAcquiredByStudent) {
 
 					acquiredArray[allSkills.indexOf(skillacquired.getSkill())] = skillacquired.getSkillLevel().getLevelNumber();
 				}
 
-				Log.info("acquiredArray.length" + acquiredArray.length);
+				Log.debug("acquiredArray.length" + acquiredArray.length);
 
 				for (int element : acquiredArray) {
 
@@ -136,7 +136,7 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 			}
 
 		} catch (Exception e) {
-			Log.info("Error is : " + e.getMessage());
+			Log.debug("Error is : " + e.getMessage());
 			e.printStackTrace();
 			isException = true;
 			addEvent(DOMAIN, new CsvFileGeneratorEvent(false));

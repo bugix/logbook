@@ -95,7 +95,7 @@ public class LogBookNav extends Composite {
 		mainLoogBookTabpanel.getElement().getChild(2).getChild(0).getParentElement().getStyle().setPosition(Position.RELATIVE);
 		Element element = mainLoogBookTabpanel.getElement().getChild(2).getChild(0).getParentElement();
 		element.getChild(0).getChild(2).getChild(0).getParentElement().getStyle().setPosition(Position.RELATIVE);
-		Log.info("HTML :" + element.getChild(0).getChild(2).getChild(0).getParentElement());
+		Log.debug("HTML :" + element.getChild(0).getChild(2).getChild(0).getParentElement());
 	}
 
 	protected void changeMenue(Place place) {

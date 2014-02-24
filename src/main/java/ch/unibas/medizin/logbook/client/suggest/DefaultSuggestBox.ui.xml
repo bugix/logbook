@@ -5,17 +5,12 @@
 		<table cellspacing="0" cellpadding="0" >
 			<tbody>
 				<tr>
-					
 					<td>					
 						<div>
-						
 						 <s:SuggestTextBoxWidgetImpl ui:field="textField"></s:SuggestTextBoxWidgetImpl> 
-						
 						</div>
 					</td>
-					
 					<td class="eu-nextstreet-SuggestFieldPanel-right">
-						
 						<div class="eu-nextstreet-SuggestFieldPanel-rightInner">&nbsp;</div>
 					</td> 
 				</tr>

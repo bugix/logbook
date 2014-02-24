@@ -110,7 +110,7 @@ public class Topic {
 	}
  public static TopicFilteredResult findTopicOrderByClassification(int start,int max,Student student)
     {    	
-    	Log.info("findTopicOrderByClassification call");
+    	Log.debug("findTopicOrderByClassification call");
     	 if(start!=0)
     		  start--;
     	TopicFilteredResult finalresult = new TopicFilteredResult();   	    	
@@ -129,7 +129,7 @@ public class Topic {
 		result.setFirstResult(start);
 		result.setMaxResults(max);
 						
-		Log.info("Query String: " + result.unwrap(org.hibernate.Query.class).getQueryString());
+		Log.debug("Query String: " + result.unwrap(org.hibernate.Query.class).getQueryString());
 		
 		resultList  = result.getResultList();		
 		List<Long> totalTopicBySkill=new ArrayList<Long>();

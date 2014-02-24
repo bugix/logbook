@@ -133,7 +133,7 @@ public class LogBookHeaderLogic implements LogBookHeader.Delegate {
 
 	@Override
 	public void changeRecordValue(String val) {
-		Log.info("~~Selected Record Value : " + val);
+		Log.debug("~~Selected Record Value : " + val);
 		requestFactory.getEventBus().fireEvent(new RecordChangeEvent(val));
 	}
 }

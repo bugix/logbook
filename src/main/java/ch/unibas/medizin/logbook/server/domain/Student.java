@@ -188,7 +188,7 @@ public class Student {
     {
         HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
         String shibId = (String) session.getAttribute(UNIQUE_ID);
-        Log.info("shib id: " + shibId);
+        Log.debug("shib id: " + shibId);
         Student student=Student.findStudentUsingShibId(shibId);
         return student;
     }

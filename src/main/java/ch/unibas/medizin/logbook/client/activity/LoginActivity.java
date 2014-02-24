@@ -26,7 +26,6 @@ import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;
-import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -54,19 +53,14 @@ import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 public class LoginActivity extends AbstractActivity implements StudentInformationView.presenter, StudentInformationView.Delegate {
 	private LogBookRequestFactory requests;
-	private PlaceController placeController;
 	private AcceptsOneWidget widget;
 	private StudentInformationView view;
-	private LoginPlace place;
-	private int tabIndex = 0;
 	public static StudentEditPopupViewImpl popupViewImpl;
-	private ActivityManager activityManager;
 	private Timer errorMessageTimer;
 
 	String message = "";
 
-	public HandlerManager handlerManager;// = new HandlerManager(this);
-	// private HandlerRegistration rangeChangeHandler;
+	public HandlerManager handlerManager;
 
 	public int currenttab = 0;
 
@@ -77,21 +71,17 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	public String sortorder = "DESC";
 
 	public LoginActivity(LogBookRequestFactory requests, PlaceController placeController, LoginPlace loginPlace) {
-		Log.info("Call Activity Login");
+		Log.debug("Call Activity Login");
 
 		this.requests = requests;
-		this.placeController = placeController;
-		this.place = loginPlace;
 		this.handlerManager = loginPlace.handler;
 
 		LogBookNav.logBookNav.getMainLoogBookTabpanel().selectTab(0, false);
-
 	}
 
 	public LoginActivity(LogBookRequestFactory requests, PlaceController placeController) {
-		Log.info("Call Activity Login..");
+		Log.debug("Call Activity Login..");
 		this.requests = requests;
-		this.placeController = placeController;
 
 		LogBookNav.logBookNav.getMainLoogBookTabpanel().selectTab(0, false);
 	}
@@ -102,7 +92,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		Log.info("SystemStartActivity.start()");
+		Log.debug("SystemStartActivity.start()");
 		this.widget = panel;
 		init();
 		errorMessageTimer = new Timer() {
@@ -110,11 +100,10 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			@Override
 			public void run() {
 				view.getHpErrorMessage().setVisible(false);
-
 			}
 		};
+		
 		errorMessageTimer.scheduleRepeating((int) (LogBookConstant.ERROR_MESSAGE_TIME));
-
 	}
 
 	private void init() {
@@ -125,7 +114,6 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 		widget.setWidget(systemStartView.asWidget());
 
 		// Fix in default style( without it tab content will not show properly)
-		Log.info("HTML :" + systemStartView.asWidget().getElement().getParentElement().getParentElement());
 		systemStartView.asWidget().getElement().getParentElement().getParentElement().getStyle().setPosition(Position.RELATIVE);
 
 		view.setDelegate(this);
@@ -151,10 +139,8 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 				} else {
 					sortorder = "DESC";
 				}
-				Log.info("Call Init Search from addColumnSortHandler");
+				Log.debug("Call Init Search from addColumnSortHandler");
 				intiSkillTable("skill.shortcut");
-
-				// }
 			}
 		});
 
@@ -166,14 +152,13 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	}
 
 	private void intiSkillTable(String sortBy) {
-		Log.info("Init Table ");
+		Log.debug("Init Table ");
 
-		Log.info("Student Proxy11: " + table);
-		Log.info("Student Proxy1: " + view.getStudentProxy().getId());
+		Log.debug("Student Proxy: " + view.getStudentProxy().getId());
 
 		final Range range = table.getVisibleRange();
-		Log.info("Start Range: " + range.getStart());
-		Log.info("Range Length: " + range.getLength());
+		Log.debug("Start Range: " + range.getStart());
+		Log.debug("Range Length: " + range.getLength());
 
 		requests.skillAcquiredRequestNonRoo().findCountLatestAcquiredSkillByStudent(view.getStudentProxy().getId(), LogBookConstant.TOTAL_SKILL_ACQUIRED_DISPLAY, sortorder, sortBy)
 				.with("skill", "skillLevel", "skill.topic", "skill.topic.classificationTopic", "skill.topic.classificationTopic.mainClassification").fire(new Receiver<Integer>() {
@@ -190,29 +175,28 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 
 					@Override
 					public void onSuccess(List<SkillAcquiredProxy> response) {
-						Log.info("Total Skill Acquired By Student: " + response.size());
-						/* table.setRowCount(response.size()); */
+						Log.debug("Total Skill Acquired By Student: " + response.size());
+
 						table.setRowData(range.getStart(), response);
 					}
 
 					@Override
 					public void onConstraintViolation(java.util.Set<javax.validation.ConstraintViolation<?>> violations) {
 						super.onConstraintViolation(violations);
-						Log.info("Violation");
+						Log.debug("Violation");
 					};
 
 					@Override
 					public void onFailure(ServerFailure error) {
 						super.onFailure(error);
-						Log.info("Failure");
+						Log.debug("Failure");
 					}
 
 				});
-
 	}
 
 	protected void onRangeChanged() {
-		Log.info("range change for role topic ");
+		Log.debug("range change for role topic ");
 		intiSkillTable("created");
 	}
 
@@ -221,7 +205,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() {
 			@Override
 			public void onSuccess(StudentProxy studentProxy) {
-				Log.info("Success");
+				Log.debug("Success");
 				view.setStudentProxy(studentProxy);
 
 				if (studentProxy.getStudentStatus() == StudentStatus.UnFinalized)
@@ -252,19 +236,19 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			@Override
 			public void onConstraintViolation(java.util.Set<javax.validation.ConstraintViolation<?>> violations) {
 				super.onConstraintViolation(violations);
-				Log.info("Violation");
+				Log.debug("Violation");
 			};
 
 			@Override
 			public void onFailure(ServerFailure error) {
 				super.onFailure(error);
-				Log.info("Failure");
+				Log.debug("Failure");
 			}
 		});
 	}
 
 	protected void intiCurrentProgressInformation(StudentProxy studentProxy) {
-		Log.info("intiCurrentProgressInformation Student Id: " + studentProxy.getId());
+		Log.debug("intiCurrentProgressInformation Student Id: " + studentProxy.getId());
 
 		if (studentProxy.getStudentStatus() != null && studentProxy.getStudentStatus().equals(StudentStatus.Exported)) {
 			view.getBtnFinalizeLogBook().setEnabled(false);
@@ -276,16 +260,16 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 
 			@Override
 			public void onSuccess(final List<Long> totalSkillListByLevel) {
-				Log.info("Success");
-				Log.info("Total Skills By Level : " + join(totalSkillListByLevel, ","));
+				Log.debug("Success");
+				Log.debug("Total Skills By Level : " + join(totalSkillListByLevel, ","));
 
 				if (totalSkillListByLevel.size() == 2) {
 					requests.skillAcquiredRequestNonRoo().findTotalSkillAcquiredByStudentLevelVise(studentId).fire(new Receiver<List<Long>>() {
 
 						@Override
 						public void onSuccess(List<Long> totalSkillAcquiredBySkillLevel) {
-							Log.info("Success");
-							Log.info("Total Acquired Skills By Level : " + join(totalSkillAcquiredBySkillLevel, ","));
+							Log.debug("Success");
+							Log.debug("Total Acquired Skills By Level : " + join(totalSkillAcquiredBySkillLevel, ","));
 
 							if (totalSkillAcquiredBySkillLevel.size() == 2) {
 								// total percentage Of Skill Acquired for level
@@ -304,9 +288,9 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 
 								String totalSkillAcquiredPercentage = constants.total() + ": " + totalSkillAcquiredByStudent + " " + constants.of() + " " + totalSkillBySkillLevel + " " + constants.skill() + " (" + DECIMAL_FORMAT.format(totalPercentage) + ")";
 
-								Log.info(level1SkillAcquiredPercentage);
-								Log.info(level2SkillAcquiredPercentage);
-								Log.info(totalSkillAcquiredPercentage);
+								Log.debug(level1SkillAcquiredPercentage);
+								Log.debug(level2SkillAcquiredPercentage);
+								Log.debug(totalSkillAcquiredPercentage);
 
 								view.getLblLevel1Progress().setText(level1SkillAcquiredPercentage);
 								view.getLblLevel1Progress().setTitle(level1SkillAcquiredPercentage);
@@ -330,13 +314,13 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 						@Override
 						public void onFailure(ServerFailure error) {
 							super.onFailure(error);
-							Log.info("Failure");
+							Log.debug("Failure");
 						}
 
 						@Override
 						public void onConstraintViolation(java.util.Set<javax.validation.ConstraintViolation<?>> violations) {
 							super.onConstraintViolation(violations);
-							Log.info("Violation");
+							Log.debug("Violation");
 						};
 					});
 
@@ -349,13 +333,13 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			@Override
 			public void onFailure(ServerFailure error) {
 				super.onFailure(error);
-				Log.info("Failure");
+				Log.debug("Failure");
 			}
 
 			@Override
 			public void onConstraintViolation(java.util.Set<javax.validation.ConstraintViolation<?>> violations) {
 				super.onConstraintViolation(violations);
-				Log.info("Violation");
+				Log.debug("Violation");
 			};
 		});
 	}
@@ -374,7 +358,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	 * etc..
 	 */
 	public void intiPersonnelInformation(StudentProxy studentProxy) {
-		Log.info("Student Id: " + studentProxy.getId());
+		Log.debug("Student Id: " + studentProxy.getId());
 		String studyYear = "";
 		String studentName = getEmptyStringIfNull(studentProxy.getName()) + " " + getEmptyStringIfNull(studentProxy.getPreName());
 		String studentId = getEmptyStringIfNull(studentProxy.getStudentId());
@@ -400,13 +384,13 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 
 	@Override
 	public void changeStudentInformationClicked(ClickEvent event) {
-		Log.info("Change student Infomation Clicked");
+		Log.debug("Change student Infomation Clicked");
 		view.getHpErrorMessage().setVisible(false);
 		initStudentEditPopup(view.getStudentProxy(), event);
 	}
 
 	private void initStudentEditPopup(final StudentProxy studentProxy, ClickEvent event) {
-		Log.info("Student Proxy: " + studentProxy.getId());
+		Log.debug("Student Proxy: " + studentProxy.getId());
 		final StudentEditPopupViewImpl popupView = new StudentEditPopupViewImpl();
 		popupViewImpl = popupView;
 		popupView.setPopupPosition(event.getClientX() - 60, event.getClientY() - 135);
@@ -447,7 +431,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 						proxy = studentRequest.edit(proxy);
 						proxy.setEmail(email);
 						if (popupView.getLstBoxStudyYear().getValue() == null) {
-							Log.info("Study Year is Null");
+							Log.debug("Study Year is Null");
 							proxy.setStudyYear(null);
 						} else
 							proxy.setStudyYear(studyYear);
@@ -460,7 +444,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 							public void onSuccess(Void response) {
 
 								view.getHpErrorMessage().setVisible(false);
-								Log.info("Successfully updated.");
+								Log.debug("Successfully updated.");
 								view.getLblEmailVal().setText(email);
 								view.getLblEmailVal().setTitle(email);
 								if (studyYear == null) {
@@ -484,7 +468,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 							@Override
 							public void onFailure(ServerFailure error) {
 								super.onFailure(error);
-								Log.info("Failure");
+								Log.debug("Failure");
 							}
 						});
 
@@ -523,8 +507,8 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 	@Override
 	public void finalizeLogBookClick(StudentProxy studentProxy) {
 		errorMessageTimer.cancel();
-		Log.info("Student is going to Finalize.");
-		Log.info("Student Id: " + studentProxy.getId());
+		Log.debug("Student is going to Finalize.");
+		Log.debug("Student Id: " + studentProxy.getId());
 
 		requests.studentRequest().findStudent(studentProxy.getId()).fire(new Receiver<StudentProxy>() {
 
@@ -549,7 +533,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 					studentRequest.persist().using(proxy).fire(new Receiver<Void>() {
 						@Override
 						public void onSuccess(Void response) {
-							Log.info("Successfully Saved.");
+							Log.debug("Successfully Saved.");
 							view.getBtnFinalizeLogBook().setEnabled(true);
 							view.getHpErrorMessage().setVisible(true);
 							view.getLblErrorMessage().setInnerHTML(message);
@@ -560,7 +544,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 						@Override
 						public void onFailure(ServerFailure error) {
 							super.onFailure(error);
-							Log.info("Failure to Save.");
+							Log.debug("Failure to Save.");
 							view.getHpErrorMessage().setVisible(true);
 							view.getLblErrorMessage().setInnerHTML(constants.studentStatusChangeError());
 							errorMessageTimer.schedule((int) LogBookConstant.ERROR_MESSAGE_TIME);
@@ -569,7 +553,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 						@Override
 						public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
 							super.onConstraintViolation(violations);
-							Log.info("Constraint Violate when Save.");
+							Log.debug("Constraint Violate when Save.");
 							errorMessageTimer.schedule((int) LogBookConstant.ERROR_MESSAGE_TIME);
 						}
 					});
