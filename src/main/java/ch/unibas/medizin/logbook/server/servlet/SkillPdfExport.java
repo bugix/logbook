@@ -27,22 +27,25 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import ch.unibas.medizin.logbook.server.domain.Skill;
+import ch.unibas.medizin.logbook.server.filter.AuthenticationFilter;
 import ch.unibas.medizin.logbook.shared.SkillFilteredResult;
 
 @SuppressWarnings("serial")
 public class SkillPdfExport extends HttpServlet {
 
-	private static Logger Log = Logger.getLogger(SkillPdfExport.class);
+	private final Logger logger = LoggerFactory.getLogger(AuthenticationFilter.class);
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Log.debug("SkillPdfExport");
+		logger.debug("SkillPdfExport");
 
 		response.setContentType("application/pdf");
 
@@ -95,13 +98,13 @@ public class SkillPdfExport extends HttpServlet {
 		stream.close();
 	}
 
-	public org.w3c.dom.Document createDocument() {
+	public Document createDocument() {
 		try {
 			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
 			builderFactory.setValidating(true);
 			DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
 
-			org.w3c.dom.Document doc = docBuilder.newDocument();
+			Document doc = docBuilder.newDocument();
 			return doc;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,7 +113,7 @@ public class SkillPdfExport extends HttpServlet {
 
 	}
 
-	public Element createChildNode(String nodeName, String nodeValue, org.w3c.dom.Document doc, Element parent) {
+	public Element createChildNode(String nodeName, String nodeValue, Document doc, Element parent) {
 		Element element = doc.createElement(nodeName);// create node
 		parent.appendChild(element); // append to its parent
 		Text text2 = doc.createTextNode(nodeValue); // create Text node/ value
@@ -118,14 +121,14 @@ public class SkillPdfExport extends HttpServlet {
 		return element;
 	}
 
-	public Element createEmptyChildNode(String nodeName, org.w3c.dom.Document doc, Element parent) {
+	public Element createEmptyChildNode(String nodeName, Document doc, Element parent) {
 		Element element = doc.createElement(nodeName);// create node
 		parent.appendChild(element); // append to its parent
 		return element;
 	}
 
 	public String createHtml(SkillFilteredResult result, Long studentId) {
-		org.w3c.dom.Document doc = createDocument();
+		Document doc = createDocument();
 
 		Element root = doc.createElement("mainClassifications");
 
@@ -192,7 +195,6 @@ public class SkillPdfExport extends HttpServlet {
 					skillsElement = createEmptyChildNode("skills", doc, topicElement);
 
 				}
-
 			}
 
 			Element skillElement = createEmptyChildNode("skill", doc, skillsElement);
@@ -222,13 +224,12 @@ public class SkillPdfExport extends HttpServlet {
 			} else {
 				createChildNode("skillLevelAcquired", "-", doc, skillElement);
 			}
-
 		}
 
 		return saveXML(doc);
 	}
 
-	public String saveXML(org.w3c.dom.Document doc) {
+	public String saveXML(Document doc) {
 		try {
 			TransformerFactory factory = TransformerFactory.newInstance();
 			Transformer transformer = factory.newTransformer();
@@ -242,7 +243,7 @@ public class SkillPdfExport extends HttpServlet {
 
 			String path = getServletConfig().getServletContext().getRealPath("/logbook/gwt/logbook/");
 			String fileName = path + "/" + System.currentTimeMillis() + ".xml";
-			Log.debug("Path: " + fileName);
+			logger.debug("Path: " + fileName);
 
 			File file = new File(fileName);
 			file.createNewFile();
@@ -270,7 +271,7 @@ public class SkillPdfExport extends HttpServlet {
 
 			String path = getServletConfig().getServletContext().getRealPath("/logbook/gwt/logbook/");
 			String outputFileName = path + "/" + System.currentTimeMillis() + ".html";
-			Log.debug("Path: " + outputFileName);
+			logger.debug("Path: " + outputFileName);
 			OutputStream htmlFile = new FileOutputStream(outputFileName);
 
 			Transformer transformer = tFactory.newTransformer(xslDoc);
@@ -278,21 +279,17 @@ public class SkillPdfExport extends HttpServlet {
 
 				@Override
 				public void warning(TransformerException exception) throws TransformerException {
-					Log.debug("Warning.");
-
-					Log.error("Warning", exception);
+					logger.error("Warning", exception);
 				}
 
 				@Override
 				public void fatalError(TransformerException exception) throws TransformerException {
-					Log.debug("fatal Error.");
-					Log.error("fatal Error.", exception);
+					logger.error("fatal Error.", exception);
 				}
 
 				@Override
 				public void error(TransformerException exception) throws TransformerException {
-					Log.debug("Error.");
-					Log.error("Error", exception);
+					logger.error("Error", exception);
 				}
 			});
 			transformer.transform(xmlDoc, new StreamResult(htmlFile));
@@ -307,17 +304,17 @@ public class SkillPdfExport extends HttpServlet {
 	}
 
 	private void createPDF(OutputStream os, String htmlFileName) {
-		Log.debug("url : " + htmlFileName);
+		logger.debug("url : " + htmlFileName);
 
 		try {
 			ITextRenderer renderer = new ITextRenderer();
-			Log.debug("Skill PDF Export->Create PDF->File name: " + htmlFileName);
+			logger.debug("Skill PDF Export->Create PDF->File name: " + htmlFileName);
 			renderer.setDocument(new File(htmlFileName));
 			renderer.layout();
 			renderer.createPDF(os);
 			os.close();
 		} catch (Exception e) {
-			Log.error("Error in SkillPdfExport", e);
+			logger.error("Error in SkillPdfExport", e);
 		}
 	}
 }

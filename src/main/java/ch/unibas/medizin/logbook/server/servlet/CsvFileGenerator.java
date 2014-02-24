@@ -15,9 +15,8 @@ import org.apache.commons.io.FileUtils;
 /**
  * Servlet implementation class CsvFileCreator
  */
-@SuppressWarnings("deprecation")
+@SuppressWarnings({ "deprecation", "serial" })
 public class CsvFileGenerator extends HttpServlet implements SingleThreadModel {
-	private static final long serialVersionUID = 1L;
 
 	public CsvFileGenerator() {
 		super();

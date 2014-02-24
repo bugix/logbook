@@ -5,7 +5,8 @@ import java.io.FileWriter;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import ch.unibas.medizin.logbook.client.service.CsvFileGeneratorService;
@@ -28,7 +29,7 @@ import de.novanic.eventservice.service.RemoteEventServiceServlet;
 @Transactional
 public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet implements CsvFileGeneratorService, Runnable {
 
-	private static Logger Log = Logger.getLogger(CsvFileGeneratorServiceImpl.class);
+	private final Logger logger = LoggerFactory.getLogger(CsvFileGeneratorServiceImpl.class);
 
 	private static final Domain DOMAIN = DomainFactory.getDomain("localhost");
 	private boolean isChangeFinalizeToExportdSelected;
@@ -37,7 +38,7 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 	public void csvFileGeneratorClicked(boolean isChangeFinalizeToExportdSelected) {
 		this.isChangeFinalizeToExportdSelected = isChangeFinalizeToExportdSelected;
 
-		Log.debug("Inside csvFileGeneratorClicked ");
+		logger.debug("Inside csvFileGeneratorClicked ");
 
 		csvFileGenerator2();
 		return;
@@ -45,7 +46,7 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 
 	public void csvFileGenerator2() {
 
-		Log.debug("Inside csvFileGenerator2 To execute file generation in seprate thread");
+		logger.debug("Inside csvFileGenerator2 To execute file generation in seprate thread");
 		Thread t = new Thread(this);
 		t.start();
 	}
@@ -53,12 +54,12 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 	@Override
 	public void run() {
 
-		Log.debug("Inside run()");
+		logger.debug("Inside run()");
 		boolean isException = false;
 
 		try {
 
-			Log.debug("Inside Student");
+			logger.debug("Inside Student");
 			List<Skill> allSkills = Skill.findAllSkillforCsvexport();
 
 			String fileSeparator = System.getProperty("file.separator");
@@ -75,7 +76,7 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 
 			writer.write("Email");
 
-			Log.debug("Skills " + allSkills.size());
+			logger.debug("Skills " + allSkills.size());
 
 			for (Skill skill : allSkills) {
 				Topic t = skill.getTopic();
@@ -89,7 +90,7 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 
 			List<Student> allFinalizedStudent = Skill.findAllFinalizedStudent();
 
-			Log.debug("All finalized student  " + allFinalizedStudent.size());
+			logger.debug("All finalized student  " + allFinalizedStudent.size());
 
 			for (Student student : allFinalizedStudent) {
 
@@ -100,14 +101,14 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 
 				List<SkillAcquired> skillAcquiredByStudent = SkillAcquired.findSkillAcquiredByStudent(student.getId());
 
-				Log.debug("skillAcquiredByStudent Length : " + skillAcquiredByStudent.size());
+				logger.debug("skillAcquiredByStudent Length : " + skillAcquiredByStudent.size());
 
 				for (SkillAcquired skillacquired : skillAcquiredByStudent) {
 
 					acquiredArray[allSkills.indexOf(skillacquired.getSkill())] = skillacquired.getSkillLevel().getLevelNumber();
 				}
 
-				Log.debug("acquiredArray.length" + acquiredArray.length);
+				logger.debug("acquiredArray.length" + acquiredArray.length);
 
 				for (int element : acquiredArray) {
 
@@ -136,7 +137,7 @@ public class CsvFileGeneratorServiceImpl extends RemoteEventServiceServlet imple
 			}
 
 		} catch (Exception e) {
-			Log.debug("Error is : " + e.getMessage());
+			logger.debug("Error is : " + e.getMessage());
 			e.printStackTrace();
 			isException = true;
 			addEvent(DOMAIN, new CsvFileGeneratorEvent(false));

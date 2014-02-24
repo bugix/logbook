@@ -18,15 +18,12 @@ import javax.persistence.Version;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.transaction.annotation.Transactional;
 
 @Configurable
 @Entity
 public class SkillLevel {
-	
-    private final static Logger log = Logger.getLogger(SkillLevel.class);
 
 	@PersistenceContext
     transient EntityManager entityManager;
@@ -90,11 +87,8 @@ public class SkillLevel {
     
     public static SkillLevel findSkillByLevelNumber(Integer levelNumber)
     {
-    	log.info("Inside findSkillByLevelNumber with levelno " +levelNumber );
     	EntityManager em = entityManager();
-    	
     	String query = "SELECT sl from SkillLevel as sl where sl.levelNumber="+levelNumber ;
-    	log.info("Query is :" + query);
     	TypedQuery<SkillLevel> result = em.createQuery(query, SkillLevel.class);
     	
     	return result.getSingleResult();

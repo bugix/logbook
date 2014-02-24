@@ -2,6 +2,7 @@ package ch.unibas.medizin.logbook.server.locator;
 
 import org.springframework.stereotype.Component;
 
+import ch.unibas.medizin.logbook.server.domain.Student;
 import ch.unibas.medizin.logbook.server.domain.Topic;
 
 import com.google.web.bindery.requestfactory.shared.Locator;
@@ -37,5 +38,10 @@ public class TopicLocator extends Locator<Topic, Long> {
 	@Override
 	public Object getVersion(Topic topic) {
 		return topic.getVersion();
+	}
+	
+	@Override
+	public boolean isLive(Topic topic) {
+		return true;
 	}
 }

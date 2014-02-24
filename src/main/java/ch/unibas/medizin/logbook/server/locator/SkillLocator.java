@@ -3,6 +3,7 @@ package ch.unibas.medizin.logbook.server.locator;
 import org.springframework.stereotype.Component;
 
 import ch.unibas.medizin.logbook.server.domain.Skill;
+import ch.unibas.medizin.logbook.server.domain.SkillLevel;
 
 import com.google.web.bindery.requestfactory.shared.Locator;
 
@@ -37,5 +38,10 @@ public class SkillLocator extends Locator<Skill, Long> {
 	@Override
 	public Object getVersion(Skill skill) {
 		return skill.getVersion();
+	}
+	
+	@Override
+	public boolean isLive(Skill skill) {
+		return true;
 	}
 }

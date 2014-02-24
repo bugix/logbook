@@ -2,6 +2,7 @@ package ch.unibas.medizin.logbook.server.locator;
 
 import org.springframework.stereotype.Component;
 
+import ch.unibas.medizin.logbook.server.domain.ClassificationTopic;
 import ch.unibas.medizin.logbook.server.domain.Keyword;
 
 import com.google.web.bindery.requestfactory.shared.Locator;
@@ -37,5 +38,10 @@ public class KeywordLocator extends Locator<Keyword, Long> {
 	@Override
 	public Object getVersion(Keyword keyword) {
 		return keyword.getVersion();
+	}
+	
+	@Override
+	public boolean isLive(Keyword keyword) {
+		return true;
 	}
 }

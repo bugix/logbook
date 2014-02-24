@@ -24,7 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import ch.unibas.medizin.logbook.server.domain.Administrator;
 import ch.unibas.medizin.logbook.server.domain.Student;
@@ -33,7 +34,7 @@ import ch.unibas.medizin.logbook.shared.enums.StudentStatus;
 
 public class AuthenticationFilter implements Filter {
 
-	private static Logger log = Logger.getLogger(AuthenticationFilter.class);
+	private final Logger logger = LoggerFactory.getLogger(AuthenticationFilter.class);
 
 	private static final int ALLOWED_STUDY_BRANCH = 51;
 	private static final String STUDY_BRANCH = "studyBranch2"; // "Shib-SwissEP-swissEduPersonStudyBranch2" or studyBranch2
@@ -49,12 +50,12 @@ public class AuthenticationFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		log.info("Inside destroy");
+		logger.debug("Inside destroy");
 	}
 
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-		log.info("Inside doFilter");
+		logger.debug("Inside doFilter");
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
 
@@ -64,7 +65,7 @@ public class AuthenticationFilter implements Filter {
 		
 		/* local development environment Session Management */ 
 		uniqueID = getUniqueId(request,response);
-		log.info("UNIQUE_ID : " + uniqueID);
+		logger.debug("UNIQUE_ID : " + uniqueID);
 		flag = localWork(request, response, uniqueID);
 
 		/* production environment session management */
@@ -76,13 +77,13 @@ public class AuthenticationFilter implements Filter {
 			uniqueID = matriculationNumber;
 		}
 
-		log.info("UNIQUE_ID : " + uniqueID);
-		log.info("matriculationNumber : " + matriculationNumber);
+		logger.debug("UNIQUE_ID : " + uniqueID);
+		logger.debug("matriculationNumber : " + matriculationNumber);
 
 		flag = productionMethod(request, response, uniqueID);
 		*/
 
-		log.info("flag: " + flag);
+		logger.debug("flag: " + flag);
 		
 		if (flag) {
 			filterChain.doFilter(servletRequest, servletResponse);
@@ -101,13 +102,13 @@ public class AuthenticationFilter implements Filter {
 		String studyBranch = request.getHeader(STUDY_BRANCH);
 
 		String[] allStudyBranch = StringUtils.split(studyBranch, ";");
-		log.info("StudyBranch : " + studyBranch);
+		logger.debug("StudyBranch : " + studyBranch);
 
 		boolean hasAllowedStudyBranch = false;
 
 		if (allStudyBranch != null) {
 			for (String sb : allStudyBranch) {
-				log.info("sb : " + sb);
+				logger.debug("sb : " + sb);
 				if (isDigits(sb) && (createInteger(sb)) == ALLOWED_STUDY_BRANCH) {
 					hasAllowedStudyBranch = true;
 					break;
@@ -123,14 +124,14 @@ public class AuthenticationFilter implements Filter {
 			if (session != null) {
 				String sessionUniqueId = (String) session.getAttribute(UNIQUE_ID);
 				if (uniqueID.equals(sessionUniqueId)) {
-					log.info("----> Authenticated student using session");
+					logger.debug("----> Authenticated student using session");
 					flag = true;
 				} else {
 					flag = authenticationStudentUsingDB(request, response, uniqueID);
 					if (flag == true) {
 						session.setAttribute(UNIQUE_ID, uniqueID);
 						session.setAttribute(CURRENT_USER, STUDENT);
-						log.info("----> Authenticated student using DB");
+						logger.debug("----> Authenticated student using DB");
 					}
 				}
 			} else {
@@ -139,7 +140,7 @@ public class AuthenticationFilter implements Filter {
 					session = request.getSession();
 					session.setAttribute(UNIQUE_ID, uniqueID);
 					session.setAttribute(CURRENT_USER, STUDENT);
-					log.info("----> Authenticated student using New Session");
+					logger.debug("----> Authenticated student using New Session");
 				}
 			}
 		} else {
@@ -153,14 +154,14 @@ public class AuthenticationFilter implements Filter {
 				asStudentTesting(request, response, uniqueID, session);
 
 				if (uniqueID.equals(sessionUniqueId)) {
-					log.info("----> Authenticated Admin using session");
+					logger.debug("----> Authenticated Admin using session");
 					flag = true;
 				} else {
 					flag = authenticationAdminUsingDB(request, response, uniqueID);
 					if (flag == true) {
 						session.setAttribute(UNIQUE_ID, uniqueID);
 						session.setAttribute(CURRENT_USER, ADMIN);
-						log.info("----> Authenticated Admin using DB");
+						logger.debug("----> Authenticated Admin using DB");
 
 						// for testing as student
 						asStudentTesting(request, response, uniqueID, session);
@@ -173,7 +174,7 @@ public class AuthenticationFilter implements Filter {
 					session = request.getSession();
 					session.setAttribute(UNIQUE_ID, uniqueID);
 					session.setAttribute(CURRENT_USER, ADMIN);
-					log.info("----> Authenticated Admin using New Session");
+					logger.debug("----> Authenticated Admin using New Session");
 					// for testing as student
 					asStudentTesting(request, response, uniqueID, session);
 				}
@@ -187,7 +188,7 @@ public class AuthenticationFilter implements Filter {
 	private void asStudentTesting(HttpServletRequest request, HttpServletResponse response, String uniqueID, HttpSession session) {
 
 		if (uniqueID != null && uniqueID.equals("210760@vho-switchaai.ch") && getParamValue(request, response, "shibdId") != null) {
-			log.info("set dummy shibdId for student");
+			logger.debug("set dummy shibdId for student");
 			uniqueID = getParamValue(request, response, "shibdId");
 			session.setAttribute(UNIQUE_ID, uniqueID);
 			session.setAttribute(CURRENT_USER, STUDENT);
@@ -202,20 +203,20 @@ public class AuthenticationFilter implements Filter {
 			List<Administrator> listAdministrator = Administrator.findAllAdministrators();
 			if (uniqueID != null && uniqueID.equals("210760@vho-switchaai.ch")) {
 
-				log.info("Login successfully by 210760@vho-switchaai.ch");
+				logger.debug("Login successfully by 210760@vho-switchaai.ch");
 				flag = true;
 			} else if (uniqueID != null && uniqueID.equals("myself")) {
 
-				log.info("Login successfully by myself");
+				logger.debug("Login successfully by myself");
 				flag = true;
 			} else if (listAdministrator != null) {
 
-				log.info("listAdministrator : " + listAdministrator.size());
+				logger.debug("listAdministrator : " + listAdministrator.size());
 				for (Administrator administrator : listAdministrator) {
 
 					if (administrator.getEmail().equals(uniqueID)) {
 
-						log.info("Login successfully");
+						logger.debug("Login successfully");
 						flag = true;
 						break;
 
@@ -224,7 +225,7 @@ public class AuthenticationFilter implements Filter {
 			}
 		} catch (Exception e) {
 			flag = false;
-			log.error("Error in authenticationAdminUsingDB method", e);
+			logger.error("Error in authenticationAdminUsingDB method", e);
 		}
 		return flag;
 	}
@@ -238,8 +239,8 @@ public class AuthenticationFilter implements Filter {
 			Student eStudent = Student.findStudentUsingShibId(uniqueID);
 
 			if (eStudent != null && eStudent.getShib_id().equals(uniqueID)) {
-				log.info("stib_id" + eStudent.getShib_id());
-				log.info("uniqueId : " + uniqueID);
+				logger.debug("stib_id" + eStudent.getShib_id());
+				logger.debug("uniqueId : " + uniqueID);
 				flag = true;
 
 			}
@@ -275,7 +276,7 @@ public class AuthenticationFilter implements Filter {
 
 		} catch (Exception e) {
 			flag = false;
-			log.error("Error in authenticationStudentUsingDB Method.", e);
+			logger.error("Error in authenticationStudentUsingDB Method.", e);
 		}
 
 		return flag;
@@ -284,8 +285,8 @@ public class AuthenticationFilter implements Filter {
 	private String getUniqueId(HttpServletRequest request, HttpServletResponse response) {
 
 		String referer =  request.getHeader("Referer");
-		log.info("referer : " + referer );
-		log.info("studentid : " + request.getParameter(STUDENT_ID));
+		logger.debug("referer : " + referer );
+		logger.debug("studentid : " + request.getParameter(STUDENT_ID));
 
 		String uniqueID; 
 
@@ -318,7 +319,7 @@ public class AuthenticationFilter implements Filter {
 		try {
 			String currentUser = getCurrentUser(request, response);
 
-			log.info("currentUser : " + currentUser);
+			logger.debug("currentUser : " + currentUser);
 
 			// Session Management
 			HttpSession session = request.getSession(false);
@@ -328,7 +329,7 @@ public class AuthenticationFilter implements Filter {
 				String currentUserId = (String) session.getAttribute(CURRENT_USER);
 
 				if (uniqueID.equals(sessionUserId) && currentUser.equals(currentUserId)) {
-					log.info("----> Authenticated using session");
+					logger.debug("----> Authenticated using session");
 					flag = true;
 				} else {
 					flag = authenticationUsingDB(response, Long.parseLong(uniqueID), currentUser);
@@ -344,11 +345,11 @@ public class AuthenticationFilter implements Filter {
 							session.setAttribute(UNIQUE_ID, student.getShib_id());
 						}
 						session.setAttribute(CURRENT_USER, currentUser);
-						log.info("----> Authenticated using DB");
+						logger.debug("----> Authenticated using DB");
 					}
 				}
 			} else {
-				log.info("----> Authenticated using New Session");
+				logger.debug("----> Authenticated using New Session");
 				flag = authenticationUsingDB(response, Long.parseLong(uniqueID), currentUser);
 				if (flag == true) {
 					session = request.getSession();
@@ -367,7 +368,7 @@ public class AuthenticationFilter implements Filter {
 
 		} catch (Exception e) {
 			flag = false;
-			log.error("localWork", e);
+			logger.error("localWork", e);
 		}
 		return flag;
 	}
@@ -376,13 +377,13 @@ public class AuthenticationFilter implements Filter {
 
 		boolean flag = false;
 		
-		log.info("currentUser : " + currentUser);
+		logger.debug("currentUser : " + currentUser);
 
 		if (ADMIN.equals(currentUser)) {
 			List<Administrator> adminList = Administrator.findAllAdministrators();
 			for (Administrator administrator : adminList) {
 				
-				log.info("administrator : " + administrator);
+				logger.debug("administrator : " + administrator);
 				
 				if ((long) administrator.getId() == uniqueId) {
 					flag = true;
@@ -449,6 +450,6 @@ public class AuthenticationFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		log.info("Inside init");
+		logger.debug("Inside init");
 	}
 }

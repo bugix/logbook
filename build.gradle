@@ -110,6 +110,8 @@ dependencies {
 	compile "org.xhtmlrenderer:core-renderer:R8pre2"
 	compile "com.lowagie:itext:2.0.8"
 	compile "com.itextpdf:itextpdf:5.5.0"
+	
+	runtime "org.json:json:20140107"
  
 	providedCompile "javax.servlet:javax.servlet-api:3.0.1"
 

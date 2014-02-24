@@ -2,6 +2,7 @@ package ch.unibas.medizin.logbook.server.locator;
 
 import org.springframework.stereotype.Component;
 
+import ch.unibas.medizin.logbook.server.domain.Administrator;
 import ch.unibas.medizin.logbook.server.domain.ClassificationTopic;
 
 import com.google.web.bindery.requestfactory.shared.Locator;
@@ -37,5 +38,10 @@ public class ClassificationTopicLocator extends Locator<ClassificationTopic, Lon
 	@Override
 	public Object getVersion(ClassificationTopic classificationTopic) {
 		return classificationTopic.getVersion();
+	}
+	
+	@Override
+	public boolean isLive(ClassificationTopic classificationTopic) {
+		return true;
 	}
 }

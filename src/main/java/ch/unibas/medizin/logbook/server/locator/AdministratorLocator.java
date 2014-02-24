@@ -38,4 +38,9 @@ public class AdministratorLocator extends Locator<Administrator, Long> {
 	public Object getVersion(Administrator administrator) {
 		return administrator.getVersion();
 	}
+	
+	@Override
+	public boolean isLive(Administrator administrator) {
+		return true;
+	}
 }
