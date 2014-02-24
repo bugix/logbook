@@ -11,3 +11,4 @@ log.roo
 .gradle
 .DS_store
 src/main/generated
+warpublic
