@@ -13,17 +13,17 @@ import com.google.web.bindery.requestfactory.shared.ServiceName;
 @ServiceName("ch.unibas.medizin.logbook.server.domain.SkillAcquired")
 public interface SkillAcquiredRequest extends RequestContext {
 
-	abstract Request<Long> countSkillAcquireds();
+	//abstract Request<Long> countSkillAcquireds();
 
-	abstract Request<List<SkillAcquiredProxy>> findAllSkillAcquireds();
+	//abstract Request<List<SkillAcquiredProxy>> findAllSkillAcquireds();
 
-	abstract Request<List<SkillAcquiredProxy>> findSkillAcquiredEntries(int firstResult, int maxResults);
+	//abstract Request<List<SkillAcquiredProxy>> findSkillAcquiredEntries(int firstResult, int maxResults);
 
-	abstract Request<SkillAcquiredProxy> findSkillAcquired(Long id);
+	//abstract Request<SkillAcquiredProxy> findSkillAcquired(Long id);
 
-	abstract InstanceRequest<SkillAcquiredProxy, Void> persist();
+	//abstract InstanceRequest<SkillAcquiredProxy, Void> persist();
 
-	abstract InstanceRequest<SkillAcquiredProxy, Void> remove();
+	//abstract InstanceRequest<SkillAcquiredProxy, Void> remove();
 	
 	abstract Request<List<Long>> findTotalSkillAcquiredByStudentLevelVise(long studentId);
 
@@ -33,5 +33,5 @@ public interface SkillAcquiredRequest extends RequestContext {
 
 	abstract Request<String> acquireORDeleteSkill(Long studentid, Long Skillid, Boolean isFirstSelected, Boolean isDeleteOperation);
 
-	abstract Request<Integer> countSkillAcquiredByStudentandSkill(Long id, List<SkillProxy> skillProxyList);
+	//abstract Request<Integer> countSkillAcquiredByStudentandSkill(Long id, List<SkillProxy> skillProxyList);
 }

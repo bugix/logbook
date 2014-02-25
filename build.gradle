@@ -110,6 +110,9 @@ dependencies {
 	compile "org.xhtmlrenderer:core-renderer:R8pre2"
 	compile "com.lowagie:itext:2.0.8"
 	compile "com.itextpdf:itextpdf:5.5.0"
+
+	testCompile "junit:junit:4.11"
+	testCompile "org.springframework:spring-aspects:${springVersion}"
 	
 	runtime "org.json:json:20140107"
  

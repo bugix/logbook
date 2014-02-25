@@ -252,7 +252,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 	private void initClassificationTopicSuggestion(Long mainClassificationId) {
 
-		requests.classificationTopicRequest().findClassiTopicByMainClassfication(mainClassificationId).fire(new Receiver<List<ClassificationTopicProxy>>() {
+		requests.classificationTopicRequest().findClassificationTopicByMainClassfication(mainClassificationId).fire(new Receiver<List<ClassificationTopicProxy>>() {
 
 			@Override
 			public void onSuccess(List<ClassificationTopicProxy> response) {

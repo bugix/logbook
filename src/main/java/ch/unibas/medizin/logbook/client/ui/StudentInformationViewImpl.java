@@ -419,10 +419,10 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 		paths.add("description");
 		table.addColumn(new TextColumn<SkillAcquiredProxy>() {
 
-			Renderer<java.lang.String> renderer = new AbstractRenderer<java.lang.String>() {
+			Renderer<String> renderer = new AbstractRenderer<String>() {
 
 				@Override
-				public String render(java.lang.String obj) {
+				public String render(String obj) {
 					return obj == null ? "" : String.valueOf(obj);
 				}
 			};
@@ -439,10 +439,10 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 		paths.add("skillLevel");
 		table.addColumn(new TextColumn<SkillAcquiredProxy>() {
 
-			Renderer<java.lang.String> renderer = new AbstractRenderer<java.lang.String>() {
+			Renderer<String> renderer = new AbstractRenderer<String>() {
 
 				@Override
-				public String render(java.lang.String obj) {
+				public String render(String obj) {
 					return obj == null ? "" : String.valueOf(obj);
 				}
 			};
@@ -469,10 +469,10 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 		}, constants.category());
 		paths.add("shortcut");
 		table.addColumn(new TextColumn<SkillAcquiredProxy>() {
-			Renderer<java.lang.String> renderer = new AbstractRenderer<java.lang.String>() {
+			Renderer<String> renderer = new AbstractRenderer<String>() {
 
 				@Override
-				public String render(java.lang.String obj) {
+				public String render(String obj) {
 					return obj == null ? "" : String.valueOf(obj);
 				}
 			};

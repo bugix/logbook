@@ -12,17 +12,17 @@ import com.google.web.bindery.requestfactory.shared.ServiceName;
 @ServiceName("ch.unibas.medizin.logbook.server.domain.ClassificationTopic")
 public interface ClassificationTopicRequest extends RequestContext {
 
-	abstract Request<Long> countClassificationTopics();
+	//abstract Request<Long> countClassificationTopics();
 
-	abstract Request<List<ClassificationTopicProxy>> findAllClassificationTopics();
+	//abstract Request<List<ClassificationTopicProxy>> findAllClassificationTopics();
 
-	abstract Request<List<ClassificationTopicProxy>> findClassificationTopicEntries(int firstResult, int maxResults);
+	//abstract Request<List<ClassificationTopicProxy>> findClassificationTopicEntries(int firstResult, int maxResults);
 
-	abstract Request<ClassificationTopicProxy> findClassificationTopic(Long id);
+	//abstract Request<ClassificationTopicProxy> findClassificationTopic(Long id);
 
-	abstract InstanceRequest<ClassificationTopicProxy, Void> persist();
+	//abstract InstanceRequest<ClassificationTopicProxy, Void> persist();
 
-	abstract InstanceRequest<ClassificationTopicProxy, Void> remove();
+	//abstract InstanceRequest<ClassificationTopicProxy, Void> remove();
 	
-	abstract Request<List<ClassificationTopicProxy>> findClassiTopicByMainClassfication(Long value);
+	abstract Request<List<ClassificationTopicProxy>> findClassificationTopicByMainClassfication(Long value);
 }

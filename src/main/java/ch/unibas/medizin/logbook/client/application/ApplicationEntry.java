@@ -16,7 +16,6 @@ public class ApplicationEntry implements EntryPoint {
 
 	final private LogBookInjector injectorWrapper = GWT.create(LogBookInjector.class);
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onModuleLoad() {
 

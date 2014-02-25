@@ -469,8 +469,6 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 								Log.debug("Failure");
 							}
 						});
-
-						// }
 					}
 				};
 

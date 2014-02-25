@@ -101,7 +101,7 @@ public class ClassificationTopic {
         this.version = version;
     }
     
-    public static List<ClassificationTopic> findClassiTopicByMainClassfication(Long value)
+    public static List<ClassificationTopic> findClassificationTopicByMainClassfication(Long value)
 	{
 		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
 		CriteriaQuery<ClassificationTopic> criteriaQuery = criteriaBuilder.createQuery(ClassificationTopic.class);

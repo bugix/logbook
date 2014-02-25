@@ -12,15 +12,15 @@ import com.google.web.bindery.requestfactory.shared.ServiceName;
 @ServiceName("ch.unibas.medizin.logbook.server.domain.Keyword")
 public interface KeywordRequest extends RequestContext {
 
-	abstract Request<Long> countKeywords();
+	//abstract Request<Long> countKeywords();
 
-	abstract Request<List<KeywordProxy>> findAllKeywords();
+	//abstract Request<List<KeywordProxy>> findAllKeywords();
 
-	abstract Request<List<KeywordProxy>> findKeywordEntries(int firstResult, int maxResults);
+	//abstract Request<List<KeywordProxy>> findKeywordEntries(int firstResult, int maxResults);
 
-	abstract Request<KeywordProxy> findKeyword(Long id);
+	//abstract Request<KeywordProxy> findKeyword(Long id);
 
-	abstract InstanceRequest<KeywordProxy, Void> persist();
+	//abstract InstanceRequest<KeywordProxy, Void> persist();
 
-	abstract InstanceRequest<KeywordProxy, Void> remove();
+	//abstract InstanceRequest<KeywordProxy, Void> remove();
 }
