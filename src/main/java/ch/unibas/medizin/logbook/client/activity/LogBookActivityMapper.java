@@ -1,9 +1,5 @@
-package ch.unibas.medizin.logbook.client.activities;
+package ch.unibas.medizin.logbook.client.activity;
 
-import ch.unibas.medizin.logbook.client.activity.AdminActivity;
-import ch.unibas.medizin.logbook.client.activity.LoginActivity;
-import ch.unibas.medizin.logbook.client.activity.ProgressActivity;
-import ch.unibas.medizin.logbook.client.activity.SkillActivity;
 import ch.unibas.medizin.logbook.client.place.AdminPlace;
 import ch.unibas.medizin.logbook.client.place.LoginPlace;
 import ch.unibas.medizin.logbook.client.place.ProgressPlace;
@@ -23,6 +19,7 @@ import com.google.inject.Inject;
 public class LogBookActivityMapper implements ActivityMapper {
 
 	private LogBookRequestFactory requests;
+
 	private PlaceController placeController;
 
 	@Inject

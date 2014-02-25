@@ -1,6 +1,6 @@
 package ch.unibas.medizin.logbook.client.navigation;
 
-import ch.unibas.medizin.logbook.client.activities.LogBookActivityMapper;
+import ch.unibas.medizin.logbook.client.activity.LogBookActivityMapper;
 import ch.unibas.medizin.logbook.client.place.LoginPlace;
 import ch.unibas.medizin.logbook.client.place.ProgressPlace;
 import ch.unibas.medizin.logbook.client.place.SkillPlace;

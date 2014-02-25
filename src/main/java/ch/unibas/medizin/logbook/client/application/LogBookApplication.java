@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import ch.unibas.medizin.logbook.client.activities.LogBookActivityMapper;
+import ch.unibas.medizin.logbook.client.activity.LogBookActivityMapper;
 import ch.unibas.medizin.logbook.client.navigation.LogBookAdminNav;
 import ch.unibas.medizin.logbook.client.navigation.LogBookNav;
 import ch.unibas.medizin.logbook.client.place.AdminPlace;

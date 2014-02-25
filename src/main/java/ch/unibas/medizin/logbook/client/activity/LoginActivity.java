@@ -230,7 +230,6 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 																// Skill
 																// Acquired
 				intiSkillTable("created");
-
 			}
 
 			@Override
@@ -272,8 +271,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 							Log.debug("Total Acquired Skills By Level : " + join(totalSkillAcquiredBySkillLevel, ","));
 
 							if (totalSkillAcquiredBySkillLevel.size() == 2) {
-								// total percentage Of Skill Acquired for level
-								// 1
+								// total percentage Of Skill Acquired for level 1
 								float totalPercentageLevel1 = totalSkillListByLevel.get(0) == 0 ? totalPercentageLevel1 = 0.0f : ((totalSkillAcquiredBySkillLevel.get(0) / (float) totalSkillListByLevel.get(0)));
 								String level1SkillAcquiredPercentage = constants.level1() + ": " + totalSkillAcquiredBySkillLevel.get(0) + " " + constants.of() + " " + totalSkillListByLevel.get(0) + " " + constants.skill() + " (" + DECIMAL_FORMAT.format(totalPercentageLevel1)
 										+ ")";

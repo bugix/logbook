@@ -11,6 +11,7 @@ import com.google.gwt.user.client.DeferredCommand;
 /**
  * Startingpoint of the application, starts application.
  */
+@SuppressWarnings("deprecation")
 public class ApplicationEntry implements EntryPoint {
 
 	final private LogBookInjector injectorWrapper = GWT.create(LogBookInjector.class);
