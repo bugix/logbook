@@ -1,6 +1,6 @@
 package ch.unibas.medizin.logbook.client.scaffold.place;
 
-import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.request.LogBookRequestFactory;
 
 import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.inject.Inject;

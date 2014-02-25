@@ -4,8 +4,8 @@ import ch.unibas.medizin.logbook.client.activities.LogBookActivityMapper;
 import ch.unibas.medizin.logbook.client.place.LoginPlace;
 import ch.unibas.medizin.logbook.client.place.ProgressPlace;
 import ch.unibas.medizin.logbook.client.place.SkillPlace;
+import ch.unibas.medizin.logbook.client.request.LogBookRequestFactory;
 import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
-import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.ActivityManager;

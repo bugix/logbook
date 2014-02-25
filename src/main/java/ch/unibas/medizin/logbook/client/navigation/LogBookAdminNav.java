@@ -2,8 +2,8 @@ package ch.unibas.medizin.logbook.client.navigation;
 
 import ch.unibas.medizin.logbook.client.activities.LogBookActivityMapper;
 import ch.unibas.medizin.logbook.client.place.AdminPlace;
+import ch.unibas.medizin.logbook.client.request.LogBookRequestFactory;
 import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
-import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;

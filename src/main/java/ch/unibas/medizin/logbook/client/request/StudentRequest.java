@@ -23,4 +23,8 @@ public interface StudentRequest extends RequestContext {
 	abstract InstanceRequest<StudentProxy, Void> persist();
 
 	abstract InstanceRequest<StudentProxy, Void> remove();
+	
+	abstract Request<StudentProxy> findStudentFromSession();
+
+	abstract Request<Boolean> isCurrentUserStudent();
 }

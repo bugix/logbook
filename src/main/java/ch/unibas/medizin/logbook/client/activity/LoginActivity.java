@@ -13,6 +13,7 @@ import ch.unibas.medizin.logbook.client.navigation.LogBookNav;
 import ch.unibas.medizin.logbook.client.place.LoginPlace;
 import ch.unibas.medizin.logbook.client.proxy.SkillAcquiredProxy;
 import ch.unibas.medizin.logbook.client.proxy.StudentProxy;
+import ch.unibas.medizin.logbook.client.request.LogBookRequestFactory;
 import ch.unibas.medizin.logbook.client.request.StudentRequest;
 import ch.unibas.medizin.logbook.client.ui.StudentEditPopupViewImpl;
 import ch.unibas.medizin.logbook.client.ui.StudentInformationView;
@@ -22,7 +23,6 @@ import ch.unibas.medizin.logbook.shared.constant.LogBookConstant;
 import ch.unibas.medizin.logbook.shared.enums.StudentStatus;
 import ch.unibas.medizin.logbook.shared.enums.StudyYears;
 import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
-import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -160,7 +160,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 		Log.debug("Start Range: " + range.getStart());
 		Log.debug("Range Length: " + range.getLength());
 
-		requests.skillAcquiredRequestNonRoo().findCountLatestAcquiredSkillByStudent(view.getStudentProxy().getId(), LogBookConstant.TOTAL_SKILL_ACQUIRED_DISPLAY, sortorder, sortBy)
+		requests.skillAcquiredRequest().findCountLatestAcquiredSkillByStudent(view.getStudentProxy().getId(), LogBookConstant.TOTAL_SKILL_ACQUIRED_DISPLAY, sortorder, sortBy)
 				.with("skill", "skillLevel", "skill.topic", "skill.topic.classificationTopic", "skill.topic.classificationTopic.mainClassification").fire(new Receiver<Integer>() {
 
 					@Override
@@ -170,7 +170,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 
 				});
 
-		requests.skillAcquiredRequestNonRoo().findLatestAcquiredSkillByStudent(view.getStudentProxy().getId(), sortorder, sortBy, range.getStart(), range.getLength())
+		requests.skillAcquiredRequest().findLatestAcquiredSkillByStudent(view.getStudentProxy().getId(), sortorder, sortBy, range.getStart(), range.getLength())
 				.with("skill", "skillLevel", "skill.topic", "skill.topic.classificationTopic", "skill.topic.classificationTopic.mainClassification").fire(new Receiver<List<SkillAcquiredProxy>>() {
 
 					@Override
@@ -202,7 +202,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 
 	private void initStudentInfo() {
 		view.getHpErrorMessage().setVisible(false);
-		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() {
+		requests.studentRequest().findStudentFromSession().fire(new Receiver<StudentProxy>() {
 			@Override
 			public void onSuccess(StudentProxy studentProxy) {
 				Log.debug("Success");
@@ -256,7 +256,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 		}
 		final long studentId = studentProxy.getId();
 		// Find Total Skill for Level 1 and Level 2
-		requests.skillRequestNonRoo().findCountOfSkillBySkillLevel().fire(new Receiver<List<Long>>() {
+		requests.skillRequest().findCountOfSkillBySkillLevel().fire(new Receiver<List<Long>>() {
 
 			@Override
 			public void onSuccess(final List<Long> totalSkillListByLevel) {
@@ -264,7 +264,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 				Log.debug("Total Skills By Level : " + join(totalSkillListByLevel, ","));
 
 				if (totalSkillListByLevel.size() == 2) {
-					requests.skillAcquiredRequestNonRoo().findTotalSkillAcquiredByStudentLevelVise(studentId).fire(new Receiver<List<Long>>() {
+					requests.skillAcquiredRequest().findTotalSkillAcquiredByStudentLevelVise(studentId).fire(new Receiver<List<Long>>() {
 
 						@Override
 						public void onSuccess(List<Long> totalSkillAcquiredBySkillLevel) {

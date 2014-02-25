@@ -1,7 +1,7 @@
 package ch.unibas.medizin.logbook.client.place;
 
 import ch.unibas.medizin.logbook.client.navigation.LogBookNav;
-import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.request.LogBookRequestFactory;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.place.shared.PlaceTokenizer;

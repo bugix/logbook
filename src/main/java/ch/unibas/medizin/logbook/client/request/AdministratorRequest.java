@@ -23,4 +23,6 @@ public interface AdministratorRequest extends RequestContext {
 	abstract InstanceRequest<AdministratorProxy, Void> persist();
 
 	abstract InstanceRequest<AdministratorProxy, Void> remove();
+	
+	abstract Request<AdministratorProxy> findAdministratorFromSession();
 }

@@ -7,6 +7,7 @@ import javax.validation.ConstraintViolation;
 import ch.unibas.medizin.logbook.client.event.ApplicationLoadingScreenEvent;
 import ch.unibas.medizin.logbook.client.place.LoginPlace;
 import ch.unibas.medizin.logbook.client.proxy.AdministratorProxy;
+import ch.unibas.medizin.logbook.client.request.LogBookRequestFactory;
 import ch.unibas.medizin.logbook.client.service.CsvFileGeneratorService;
 import ch.unibas.medizin.logbook.client.service.CsvFileGeneratorServiceAsync;
 import ch.unibas.medizin.logbook.client.ui.AdminView;
@@ -14,7 +15,6 @@ import ch.unibas.medizin.logbook.client.ui.AdminViewImpl;
 import ch.unibas.medizin.logbook.shared.CsvFileGeneratorEvent;
 import ch.unibas.medizin.logbook.shared.CsvFileGeneratorListener;
 import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
-import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -96,7 +96,7 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 
 	private void initAdminDetails() {
 
-		requests.administratorRequestNonRoo().findAdministratorFromSession().fire(new Receiver<AdministratorProxy>() {
+		requests.administratorRequest().findAdministratorFromSession().fire(new Receiver<AdministratorProxy>() {
 
 			@Override
 			public void onSuccess(AdministratorProxy response) {

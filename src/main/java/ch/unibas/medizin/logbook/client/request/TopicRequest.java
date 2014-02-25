@@ -2,6 +2,8 @@ package ch.unibas.medizin.logbook.client.request;
 
 import java.util.List;
 
+import ch.unibas.medizin.logbook.client.proxy.StudentProxy;
+import ch.unibas.medizin.logbook.client.proxy.TopicFilteredResultProxy;
 import ch.unibas.medizin.logbook.client.proxy.TopicProxy;
 
 import com.google.web.bindery.requestfactory.shared.InstanceRequest;
@@ -23,4 +25,8 @@ public interface TopicRequest extends RequestContext {
 	abstract InstanceRequest<TopicProxy, Void> persist();
 
 	abstract InstanceRequest<TopicProxy, Void> remove();
+	
+	abstract Request<List<TopicProxy>> findTopicByClassficationId(Long value);
+
+	abstract Request<TopicFilteredResultProxy> findTopicOrderByClassification(int start, int max, StudentProxy studentProxy);
 }

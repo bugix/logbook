@@ -11,6 +11,7 @@ import ch.unibas.medizin.logbook.client.proxy.SkillFilteredResultProxy;
 import ch.unibas.medizin.logbook.client.proxy.SkillProxy;
 import ch.unibas.medizin.logbook.client.proxy.StudentProxy;
 import ch.unibas.medizin.logbook.client.proxy.TopicProxy;
+import ch.unibas.medizin.logbook.client.request.LogBookRequestFactory;
 import ch.unibas.medizin.logbook.client.suggest.simple.DefaultSuggestOracle;
 import ch.unibas.medizin.logbook.client.ui.SkillLevelCheckboxView;
 import ch.unibas.medizin.logbook.client.ui.SkillLevelCheckboxViewImpl;
@@ -22,7 +23,6 @@ import ch.unibas.medizin.logbook.client.ui.SkillViewImpl;
 import ch.unibas.medizin.logbook.client.widget.CustomProgressbar;
 import ch.unibas.medizin.logbook.shared.constant.LogBookConstant;
 import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
-import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
 import ch.unibas.medizin.logbook.shared.util.UtilityLogBook;
 
 import com.allen_sauer.gwt.log.client.Log;
@@ -129,7 +129,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		systemStartView.setPresenter(this);
 		checkBoxview.setPresenter(this);
 
-		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() {
+		requests.studentRequest().findStudentFromSession().fire(new Receiver<StudentProxy>() {
 
 			@Override
 			public void onSuccess(StudentProxy response) {
@@ -171,7 +171,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 		Log.debug("full text : " + fullTextSearchString);
 
-		requests.skillRequestNonRoo().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(), student.getId(), mainClassificationId, classificaitonTopicId, topicId, fullTextSearchString, chkAsc)
+		requests.skillRequest().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(), student.getId(), mainClassificationId, classificaitonTopicId, topicId, fullTextSearchString, chkAsc)
 				.with("skillList.topic", "skillList.skillComment", "skillList.topic.classificationTopic", "skillList.topic.classificationTopic.mainClassification", "skillList.skillLevel").fire(new Receiver<SkillFilteredResultProxy>() {
 
 					@Override
@@ -201,7 +201,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 		Log.debug("full text : " + fullTextSearchString);
 
-		requests.skillRequestNonRoo().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(), student.getId(), mainClassificationId, classificaitonTopicId, topicId, fullTextSearchString, chkAsc)
+		requests.skillRequest().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(), student.getId(), mainClassificationId, classificaitonTopicId, topicId, fullTextSearchString, chkAsc)
 				.with("skillList.topic", "skillList.topic.classificationTopic", "skillList.topic.classificationTopic.mainClassification", "skillList.skillLevel").fire(new Receiver<SkillFilteredResultProxy>() {
 
 					@Override
@@ -252,7 +252,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 	private void initClassificationTopicSuggestion(Long mainClassificationId) {
 
-		requests.classificationTopicRequestNonRoo().findClassiTopicByMainClassfication(mainClassificationId).fire(new Receiver<List<ClassificationTopicProxy>>() {
+		requests.classificationTopicRequest().findClassiTopicByMainClassfication(mainClassificationId).fire(new Receiver<List<ClassificationTopicProxy>>() {
 
 			@Override
 			public void onSuccess(List<ClassificationTopicProxy> response) {
@@ -279,7 +279,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 	private void initTopicSuggestion(Long classificaitonTopicId) {
 
-		requests.topicRequestNonRoo().findTopicByClassficationId(classificaitonTopicId).fire(new Receiver<List<TopicProxy>>() {
+		requests.topicRequest().findTopicByClassficationId(classificaitonTopicId).fire(new Receiver<List<TopicProxy>>() {
 
 			@Override
 			public void onSuccess(List<TopicProxy> response) {
@@ -455,7 +455,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		Log.debug("MainClassification :" + mainClassifcationId);
 		Log.debug("Classification Topic Id :" + classifcationTopicId);
 		Log.debug("Topic Id :" + topicId);
-		requests.skillRequestNonRoo().retrieveHtmlFile(view.getStudent().getId(), mainClassifcationId, classifcationTopicId, topicId, fullTextSearch, new Integer(ShowCriteria.chkAsc).intValue()).fire(new Receiver<String>() {
+		requests.skillRequest().retrieveHtmlFile(view.getStudent().getId(), mainClassifcationId, classifcationTopicId, topicId, fullTextSearch, new Integer(ShowCriteria.chkAsc).intValue()).fire(new Receiver<String>() {
 
 			@Override
 			public void onSuccess(String response) {
@@ -492,7 +492,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 			skillLevel = skillProxy.getSkillLevel().getLevelNumber();
 		}
 
-		requests.skillAcquiredRequestNonRoo().acquireORDeleteSkill(view.getStudent().getId(), skillLevelCheckboxViewImpl.getSkillProxy().getId(), isLevel1, isDeleteOperation).fire(new Receiver<String>() {
+		requests.skillAcquiredRequest().acquireORDeleteSkill(view.getStudent().getId(), skillLevelCheckboxViewImpl.getSkillProxy().getId(), isLevel1, isDeleteOperation).fire(new Receiver<String>() {
 
 			@Override
 			public void onSuccess(String response) {
@@ -652,7 +652,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 	@Override
 	public void findProgressOfMainClassification(MainClassificationProxy mProxy, final int row, final int i, StudentProxy student) {
 
-		requests.skillRequestNonRoo().findProgressOfMainClassification(mProxy, student.getId()).fire(new Receiver<String>() {
+		requests.skillRequest().findProgressOfMainClassification(mProxy, student.getId()).fire(new Receiver<String>() {
 
 			@Override
 			public void onSuccess(String response) {
@@ -667,7 +667,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 	@Override
 	public void findProgressOfClassificationTopic(ClassificationTopicProxy ctProxy, final int row, final int i, StudentProxy student) {
-		requests.skillRequestNonRoo().findProgressOfClassificationTopic(ctProxy, student.getId()).fire(new Receiver<String>() {
+		requests.skillRequest().findProgressOfClassificationTopic(ctProxy, student.getId()).fire(new Receiver<String>() {
 
 			@Override
 			public void onSuccess(String response) {
@@ -682,7 +682,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 	@Override
 	public void findProgressOfTopic(TopicProxy tproxy, final int row, final int i, StudentProxy student) {
-		requests.skillRequestNonRoo().findProgressOfTopic(tproxy, student.getId()).fire(new Receiver<String>() {
+		requests.skillRequest().findProgressOfTopic(tproxy, student.getId()).fire(new Receiver<String>() {
 
 			@Override
 			public void onSuccess(String response) {
@@ -734,7 +734,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		{
 			final String comment = ((SkillLevelTextAreaViewImpl) view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(), 4)).getTextArea().getText();
 
-			requests.skillRequestNonRoo().addCommnets(skillProxy.getId(), view.getStudent().getId(), comment).fire(new Receiver<String>() {
+			requests.skillRequest().addCommnets(skillProxy.getId(), view.getStudent().getId(), comment).fire(new Receiver<String>() {
 
 				@Override
 				public void onSuccess(String response) {
@@ -750,7 +750,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 						((SkillLevelIconButtonViewImpl) skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(), 5)).getIconButton().setClassName("ui-icon ui-icon-pencil");
 						((SkillLevelIconButtonViewImpl) view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(), 5)).setSave(false);
 
-						requests.skillRequestNonRoo().getCommentOfStudentForSkill(skillProxy.getId(), view.getStudent().getId()).fire(new Receiver<String>() {
+						requests.skillRequest().getCommentOfStudentForSkill(skillProxy.getId(), view.getStudent().getId()).fire(new Receiver<String>() {
 							@Override
 							public void onSuccess(String response) {
 								((SkillLevelTextAreaViewImpl) skillFlexTable.getWidget(skillLevelIconButtonViewImpl.getRow(), 4)).getTextArea().setText(UtilityLogBook.getFormatedString(response, 40));

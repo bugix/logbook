@@ -11,9 +11,9 @@ import ch.unibas.medizin.logbook.client.proxy.ClassificationTopicProxy;
 import ch.unibas.medizin.logbook.client.proxy.MainClassificationProxy;
 import ch.unibas.medizin.logbook.client.proxy.StudentProxy;
 import ch.unibas.medizin.logbook.client.proxy.TopicFilteredResultProxy;
+import ch.unibas.medizin.logbook.client.request.LogBookRequestFactory;
 import ch.unibas.medizin.logbook.client.ui.ProgressView;
 import ch.unibas.medizin.logbook.client.ui.ProgressViewImpl;
-import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -67,7 +67,7 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 		initProgressFlexTable();
 		initLoading();
 
-		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() {
+		requests.studentRequest().findStudentFromSession().fire(new Receiver<StudentProxy>() {
 
 			@Override
 			public void onSuccess(StudentProxy response) {
@@ -98,7 +98,7 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 
 	private void onRangeChanged(StudentProxy student) {
 		progressFlexTable.removeAllRows();
-		requests.topicRequestNonRoo().findTopicOrderByClassification(view.getPager().getStart(), view.getPager().getLength(), studentProxy).with("topicList.classificationTopic", "topicList.classificationTopic.mainClassification").fire(new Receiver<TopicFilteredResultProxy>() {
+		requests.topicRequest().findTopicOrderByClassification(view.getPager().getStart(), view.getPager().getLength(), studentProxy).with("topicList.classificationTopic", "topicList.classificationTopic.mainClassification").fire(new Receiver<TopicFilteredResultProxy>() {
 
 			@Override
 			public void onSuccess(TopicFilteredResultProxy response) {
@@ -111,7 +111,7 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 	private void initProgressFlexTableData(final StudentProxy studentProxy) {
 		showApplicationLoading(true);
 		progressFlexTable.removeAllRows();
-		requests.topicRequestNonRoo().findTopicOrderByClassification(view.getPager().getStart(), view.getPager().getLength(), studentProxy).with("topicList.classificationTopic", "topicList.classificationTopic.mainClassification").fire(new Receiver<TopicFilteredResultProxy>() {
+		requests.topicRequest().findTopicOrderByClassification(view.getPager().getStart(), view.getPager().getLength(), studentProxy).with("topicList.classificationTopic", "topicList.classificationTopic.mainClassification").fire(new Receiver<TopicFilteredResultProxy>() {
 
 			@Override
 			public void onSuccess(TopicFilteredResultProxy response) {
@@ -152,7 +152,7 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 		// Fix in default style( without it tab content will not show properly)
 		systemStartView.asWidget().getElement().getParentElement().getParentElement().getStyle().setPosition(Position.RELATIVE);
 		view.setDelegate(this);
-		requests.studentRequestNonRoo().findStudentFromSession().fire(new Receiver<StudentProxy>() {
+		requests.studentRequest().findStudentFromSession().fire(new Receiver<StudentProxy>() {
 
 			@Override
 			public void onSuccess(StudentProxy response) {
@@ -170,7 +170,7 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 
 	@Override
 	public void findProgressOfMainClassification(MainClassificationProxy mainClassificationProxy, final int row, final int i, StudentProxy studentProxy) {
-		requests.skillRequestNonRoo().findProgressOfMainClassification(mainClassificationProxy, studentProxy.getId()).fire(new Receiver<String>() {
+		requests.skillRequest().findProgressOfMainClassification(mainClassificationProxy, studentProxy.getId()).fire(new Receiver<String>() {
 
 			@Override
 			public void onSuccess(String response) {
@@ -185,7 +185,7 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 
 	@Override
 	public void findProgressOfClassificationTopic(ClassificationTopicProxy classificationTopicProxy, final int row, final int i, StudentProxy studentProxy) {
-		requests.skillRequestNonRoo().findProgressOfClassificationTopic(classificationTopicProxy, studentProxy.getId()).fire(new Receiver<String>() {
+		requests.skillRequest().findProgressOfClassificationTopic(classificationTopicProxy, studentProxy.getId()).fire(new Receiver<String>() {
 
 			@Override
 			public void onSuccess(String response) {

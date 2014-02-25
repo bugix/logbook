@@ -23,4 +23,6 @@ public interface ClassificationTopicRequest extends RequestContext {
 	abstract InstanceRequest<ClassificationTopicProxy, Void> persist();
 
 	abstract InstanceRequest<ClassificationTopicProxy, Void> remove();
+	
+	abstract Request<List<ClassificationTopicProxy>> findClassiTopicByMainClassfication(Long value);
 }

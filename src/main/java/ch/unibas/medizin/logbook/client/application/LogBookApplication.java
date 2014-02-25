@@ -11,10 +11,10 @@ import ch.unibas.medizin.logbook.client.place.AdminPlace;
 import ch.unibas.medizin.logbook.client.place.LogBookPlaceHistoryFactory;
 import ch.unibas.medizin.logbook.client.place.LogBookPlaceHistoryMapper;
 import ch.unibas.medizin.logbook.client.place.LoginPlace;
+import ch.unibas.medizin.logbook.client.request.LogBookRequestFactory;
 import ch.unibas.medizin.logbook.client.request.RequestEvent;
 import ch.unibas.medizin.logbook.client.shell.LogBookAdminShell;
 import ch.unibas.medizin.logbook.client.shell.LogBookShell;
-import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.GWT;
@@ -60,7 +60,7 @@ public class LogBookApplication {
 		Log.debug("McApp.run()");
 
 		/* Add handlers, setup activities */
-		requestFactory.studentRequestNonRoo().isCurrentUserStudent().fire(new Receiver<Boolean>() {
+		requestFactory.studentRequest().isCurrentUserStudent().fire(new Receiver<Boolean>() {
 
 			@Override
 			public void onSuccess(Boolean isStudent) {

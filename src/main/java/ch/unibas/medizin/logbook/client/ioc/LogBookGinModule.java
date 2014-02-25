@@ -1,7 +1,7 @@
 package ch.unibas.medizin.logbook.client.ioc;
 
 import ch.unibas.medizin.logbook.client.request.EventSourceRequestTransport;
-import ch.unibas.medizin.logbook.shared.request.LogBookRequestFactory;
+import ch.unibas.medizin.logbook.client.request.LogBookRequestFactory;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
