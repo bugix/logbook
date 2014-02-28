@@ -8,10 +8,12 @@ import com.google.gwt.i18n.client.NumberFormat;
 public class UtilityLogBook {
 
 	public static final NumberFormat DECIMAL_FORMAT = NumberFormat.getFormat("#0.00%");
-
-	/* text : The text to be printed. */
-	/* length : Len of the text to be shown after that ... will be concatenated. */
-
+	
+	/**
+	 * @param text The text to be printed.
+	 * @param length Length of the text to be shown after that ... will be concatenated.
+	 * @return
+	 */
 	public static String getFormatedString(String text, int length) {
 		if (text.length() > length) {
 			text = text.substring(0, length).concat("...");
@@ -27,7 +29,7 @@ public class UtilityLogBook {
 		}
 	}
 
-	// Join Collection Using Seperator and Return seperator seperated String
+	// Join Collection Using Separator and Return separator separated String
 	public static <T> String join(Collection<T> collection, String seperator) {
 		StringBuffer buffer = new StringBuffer();
 
@@ -40,6 +42,5 @@ public class UtilityLogBook {
 		}
 
 		return buffer.toString();
-
 	}
 }

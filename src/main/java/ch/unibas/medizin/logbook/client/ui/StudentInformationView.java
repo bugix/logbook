@@ -16,8 +16,9 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ToggleButton;
 
 public interface StudentInformationView extends IsWidget {
-	/*
-	 *  * Implemented by the owner of the view.
+
+	/**
+	 * Implemented by the owner of the view.
 	 */
 	interface Delegate {
 		public void changeStudentInformationClicked(ClickEvent event);

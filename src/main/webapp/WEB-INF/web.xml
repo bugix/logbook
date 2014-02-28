@@ -126,7 +126,7 @@
 	</filter-mapping>
 
 	<welcome-file-list>
-		<welcome-file>LogBookEntry.html</welcome-file>
+		<welcome-file>LogBook.html</welcome-file>
 	</welcome-file-list>
 
 </web-app>

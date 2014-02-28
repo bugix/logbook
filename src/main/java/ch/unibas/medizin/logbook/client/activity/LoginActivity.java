@@ -52,6 +52,7 @@ import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 public class LoginActivity extends AbstractActivity implements StudentInformationView.presenter, StudentInformationView.Delegate {
+
 	private LogBookRequestFactory requests;
 	private AcceptsOneWidget widget;
 	private StudentInformationView view;
@@ -181,7 +182,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 					}
 
 					@Override
-					public void onConstraintViolation(java.util.Set<javax.validation.ConstraintViolation<?>> violations) {
+					public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
 						super.onConstraintViolation(violations);
 						Log.debug("Violation");
 					};
@@ -233,7 +234,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			}
 
 			@Override
-			public void onConstraintViolation(java.util.Set<javax.validation.ConstraintViolation<?>> violations) {
+			public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
 				super.onConstraintViolation(violations);
 				Log.debug("Violation");
 			};
@@ -316,7 +317,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 						}
 
 						@Override
-						public void onConstraintViolation(java.util.Set<javax.validation.ConstraintViolation<?>> violations) {
+						public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
 							super.onConstraintViolation(violations);
 							Log.debug("Violation");
 						};
@@ -335,7 +336,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			}
 
 			@Override
-			public void onConstraintViolation(java.util.Set<javax.validation.ConstraintViolation<?>> violations) {
+			public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
 				super.onConstraintViolation(violations);
 				Log.debug("Violation");
 			};
@@ -496,7 +497,6 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 				});
 			}
 		});
-
 	}
 
 	// Finalize Student
@@ -553,8 +553,9 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 							errorMessageTimer.schedule((int) LogBookConstant.ERROR_MESSAGE_TIME);
 						}
 					});
-				} else {
-
+				}
+				else
+				{
 					view.getHpErrorMessage().setVisible(true);
 					view.getLblErrorMessage().setInnerHTML(constants.studentFinalized());
 					view.getBtnFinalizeLogBook().setEnabled(false);

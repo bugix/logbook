@@ -21,8 +21,9 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public interface SkillView extends IsWidget {
-	/*
-	 *  * Implemented by the owner of the view.
+
+	/**
+	 * Implemented by the owner of the view.
 	 */
 	interface Delegate {
 

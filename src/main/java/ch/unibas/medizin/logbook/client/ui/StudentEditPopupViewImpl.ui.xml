@@ -28,8 +28,7 @@
 							<g:Label ui:field="lblStudyYear" addStyleNames="{style.paddingTop5}"></g:Label>
 						</td>
 						<td>
-							<g:ValueListBox ui:field="lstBoxStudyYear" width="80px"
-								addStyleNames="{style.paddingTop5}"></g:ValueListBox>
+							<g:ValueListBox ui:field="lstBoxStudyYear" width="80px" addStyleNames="{style.paddingTop5}"></g:ValueListBox>
 						</td>
 					</tr>
 					<tr>
@@ -37,8 +36,7 @@
 							<g:Label ui:field="lblEmail" addStyleNames="{style.paddingTop5}"></g:Label>
 						</td>
 						<td>
-							<g:TextBox ui:field="txtEmailValue" width="155px"
-								addStyleNames="{style.paddingTop5}"></g:TextBox>
+							<g:TextBox ui:field="txtEmailValue" width="155px" addStyleNames="{style.paddingTop5}"></g:TextBox>
 						</td>
 					</tr>
 					<tr>

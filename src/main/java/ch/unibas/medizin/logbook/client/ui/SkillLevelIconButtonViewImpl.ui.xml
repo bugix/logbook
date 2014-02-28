@@ -14,8 +14,7 @@
 	</ui:style>
 
 	<g:HTMLPanel>
-		<g:HorizontalPanel ui:field="editButtonHP"
-			addStyleNames="{style.skillHPEleStyle}">
+		<g:HorizontalPanel ui:field="editButtonHP" addStyleNames="{style.skillHPEleStyle}">
 			<g:HTMLPanel>
 				<div ui:field="skillIconButton" class="ui-icon ui-icon-pencil"></div>
 			</g:HTMLPanel>

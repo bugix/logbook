@@ -7,7 +7,9 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.text.shared.AbstractRenderer;
 
 public class EnumRenderer<T extends Enum<?>> extends AbstractRenderer<T> {
+
 	protected final LogBookConstantsWithLookup constants = GWT.create(LogBookConstantsWithLookup.class);
+
 	private final Type rendererType;
 
 	public static enum Type {

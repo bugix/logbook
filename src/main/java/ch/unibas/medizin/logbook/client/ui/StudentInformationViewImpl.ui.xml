@@ -191,8 +191,7 @@
 						<tbody>
 							<tr>
 								<g:HTMLPanel ui:field="hpErrorMessage">
-									<div class="ui-state-highlight ui-corner-all mainErrorLabelStyle"
-										style="padding:5px; margin-bottom:10px;">
+									<div class="ui-state-highlight ui-corner-all mainErrorLabelStyle" style="padding:5px; margin-bottom:10px;">
 										<div class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></div>
 										<div ui:field="lblErrorMessage"></div>
 									</div>
@@ -315,8 +314,7 @@
 								</g:HorizontalPanel>
 							</tr>
 							<tr addStyleNames="{style.subMainTrStyle}">
-								<g:VerticalPanel height="100%" width="100%"
-									addStyleNames="{style.latestAcquiredSkillSPStyle}">
+								<g:VerticalPanel height="100%" width="100%" addStyleNames="{style.latestAcquiredSkillSPStyle}">
 									<g:Label ui:field="lblLatestAcquiredSkill" addStyleNames="{style.skillAcquiredheadingLabelStyle}"></g:Label>
 									<g:ScrollPanel addStyleNames="{style.latestAcquiredSkillScrollPanelStyle}">
 										<g:VerticalPanel width="100%" height="100%">

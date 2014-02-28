@@ -120,8 +120,7 @@
 						<tbody>
 							<tr>
 								<g:HTMLPanel ui:field="hpErrorMessage">
-									<div class="ui-state-highlight ui-corner-all mainErrorLabelStyle"
-										style="padding:5px; margin-bottom:10px;">
+									<div class="ui-state-highlight ui-corner-all mainErrorLabelStyle" style="padding:5px; margin-bottom:10px;">
 										<div class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></div>
 										<div ui:field="lblErrorMessage"></div>
 									</div>
@@ -135,22 +134,18 @@
 												<tbody>
 													<tr>
 														<td>
-															<g:Label ui:field="mainClassificationLabel"
-																addStyleNames="{style.labelPadding}"></g:Label>
+															<g:Label ui:field="mainClassificationLabel" addStyleNames="{style.labelPadding}"></g:Label>
 														</td>
 														<td>
-															<i:DefaultSuggestBox ui:field="mainClassificationSuggestBox"
-																width="400px" addStyleNames="{style.suggestBoxStyle}"></i:DefaultSuggestBox>
+															<i:DefaultSuggestBox ui:field="mainClassificationSuggestBox" width="400px" addStyleNames="{style.suggestBoxStyle}"></i:DefaultSuggestBox>
 														</td>
 													</tr>
 													<tr>
 														<td>
-															<g:Label ui:field="classificationTopic"
-																addStyleNames="{style.labelPadding}"></g:Label>
+															<g:Label ui:field="classificationTopic" addStyleNames="{style.labelPadding}"></g:Label>
 														</td>
 														<td>
-															<i:DefaultSuggestBox ui:field="classificationTopicSuggestBox"
-																width="200px" addStyleNames="{style.suggestBoxStyle}"></i:DefaultSuggestBox>
+															<i:DefaultSuggestBox ui:field="classificationTopicSuggestBox" width="200px" addStyleNames="{style.suggestBoxStyle}"></i:DefaultSuggestBox>
 														</td>
 													</tr>
 													<tr>
@@ -158,9 +153,7 @@
 															<g:Label ui:field="topic" addStyleNames="{style.labelPadding}"></g:Label>
 														</td>
 														<td>
-															<i:DefaultSuggestBox ui:field="topicSuggestBox"
-																width="200px" addStyleNames="{style.suggestBoxStyle}"></i:DefaultSuggestBox>
-															<!-- <g:SuggestBox width="200px"></g:SuggestBox> -->
+															<i:DefaultSuggestBox ui:field="topicSuggestBox" width="200px" addStyleNames="{style.suggestBoxStyle}"></i:DefaultSuggestBox>
 														</td>
 													</tr>
 													<tr>
@@ -168,8 +161,7 @@
 															<g:Label ui:field="fullTextSearch" addStyleNames="{style.labelPadding}"></g:Label>
 														</td>
 														<td>
-															<g:TextBox ui:field="fullTextSearchBox"
-																addStyleNames="{style.suggestBoxStyle}"></g:TextBox>
+															<g:TextBox ui:field="fullTextSearchBox" addStyleNames="{style.suggestBoxStyle}"></g:TextBox>
 														</td>
 													</tr>
 													<tr>
@@ -194,14 +186,11 @@
 												<g:Anchor ui:field="shortcutExplanation"></g:Anchor>
 											</td>
 											<td align="right">
-												<g:HorizontalPanel addStyleNames="{style.printPdf}"
-													verticalAlignment="middle">
+												<g:HorizontalPanel addStyleNames="{style.printPdf}" verticalAlignment="middle">
 													<g:Image ui:field="imgPrint"></g:Image>
-													<g:Anchor ui:field="hyperLnkPrint" addStyleNames="{style.anchor}"
-														width="100%"></g:Anchor>
+													<g:Anchor ui:field="hyperLnkPrint" addStyleNames="{style.anchor}" width="100%"></g:Anchor>
 													<g:Image ui:field="imgpdf"></g:Image>
-													<g:Anchor ui:field="hyperlnkSavePDF"
-														addStyleNames="{style.anchor}"></g:Anchor>
+													<g:Anchor ui:field="hyperlnkSavePDF" addStyleNames="{style.anchor}"></g:Anchor>
 												</g:HorizontalPanel>
 											</td>
 										</tr>

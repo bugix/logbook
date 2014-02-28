@@ -30,160 +30,167 @@ import org.springframework.transaction.annotation.Transactional;
 public class ClassificationTopic {
 
 	@PersistenceContext
-    transient EntityManager entityManager;
+	transient EntityManager entityManager;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Long id;
 
 	@Version
-    @Column(name = "version")
-    private Integer version;
+	@Column(name = "version")
+	private Integer version;
 
-    @Size(max = 255)
-    private String description;
+	@Size(max = 255)
+	private String description;
 
-    @Size(max = 8)
-    private String shortcut;
+	@Size(max = 8)
+	private String shortcut;
 
-    @ManyToOne
-    private MainClassification mainClassification;
+	@ManyToOne
+	private MainClassification mainClassification;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "classificationTopic")
-    private List<Topic> topics = new ArrayList<Topic>();
-    
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "classificationTopic")
+	private List<Topic> topics = new ArrayList<Topic>();
+
 	public String getDescription() {
-        return this.description;
-    }
+		return this.description;
+	}
 
 	public void setDescription(String description) {
-        this.description = description;
-    }
+		this.description = description;
+	}
 
 	public String getShortcut() {
-        return this.shortcut;
-    }
+		return this.shortcut;
+	}
 
 	public void setShortcut(String shortcut) {
-        this.shortcut = shortcut;
-    }
+		this.shortcut = shortcut;
+	}
 
 	public MainClassification getMainClassification() {
-        return this.mainClassification;
-    }
+		return this.mainClassification;
+	}
 
 	public void setMainClassification(MainClassification mainClassification) {
-        this.mainClassification = mainClassification;
-    }
+		this.mainClassification = mainClassification;
+	}
 
 	public List<Topic> getTopics() {
-        return this.topics;
-    }
+		return this.topics;
+	}
 
 	public void setTopics(List<Topic> topics) {
-        this.topics = topics;
-    }
-	
+		this.topics = topics;
+	}
+
 	public Long getId() {
-        return this.id;
-    }
+		return this.id;
+	}
 
 	public void setId(Long id) {
-        this.id = id;
-    }
+		this.id = id;
+	}
 
 	public Integer getVersion() {
-        return this.version;
-    }
+		return this.version;
+	}
 
 	public void setVersion(Integer version) {
-        this.version = version;
-    }
-    
-    public static List<ClassificationTopic> findClassificationTopicByMainClassfication(Long value)
-	{
+		this.version = version;
+	}
+
+	public static List<ClassificationTopic> findClassificationTopicByMainClassfication(Long value) {
 		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
 		CriteriaQuery<ClassificationTopic> criteriaQuery = criteriaBuilder.createQuery(ClassificationTopic.class);
 		Root<ClassificationTopic> from = criteriaQuery.from(ClassificationTopic.class);
 		CriteriaQuery<ClassificationTopic> select = criteriaQuery.select(from);
-		
+
 		if (value != null)
 			criteriaQuery.where(criteriaBuilder.equal(from.get("mainClassification"), value));
-		
+
 		TypedQuery<ClassificationTopic> q = entityManager().createQuery(criteriaQuery);
 		return q.getResultList();
 	}
 
 	public static TypedQuery<ClassificationTopic> findClassificationTopicsByMainClassification(MainClassification mainClassification) {
-        if (mainClassification == null) throw new IllegalArgumentException("The mainClassification argument is required");
-        EntityManager em = ClassificationTopic.entityManager();
-        TypedQuery<ClassificationTopic> q = em.createQuery("SELECT o FROM ClassificationTopic AS o WHERE o.mainClassification = :mainClassification", ClassificationTopic.class);
-        q.setParameter("mainClassification", mainClassification);
-        return q;
-    }
+		if (mainClassification == null)
+			throw new IllegalArgumentException("The mainClassification argument is required");
+		EntityManager em = ClassificationTopic.entityManager();
+		TypedQuery<ClassificationTopic> q = em.createQuery("SELECT o FROM ClassificationTopic AS o WHERE o.mainClassification = :mainClassification", ClassificationTopic.class);
+		q.setParameter("mainClassification", mainClassification);
+		return q;
+	}
 
 	public static final EntityManager entityManager() {
-        EntityManager em = new ClassificationTopic().entityManager;
-        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
-        return em;
-    }
+		EntityManager em = new ClassificationTopic().entityManager;
+		if (em == null)
+			throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
+		return em;
+	}
 
 	public static long countClassificationTopics() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM ClassificationTopic o", Long.class).getSingleResult();
-    }
+		return entityManager().createQuery("SELECT COUNT(o) FROM ClassificationTopic o", Long.class).getSingleResult();
+	}
 
 	public static List<ClassificationTopic> findAllClassificationTopics() {
-        return entityManager().createQuery("SELECT o FROM ClassificationTopic o", ClassificationTopic.class).getResultList();
-    }
+		return entityManager().createQuery("SELECT o FROM ClassificationTopic o", ClassificationTopic.class).getResultList();
+	}
 
 	public static ClassificationTopic findClassificationTopic(Long id) {
-        if (id == null) return null;
-        return entityManager().find(ClassificationTopic.class, id);
-    }
+		if (id == null)
+			return null;
+		return entityManager().find(ClassificationTopic.class, id);
+	}
 
 	public static List<ClassificationTopic> findClassificationTopicEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM ClassificationTopic o", ClassificationTopic.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
+		return entityManager().createQuery("SELECT o FROM ClassificationTopic o", ClassificationTopic.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+	}
 
 	@Transactional
-    public void persist() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(this);
-    }
+	public void persist() {
+		if (this.entityManager == null)
+			this.entityManager = entityManager();
+		this.entityManager.persist(this);
+	}
 
 	@Transactional
-    public void remove() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        if (this.entityManager.contains(this)) {
-            this.entityManager.remove(this);
-        } else {
-            ClassificationTopic attached = ClassificationTopic.findClassificationTopic(this.id);
-            this.entityManager.remove(attached);
-        }
-    }
+	public void remove() {
+		if (this.entityManager == null)
+			this.entityManager = entityManager();
+		if (this.entityManager.contains(this)) {
+			this.entityManager.remove(this);
+		} else {
+			ClassificationTopic attached = ClassificationTopic.findClassificationTopic(this.id);
+			this.entityManager.remove(attached);
+		}
+	}
 
 	@Transactional
-    public void flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.flush();
-    }
+	public void flush() {
+		if (this.entityManager == null)
+			this.entityManager = entityManager();
+		this.entityManager.flush();
+	}
 
 	@Transactional
-    public void clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.clear();
-    }
+	public void clear() {
+		if (this.entityManager == null)
+			this.entityManager = entityManager();
+		this.entityManager.clear();
+	}
 
 	@Transactional
-    public ClassificationTopic merge() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        ClassificationTopic merged = this.entityManager.merge(this);
-        this.entityManager.flush();
-        return merged;
-    }
-	
+	public ClassificationTopic merge() {
+		if (this.entityManager == null)
+			this.entityManager = entityManager();
+		ClassificationTopic merged = this.entityManager.merge(this);
+		this.entityManager.flush();
+		return merged;
+	}
+
 	public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 }

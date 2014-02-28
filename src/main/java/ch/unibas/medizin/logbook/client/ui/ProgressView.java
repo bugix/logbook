@@ -14,8 +14,8 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
 public interface ProgressView extends IsWidget {
-	/*
-	 *  * Implemented by the owner of the view.
+	/**
+	 * Implemented by the owner of the view.
 	 */
 	interface Delegate {
 

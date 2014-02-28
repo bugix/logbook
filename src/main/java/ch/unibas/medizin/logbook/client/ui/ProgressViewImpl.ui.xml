@@ -51,10 +51,8 @@
 				<tr>
 					<g:ScrollPanel width="810px" height="100%">
 						<g:VerticalPanel width="810px" height="100%">
-							<g:FlexTable ui:field="progressFlexTable"
-								addStyleNames="style.progresstable-style" width="810px"></g:FlexTable>
-							<a:CustomPager ui:field="pager"
-								addStyleNames="{style.progressTablePagerStyle}"></a:CustomPager>
+							<g:FlexTable ui:field="progressFlexTable" addStyleNames="style.progresstable-style" width="810px"></g:FlexTable>
+							<a:CustomPager ui:field="pager" addStyleNames="{style.progressTablePagerStyle}"></a:CustomPager>
 						</g:VerticalPanel>
 					</g:ScrollPanel>
 				</tr>

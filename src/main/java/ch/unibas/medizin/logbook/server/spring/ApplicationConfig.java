@@ -41,17 +41,17 @@ public class ApplicationConfig {
 
 		org.apache.tomcat.jdbc.pool.DataSource dataSource = new org.apache.tomcat.jdbc.pool.DataSource();
 
+		/*
 		dataSource.setDriverClassName("org.h2.Driver");
 		dataSource.setUrl("jdbc:h2:~/tmp/logbook");
 		dataSource.setUsername("sa");
 		dataSource.setPassword("");
+		*/
 		
-		/*
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://" + environment.getProperty("db.host") + "/" + environment.getProperty("db.name"));
 		dataSource.setUsername(environment.getProperty("db.user"));
 		dataSource.setPassword(environment.getProperty("db.password"));
-		*/
 
 		return dataSource;
 	}
@@ -66,8 +66,8 @@ public class ApplicationConfig {
 		Map<String, String> jpaPropertyMap = new HashMap<String, String>();
 		jpaPropertyMap.put("hibernate.hbm2ddl.auto", "create");
 		jpaPropertyMap.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-		//jpaPropertyMap.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
-		jpaPropertyMap.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
+		jpaPropertyMap.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
+		//jpaPropertyMap.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
 		jpaPropertyMap.put("hibernate.connection.charSet", "UTF-8");
 		jpaPropertyMap.put("hibernate.jdbc.fetch_size", "10");
 

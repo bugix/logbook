@@ -49,7 +49,6 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 	}
 
 	public ProgressActivity(LogBookRequestFactory requests, PlaceController placeController) {
-
 		this.requests = requests;
 	}
 

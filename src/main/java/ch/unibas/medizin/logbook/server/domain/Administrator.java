@@ -35,156 +35,161 @@ import com.google.web.bindery.requestfactory.server.RequestFactoryServlet;
 public class Administrator {
 
 	@PersistenceContext
-    transient EntityManager entityManager;
-	
+	transient EntityManager entityManager;
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Long id;
 
 	@Version
-    @Column(name = "version")
-    private Integer version;
+	@Column(name = "version")
+	private Integer version;
 
 	@NotNull
-	@Size(max = 40)   
-    private String email;
-    
-    @NotNull
-    @Size(max = 40)
-    private String name;
+	@Size(max = 40)
+	private String email;
 
-    @NotNull
-    @Size(max = 40)
-    private String preName;
+	@NotNull
+	@Size(max = 40)
+	private String name;
 
- 	public Long getId() {
-         return this.id;
-     }
+	@NotNull
+	@Size(max = 40)
+	private String preName;
 
- 	public void setId(Long id) {
-         this.id = id;
-     }
+	public Long getId() {
+		return this.id;
+	}
 
- 	public Integer getVersion() {
-         return this.version;
-     }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
- 	public void setVersion(Integer version) {
-         this.version = version;
-     }
+	public Integer getVersion() {
+		return this.version;
+	}
 
- 	public String getEmail() {
-         return this.email;
-     }
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
 
- 	public void setEmail(String email) {
-         this.email = email;
-     }
+	public String getEmail() {
+		return this.email;
+	}
 
- 	public String getName() {
-         return this.name;
-     }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
- 	public void setName(String name) {
-         this.name = name;
-     }
+	public String getName() {
+		return this.name;
+	}
 
- 	public String getPreName() {
-         return this.preName;
-     }
+	public void setName(String name) {
+		this.name = name;
+	}
 
- 	public void setPreName(String preName) {
-         this.preName = preName;
-     }
-    
-    public static Administrator findAdministratorFromSession()
-    {
-        HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
-        String mailId = (String) session.getAttribute(UNIQUE_ID);
-        Log.debug("mail id: " + mailId); 
-        Administrator administrator = Administrator.findAdministratorUsingEmail(mailId);
-        
-        return administrator;
-    }
+	public String getPreName() {
+		return this.preName;
+	}
 
-	public static Administrator findAdministratorUsingEmail(String mailId) 
-	{
+	public void setPreName(String preName) {
+		this.preName = preName;
+	}
+
+	public static Administrator findAdministratorFromSession() {
+		HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
+		String mailId = (String) session.getAttribute(UNIQUE_ID);
+		Log.debug("mail id: " + mailId);
+		Administrator administrator = Administrator.findAdministratorUsingEmail(mailId);
+
+		return administrator;
+	}
+
+	public static Administrator findAdministratorUsingEmail(String mailId) {
 		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
 		CriteriaQuery<Administrator> criteriaQuery = criteriaBuilder.createQuery(Administrator.class);
 		Root<Administrator> from = criteriaQuery.from(Administrator.class);
-					
+
 		Predicate emailAddress = criteriaBuilder.equal(from.get("email"), mailId);
 		criteriaQuery.where(emailAddress);
-		
+
 		TypedQuery<Administrator> q = entityManager().createQuery(criteriaQuery);
-		
+
 		Log.debug("Query : " + q.unwrap(Query.class).getQueryString());
-		
-        return q.getSingleResult();	
+
+		return q.getSingleResult();
 	}
 
 	public static final EntityManager entityManager() {
-        EntityManager em = new Administrator().entityManager;
-        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
-        return em;
-    }
+		EntityManager em = new Administrator().entityManager;
+		if (em == null)
+			throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
+		return em;
+	}
 
 	public static long countAdministrators() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Administrator o", Long.class).getSingleResult();
-    }
+		return entityManager().createQuery("SELECT COUNT(o) FROM Administrator o", Long.class).getSingleResult();
+	}
 
 	public static List<Administrator> findAllAdministrators() {
-        return entityManager().createQuery("SELECT o FROM Administrator o", Administrator.class).getResultList();
-    }
+		return entityManager().createQuery("SELECT o FROM Administrator o", Administrator.class).getResultList();
+	}
 
 	public static Administrator findAdministrator(Long id) {
-        if (id == null) return null;
-        return entityManager().find(Administrator.class, id);
-    }
+		if (id == null)
+			return null;
+		return entityManager().find(Administrator.class, id);
+	}
 
 	public static List<Administrator> findAdministratorEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Administrator o", Administrator.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
+		return entityManager().createQuery("SELECT o FROM Administrator o", Administrator.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+	}
 
 	@Transactional
-    public void persist() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(this);
-    }
+	public void persist() {
+		if (this.entityManager == null)
+			this.entityManager = entityManager();
+		this.entityManager.persist(this);
+	}
 
 	@Transactional
-    public void remove() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        if (this.entityManager.contains(this)) {
-            this.entityManager.remove(this);
-        } else {
-            Administrator attached = Administrator.findAdministrator(this.id);
-            this.entityManager.remove(attached);
-        }
-    }
+	public void remove() {
+		if (this.entityManager == null)
+			this.entityManager = entityManager();
+		if (this.entityManager.contains(this)) {
+			this.entityManager.remove(this);
+		} else {
+			Administrator attached = Administrator.findAdministrator(this.id);
+			this.entityManager.remove(attached);
+		}
+	}
 
 	@Transactional
-    public void flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.flush();
-    }
+	public void flush() {
+		if (this.entityManager == null)
+			this.entityManager = entityManager();
+		this.entityManager.flush();
+	}
 
 	@Transactional
-    public void clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.clear();
-    }
+	public void clear() {
+		if (this.entityManager == null)
+			this.entityManager = entityManager();
+		this.entityManager.clear();
+	}
 
 	@Transactional
-    public Administrator merge() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        Administrator merged = this.entityManager.merge(this);
-        this.entityManager.flush();
-        return merged;
-    }
+	public Administrator merge() {
+		if (this.entityManager == null)
+			this.entityManager = entityManager();
+		Administrator merged = this.entityManager.merge(this);
+		this.entityManager.flush();
+		return merged;
+	}
 
 	public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 }

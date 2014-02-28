@@ -8,7 +8,7 @@ public class LogBookTest extends GWTTestCase {
 
 	@Override
 	public String getModuleName() {
-		return "ch.unibas.medizin.logbook.LogBookEntry";
+		return "ch.unibas.medizin.logbook.LogBook";
 	}
 	
 	@Test

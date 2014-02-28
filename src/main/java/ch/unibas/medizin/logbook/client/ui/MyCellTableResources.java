@@ -6,6 +6,7 @@ import com.google.gwt.resources.client.ImageResource.RepeatStyle;
 import com.google.gwt.user.cellview.client.CellTable;
 
 public interface MyCellTableResources extends CellTable.Resources {
+
 	public interface Style extends CellTable.Style {
 		String cellTableEvenYesRow();
 
