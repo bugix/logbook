@@ -128,3 +128,8 @@ task generateRequetfacoryValidation(type: JavaCompile, group: "build", descripti
 }
 
 compileAspect.dependsOn generateRequetfacoryValidation
+
+task explodedWar(type: Copy) {
+    into "exploded" 
+    with war
+}

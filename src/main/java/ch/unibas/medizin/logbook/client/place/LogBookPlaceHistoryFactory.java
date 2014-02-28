@@ -25,16 +25,16 @@ public class LogBookPlaceHistoryFactory {
 	}
 
 	public PlaceTokenizer<LoginPlace> getLoginPlaceTokenizer() {
-		LogBookNav.logBookNav.masterActivityManager.setDisplay((SimplePanel) LogBookNav.logBookNav.getMainLoogBookTabpanel().getWidget(0));
-		LogBookNav.logBookNav.getMainLoogBookTabpanel().selectTab(0, false);
+		LogBookNav.logBookNav.masterActivityManager.setDisplay((SimplePanel) LogBookNav.logBookNav.getMainLogBookTabpanel().getWidget(0));
+		LogBookNav.logBookNav.getMainLogBookTabpanel().selectTab(0, false);
 		return placeLoginTokenizer;
 	}
 
 	public PlaceTokenizer<SkillPlace> getSkillPlaceTokenizer() {
 
-		LogBookNav.logBookNav.masterActivityManager.setDisplay((SimplePanel) LogBookNav.logBookNav.getMainLoogBookTabpanel().getWidget(1));
+		LogBookNav.logBookNav.masterActivityManager.setDisplay((SimplePanel) LogBookNav.logBookNav.getMainLogBookTabpanel().getWidget(1));
 
-		LogBookNav.logBookNav.getMainLoogBookTabpanel().selectTab(1, false);
+		LogBookNav.logBookNav.getMainLogBookTabpanel().selectTab(1, false);
 
 		SkillPlace.tabIndex = 1;
 
@@ -42,9 +42,9 @@ public class LogBookPlaceHistoryFactory {
 	}
 
 	public PlaceTokenizer<ProgressPlace> getProgressPlaceTokenizer() {
-		LogBookNav.logBookNav.masterActivityManager.setDisplay((SimplePanel) LogBookNav.logBookNav.getMainLoogBookTabpanel().getWidget(2));
+		LogBookNav.logBookNav.masterActivityManager.setDisplay((SimplePanel) LogBookNav.logBookNav.getMainLogBookTabpanel().getWidget(2));
 
-		LogBookNav.logBookNav.getMainLoogBookTabpanel().selectTab(2, false);
+		LogBookNav.logBookNav.getMainLogBookTabpanel().selectTab(2, false);
 
 		ProgressPlace.tabIndex = 1;
 		return placeProgressTokenizer;

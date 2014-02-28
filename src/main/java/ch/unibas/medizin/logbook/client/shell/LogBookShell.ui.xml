@@ -3,7 +3,7 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:a="urn:import:ch.unibas.medizin.logbook.client.ui">
 	<ui:style>
 	.northPanelStyle {
-		background-image: url("logbook/gwt/logbook/images/bg-header.jpg");
+		background-image: url("logbook/images/bg-header.jpg");
 		width: 100%;
 		height: 110px;
 		position: absolute;
@@ -41,7 +41,7 @@
 			addStyleNames="{style.eastPanelStyle}">
 			<g:north size='110'>
 				<g:HTMLPanel>
-					<g:Image ui:field="imgLoogBookLogo" url="logbook/gwt/logbook/images/logo.png" addStyleNames="{style.logBookLogo}"></g:Image>
+					<g:Image ui:field="imgLogBookLogo" url="logbook/images/logo.png" addStyleNames="{style.logBookLogo}"></g:Image>
 					<g:SimplePanel ui:field="topPanel" addStyleNames="{style.northPanelStyle}"></g:SimplePanel>
 				</g:HTMLPanel>
 			</g:north>

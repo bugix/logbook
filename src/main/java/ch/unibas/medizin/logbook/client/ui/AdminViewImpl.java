@@ -136,13 +136,11 @@ public class AdminViewImpl extends Composite implements AdminView {
 
 	@Override
 	public void setPresenter(presenter presenter) {
-
 	}
 
 	@Override
 	public void setDelegate(Delegate delegate) {
 		this.delegate = delegate;
-
 	}
 
 }

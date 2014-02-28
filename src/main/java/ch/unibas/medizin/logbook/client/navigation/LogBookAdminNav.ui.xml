@@ -24,7 +24,6 @@
 	
 	.mainVerticlePanelStyle {
 		height: auto;
-		/*border-width:1px solid lightblue !important;*/
 		border: 1px solid lightblue !important;
 		border-radius: 4px;
 		padding: 20px;
@@ -54,7 +53,7 @@
 		font-size: 11px;
 	}
 	</ui:style>
-	<g:TabLayoutPanel ui:field="mainLoogBookTabpanel" barUnit='PX' barHeight='51' height="100%">
+	<g:TabLayoutPanel ui:field="mainLogBookTabpanel" barUnit='PX' barHeight='51' height="100%">
 		<g:tab>
 			<g:customHeader>
 				<g:Label ui:field="login"></g:Label>

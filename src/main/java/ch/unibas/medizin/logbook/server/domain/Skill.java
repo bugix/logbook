@@ -635,7 +635,7 @@ public class Skill {
 			transformer.transform(source, result);
 			String xmlString = sw.toString();
 
-			String path = RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/logbook/gwt/logbook/");
+			String path = RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/logbook/");
 			String fileName = path + "/" + System.currentTimeMillis() + ".xml";
 			Log.debug("Path: " + fileName);
 
@@ -658,11 +658,11 @@ public class Skill {
 	public static String convertXmlToHtml(String fileName) {
 		try {
 			TransformerFactory tFactory = TransformerFactory.newInstance();
-			String xslPath = RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/logbook/gwt/logbook/skill.xsl");
+			String xslPath = RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/logbook/skill.xsl");
 			Source xslDoc = new StreamSource(xslPath);
 			Source xmlDoc = new StreamSource(fileName);
 
-			String path = RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/logbook/gwt/logbook/");
+			String path = RequestFactoryServlet.getThreadLocalRequest().getSession().getServletContext().getRealPath("/logbook/");
 			String outputFileName = path + "/" + System.currentTimeMillis() + ".html";
 			Log.debug("Path: " + outputFileName);
 			OutputStream htmlFile = new FileOutputStream(outputFileName);

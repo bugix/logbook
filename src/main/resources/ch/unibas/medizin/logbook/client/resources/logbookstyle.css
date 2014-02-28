@@ -19,57 +19,44 @@
 }
 
 .flexTableFirstColumnHeader {
-	background: url("images/ui-bg_glass_75_dadada_1x400.png") repeat-x
-		scroll 50% 50% #DADADA;
+	background: url("images/ui-bg_glass_75_dadada_1x400.png") repeat-x scroll 50% 50% #DADADA;
 	border-top-left-radius: 8px;
 	border-bottom: 1px solid #999999;
 	border-right: 1px solid #999999;
-	/* padding: 4px 10px 4px 10px; */
 	padding: 4px 1px 4px 1px;
 }
 
 .flexTableColumnHeader {
-	background: url("images/ui-bg_glass_75_dadada_1x400.png") repeat-x
-		scroll 50% 50% #DADADA;
+	background: url("images/ui-bg_glass_75_dadada_1x400.png") repeat-x scroll 50% 50% #DADADA;
 	border-right: 1px solid #999999;
 	border-bottom: 1px solid #999999;
-	/* padding: 4px 10px 4px 10px; */
 	padding: 4px 1px 4px 1px;
 }
 
 .flexTableLastColumnHeader {
-	background: url("images/ui-bg_glass_75_dadada_1x400.png") repeat-x
-		scroll 50% 50% #DADADA;
+	background: url("images/ui-bg_glass_75_dadada_1x400.png") repeat-x scroll 50% 50% #DADADA;
 	border-right: 0;
 	border-top-right-radius: 8px;
 	border-bottom: 1px solid #999999;
-	/* padding: 4px 10px 4px 10px; */
 	padding: 4px 1px 4px 1px;
 }
 
 /* suggestion box start*/
 eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
+}
+
+.eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left .eu-nextstreet-SuggestFieldPanel-leftInner {
 	
 }
 
-.eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left .eu-nextstreet-SuggestFieldPanel-leftInner
-	{
+.eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-content {
 	
 }
 
-.eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-content
-	{
-	
+.eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-right {
 }
 
-.eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-right
-	{
-	
-}
-
-.eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-right .eu-nextstreet-SuggestFieldPanel-rightInner
-	{
-	
+.eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-right .eu-nextstreet-SuggestFieldPanel-rightInner {
 }
 
 .eu-nextstreet-SuggestItem {
@@ -108,7 +95,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	border: 1px solid white;
 }
 
-.eu-nextstreet-SuggestField { /* /////  */
+.eu-nextstreet-SuggestField {
 	background: transparent url(images/down.png) no-repeat right 4px;
 	padding-right: 20px;
 	border: 1px solid;
@@ -128,7 +115,6 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .eu-nextstreet-SuggestPopup table {
-	
 }
 
 .eu-nextstreet-SuggestFieldHover {
@@ -172,11 +158,9 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .eu-nextstreet-SuggestFieldPopupSimpleTable tr td {
-	
 }
 
 .eu-nextstreet-SuggestFieldPopupSimpleTableCell {
-	
 }
 
 .eu-nextstreet-SuggestFieldPopupSimpleTableCell-selected {
@@ -211,7 +195,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 .eu-nextstreet-MultiItem {
 	vertical-align: middle;
 }
-/* end*/
+
 /************************************/
 /********* ICONS ********************/
 .eu-nextstreet-AdvancedTextBoxDefaultText-loading {
@@ -950,9 +934,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 .ui-icon-grip-diagonal-se {
 	background-position: -83px -228px;
 }
-/*end*/
-/*LogBook Style*/
-/*Home Tab Table Style*/
+
 .skillTableShortcutColumnStyle {
 	color: blue;
 }
@@ -964,12 +946,9 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	position: relative;
 }
 
-.gwt-ProgressBar-shell { /*  border: 2px solid #faf9f7;
-  border-right: 2px solid #848280;
-  border-bottom: 2px solid #848280; */
+.gwt-ProgressBar-shell {
 	border: 1px solid #63A8DC;
 	border-radius: 5px 5px 5px 5px;
-	/* background-color: #AAAAAA; */
 	background-color: #FFFFFF;
 	height: 14pt;
 	width: 50%;
@@ -988,7 +967,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	font-size: 76%;
 }
 
-.gwt-ProgressBar-thin { /* border: 2px solid #848280; */
+.gwt-ProgressBar-thin {
 	border: 1px solid;
 	background-color: white;
 	height: 7px;
@@ -1035,8 +1014,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	text-decoration: none !important;
 	cursor: pointer;
 	cursor: hand;
-	background: url("images/ui-bg_glass_45_0078ae_1x400.png") repeat-x
-		scroll 50% 50% #0078AE;
+	background: url("images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
 	border: 1px solid #999;
 	color: white;
 	height: 24px;
@@ -1048,13 +1026,11 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 .gwt-Button:hover {
 	outline-style: none;
 	border: 1px solid #77D5F7;
-	background: url("images/ui-bg_glass_75_79c9ec_1x400.png") repeat-x
-		scroll 50% 50% #0078AE;
+	background: url("images/ui-bg_glass_75_79c9ec_1x400.png") repeat-x scroll 50% 50% #0078AE;
 }
 
 .gwt-Button:active {
-	background: url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png")
-		repeat-x scroll 50% 50% #7EB544;
+	background: url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png") repeat-x scroll 50% 50% #7EB544;
 	border: 1px solid #ACDD4A;
 	color: #FFFFFF;
 	font-weight: normal;
@@ -1082,8 +1058,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
-	background: url("images/ui-bg_glass_45_0078ae_1x400.png") repeat-x
-		scroll 50% 50% #0078AE;
+	background: url("images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
 	border: 1px solid lightblue;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
@@ -1103,8 +1078,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab-selected {
-	background: url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png")
-		repeat-x scroll 50% 50% #7EB544;
+	background: url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png") repeat-x scroll 50% 50% #7EB544;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	align: center;
@@ -1132,8 +1106,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .gwt-TabBar {
-	background: url("images/ui-bg_highlight-soft_75_cccccc_1x100.png")
-		repeat-x scroll 50% 50% #CCCCCC;
+	background: url("images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #CCCCCC;
 	border: 1px solid yellow;
 	color: red;
 	height: auto !important;
@@ -1167,8 +1140,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .gwt-TabBar .gwt-TabBarItem:hover {
-	background: url("images/ui-bg_glass_75_f1b532_1x400.png") repeat-x
-		scroll 50% 50% #f1b532;
+	background: url("images/ui-bg_glass_75_f1b532_1x400.png") repeat-x scroll 50% 50% #f1b532;
 	color: #454545;
 	background-color: pink;
 }
@@ -1181,8 +1153,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 
 .gwt-TabBar .gwt-TabBarItem-selected,.gwt-TabBar .gwt-TabBarItem-selected:hover
 	{
-	background: url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png")
-		repeat-x scroll 50% 50% #7EB544;
+	background: url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png") repeat-x scroll 50% 50% #7EB544;
 	color: #454545;
 }
 
@@ -1354,14 +1325,12 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 /* pager*/
-
 .pagerPreviousButton {
 	background-image: url("images/back.png");
 	height: 22px;
 	width: 22px;
 	padding: 10px;
-	border: none !important; 
-	
+	border: none !important;
 }
 
 .pagerPreviousButtonDisable {
@@ -1369,8 +1338,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	height: 22px !important;
 	width: 22px !important;
 	padding: 10px !important;
-	border: none !important; 
-	
+	border: none !important;
 }
 
 .pagerNextButton {
@@ -1378,8 +1346,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	height: 22px;
 	width: 22px;
 	padding: 10px;
-	border: none !important; 
-	
+	border: none !important;
 }
 
 .pagerNextButtonDisable {
@@ -1387,8 +1354,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	height: 22px !important;
 	width: 22px !important;
 	padding: 10px !important;
-	border: none !important; 
-	
+	border: none !important;
 }
 
 .pagerLastButton {
@@ -1396,8 +1362,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	height: 22px;
 	width: 22px;
 	padding: 10px;
-	border: none !important; 
-	
+	border: none !important;
 }
 
 .pagerLastButtonDisable {
@@ -1405,8 +1370,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	height: 22px !important;
 	width: 22px !important;
 	padding: 10px !important;
-	border: none !important; 
-	
+	border: none !important;
 }
 
 .pagerFirstButton {
@@ -1414,17 +1378,15 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	height: 22px;
 	width: 22px;
 	padding: 10px;
-	border: none !important; 
-	
+	border: none !important;
 }
 
-.pagerFirstButtonDisable{
+.pagerFirstButtonDisable {
 	background-image: url("images/jumpStartDisabled.png") !important;
 	height: 22px !important;
 	width: 22px !important;
 	padding: 10px !important;
-	border: none !important; 
-	
+	border: none !important;
 }
 
 .redBG {
@@ -1496,8 +1458,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .mainErrorLabelStyle {
-	background: url("images/ui-bg_glass_55_f8da4e_1x400.png") repeat-x
-		scroll 50% 50% #F8DA4E;
+	background: url("images/ui-bg_glass_55_f8da4e_1x400.png") repeat-x scroll 50% 50% #F8DA4E;
 	background-repeat: repeat-x;
 	color: #A25617;
 	border-style: solid;
@@ -1524,8 +1485,8 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	font-family: verdana, Arial, sans-serif;
 	font-size: small;
 }
-.gwt-ToggleButton-up
-{
+
+.gwt-ToggleButton-up {
 	outline-style: none !important;
 	margin: 0;
 	padding: 3px 6px 3px 3px;
@@ -1535,42 +1496,42 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	background: url("images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
 	border: 1px solid #999;
 	color: white;
-	text-align: center;			
+	text-align: center;
 	border-radius: 4px;
 	white-space: nowrap;
 }
-.gwt-ToggleButton-up-hovering
-{
+
+.gwt-ToggleButton-up-hovering {
 	outline-style: none;
 	border: 1px solid #77D5F7;
 	border-radius: 4px;
 	background: url("images/ui-bg_glass_75_79c9ec_1x400.png") repeat-x scroll 50% 50% #0078AE;
 	text-align: center;
 }
-.gwt-ToggleButton-down
-{
+
+.gwt-ToggleButton-down {
 	text-align: center;
 	background: url("images/ui-bg_glass_75_79c9ec_1x400.png") repeat-x scroll 50% 50% #0078AE;
 }
-.gwt-ToggleButton-down-hovering
-{
+
+.gwt-ToggleButton-down-hovering {
 	outline-style: none;
-	border: 1px solid #77D5F7;  
+	border: 1px solid #77D5F7;
 	background: url("images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
 	text-align: center;
-	border: 1px inset; 
-  	border-color: #a5dbf7;
+	border: 1px inset;
+	border-color: #a5dbf7;
 }
-.gwt-ToggleButton-up-disabled
-{
+
+.gwt-ToggleButton-up-disabled {
 	text-align: center;
 	background: url("images/ui-bg_glass_75_79c9ec_1x400.png") repeat-x scroll 50% 50% #0078AE;
 }
-.gwt-ToggleButton-down-disabled
-{
+
+.gwt-ToggleButton-down-disabled {
 	text-align: center;
 	background: url("images/ui-bg_glass_75_79c9ec_1x400.png") repeat-x scroll 50% 50% #0078AE;
 	border: 1px solid !important;
-} 
+}
 
 /*pager end*/

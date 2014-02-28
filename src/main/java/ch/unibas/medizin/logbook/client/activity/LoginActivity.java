@@ -77,14 +77,14 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 		this.requests = requests;
 		this.handlerManager = loginPlace.handler;
 
-		LogBookNav.logBookNav.getMainLoogBookTabpanel().selectTab(0, false);
+		LogBookNav.logBookNav.getMainLogBookTabpanel().selectTab(0, false);
 	}
 
 	public LoginActivity(LogBookRequestFactory requests, PlaceController placeController) {
 		Log.debug("Call Activity Login..");
 		this.requests = requests;
 
-		LogBookNav.logBookNav.getMainLoogBookTabpanel().selectTab(0, false);
+		LogBookNav.logBookNav.getMainLogBookTabpanel().selectTab(0, false);
 	}
 
 	public void onStop() {
@@ -483,7 +483,6 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 						if (value) {
 							popupView.getBtnSave().click();
 						}
-
 					}
 				});
 
@@ -534,7 +533,6 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 							view.getHpErrorMessage().setVisible(true);
 							view.getLblErrorMessage().setInnerHTML(message);
 							errorMessageTimer.schedule((int) LogBookConstant.ERROR_MESSAGE_TIME);
-
 						}
 
 						@Override

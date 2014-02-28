@@ -10,7 +10,6 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.activity.shared.CachingActivityMapper;
 import com.google.gwt.activity.shared.FilteredActivityMapper;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.SelectionEvent;
@@ -51,10 +50,10 @@ public class LogBookAdminNav extends Composite {
 	public static LogBookAdminNav logBookNav;
 
 	@UiField
-	TabLayoutPanel mainLoogBookTabpanel;
+	TabLayoutPanel mainLogBookTabpanel;
 
-	public TabLayoutPanel getMainLoogBookTabpanel() {
-		return mainLoogBookTabpanel;
+	public TabLayoutPanel getMainLogBookTabpanel() {
+		return mainLogBookTabpanel;
 	}
 
 	@UiField
@@ -74,10 +73,10 @@ public class LogBookAdminNav extends Composite {
 		FilterForMainPlaces filterForMainPlaces = new FilterForMainPlaces();
 		ActivityMapper masterActivityMap = new FilteredActivityMapper(filterForMainPlaces, cached);
 		masterActivityManager = new ActivityManager(masterActivityMap, eventBus);
-		masterActivityManager.setDisplay((SimplePanel) mainLoogBookTabpanel.getWidget(mainLoogBookTabpanel.getSelectedIndex()));
+		masterActivityManager.setDisplay((SimplePanel) mainLogBookTabpanel.getWidget(mainLogBookTabpanel.getSelectedIndex()));
 
 		// Fix in default style( without it tab content will not show properly)
-		mainLoogBookTabpanel.getElement().getChild(2).getChild(0).getParentElement().getStyle().setPosition(Position.RELATIVE);
+		mainLogBookTabpanel.getElement().getChild(2).getChild(0).getParentElement().getStyle().setPosition(Position.RELATIVE);
 	}
 
 	protected void changeMenue(Place place) {
@@ -88,9 +87,9 @@ public class LogBookAdminNav extends Composite {
 	public void loginClicked(ClickEvent event) {
 	}
 
-	@UiHandler("mainLoogBookTabpanel")
+	@UiHandler("mainLogBookTabpanel")
 	public void tabSelectionChanged(SelectionEvent<Integer> event) {
-		masterActivityManager.setDisplay((SimplePanel) mainLoogBookTabpanel.getWidget(event.getSelectedItem()));
+		masterActivityManager.setDisplay((SimplePanel) mainLogBookTabpanel.getWidget(event.getSelectedItem()));
 		if (event.getSelectedItem() == 0) {
 			logBookNav.placeController.goTo(new AdminPlace("AdminPlace"));
 		}

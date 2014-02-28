@@ -338,8 +338,8 @@ public class SkillViewImpl extends Composite implements SkillView {
 		skillFlexTable.setWidth("100%");
 		isAsc = 0;
 
-		downArrow = new Image("logbook/gwt/logbook/images/down.png");//
-		upArrow = new Image("logbook/gwt/logbook/images/up.png");
+		downArrow = new Image("logbook/images/down.png");//
+		upArrow = new Image("logbook/images/up.png");
 
 		sortcutHP = new HorizontalPanel();
 		sortcutLabel = new Label(constants.shortcut());
@@ -460,10 +460,10 @@ public class SkillViewImpl extends Composite implements SkillView {
 		});
 
 		imgPrint.setAltText(constants.imageNotFound());
-		imgPrint.setUrl("logbook/gwt/logbook/images/print.png");
+		imgPrint.setUrl("logbook/images/print.png");
 
 		imgpdf.setAltText(constants.imageNotFound());
-		imgpdf.setUrl("logbook/gwt/logbook/images/pdf.png");
+		imgpdf.setUrl("logbook/images/pdf.png");
 
 		hyperLnkPrint.setText(constants.print());
 		hyperlnkSavePDF.setText(constants.saveAsPdf());

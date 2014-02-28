@@ -9,6 +9,7 @@
 	padding-right: 1em;
 	white-space: nowrap;
 }
+
 .fieldsFliestext {
 	white-space: normal;
 }
@@ -67,8 +68,6 @@
 .right {
 	float: right;
 	margin: 3px;
-
-
 	display: inline;
 }
 
@@ -119,7 +118,6 @@
 }
 
 .listView  table {
-	
 }
 
 .content  table {
@@ -164,8 +162,9 @@
 	border: 1px solid #E6EDED;
 	width: 100%;
 }
-.currentProgressPanelStyle{
-	margin-right:2px;
-	float:right;
-	width:94%;
+
+.currentProgressPanelStyle {
+	margin-right: 2px;
+	float: right;
+	width: 94%;
 }

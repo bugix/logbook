@@ -149,6 +149,7 @@ public class LogBookApplication {
 			Logger.getLogger("").addHandler(new RequestFactoryLogHandler(provider, Level.WARNING, new ArrayList<String>()));
 		}
 
+		/*
 		RequestEvent.register(eventBus, new RequestEvent.Handler() {
 			// Only show loading status if a request isn't serviced in 250ms.
 			private static final int LOADING_TIMEOUT = 250;
@@ -161,8 +162,8 @@ public class LogBookApplication {
 				}
 			}
 		});
+		*/
 
-		Log.debug("McApp.Mapper");
 		Log.debug("LogBook.History");
 		/* Browser history integration */
 		LogBookPlaceHistoryMapper mapper = GWT.create(LogBookPlaceHistoryMapper.class);

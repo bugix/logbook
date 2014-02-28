@@ -16,5 +16,5 @@
 
 <!-- Includes the source files for the Chrome theme. -->
 <module>
-      <stylesheet src="gwt/logbook/logbookstyle.css"/>
+      <stylesheet src="logbookstyle.css"/>
 </module>

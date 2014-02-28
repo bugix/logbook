@@ -65,9 +65,9 @@ public class ApplicationConfig {
 
 		Map<String, String> jpaPropertyMap = new HashMap<String, String>();
 		jpaPropertyMap.put("hibernate.hbm2ddl.auto", "create");
-		jpaPropertyMap.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		//jpaPropertyMap.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 		jpaPropertyMap.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
-		//jpaPropertyMap.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
+		jpaPropertyMap.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
 		jpaPropertyMap.put("hibernate.connection.charSet", "UTF-8");
 		jpaPropertyMap.put("hibernate.jdbc.fetch_size", "10");
 

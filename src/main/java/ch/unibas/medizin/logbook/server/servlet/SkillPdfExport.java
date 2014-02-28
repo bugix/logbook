@@ -241,7 +241,7 @@ public class SkillPdfExport extends HttpServlet {
 			transformer.transform(source, result);
 			String xmlString = sw.toString();
 
-			String path = getServletConfig().getServletContext().getRealPath("/logbook/gwt/logbook/");
+			String path = getServletConfig().getServletContext().getRealPath("/logbook/");
 			String fileName = path + "/" + System.currentTimeMillis() + ".xml";
 			logger.debug("Path: " + fileName);
 
@@ -265,11 +265,11 @@ public class SkillPdfExport extends HttpServlet {
 	public String convertXmlToHtml(String fileName) {
 		try {
 			TransformerFactory tFactory = TransformerFactory.newInstance();
-			String xslPath = getServletConfig().getServletContext().getRealPath("/logbook/gwt/logbook/skill.xsl");
+			String xslPath = getServletConfig().getServletContext().getRealPath("/logbook/skill.xsl");
 			Source xslDoc = new StreamSource(xslPath);
 			Source xmlDoc = new StreamSource(fileName);
 
-			String path = getServletConfig().getServletContext().getRealPath("/logbook/gwt/logbook/");
+			String path = getServletConfig().getServletContext().getRealPath("/logbook/");
 			String outputFileName = path + "/" + System.currentTimeMillis() + ".html";
 			logger.debug("Path: " + outputFileName);
 			OutputStream htmlFile = new FileOutputStream(outputFileName);

@@ -7,15 +7,11 @@ import com.google.gwt.user.client.ui.Label;
 public interface AdminView extends IsWidget {
 
 	interface Delegate {
-
 		void exportStudentClicked(boolean checkboxSelected);
-
 	}
 
 	interface presenter {
-
 		void goTo(Place place);
-
 	}
 
 	void setPresenter(presenter presenter);

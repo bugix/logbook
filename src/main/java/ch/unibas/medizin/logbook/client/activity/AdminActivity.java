@@ -56,7 +56,6 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 
 		this.requests = requests;
 		handlerManager = loginPlace.handler;
-
 	}
 
 	public AdminActivity(LogBookRequestFactory requests, PlaceController placeController) {
@@ -74,7 +73,6 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 		Log.debug("SystemStartActivity.start()");
 		widget = panel;
 		init();
-
 	}
 
 	private void init() {
@@ -91,7 +89,6 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 		view.setDelegate(this);
 
 		initAdminDetails();
-
 	}
 
 	private void initAdminDetails() {
@@ -105,7 +102,6 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 					view.getLblPrenameVal().setText(response.getPreName() != null ? response.getPreName() : "");
 					view.getLblEmailVal().setText(response.getEmail() != null ? response.getEmail() : "");
 				}
-
 			}
 
 			@Override
@@ -118,12 +114,10 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 				Log.debug("~~~~Error~~~~");
 			}
 		});
-
 	}
 
 	@Override
 	public void goTo(Place place) {
-
 	}
 
 	@Override

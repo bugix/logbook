@@ -1,5 +1,5 @@
-
 .cellTableWidget {
+	
 }
 
 .cellTableFirstColumn {
@@ -8,38 +8,36 @@
 
 .cellTableLastColumn {
 	border-right: 1px solid #AAAAAA;
-	color: #D58A4E;	
+	color: #D58A4E;
 }
 
 @sprite .cellTableFooter {
-  gwt-image: 'cellTableFooterBackground';
-  background-color: #dadada;
-
-  border-bottom: 0;
-  border-right: 1px solid #AAAAAA;
-
-  padding: 0px 10px;
-  text-align: left;
-  color: #4b4a4a;
-  overflow: hidden;
+	gwt-image: 'cellTableFooterBackground';
+	background-color: #dadada;
+	border-bottom: 0;
+	border-right: 1px solid #AAAAAA;
+	padding: 0px 10px;
+	text-align: left;
+	color: #4b4a4a;
+	overflow: hidden;
 }
 
 @sprite .cellTableHeader {
-    gwt-image: 'cellTableHeaderBackground' ;   
-   background-image: url("ui-bg_gloss-wave_75_2191c0_500x100.png repeat-x scroll 50% bottom #FCFDFD"); 
-  background-color: #dadada;  
-  border-bottom: 1px solid #AAAAAA;       
-   border-right: 1px solid #F3F3F3;
-    border-left: 1.5px solid #F3F3F3;
-  height:30px;
-  padding: 0px 10px;
-  text-align: left;
-  color: #ffffff; /*Header Font Color*/  
-  overflow: hidden;
-  max-height: 28px !important;
-  white-space: nowrap;
-  text-shadow: none !important;
-  text-decoration: none;
+	gwt-image: 'cellTableHeaderBackground';
+	background-image: url("ui-bg_gloss-wave_75_2191c0_500x100.png repeat-x scroll 50% bottom #FCFDFD");
+	background-color: #dadada;
+	border-bottom: 1px solid #AAAAAA;
+	border-right: 1px solid #F3F3F3;
+	border-left: 1.5px solid #F3F3F3;
+	height: 30px;
+	padding: 0px 10px;
+	text-align: left;
+	color: #ffffff; /*Header Font Color*/
+	overflow: hidden;
+	max-height: 28px !important;
+	white-space: nowrap;
+	text-shadow: none !important;
+	text-decoration: none;
 }
 
 .cellTableCell {
@@ -56,16 +54,16 @@
 }
 
 .cellTableFirstColumnFooter {
-  -moz-border-radius-bottomleft: 8px;
+	-moz-border-radius-bottomleft: 8px;
 }
 
-.cellTableFirstColumnHeader {  
-  border-top-left-radius: 7px !important;
+.cellTableFirstColumnHeader {
+	border-top-left-radius: 7px !important;
 }
 
 .cellTableLastColumnFooter {
-  -moz-border-radius-bottomright: 8px;
-  border-right: 0;
+	-moz-border-radius-bottomright: 8px;
+	border-right: 0;
 }
 
 .cellTableLastColumnHeader {
@@ -74,53 +72,53 @@
 }
 
 .cellTableSortableHeader {
-  cursor: pointer;
-  cursor: hand;
+	cursor: pointer;
+	cursor: hand;
 }
 
 .cellTableSortableHeader:hover {
-  color: #6c6b6b;
+	color: #6c6b6b;
 }
 
 .cellTableSortedHeaderAscending {
-
+	
 }
 
 .cellTableSortedHeaderDescending {
-
+	
 }
 
 .cellTableEvenRow {
-	 background: #FCFDFD;  
+	background: #FCFDFD;
 }
+
 .cellTableEvenRowCell {
-  /* background: #ffffff; */
 }
 
 .cellTableOddRow {
-  background: #F3FAFC;
+	background: #F3FAFC;
 }
-.cellTableOddRowCell {
-  /* background: #eee; */
+
+.cellTableOddRowCell {	
 }
 
 .cellTableHoveredRow {
-  background: #77BBD8;
+	background: #77BBD8;
 }
 
 .cellTableHoveredRowCell {
-  background: #77BBD8;
+	background: #77BBD8;
 }
 
 .cellTableEvenYesRow {
-  background: #ffffff;
+	background: #ffffff;
 }
 
 .cellTableOddYesRow {
-  background: #eee;
+	background: #eee;
 }
 
-.cellTableEvenNoRow {	 
+.cellTableEvenNoRow {
 	background: #FCFDFD;
 }
 
@@ -129,31 +127,30 @@
 }
 
 .cellTableKeyboardSelectedRow {
-  background: #77BBD8;
-  color: #000;
+	background: #77BBD8;
+	color: #000;
 }
 
 .cellTableKeyboardSelectedRowCell {
-  
+	
 }
 
 @sprite .cellTableSelectedRow {
-  gwt-image: 'cellTableSelectedBackground';
-  background-color: #77BBD8;
-  color: #000000;
-  height: auto;
-  overflow: auto;
+	gwt-image: 'cellTableSelectedBackground';
+	background-color: #77BBD8;
+	color: #000000;
+	height: auto;
+	overflow: auto;
 }
 
 .cellTableSelectedRowCell {
-  background: #77BBD8;
+	background: #77BBD8;
 }
 
 .cellTableKeyboardSelectedCell {
-  background: #77BBD8;
+	background: #77BBD8;
 }
 
 .cellTableLoading {
-  margin: 10px auto 0;
+	margin: 10px auto 0;
 }
-

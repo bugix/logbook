@@ -5,7 +5,7 @@
 	<inherits name="com.google.gwt.place.Place" />
 	<inherits name="com.google.gwt.user.theme.standard.Standard" />
 	<inherits name="com.google.web.bindery.requestfactory.RequestFactory" />
-	<!-- <inherits name="com.google.gwt.user.cellview.CellView"/> -->
+	<inherits name="com.google.gwt.user.cellview.CellView"/>
 	<inherits name="com.google.gwt.logging.Logging" />
 	<inherits name="com.google.gwt.inject.Inject" />
 	<inherits name="com.google.gwt.text.Text" />
@@ -20,8 +20,8 @@
 
 	<source path="client" />
 	<source path="shared" />
-	<source path="test" />
-	<public path="public" />
+	<!--  <source path="test" /> -->
+	<public path="client/resources" />
 
 	<!-- Logging Configuration -->
 	<set-property name="gwt.logging.enabled" value="TRUE" />

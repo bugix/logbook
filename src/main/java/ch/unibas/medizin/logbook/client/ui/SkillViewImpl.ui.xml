@@ -52,7 +52,7 @@
 		width: 754px;
 		height: 40%;
 		background:
-			url("logbook/gwt/logbook/images/ui-bg_glass_55_f8da4e_1x400.png")
+			url("logbook/images/ui-bg_glass_55_f8da4e_1x400.png")
 			repeat-x scroll 50% 50% #F8DA4E;
 		background-repeat: repeat-x;
 		color: #A25617;

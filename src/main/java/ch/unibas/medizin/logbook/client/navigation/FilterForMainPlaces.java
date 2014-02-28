@@ -12,9 +12,7 @@ public class FilterForMainPlaces implements FilteredActivityMapper.Filter {
 
 	@Override
 	public Place filter(Place place) {
-		/**
-		 * Login
-		 */
+
 		if (place instanceof LoginPlace) {
 			return place;
 		}

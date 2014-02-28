@@ -31,7 +31,6 @@ import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 
-
 /**
  * The applications main navigation element, shown on the left hand side of the
  * user interface.
@@ -47,7 +46,6 @@ public class LogBookNav extends Composite {
 
 	public LogBookNav() {
 		initWidget(uiBinder.createAndBindUi(this));
-
 	}
 
 	public ActivityManager masterActivityManager = null;
@@ -56,10 +54,10 @@ public class LogBookNav extends Composite {
 	public static LogBookNav logBookNav;
 
 	@UiField
-	TabLayoutPanel mainLoogBookTabpanel;
+	TabLayoutPanel mainLogBookTabpanel;
 
-	public TabLayoutPanel getMainLoogBookTabpanel() {
-		return mainLoogBookTabpanel;
+	public TabLayoutPanel getMainLogBookTabpanel() {
+		return mainLogBookTabpanel;
 	}
 
 	@UiField
@@ -89,17 +87,16 @@ public class LogBookNav extends Composite {
 		FilterForMainPlaces filterForMainPlaces = new FilterForMainPlaces();
 		ActivityMapper masterActivityMap = new FilteredActivityMapper(filterForMainPlaces, cached);
 		masterActivityManager = new ActivityManager(masterActivityMap, eventBus);
-		masterActivityManager.setDisplay((SimplePanel) mainLoogBookTabpanel.getWidget(mainLoogBookTabpanel.getSelectedIndex()));
+		masterActivityManager.setDisplay((SimplePanel) mainLogBookTabpanel.getWidget(mainLogBookTabpanel.getSelectedIndex()));
 
 		// Fix in default style( without it tab content will not show properly)
-		mainLoogBookTabpanel.getElement().getChild(2).getChild(0).getParentElement().getStyle().setPosition(Position.RELATIVE);
-		Element element = mainLoogBookTabpanel.getElement().getChild(2).getChild(0).getParentElement();
+		mainLogBookTabpanel.getElement().getChild(2).getChild(0).getParentElement().getStyle().setPosition(Position.RELATIVE);
+		Element element = mainLogBookTabpanel.getElement().getChild(2).getChild(0).getParentElement();
 		element.getChild(0).getChild(2).getChild(0).getParentElement().getStyle().setPosition(Position.RELATIVE);
 		Log.debug("HTML :" + element.getChild(0).getChild(2).getChild(0).getParentElement());
 	}
 
 	protected void changeMenue(Place place) {
-
 	}
 
 	@UiHandler("login")
@@ -114,9 +111,9 @@ public class LogBookNav extends Composite {
 	public void progressClicked(ClickEvent event) {
 	}
 
-	@UiHandler("mainLoogBookTabpanel")
+	@UiHandler("mainLogBookTabpanel")
 	public void tabSelectionChanged(SelectionEvent<Integer> event) {
-		masterActivityManager.setDisplay((SimplePanel) mainLoogBookTabpanel.getWidget(event.getSelectedItem()));
+		masterActivityManager.setDisplay((SimplePanel) mainLogBookTabpanel.getWidget(event.getSelectedItem()));
 		if (event.getSelectedItem() == 0) {
 			logBookNav.placeController.goTo(new LoginPlace("LoginPlace"));
 		} else if (event.getSelectedItem() == 1) {

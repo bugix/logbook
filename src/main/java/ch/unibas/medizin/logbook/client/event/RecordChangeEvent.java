@@ -36,7 +36,7 @@ public class RecordChangeEvent extends GwtEvent<RecordChangeHandler> {
 	}
 
 	@Override
-	public com.google.gwt.event.shared.GwtEvent.Type<RecordChangeHandler> getAssociatedType() {
+	public GwtEvent.Type<RecordChangeHandler> getAssociatedType() {
 		return TYPE;
 	}
 
