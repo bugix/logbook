@@ -287,7 +287,7 @@ public class Skill {
 
 		finalresult.setTotalSkill(totalSize);
 		finalresult.setSkillList(skillresultList);
-		finalresult.setSkilltLevelsAcquiredList(skillAcquiredList);
+		finalresult.setSkillLevelsAcquiredList(skillAcquiredList);
 		finalresult.setSkillComment(skillCommentList);
 
 		return finalresult;

@@ -40,7 +40,7 @@ public interface SkillRequest extends RequestContext {
 
 	abstract Request<String> findProgressOfTopic(TopicProxy mainClassification, Long studentId);
 
-	abstract Request<String> addCommnets(Long skillProxyId, Long studentId, String comment);
+	abstract Request<String> addComments(Long skillProxyId, Long studentId, String comment);
 
 	abstract Request<String> getCommentOfStudentForSkill(Long skillId, Long studentId);
 }

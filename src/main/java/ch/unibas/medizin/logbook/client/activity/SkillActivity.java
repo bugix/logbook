@@ -728,7 +728,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		{
 			final String comment = ((SkillLevelTextAreaViewImpl) view.getSkillFlexTable().getWidget(skillLevelIconButtonViewImpl.getRow(), 4)).getTextArea().getText();
 
-			requests.skillRequest().addCommnets(skillProxy.getId(), view.getStudent().getId(), comment).fire(new Receiver<String>() {
+			requests.skillRequest().addComments(skillProxy.getId(), view.getStudent().getId(), comment).fire(new Receiver<String>() {
 
 				@Override
 				public void onSuccess(String response) {

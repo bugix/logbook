@@ -94,7 +94,7 @@ public class Topic {
 		this.version = version;
 	}
 
-	public static List<Topic> findTopicByClassficationId(Long value) {
+	public static List<Topic> findTopicByClassificationId(Long value) {
 		CriteriaBuilder criteriaBuilder = entityManager().getCriteriaBuilder();
 		CriteriaQuery<Topic> criteriaQuery = criteriaBuilder.createQuery(Topic.class);
 		Root<Topic> from = criteriaQuery.from(Topic.class);

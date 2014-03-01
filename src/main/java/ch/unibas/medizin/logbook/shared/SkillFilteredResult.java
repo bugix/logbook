@@ -7,11 +7,19 @@ import ch.unibas.medizin.logbook.shared.enums.SkillLevels;
 
 public class SkillFilteredResult {
 
-	String key;
+	private String key;
 
-	List<Skill> skillList;
+	private List<Skill> skillList;
 
-	Integer totalSkill = 0;
+	private Integer totalSkill = 0;
+	
+	private List<String> mainClassificationKey;
+	
+	private List<SkillLevels> skillLevelsAcquiredList;
+
+	private List<String> mainClassificationProgress;
+
+	private List<String> skillComment;
 
 	public Integer getTotalSkill() {
 		return totalSkill;
@@ -20,12 +28,6 @@ public class SkillFilteredResult {
 	public void setTotalSkill(Integer totalSkill) {
 		this.totalSkill = totalSkill;
 	}
-
-	List<SkillLevels> skillLevelsAcquiredList;
-
-	List<String> mainClassificationProgress;
-
-	List<String> skillComment;
 
 	public List<String> getSkillComment() {
 		return skillComment;
@@ -43,22 +45,20 @@ public class SkillFilteredResult {
 		this.mainClassificationProgress = mainClassificationProgress;
 	}
 
-	List<String> mainClassificationkey;
-
-	public List<String> getMainClassificationkey() {
-		return mainClassificationkey;
+	public List<String> getMainClassificationKey() {
+		return mainClassificationKey;
 	}
 
-	public void setMainClassificationkey(List<String> mainClassificationkey) {
-		this.mainClassificationkey = mainClassificationkey;
+	public void setMainClassificationKey(List<String> mainClassificationKey) {
+		this.mainClassificationKey = mainClassificationKey;
 	}
 
-	public List<SkillLevels> getSkilltLevelsAcquiredList() {
+	public List<SkillLevels> getSkillLevelsAcquiredList() {
 		return skillLevelsAcquiredList;
 	}
 
-	public void setSkilltLevelsAcquiredList(List<SkillLevels> skilltLevelsAcquiredList) {
-		skillLevelsAcquiredList = skilltLevelsAcquiredList;
+	public void setSkillLevelsAcquiredList(List<SkillLevels> skillLevelsAcquiredList) {
+		this.skillLevelsAcquiredList = skillLevelsAcquiredList;
 	}
 
 	public List<Skill> getSkillList() {
