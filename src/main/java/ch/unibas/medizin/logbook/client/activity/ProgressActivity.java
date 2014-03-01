@@ -36,16 +36,12 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 	private ProgressView view;
 	private StudentProxy studentProxy;
 	public HandlerManager handlerManager;
-
-	public int currenttab = 0;
-
 	public FlexTable progressFlexTable;
 
 	public ProgressActivity(LogBookRequestFactory requests, PlaceController placeController, ProgressPlace progressPlace) {
 		Log.debug("Call Activity Login");
 		this.requests = requests;
 		handlerManager = progressPlace.handler;
-
 	}
 
 	public ProgressActivity(LogBookRequestFactory requests, PlaceController placeController) {
@@ -164,7 +160,6 @@ public class ProgressActivity extends AbstractActivity implements ProgressView.p
 
 	@Override
 	public void goTo(Place place) {
-
 	}
 
 	@Override

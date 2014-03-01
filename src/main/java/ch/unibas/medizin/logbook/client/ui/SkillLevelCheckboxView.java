@@ -10,15 +10,11 @@ public interface SkillLevelCheckboxView extends IsWidget {
 	 * Implemented by the owner of the view.
 	 */
 	interface Delegate {
-
-		void chekBoxSelected(SkillProxy skillProxy, boolean isLevel1, SkillLevelCheckboxViewImpl skillLevelCheckboxViewImpl);
-
+		void checkBoxSelected(SkillProxy skillProxy, boolean isLevel1, SkillLevelCheckboxViewImpl skillLevelCheckboxViewImpl);
 	}
 
 	interface presenter {
-
 		void goTo(Place place);
-
 	}
 
 	void setPresenter(presenter presenter);

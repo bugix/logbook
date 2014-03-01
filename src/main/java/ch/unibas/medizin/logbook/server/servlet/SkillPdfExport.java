@@ -70,7 +70,7 @@ public class SkillPdfExport extends HttpServlet {
 			if (topicId == 0) {
 				topicId = null;
 			}
-			String fileName = createHtml(Skill.findMainClassificatonBySearchCriteria(studentId, mainClassificationId, classificationTopicId, topicId, fulltextSearch, chkAsc), studentId);
+			String fileName = createHtml(Skill.findMainClassificationBySearchCriteria(studentId, mainClassificationId, classificationTopicId, topicId, fulltextSearch, chkAsc), studentId);
 
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
 			String pdffileName = "studentSkill" + studentId + ".pdf";
@@ -104,8 +104,7 @@ public class SkillPdfExport extends HttpServlet {
 			builderFactory.setValidating(true);
 			DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
 
-			Document doc = docBuilder.newDocument();
-			return doc;
+			return docBuilder.newDocument();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

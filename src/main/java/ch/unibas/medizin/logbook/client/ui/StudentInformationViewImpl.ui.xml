@@ -112,7 +112,6 @@
 	}
 	
 	.progressBarLeftPadding {
-		
 	}
 	
 	.latestAcquiredSkillSPStyle {
@@ -169,7 +168,6 @@
 		width: 94%;
 		height: 40%;
 		background: url("logbook/images/ui-bg_glass_55_f8da4e_1x400.png") repeat-x scroll 50% 50% #F8DA4E;
-		background-repeat: repeat-x;
 		color: #A25617;
 		border-style: solid;
 		border-width: 1px;
@@ -184,8 +182,7 @@
 	</ui:style>
 	<g:FocusPanel ui:field="studentFocusPanel">
 		<g:HTMLPanel>
-			<g:VerticalPanel addStyleNames="{style.mainVerticlePanelStyle}"
-				verticalAlignment="top">
+			<g:VerticalPanel addStyleNames="{style.mainVerticlePanelStyle}" verticalAlignment="top">
 				<g:HTMLPanel>
 					<table>
 						<tbody>
@@ -226,8 +223,7 @@
 														</g:Label>
 													</td>
 													<td>
-														<g:Label ui:field="lblStudeyYearvalue"
-															addStyleNames="{style.valueLabelStyle}"></g:Label>
+														<g:Label ui:field="lblStudeyYearvalue" addStyleNames="{style.valueLabelStyle}"></g:Label>
 													</td>
 												</tr>
 												<tr addStyleNames="{style.trStyle}">
@@ -251,45 +247,37 @@
 										</table>
 									</g:HTMLPanel>
 
-									<g:HTMLPanel
-										addStyleNames="{style.currentProgressPanelStyle} {style.personnelInforamationSPStyle}">
+									<g:HTMLPanel addStyleNames="{style.currentProgressPanelStyle} {style.personnelInforamationSPStyle}">
 										<table>
 											<tbody>
 												<tr addStyleNames="{style.trStyle}">
 													<td>
-														<g:Label ui:field="lblCurrentProgress"
-															addStyleNames="{style.headingLabelStyle}"></g:Label>
+														<g:Label ui:field="lblCurrentProgress" addStyleNames="{style.headingLabelStyle}"></g:Label>
 													</td>
 												</tr>
 
 												<tr addStyleNames="{style.trStyle}">
 													<td>
-														<g:Label ui:field="lblLevel1Progress"
-															addStyleNames="{style.progressInfoLabelStyle}"></g:Label>
+														<g:Label ui:field="lblLevel1Progress" addStyleNames="{style.progressInfoLabelStyle}"></g:Label>
 													</td>
 													<td>
-														<custom:CustomProgressbar
-															ui:field="prgBarLevel1" addStyleNames="{style.progressBarLeftPadding}"></custom:CustomProgressbar>
+														<custom:CustomProgressbar ui:field="prgBarLevel1" addStyleNames="{style.progressBarLeftPadding}"></custom:CustomProgressbar>
 													</td>
 												</tr>
 												<tr addStyleNames="{style.trStyle}">
 													<td>
-														<g:Label ui:field="lblLevel2Progress"
-															addStyleNames="{style.progressInfoLabelStyle}"></g:Label>
+														<g:Label ui:field="lblLevel2Progress" addStyleNames="{style.progressInfoLabelStyle}"></g:Label>
 													</td>
 													<td>
-														<custom:CustomProgressbar
-															ui:field="prgBarLevel2" addStyleNames="{style.progressBarLeftPadding}"></custom:CustomProgressbar>
+														<custom:CustomProgressbar ui:field="prgBarLevel2" addStyleNames="{style.progressBarLeftPadding}"></custom:CustomProgressbar>
 													</td>
 												</tr>
 												<tr addStyleNames="{style.trStyle}">
 													<td>
-														<g:Label ui:field="lblTotalProgress"
-															addStyleNames="{style.progressInfoLabelStyle}"></g:Label>
+														<g:Label ui:field="lblTotalProgress" addStyleNames="{style.progressInfoLabelStyle}"></g:Label>
 													</td>
 													<td>
-														<custom:CustomProgressbar
-															ui:field="prgBarTotal" addStyleNames="{style.progressBarLeftPadding}"></custom:CustomProgressbar>
+														<custom:CustomProgressbar ui:field="prgBarTotal" addStyleNames="{style.progressBarLeftPadding}"></custom:CustomProgressbar>
 													</td>
 												</tr>
 												<tr addStyleNames="{style.trStyle}">
@@ -304,8 +292,7 @@
 														</g:Label>
 													</td>
 													<td>
-														<g:ToggleButton ui:field="btnFinalizeLogBook"
-															addStyleNames="{style.finalizeButtonStyle}"></g:ToggleButton>
+														<g:ToggleButton ui:field="btnFinalizeLogBook" addStyleNames="{style.finalizeButtonStyle}"></g:ToggleButton>
 													</td>
 												</tr>
 											</tbody>

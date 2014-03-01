@@ -63,8 +63,6 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 
 	public HandlerManager handlerManager;
 
-	public int currenttab = 0;
-
 	LogBookConstants constants = GWT.create(LogBookConstants.class);
 
 	// Home Tab Skill Acquired Table Members
@@ -211,7 +209,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 
 				if (studentProxy.getStudentStatus() == StudentStatus.UnFinalized)
 					view.getBtnFinalizeLogBook().setDown(false);
-				else if (studentProxy.getStudentStatus() == StudentStatus.Fianllized)
+				else if (studentProxy.getStudentStatus() == StudentStatus.Finalized)
 					view.getBtnFinalizeLogBook().setDown(true);
 				else if (studentProxy.getStudentStatus() == StudentStatus.Exported)
 					view.getBtnFinalizeLogBook().setEnabled(false);
@@ -237,7 +235,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
 				super.onConstraintViolation(violations);
 				Log.debug("Violation");
-			};
+			}
 
 			@Override
 			public void onFailure(ServerFailure error) {
@@ -320,7 +318,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 						public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
 							super.onConstraintViolation(violations);
 							Log.debug("Violation");
-						};
+						}
 					});
 
 				} else {
@@ -339,7 +337,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 			public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
 				super.onConstraintViolation(violations);
 				Log.debug("Violation");
-			};
+			}
 		});
 	}
 
@@ -373,12 +371,10 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 		view.getLblStudeyYearvalue().setTitle(studyYear);
 		view.getLblEmailVal().setText(email);
 		view.getLblEmailVal().setTitle(email);
-
 	}
 
 	@Override
 	public void goTo(Place place) {
-
 	}
 
 	@Override
@@ -518,7 +514,7 @@ public class LoginActivity extends AbstractActivity implements StudentInformatio
 				if (response.getStudentStatus() != StudentStatus.Exported) {
 
 					if (view.getBtnFinalizeLogBook().isDown()) {
-						proxy.setStudentStatus(StudentStatus.Fianllized);
+						proxy.setStudentStatus(StudentStatus.Finalized);
 						message = constants.studentFinalized();
 					} else {
 						proxy.setStudentStatus(StudentStatus.UnFinalized);

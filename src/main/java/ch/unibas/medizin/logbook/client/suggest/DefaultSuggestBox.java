@@ -44,7 +44,7 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 			this.innerCallBack = innerCallBack;
 		}
 
-	};
+	}
 
 	private CallBackHandler callback = new CallBackHandler();
 
@@ -95,7 +95,7 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 	// -------------------------- end.
 
 	@Override
-	protected void computeFiltredPossibilities(final String text, final SuggestPossibilitiesCallBack<T> suggestPossibilitiesCallBack) {
+	protected void computeFilteredPossibilities(final String text, final SuggestPossibilitiesCallBack<T> suggestPossibilitiesCallBack) {
 		Request request = new Request(text, suggestionMaxCount);
 		callback.setInnerCallBack(suggestPossibilitiesCallBack);
 		suggestOracle.requestSuggestions(request, callback);
@@ -156,5 +156,4 @@ public class DefaultSuggestBox<T, W extends EventHandlingValueHolderItem<T>> ext
 		DefaultValueRenderer.widthValue = s2;
 		setRendererWidth(s2);
 	}
-
 }

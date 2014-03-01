@@ -5,14 +5,12 @@
 	<ui:style>
 	.textBoxStyle {
 		color: #888888;
-		margin: 0;
 		width: 180px;
 		height: 30px;
 		margin: 7px;
 	}
 	
 	.buttonStyle {
-		margin: 0;
 		width: 185px;
 		margin: 7px;
 		height: 34px;
@@ -25,7 +23,6 @@
 	
 	.mainVerticlePanelStyle {
 		height: auto;
-		/*border-width:1px solid lightblue !important;*/
 		border: 1px solid lightblue !important;
 		border-radius: 4px;
 		padding: 20px;
@@ -125,7 +122,6 @@
 				<g:Label ui:field="lblPersonnelInformation" addStyleNames="{style.headingLabelStyle}"></g:Label>
 				<table>
 					<tbody>
-						<!-- <tr addStyleNames="{style.trStyle}"> <td> </td> </tr> -->
 						<tr addStyleNames="{style.trStyle}">
 							<td>
 								<g:Label ui:field="lblName" addStyleNames="{style.infoLabelStyle}"></g:Label>
@@ -175,7 +171,6 @@
 
 			<custom:CustomCopyrightWidget></custom:CustomCopyrightWidget>
 		</g:VerticalPanel>
-
 
 	</g:HTMLPanel>
 </ui:UiBinder> 

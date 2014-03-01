@@ -293,7 +293,7 @@ public class Skill {
 		return finalresult;
 	}
 
-	public static SkillFilteredResult findMainClassificatonBySearchCriteria(Long studentId, Long mainClassificationId, Long classificationTopicId, Long topicId, String fulltextSearch, int chkAsc) {
+	public static SkillFilteredResult findMainClassificationBySearchCriteria(Long studentId, Long mainClassificationId, Long classificationTopicId, Long topicId, String fulltextSearch, int chkAsc) {
 
 		Log.debug("Asc :" + chkAsc);
 
@@ -475,9 +475,7 @@ public class Skill {
 		for (Skill skill : skillresultList) {
 
 			try {
-
 				result.add(getSkillAcquiredbyStudentAtThisLevel(studentId, skill.getId()));
-
 			} catch (Exception e) {
 				Log.debug("Error" + e.getStackTrace());
 			}
@@ -489,7 +487,7 @@ public class Skill {
 	public static String retrieveHtmlFile(Long studentId, Long mainClassificationId, Long classificationTopicId, Long topicId, String fulltextSearch, int chkAsc) {
 
 		try {
-			String File_To_Convert = createHtml(Skill.findMainClassificatonBySearchCriteria(studentId, mainClassificationId, classificationTopicId, topicId, fulltextSearch, chkAsc), studentId);
+			String File_To_Convert = createHtml(Skill.findMainClassificationBySearchCriteria(studentId, mainClassificationId, classificationTopicId, topicId, fulltextSearch, chkAsc), studentId);
 
 			return FileUtils.readFileToString(new File(File_To_Convert));
 		} catch (Exception e) {
@@ -502,13 +500,12 @@ public class Skill {
 		try {
 			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
-			Document doc = docBuilder.newDocument();
-			return doc;
+
+			return docBuilder.newDocument();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
 
 	public static Element createChildNode(String nodeName, String nodeValue, Document doc, Element parent) {
@@ -646,9 +643,7 @@ public class Skill {
 			bw.flush();
 			bw.close();
 
-			String htmlFileName = convertXmlToHtml(fileName);
-
-			return htmlFileName;
+			return convertXmlToHtml(fileName);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -693,7 +688,7 @@ public class Skill {
 		} else {
 
 			if (result.getResultList().get(0).getLevelNumber() == 1) {
-				return SkillLevels.SOME_PRACTICLE_EXPERIENCE;
+				return SkillLevels.SOME_PRACTICAL_EXPERIENCE;
 			} else if (result.getResultList().get(0).getLevelNumber() == 2) {
 				return SkillLevels.ROUTINE;
 			}
@@ -727,7 +722,7 @@ public class Skill {
 
 		TypedQuery<Skill> result = entityManager().createQuery(criteriaQuery);
 
-		Log.debug("Critera query is :" + result.unwrap(Query.class).getQueryString());
+		Log.debug("Criteria query is :" + result.unwrap(Query.class).getQueryString());
 
 		return result.getResultList();
 	}
@@ -739,13 +734,13 @@ public class Skill {
 		Root<Student> from = criteriaQuery.from(Student.class);
 		CriteriaQuery<Student> select = criteriaQuery.select(from);
 
-		criteriaQuery.where(criteriaBuilder.equal(from.get("studentStatus"), StudentStatus.Fianllized));
+		criteriaQuery.where(criteriaBuilder.equal(from.get("studentStatus"), StudentStatus.Finalized));
 		TypedQuery<Student> result = entityManager().createQuery(criteriaQuery);
 
 		return result.getResultList();
 	}
 
-	public static String addCommnets(Long skillId, Long studentId, String comment) {
+	public static String addComments(Long skillId, Long studentId, String comment) {
 
 		String result;
 		try {

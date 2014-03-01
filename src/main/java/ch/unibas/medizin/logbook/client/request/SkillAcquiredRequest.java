@@ -31,7 +31,7 @@ public interface SkillAcquiredRequest extends RequestContext {
 
 	abstract Request<Integer> findCountLatestAcquiredSkillByStudent(Long studentId, Integer totalRecords, String sortOrder, String sortBy);
 
-	abstract Request<String> acquireORDeleteSkill(Long studentid, Long Skillid, Boolean isFirstSelected, Boolean isDeleteOperation);
+	abstract Request<String> acquireORDeleteSkill(Long studentId, Long skillId, Boolean isFirstSelected, Boolean isDeleteOperation);
 
-	//abstract Request<Integer> countSkillAcquiredByStudentandSkill(Long id, List<SkillProxy> skillProxyList);
+	//abstract Request<Integer> countSkillAcquiredByStudentAndSkill(Long id, List<SkillProxy> skillProxyList);
 }

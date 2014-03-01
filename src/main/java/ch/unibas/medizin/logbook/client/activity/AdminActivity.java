@@ -130,7 +130,7 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 		theEventService.addListener(DOMAIN, new CsvFileGeneratorListener() {
 			@Override
 			public void csvFileGeneratorEvent(CsvFileGeneratorEvent event) {
-				if (event.getResult() == true) {
+				if (event.getResult()) {
 
 					showApplicationLoading(false);
 					theEventService.removeListeners();
@@ -150,7 +150,7 @@ public class AdminActivity extends AbstractActivity implements AdminView.present
 
 			@Override
 			public void onSuccess(Void result) {
-				Log.debug("Returened Response still file generation process is in execution");
+				Log.debug("Returned Response still file generation process is in execution");
 
 			}
 

@@ -5,31 +5,31 @@ import ch.unibas.medizin.logbook.shared.i18n.LogBookConstants;
 import com.google.gwt.core.shared.GWT;
 
 public enum SkillLevels {
-	SOME_PRACTICLE_EXPERIENCE, ROUTINE, NONE;
+	SOME_PRACTICAL_EXPERIENCE, ROUTINE, NONE;
 
 	static LogBookConstants constants;
 
 	static {
 		if (GWT.isClient()) {
-			constants = com.google.gwt.core.client.GWT.create(LogBookConstants.class);
+			constants = GWT.create(LogBookConstants.class);
 		}
 	}
 
-	private static String SkillLevelValue;
+    public static String getSkillLevels(SkillLevels skillLevel) {
 
-	public static String getSkillLevels(SkillLevels skillLevel) {
+        String skillLevelValue;
 
-		switch (skillLevel) {
-		case SOME_PRACTICLE_EXPERIENCE:
-			SkillLevelValue = constants.somePracticleExperiance();
+        switch (skillLevel) {
+		case SOME_PRACTICAL_EXPERIENCE:
+			skillLevelValue = constants.somePracticalExperiance();
 			break;
 		case ROUTINE:
-			SkillLevelValue = constants.routine();
+			skillLevelValue = constants.routine();
 			break;
 		default:
-			SkillLevelValue = constants.noSkillAcquired();
+			skillLevelValue = constants.noSkillAcquired();
 		}
-		return SkillLevelValue;
+		return skillLevelValue;
 	}
 
 }

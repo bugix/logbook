@@ -6,8 +6,6 @@
 .flexTableHeader {
 	color: #212121;
 	overflow: hidden;
-	overflow-x: hidden;
-	overflow-y: hidden;
 	height: 28px;
 	line-height: 13px;
 	font-family: Verdana, Arial, sans-serif;
@@ -42,7 +40,7 @@
 }
 
 /* suggestion box start*/
-eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
+.eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left .eu-nextstreet-SuggestFieldPanel-leftInner {
@@ -123,13 +121,11 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 
 .eu-nextstreet-AdvancedTextBoxDefaultText {
 	color: #999999;
-	size: 10px;
 }
 
 .eu-nextstreet-AdvancedTextBoxErrorText {
 	border-radius: 6px;
 	text-shadow: 1px 1px 1px #a90329;
-	filter: dropshadow(color = #a90329, offx = 1, offy = 1);
 	background-color: #ffc2c2;
 	color: black;
 }
@@ -138,8 +134,6 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	background-color: #ff9999;
 	border: 0px;
 	border-radius: 6px;
-	-webkit-box-shadow: 1px 1px 8px #ff9999;
-	-moz-box-shadow: 1px 1px 8px #ff9999;
 	box-shadow: 1px 1px 8px #ff9999;
 }
 
@@ -148,8 +142,6 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	color: gray;
 	border: 0px;
 	border-radius: 6px;
-	-webkit-box-shadow: 1px 1px 8px #9fa7eb;
-	-moz-box-shadow: 1px 1px 8px #9fa7eb;
 	box-shadow: 1px 1px 8px #414178;
 }
 
@@ -166,12 +158,10 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 .eu-nextstreet-SuggestFieldPopupSimpleTableCell-selected {
 	background-color: #b5b5b5;
 	text-shadow: 1px 1px 1px #d5d5d5;
-	filter: dropshadow(color = #d5d5d5, offx = 1, offy = 1);
 }
 
 .eu-nextstreet-SuggestFieldPopupSimpleTableCell-hover {
 	text-shadow: 1px 1px 1px #707cba;
-	filter: dropshadow(color = #707cba, offx = 1, offy = 1);
 	background: #cce4f5;
 	color: #454545;
 }
@@ -179,11 +169,9 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 .eu-nextstreet-SuggestTableMatchingString {
 	background-color: #b0fc24;
 	text-shadow: 1px 1px 1px #25e1fa;
-	filter: dropshadow(color = #25e1fa, offx = 1, offy = 1);
 }
 
 .eu-nextstreet-MultiChoiceItem {
-	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	background-color: #CBDDFA;
 }
@@ -1013,7 +1001,6 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	padding: 3px 6px 3px 3px;
 	text-decoration: none !important;
 	cursor: pointer;
-	cursor: hand;
 	background: url("images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
 	border: 1px solid #999;
 	color: white;
@@ -1041,7 +1028,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .gwt-TabLayoutPanelContentContainer {
-	border-top-width: 0px !important;
+	border-top-width: 0 !important;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	height: 99%;
@@ -1052,7 +1039,7 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelContent {
 	padding: 25px;
-	padding-bottom: 0px;
+	padding-bottom: 0;
 	border-width: 0px !important;
 	position: relative !important;
 }
@@ -1081,7 +1068,6 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	background: url("images/ui-bg_gloss-wave_50_6eac2c_500x100.png") repeat-x scroll 50% 50% #7EB544;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
-	align: center;
 	color: white;
 }
 
@@ -1097,12 +1083,11 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	border-top-right-radius: 5px;
 	border-color: lightblue;
 	border-width: 1px;
-	border-bottom-width: 0px;
+	border-bottom-width: 0;
 	background: url("images/ui-bg_gloss-wave_75_2191c0_500x100.png") 50% 50%;
 }
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab:HOVER {
-	
 }
 
 .gwt-TabBar {
@@ -1120,7 +1105,6 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 }
 
 .gwt-TabBar .gwt-TabBarRest {
-	
 }
 
 .gwt-TabBar .gwt-TabBarItem {
@@ -1459,7 +1443,6 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 
 .mainErrorLabelStyle {
 	background: url("images/ui-bg_glass_55_f8da4e_1x400.png") repeat-x scroll 50% 50% #F8DA4E;
-	background-repeat: repeat-x;
 	color: #A25617;
 	border-style: solid;
 	border-width: 1px;
@@ -1492,7 +1475,6 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	padding: 3px 6px 3px 3px;
 	text-decoration: none !important;
 	cursor: pointer;
-	cursor: hand;
 	background: url("images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
 	border: 1px solid #999;
 	color: white;
@@ -1519,8 +1501,6 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	border: 1px solid #77D5F7;
 	background: url("images/ui-bg_glass_45_0078ae_1x400.png") repeat-x scroll 50% 50% #0078AE;
 	text-align: center;
-	border: 1px inset;
-	border-color: #a5dbf7;
 }
 
 .gwt-ToggleButton-up-disabled {
@@ -1533,5 +1513,3 @@ eu-nextstreet-SuggestFieldPanel .eu-nextstreet-SuggestFieldPanel-left {
 	background: url("images/ui-bg_glass_75_79c9ec_1x400.png") repeat-x scroll 50% 50% #0078AE;
 	border: 1px solid !important;
 }
-
-/*pager end*/

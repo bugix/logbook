@@ -15,11 +15,11 @@ public interface SkillFilteredResultProxy extends ValueProxy {
 
 	public List<SkillProxy> getSkillList();
 
-	public List<SkillLevels> getSkilltLevelsAcquiredList();
+	public List<SkillLevels> getSkillLevelsAcquiredList();
 
 	public List<String> getMainClassificationProgress();
 
-	public List<String> getMainClassificationkey();
+	public List<String> getMainClassificationKey();
 
 	public Integer getTotalSkill();
 

@@ -12,9 +12,9 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class SkillLevelIconButtonViewImpl extends Composite implements SkillLevelIconButtonView {
 
-	private static final SkillLevelIconButtonViewImpllUiBinder uiBinder = GWT.create(SkillLevelIconButtonViewImpllUiBinder.class);
+	private static final SkillLevelIconButtonViewImplUiBinder uiBinder = GWT.create(SkillLevelIconButtonViewImplUiBinder.class);
 
-	interface SkillLevelIconButtonViewImpllUiBinder extends UiBinder<Widget, SkillLevelIconButtonViewImpl> {
+	interface SkillLevelIconButtonViewImplUiBinder extends UiBinder<Widget, SkillLevelIconButtonViewImpl> {
 	}
 
 	private boolean isSave;
@@ -95,11 +95,9 @@ public class SkillLevelIconButtonViewImpl extends Composite implements SkillLeve
 
 	@Override
 	public void setPresenter(presenter presenter) {
-
 	}
 
 	@Override
 	public void setDelegate(Delegate delegate) {
-
 	}
 }

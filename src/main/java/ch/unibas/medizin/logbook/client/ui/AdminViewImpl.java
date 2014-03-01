@@ -15,9 +15,9 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class AdminViewImpl extends Composite implements AdminView {
 
-	private static AdminViewImpllUiBinder uiBinder = GWT.create(AdminViewImpllUiBinder.class);
+	private static AdminViewImplUiBinder uiBinder = GWT.create(AdminViewImplUiBinder.class);
 
-	interface AdminViewImpllUiBinder extends UiBinder<Widget, AdminViewImpl> {
+	interface AdminViewImplUiBinder extends UiBinder<Widget, AdminViewImpl> {
 	}
 
 	private Delegate delegate;

@@ -5,5 +5,5 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("CsvFileGenerator")
 public interface CsvFileGeneratorService extends RemoteService {
-	void csvFileGeneratorClicked(boolean isChangeFinalizeToExportdSelected);
+	void csvFileGeneratorClicked(boolean isChangeFinalizeToExportedSelected);
 }

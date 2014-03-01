@@ -12,9 +12,7 @@ public interface SkillLevelIconButtonView extends IsWidget {
 	}
 
 	interface presenter {
-
 		void goTo(Place place);
-
 	}
 
 	void setPresenter(presenter presenter);

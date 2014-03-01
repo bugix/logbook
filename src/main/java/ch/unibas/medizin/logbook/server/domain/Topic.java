@@ -104,8 +104,8 @@ public class Topic {
 			criteriaQuery.where(criteriaBuilder.equal(from.get("classificationTopic"), value));
 
 		TypedQuery<Topic> q = entityManager().createQuery(criteriaQuery);
-		return q.getResultList();
 
+        return q.getResultList();
 	}
 
 	public static TopicFilteredResult findTopicOrderByClassification(int start, int max, Student student) {

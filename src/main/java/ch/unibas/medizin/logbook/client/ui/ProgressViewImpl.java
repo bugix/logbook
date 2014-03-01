@@ -23,9 +23,9 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class ProgressViewImpl extends Composite implements ProgressView {
 
-	private static ProgressViewImpllUiBinder uiBinder = GWT.create(ProgressViewImpllUiBinder.class);
+	private static ProgressViewImplUiBinder uiBinder = GWT.create(ProgressViewImplUiBinder.class);
 
-	interface ProgressViewImpllUiBinder extends UiBinder<Widget, ProgressViewImpl> {
+	interface ProgressViewImplUiBinder extends UiBinder<Widget, ProgressViewImpl> {
 	}
 
 	private Delegate delegate;
@@ -209,13 +209,11 @@ public class ProgressViewImpl extends Composite implements ProgressView {
 
 	@Override
 	public void setPresenter(presenter presenter) {
-
 	}
 
 	@Override
 	public void setDelegate(Delegate delegate) {
 		this.delegate = delegate;
-
 	}
 
 	@Override

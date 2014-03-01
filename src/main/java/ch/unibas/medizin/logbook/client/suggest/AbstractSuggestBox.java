@@ -186,7 +186,7 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 								if (selected == null) {
 									valueTyped(getText());
 								} else {
-									fillValue(selected, multipleChangeEvent);
+									fillValue(selected, true);
 								}
 							}
 						}
@@ -203,9 +203,6 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 								@Override
 								public void setPossibilities(List<T> possibilities) {
 									if (reducingText.length() > 1 && possibilities.size() < 1) {
-										// FIXME should optimize by remembering
-										// the last valid entry
-										// (that has at least one possibility)
 										reducingText.setLength(reducingText.length() - 1);
 										setText(reducingText.toString());
 										recomputePopupContent(keyCode, this);
@@ -218,7 +215,6 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 			};
 			recomputePopupContent(keyCode, callBack);
 		}
-
 	}
 
 	protected void handleKeyNavigation(int keyCode) {
@@ -296,7 +292,7 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 		};
 		getTextField().addStyleName(SUGGEST_BOX_LOADING);
 
-		computeFiltredPossibilities(textValue, suggestPossibilitiesCallBack);
+		computeFilteredPossibilities(textValue, suggestPossibilitiesCallBack);
 	}
 
 	protected void recomputeAllPopupContent(final int keyCode, final SuggestPossibilitiesCallBack<T> callBack) {
@@ -316,8 +312,7 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 		};
 		getTextField().addStyleName(SUGGEST_BOX_LOADING);
 
-		computeFiltredPossibilities(textValue, suggestPossibilitiesCallBack);
-
+		computeFilteredPossibilities(textValue, suggestPossibilitiesCallBack);
 	}
 
 	protected void setPossibilities(int keyCode, List<T> possibilities) {
@@ -392,14 +387,11 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 
 	protected boolean checkSelected(final T item, String currentText) {
 		String value = toString(item);
-		boolean found = value.equals(currentText);
-		return found;
+		return value.equals(currentText);
 	}
 
 	private W createValueRenderer(final T t, String value) {
-		final W currentLabel = valueRendererFactory.createValueRenderer(t, value, getOptions(), renderer);
-
-		return currentLabel;
+		return valueRendererFactory.createValueRenderer(t, value, getOptions(), renderer);
 	}
 
 	/**
@@ -475,17 +467,17 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 	}
 
 	public void computeSelected(String text) {
-		computeFiltredPossibilities(text, new SuggestPossibilitiesCallBack<T>() {
+		computeFilteredPossibilities(text, new SuggestPossibilitiesCallBack<T>() {
 
-			@Override
-			public void setPossibilities(List<T> possibilities) {
-				if (possibilities.size() == 1) {
-					setSelectedValue(possibilities.get(0));
-				} else {
-					setSelectedValue(null);
-				}
-			}
-		});
+            @Override
+            public void setPossibilities(List<T> possibilities) {
+                if (possibilities.size() == 1) {
+                    setSelectedValue(possibilities.get(0));
+                } else {
+                    setSelectedValue(null);
+                }
+            }
+        });
 	}
 
 	protected void setSelectedValue(T selected) {
@@ -504,7 +496,7 @@ public abstract class AbstractSuggestBox<T, W extends EventHandlingValueHolderIt
 		getTextField().setFocus(focus);
 	}
 
-	protected abstract void computeFiltredPossibilities(String text, SuggestPossibilitiesCallBack<T> suggestPossibilitiesCallBack);
+	protected abstract void computeFilteredPossibilities(String text, SuggestPossibilitiesCallBack<T> suggestPossibilitiesCallBack);
 
 	public ValueRendererFactory<T, ? extends EventHandlingValueHolderItem<T>> getValueRendererFactory() {
 		return valueRendererFactory;

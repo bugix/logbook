@@ -23,11 +23,8 @@ public class CustomPager extends Composite implements ClickHandler {
 	private Button last = new Button("");
 	private Button previous = new Button("");
 	private Label recordDisplay = new Label();
-	private HorizontalPanel labelContainer = new HorizontalPanel();
-	private HorizontalPanel buttonContainer = new HorizontalPanel();
 
-	private HorizontalPanel container = new HorizontalPanel();
-	int totalrecord = 100;
+    int totalrecord = 100;
 
 	int range = 5;
 	int start = 1;
@@ -36,13 +33,15 @@ public class CustomPager extends Composite implements ClickHandler {
 
 	public CustomPager() {
 
-		labelContainer.add(recordDisplay);
+        HorizontalPanel labelContainer = new HorizontalPanel();
+        labelContainer.add(recordDisplay);
 		first.addStyleName("pagerFirstButton");
 		last.addStyleName("pagerLastButton");
 		next.addStyleName("pagerNextButton");
 		previous.addStyleName("pagerPreviousButton");
 
-		buttonContainer.add(first);
+        HorizontalPanel buttonContainer = new HorizontalPanel();
+        buttonContainer.add(first);
 		buttonContainer.add(previous);
 		buttonContainer.add(next);
 		buttonContainer.add(last);
@@ -51,7 +50,9 @@ public class CustomPager extends Composite implements ClickHandler {
 		first.setStylePrimaryName("pagerFirstButtonDisable");
 		previous.setEnabled(false);
 		previous.setStylePrimaryName("pagerPreviousButtonDisable");
-		container.add(buttonContainer);
+
+        HorizontalPanel container = new HorizontalPanel();
+        container.add(buttonContainer);
 		container.add(labelContainer);
 
 		first.addClickHandler(this);
@@ -133,7 +134,6 @@ public class CustomPager extends Composite implements ClickHandler {
 			previous.setEnabled(false);
 			previous.setStylePrimaryName("pagerPreviousButtonDisable");
 		}
-
 	}
 
 	private void firstClick() {
@@ -232,7 +232,7 @@ public class CustomPager extends Composite implements ClickHandler {
 		listenerList.remove(listener);
 	}
 
-	private final void onRangeChange() {
+	private void onRangeChange() {
 		for (RangeChangeListener listener : listenerList) {
 			listener.onRangeChange();
 		}

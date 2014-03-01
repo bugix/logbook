@@ -34,9 +34,9 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class StudentInformationViewImpl extends Composite implements StudentInformationView {
 
-	private static StudentInformationViewImpllUiBinder uiBinder = GWT.create(StudentInformationViewImpllUiBinder.class);
+	private static StudentInformationViewImplUiBinder uiBinder = GWT.create(StudentInformationViewImplUiBinder.class);
 
-	interface StudentInformationViewImpllUiBinder extends UiBinder<Widget, StudentInformationViewImpl> {
+	interface StudentInformationViewImplUiBinder extends UiBinder<Widget, StudentInformationViewImpl> {
 	}
 
 	private Delegate delegate;
@@ -494,19 +494,16 @@ public class StudentInformationViewImpl extends Composite implements StudentInfo
 	}
 
 	public String[] getPaths() {
-
 		return paths.toArray(new String[paths.size()]);
 	}
 
 	@Override
 	public void setPresenter(presenter presenter) {
-
 	}
 
 	@Override
 	public void setDelegate(Delegate delegate) {
 		this.delegate = delegate;
-
 	}
 
 	@Override

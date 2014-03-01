@@ -34,8 +34,7 @@
 		addStyleNames="{style.eastPanelStyle} {style.scroll}">
 		<g:north size='110'>
 			<g:HTMLPanel>
-				<g:Image url="logbook/images/logo.png"
-					addStyleNames="{style.logBookLogo}"></g:Image>
+				<g:Image url="logbook/images/logo.png" addStyleNames="{style.logBookLogo}"></g:Image>
 				<g:SimplePanel ui:field="topPanel" addStyleNames="{style.northPanelStyle}"></g:SimplePanel>
 			</g:HTMLPanel>
 		</g:north>
@@ -45,8 +44,7 @@
 		</g:south>
 
 		<g:center>
-			<g:SimplePanel ui:field="logBookNavSimplePanel"
-				addStyleNames="{style.centerpanelStyle}"></g:SimplePanel>
+			<g:SimplePanel ui:field="logBookNavSimplePanel" addStyleNames="{style.centerpanelStyle}"></g:SimplePanel>
 		</g:center>
 	</g:DockLayoutPanel>
 </ui:UiBinder> 

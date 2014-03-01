@@ -102,9 +102,8 @@ public class Administrator {
 		HttpSession session = RequestFactoryServlet.getThreadLocalRequest().getSession();
 		String mailId = (String) session.getAttribute(UNIQUE_ID);
 		Log.debug("mail id: " + mailId);
-		Administrator administrator = Administrator.findAdministratorUsingEmail(mailId);
 
-		return administrator;
+		return Administrator.findAdministratorUsingEmail(mailId);
 	}
 
 	public static Administrator findAdministratorUsingEmail(String mailId) {

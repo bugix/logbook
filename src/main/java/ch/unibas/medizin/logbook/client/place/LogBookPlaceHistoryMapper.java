@@ -26,5 +26,5 @@ import com.google.gwt.place.shared.PlaceHistoryMapperWithFactory;
  * {@link logbook.client.scaffold.place.ProxyPlace ProxyPlace}s (which give access to
  * an individual entity).
  */	 
-public interface LogBookPlaceHistoryMapper  extends PlaceHistoryMapperWithFactory<LogBookPlaceHistoryFactory>{
+public interface LogBookPlaceHistoryMapper extends PlaceHistoryMapperWithFactory<LogBookPlaceHistoryFactory> {
 }

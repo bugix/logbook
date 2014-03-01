@@ -26,7 +26,7 @@ public interface TopicRequest extends RequestContext {
 
 	//abstract InstanceRequest<TopicProxy, Void> remove();
 	
-	abstract Request<List<TopicProxy>> findTopicByClassficationId(Long value);
+	abstract Request<List<TopicProxy>> findTopicByClassificationId(Long value);
 
 	abstract Request<TopicFilteredResultProxy> findTopicOrderByClassification(int start, int max, StudentProxy studentProxy);
 }

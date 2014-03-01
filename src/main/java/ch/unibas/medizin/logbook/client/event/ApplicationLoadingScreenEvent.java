@@ -38,7 +38,7 @@ public class ApplicationLoadingScreenEvent extends GwtEvent<ApplicationLoadingSc
 
 		if (show) {
 			eventCounter++;
-			ApplicationLoadingPopupViewImpl.showApplicationLoadingPopup(show);
+			ApplicationLoadingPopupViewImpl.showApplicationLoadingPopup(true);
 		} else {
 			eventCounter--;
 			if (eventCounter <= 0) {

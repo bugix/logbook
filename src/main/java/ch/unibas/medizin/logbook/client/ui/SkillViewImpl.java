@@ -273,10 +273,6 @@ public class SkillViewImpl extends Composite implements SkillView {
 	@UiField
 	Image imgPrint;
 
-	/*
-	 * @UiField Label levelLabel;
-	 */
-
 	@UiField
 	Anchor hyperLnkPrint;
 
@@ -455,7 +451,6 @@ public class SkillViewImpl extends Composite implements SkillView {
 				if (value) {
 					btnShow.click();
 				}
-
 			}
 		});
 
@@ -472,7 +467,6 @@ public class SkillViewImpl extends Composite implements SkillView {
 		shortcutExplanation.setText(constants.shortcutExplanation());
 
 		initSkillSuggesstions();
-
 	}
 
 	private void initSkillSuggesstions() {
@@ -497,7 +491,6 @@ public class SkillViewImpl extends Composite implements SkillView {
 				} else {
 					setDefaultMessageOfSuggestionbox();
 					delegate.mainClassificationSuggestboxChanged(null);
-
 				}
 			}
 		});
@@ -511,7 +504,6 @@ public class SkillViewImpl extends Composite implements SkillView {
 				} else {
 					setDefaultMessageOfSuggestionbox();
 					delegate.classificationTopicSuggestboxChanged(null);
-
 				}
 			}
 		});
@@ -527,7 +519,6 @@ public class SkillViewImpl extends Composite implements SkillView {
 				}
 			}
 		});
-
 	}
 
 	@Override
@@ -544,7 +535,6 @@ public class SkillViewImpl extends Composite implements SkillView {
 		if (topicSuggestBox.getSelected() == null || topicSuggestBox.getTextField().advancedTextBox.getText().trim() == "") {
 			topicSuggestBox.getTextField().advancedTextBox.setText(constants.allTopics());
 		}
-
 	}
 
 	@Override
@@ -667,7 +657,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 	@Override
 	public void setSource(SkillFilteredResultProxy result) {
 		List<SkillProxy> data = result.getSkillList();
-		List<SkillLevels> skillAcquiredList = result.getSkilltLevelsAcquiredList();
+		List<SkillLevels> skillAcquiredList = result.getSkillLevelsAcquiredList();
 		List<String> skillComment = result.getSkillComment();
 
 		int row = 0;
@@ -819,7 +809,7 @@ public class SkillViewImpl extends Composite implements SkillView {
 				}
 			}, ClickEvent.getType());
 
-			if (skillLevel == SkillLevels.SOME_PRACTICLE_EXPERIENCE) {
+			if (skillLevel == SkillLevels.SOME_PRACTICAL_EXPERIENCE) {
 				checkBox.getCheckbox().setValue(true);
 			} else if (skillLevel == SkillLevels.ROUTINE) {
 				checkBox2.getCheckbox().setValue(true);
@@ -836,11 +826,11 @@ public class SkillViewImpl extends Composite implements SkillView {
 				skillSkillLevel = sproxy.getSkillLevel().getLevelNumber();
 			}
 
-			if (skillLevel == SkillLevels.SOME_PRACTICLE_EXPERIENCE && skillSkillLevel == 2) {
+			if (skillLevel == SkillLevels.SOME_PRACTICAL_EXPERIENCE && skillSkillLevel == 2) {
 				skillFlexTable.getRowFormatter().removeStyleName(row, "redBG");
 				skillFlexTable.getRowFormatter().removeStyleName(row, "greenBG");
 				skillFlexTable.getRowFormatter().addStyleName(row, "yellowBG");
-			} else if (skillLevel == SkillLevels.SOME_PRACTICLE_EXPERIENCE && skillSkillLevel == 1) {
+			} else if (skillLevel == SkillLevels.SOME_PRACTICAL_EXPERIENCE && skillSkillLevel == 1) {
 				skillFlexTable.getRowFormatter().removeStyleName(row, "redBG");
 				skillFlexTable.getRowFormatter().removeStyleName(row, "yellowBG");
 				skillFlexTable.getRowFormatter().addStyleName(row, "greenBG");

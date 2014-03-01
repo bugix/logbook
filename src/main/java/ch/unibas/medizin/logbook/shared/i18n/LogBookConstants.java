@@ -74,7 +74,7 @@ public interface LogBookConstants extends Constants {
 
 	public String studyYearCanNotbeNull();
 
-	public String somePracticleExperiance();
+	public String somePracticalExperiance();
 
 	public String routine();
 

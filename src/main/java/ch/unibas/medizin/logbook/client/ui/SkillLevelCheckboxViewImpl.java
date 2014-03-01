@@ -13,9 +13,9 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class SkillLevelCheckboxViewImpl extends Composite implements SkillLevelCheckboxView {
 
-	private static final SkillLevelCheckboxViewImpllUiBinder uiBinder = GWT.create(SkillLevelCheckboxViewImpllUiBinder.class);
+	private static final SkillLevelCheckboxViewImplUiBinder uiBinder = GWT.create(SkillLevelCheckboxViewImplUiBinder.class);
 
-	interface SkillLevelCheckboxViewImpllUiBinder extends UiBinder<Widget, SkillLevelCheckboxViewImpl> {
+	interface SkillLevelCheckboxViewImplUiBinder extends UiBinder<Widget, SkillLevelCheckboxViewImpl> {
 	}
 
 	private Delegate delegate;
@@ -71,10 +71,7 @@ public class SkillLevelCheckboxViewImpl extends Composite implements SkillLevelC
 
 	@UiHandler("checkbox")
 	public void checkboxSelected(ValueChangeEvent<Boolean> event) {
-		// Window.alert("" +event.getValue() + "gwt skill :" +
-		// skillProxy.getId());
-		delegate.chekBoxSelected(skillProxy, isLevel1, skillLevelCheckboxViewImpl);
-
+		delegate.checkBoxSelected(skillProxy, isLevel1, skillLevelCheckboxViewImpl);
 	}
 
 	private SkillProxy skillProxy;
@@ -120,18 +117,14 @@ public class SkillLevelCheckboxViewImpl extends Composite implements SkillLevelC
 	public SkillLevelCheckboxViewImpl() {
 		skillLevelCheckboxViewImpl = this;
 		initWidget(uiBinder.createAndBindUi(this));
-
 	}
 
 	@Override
 	public void setPresenter(presenter presenter) {
-
 	}
 
 	@Override
 	public void setDelegate(Delegate delegate) {
 		this.delegate = delegate;
-
 	}
-
 }

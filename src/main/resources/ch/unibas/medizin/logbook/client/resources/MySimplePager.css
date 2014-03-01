@@ -6,7 +6,6 @@
 .button {
   padding: 0 1px;
   cursor: pointer;
-  cursor: hand;
 }
 
 .disabledButton {

@@ -49,7 +49,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 	private SkillView view;
 	private SkillLevelCheckboxView checkBoxview;
 	private Long mainClassificationId = null;
-	private Long classificaitonTopicId = null;
+	private Long classificationTopicId = null;
 	private Long topicId = null;
 	private SkillView systemStartView;
 	private Timer errorMessageTimer;
@@ -58,7 +58,6 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 	LogBookConstants constants = GWT.create(LogBookConstants.class);
 
 	public HandlerManager handlerManager;
-	public int currenttab = 0;
 
 	public SkillActivity(LogBookRequestFactory requests, PlaceController placeController, SkillPlace skillPlace) {
 		Log.debug("Call Activity Login");
@@ -71,7 +70,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		static ClassificationTopicProxy ctProxy = null;
 		static TopicProxy tProxy = null;
 		static String fullTextSearch = "";
-		static String chkAsc = new Integer(0).toString();
+		static String chkAsc = Integer.toString(0);
 	}
 
 	public SkillActivity(LogBookRequestFactory requests, PlaceController placeController) {
@@ -83,7 +82,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 	@Override
 	public void onStop() {
 		mainClassificationId = null;
-		classificaitonTopicId = null;
+		classificationTopicId = null;
 		topicId = null;
 		view.getMainClassificationSuggestBox().setSelected(null);
 		view.getClassificationTopicSuggestBox().setSelected(null);
@@ -92,7 +91,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		ShowCriteria.ctProxy = null;
 		ShowCriteria.tProxy = null;
 		ShowCriteria.fullTextSearch = "";
-		ShowCriteria.chkAsc = new Integer(0).toString();
+		ShowCriteria.chkAsc = Integer.toString(0);
 		widget.setWidget(null);
 	}
 
@@ -171,7 +170,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 		Log.debug("full text : " + fullTextSearchString);
 
-		requests.skillRequest().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(), student.getId(), mainClassificationId, classificaitonTopicId, topicId, fullTextSearchString, chkAsc)
+		requests.skillRequest().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(), student.getId(), mainClassificationId, classificationTopicId, topicId, fullTextSearchString, chkAsc)
 				.with("skillList.topic", "skillList.skillComment", "skillList.topic.classificationTopic", "skillList.topic.classificationTopic.mainClassification", "skillList.skillLevel").fire(new Receiver<SkillFilteredResultProxy>() {
 
 					@Override
@@ -201,24 +200,22 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 		Log.debug("full text : " + fullTextSearchString);
 
-		requests.skillRequest().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(), student.getId(), mainClassificationId, classificaitonTopicId, topicId, fullTextSearchString, chkAsc)
+		requests.skillRequest().findSkillBySearchCriteria(view.getPager().getStart(), view.getPager().getLength(), student.getId(), mainClassificationId, classificationTopicId, topicId, fullTextSearchString, chkAsc)
 				.with("skillList.topic", "skillList.topic.classificationTopic", "skillList.topic.classificationTopic.mainClassification", "skillList.skillLevel").fire(new Receiver<SkillFilteredResultProxy>() {
 
 					@Override
 					public void onSuccess(SkillFilteredResultProxy response) {
 						view.createHeader(view.getSkillFlexTable());
 						view.setSource(response);
-
 					}
 				});
-
 	}
 
 	private void initAllSkillSuggestions() {
 
 		initMainClassificationSuggestion();
 		initClassificationTopicSuggestion(mainClassificationId);
-		initTopicSuggestion(classificaitonTopicId);
+		initTopicSuggestion(classificationTopicId);
 
 	}
 
@@ -279,7 +276,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 	private void initTopicSuggestion(Long classificaitonTopicId) {
 
-		requests.topicRequest().findTopicByClassficationId(classificaitonTopicId).fire(new Receiver<List<TopicProxy>>() {
+		requests.topicRequest().findTopicByClassificationId(classificaitonTopicId).fire(new Receiver<List<TopicProxy>>() {
 
 			@Override
 			public void onSuccess(List<TopicProxy> response) {
@@ -302,7 +299,6 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 			}
 		});
-
 	}
 
 	private void initSkillFlexTable() {
@@ -311,7 +307,6 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 	@Override
 	public void goTo(Place place) {
-
 	}
 
 	@Override
@@ -326,7 +321,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		}
 
 		view.getClassificationTopicSuggestBox().setSelected(null);
-		classificaitonTopicId = null;
+		classificationTopicId = null;
 
 		view.getTopicSuggestBox().setSelected(null);
 		topicId = null;
@@ -335,7 +330,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 		initClassificationTopicSuggestion(mainClassificationId);
 
-		initTopicSuggestion(classificaitonTopicId);
+		initTopicSuggestion(classificationTopicId);
 	}
 
 	@Override
@@ -364,7 +359,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 		view.getHpErrorMessage().setVisible(false);
 		mainClassificationId = null;
-		classificaitonTopicId = null;
+		classificationTopicId = null;
 		topicId = null;
 
 		view.getFullTextSearchBox().setText("");
@@ -388,7 +383,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		ShowCriteria.mProxy = view.getMainClassificationSuggestBox().getSelected();
 		ShowCriteria.tProxy = view.getTopicSuggestBox().getSelected();
 		ShowCriteria.ctProxy = view.getClassificationTopicSuggestBox().getSelected();
-		ShowCriteria.chkAsc = new Integer(view.getIsAsc()).toString();
+		ShowCriteria.chkAsc = Integer.toString(view.getIsAsc());
 		ShowCriteria.fullTextSearch = view.getFullTextSearchBox().getValue();
 	}
 
@@ -398,10 +393,10 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		view.getHpErrorMessage().setVisible(false);
 
 		mainClassificationId = view.getMainClassificationSuggestBox().getSelected() != null ? view.getMainClassificationSuggestBox().getSelected().getId() : null;
-		classificaitonTopicId = view.getClassificationTopicSuggestBox().getSelected() != null ? view.getClassificationTopicSuggestBox().getSelected().getId() : null;
+		classificationTopicId = view.getClassificationTopicSuggestBox().getSelected() != null ? view.getClassificationTopicSuggestBox().getSelected().getId() : null;
 		topicId = view.getTopicSuggestBox().getSelected() != null ? view.getTopicSuggestBox().getSelected().getId() : null;
 
-		if (mainClassificationId == null && classificaitonTopicId == null && topicId == null && view.getFullTextSearchBox().getValue() == "") {
+		if (mainClassificationId == null && classificationTopicId == null && topicId == null && view.getFullTextSearchBox().getValue() == "") {
 			view.getHpErrorMessage().setVisible(true);
 			view.getLblErrorMessage().setInnerHTML(constants.ErrorMessage());
 		} else {
@@ -416,7 +411,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		ShowCriteria.mProxy = view.getMainClassificationSuggestBox().getSelected();
 		ShowCriteria.tProxy = view.getTopicSuggestBox().getSelected();
 		ShowCriteria.ctProxy = view.getClassificationTopicSuggestBox().getSelected();
-		ShowCriteria.chkAsc = new Integer(view.getIsAsc()).toString();
+		ShowCriteria.chkAsc = Integer.toString(view.getIsAsc());
 		ShowCriteria.fullTextSearch = view.getFullTextSearchBox().getValue();
 
 	}
@@ -426,7 +421,6 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		String url = GWT.getHostPageBaseURL() + "downloadFile";
 		Log.debug("URL :" + url);
 		Window.open(url, "", "");
-
 	}
 
 	@Override
@@ -455,7 +449,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 		Log.debug("MainClassification :" + mainClassifcationId);
 		Log.debug("Classification Topic Id :" + classifcationTopicId);
 		Log.debug("Topic Id :" + topicId);
-		requests.skillRequest().retrieveHtmlFile(view.getStudent().getId(), mainClassifcationId, classifcationTopicId, topicId, fullTextSearch, new Integer(ShowCriteria.chkAsc).intValue()).fire(new Receiver<String>() {
+		requests.skillRequest().retrieveHtmlFile(view.getStudent().getId(), mainClassifcationId, classifcationTopicId, topicId, fullTextSearch, Integer.parseInt(ShowCriteria.chkAsc)).fire(new Receiver<String>() {
 
 			@Override
 			public void onSuccess(String response) {
@@ -472,7 +466,7 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 	}
 
 	@Override
-	public void chekBoxSelected(final SkillProxy skillProxy, final boolean isLevel1, final SkillLevelCheckboxViewImpl skillLevelCheckboxViewImpl) {
+	public void checkBoxSelected(final SkillProxy skillProxy, final boolean isLevel1, final SkillLevelCheckboxViewImpl skillLevelCheckboxViewImpl) {
 
 		view.getHpErrorMessage().setVisible(false);
 		final int row = skillLevelCheckboxViewImpl.getRow();
@@ -707,14 +701,14 @@ public class SkillActivity extends AbstractActivity implements SkillView.present
 
 		String fullTextSearch = ShowCriteria.fullTextSearch;
 
-		String mainClassifcationId = "0";
-		String classifcationTopicId = "0";
+		String mainClassificationId = "0";
+		String classificationTopicId = "0";
 		String topicId = "0";
 
 		fullTextSearch = "";
 
 		String chkAsc = ShowCriteria.chkAsc;
-		String url = GWT.getHostPageBaseURL() + "SkillPdfExport?studentId=" + view.getStudent().getId() + "&mainClassifcationId=" + mainClassifcationId + "&classifcationId=" + classifcationTopicId + "&topicId=" + topicId + "&chkAsc=" + chkAsc + "&fullTextSearch="
+		String url = GWT.getHostPageBaseURL() + "SkillPdfExport?studentId=" + view.getStudent().getId() + "&mainClassifcationId=" + mainClassificationId + "&classifcationId=" + classificationTopicId + "&topicId=" + topicId + "&chkAsc=" + chkAsc + "&fullTextSearch="
 				+ fullTextSearch;
 		Log.debug("url :" + url);
 		Window.open(url, "skill" + view.getStudent().getName() + ".pdf", "enabled");
